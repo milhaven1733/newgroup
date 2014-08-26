@@ -94,5 +94,4 @@ SimpleForm.setup do |config|
   config.error_notification_class = 'alert alert-danger'
   config.label_class = 'col-lg-2 control-label left-aligned col-md-2 col-sm-2'
   config.input_class = 'form-control'
-  config.label_text = lambda { |label, required, explicit_label| "#{label} #{required}" }
 end

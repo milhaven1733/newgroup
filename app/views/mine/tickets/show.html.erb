@@ -1,0 +1,39 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <strong>Name:</strong>
+  <%= @ticket.name %>
+</p>
+
+<p>
+  <strong>Desc:</strong>
+  <%= @ticket.desc %>
+</p>
+
+<p>
+  <strong>Start at:</strong>
+  <%= @ticket.start_at %>
+</p>
+
+<p>
+  <strong>End at:</strong>
+  <%= @ticket.end_at %>
+</p>
+
+<p>
+  <strong>Oprice:</strong>
+  <%= @ticket.oprice %>
+</p>
+
+<p>
+  <strong>Amount:</strong>
+  <%= @ticket.amount%>
+</p>
+
+<p>
+  <strong>Image url:</strong>
+  <%= image_tag @ticket.image_url %>
+</p>
+
+<%= link_to 'Edit', edit_mine_ticket_path(@ticket) %> |
+<%= link_to 'Back', mine_tickets_path %>
