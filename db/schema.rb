@@ -11,10 +11,39 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20140826110614) do
+ActiveRecord::Schema.define(version: 20140826121937) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
+
+  create_table "categories", force: true do |t|
+    t.string   "name"
+    t.text     "desc"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  create_table "group_prices", force: true do |t|
+    t.integer  "ticket_id"
+    t.integer  "range_from"
+    t.integer  "range_to"
+    t.integer  "price_in_cents"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  create_table "tickets", force: true do |t|
+    t.integer  "user_id"
+    t.string   "name"
+    t.text     "desc"
+    t.datetime "start_at"
+    t.datetime "end_at"
+    t.string   "image_url"
+    t.integer  "oprice_in_cents"
+    t.integer  "amount"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
 
   create_table "users", force: true do |t|
     t.string   "email",                  default: "", null: false
