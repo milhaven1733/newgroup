@@ -9,16 +9,34 @@
       </button>
       <a class="navbar-brand" href="#">Project name</a>
     </div>
-    <div class="navbar-collapse collapse">
-      <%= form_for User.new, url: user_session_path, method: :post, html: { class: 'navbar-form navbar-right' } do |f| %>
-        <div class="form-group">
-          <%= f.text_field :email %>
-        </div>
-        <div class="form-group">
-          <%= f.password_field :password %>
-        </div>
-        <%= f.submit "Sign in", class: 'btn btn-success' %>
-      <% end -%>
-    </div><!--/.navbar-collapse -->
+    <%- if current_user %>
+      <div class="navbar-collapse collapse">
+        <ul class="nav nav-pills pull-right">
+          <li class="dropdown">
+          <a class="dropdown-toggle" data-toggle="dropdown" href="#">
+            <%= current_user.email %><span class="caret"></span>
+          </a>
+          <ul class="dropdown-menu" role="menu">
+            <li role="presentation">
+              <%= link_to 'Log out', destroy_user_session_path, method: :delete, role: :menuitem, tabindex: -1 %>
+            </li>
+          </ul>
+          </li>
+        </ul>
+
+      </div>
+    <% else %>
+      <div class="navbar-collapse collapse">
+        <%= form_for User.new, url: user_session_path, method: :post, html: { class: 'navbar-form navbar-right' } do |f| %>
+          <div class="form-group">
+            <%= f.text_field :email, class: 'form-control', placeholder: 'Email' %>
+          </div>
+          <div class="form-group">
+            <%= f.password_field :password, class: 'form-control', placeholder: 'Password' %>
+          </div>
+          <%= f.submit "Sign in", class: 'btn btn-success' %>
+        <% end -%>
+      </div><!--/.navbar-collapse -->
+    <% end %>
   </div>
 </div>
