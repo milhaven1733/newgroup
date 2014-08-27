@@ -1,0 +1,3 @@
+<% if @group_price.destroyed? %>
+  $("#group-price-<%= @group_price.id %>").hide()
+<% end -%>
