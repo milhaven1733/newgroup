@@ -4,6 +4,8 @@ Rails.application.routes.draw do
   devise_for :users
 
   namespace :mine do
-    resources :tickets
+    resources :tickets do
+      resources :group_prices
+    end
   end
 end

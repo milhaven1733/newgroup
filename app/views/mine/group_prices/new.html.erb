@@ -1,0 +1,13 @@
+<%= simple_form_for([:mine, @ticket, @group_price]) do |f| %>
+  <%= f.error_notification %>
+
+  <div class="form-inputs">
+    <%= f.input :range_from %>
+    <%= f.input :range_to %>
+    <%= f.input :price %>
+  </div>
+
+  <div class="form-actions">
+    <%= f.button :submit %>
+  </div>
+<% end %>

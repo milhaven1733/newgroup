@@ -12,12 +12,12 @@
 
 <p>
   <strong>Start at:</strong>
-  <%= @ticket.start_at %>
+  <%= @ticket.start_at.to_s(:db) %>
 </p>
 
 <p>
   <strong>End at:</strong>
-  <%= @ticket.end_at %>
+  <%= @ticket.end_at.to_s(:db) %>
 </p>
 
 <p>
@@ -28,6 +28,13 @@
 <p>
   <strong>Amount:</strong>
   <%= @ticket.amount%>
+</p>
+
+<p>
+  <strong>Group Prices:</strong>
+  <% @ticket.group_prices.each do |gp| %>
+    <p id='group-price-<%= gp.id %>'><%= gp.display_price %>  <%= link_to 'delete', [:mine, @ticket, gp], remote: true, method: 'DELETE' %></p>
+  <% end -%>
 </p>
 
 <p>
