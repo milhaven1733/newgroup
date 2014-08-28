@@ -2,6 +2,7 @@ class Ticket < ActiveRecord::Base
   priceable :oprice
 
   has_many :group_prices
+  belongs_to :merchant, foreign_key: 'user_id'
 
   mount_uploader :image_url, ImageUploader
 

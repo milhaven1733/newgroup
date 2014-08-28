@@ -7,5 +7,9 @@ Rails.application.routes.draw do
     resources :tickets do
       resources :group_prices
     end
+
+    get :profile
+    patch :profile, to: :update_profile
   end
+
 end

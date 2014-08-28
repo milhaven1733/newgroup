@@ -41,6 +41,7 @@ gem 'spring',        group: :development
 # gem 'debugger', group: [:development, :test]
 
 gem 'devise'
+gem 'cancan'
 gem 'simple_form'
 gem 'quiet_assets'
 gem 'priceable'
