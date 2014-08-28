@@ -1,0 +1,22 @@
+<h3>Edit Profile</h3>
+
+<hr/>
+
+<%= simple_form_for current_user, url: mine_profile_path, method: :patch do |f| %>
+  <%= f.error_notification %>
+
+  <div class="form-inputs">
+    <%= f.input :email, disabled: true %>
+    <%= f.input :name %>
+
+    <% if f.object.merchant? %>
+      <%= f.input :phone %>
+      <%= f.input :address %>
+    <% end -%>
+    <%= f.input :avatar, as: :file %>
+  </div>
+
+  <div class="form-actions">
+    <%= f.button :submit %>
+  </div>
+<% end -%>

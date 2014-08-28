@@ -11,3 +11,25 @@ body {
   padding: 15px;
   margin: 0 auto;
 }
+
+#container {
+  padding-top: 20px;
+}
+
+.detail {
+  [class^=col-md] {
+    padding-top: 10px;
+  }
+}
+
+.avatar {
+  height: 40px;
+  margin-top: 5px;
+  width: 40px;
+
+  img {
+    height: 100%;
+    border-radius: 50%;
+    width: 100%;
+  }
+}
