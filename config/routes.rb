@@ -8,7 +8,7 @@ Rails.application.routes.draw do
       resources :group_prices
     end
 
-    get :profile
+    get :profile, :edit_profile
     patch :profile, to: :update_profile
   end
 
