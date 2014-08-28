@@ -4,7 +4,7 @@ module Mine
 
     # GET /tickets
     def index
-      @tickets = Ticket.all
+      @tickets = current_user.tickets
     end
 
     # GET /tickets/1
@@ -22,7 +22,7 @@ module Mine
 
     # POST /tickets
     def create
-      @ticket = Ticket.new(ticket_params)
+      @ticket = current_user.tickets.new(ticket_params)
 
       if @ticket.save
         redirect_to [:mine, @ticket], notice: 'Ticket was successfully created.'
@@ -49,7 +49,7 @@ module Mine
     private
     # Use callbacks to share common setup or constraints between actions.
     def set_ticket
-      @ticket = Ticket.find(params[:id])
+      @ticket = current_user.tickets.find(params[:id])
     end
 
     # Never trust parameters from the scary internet, only allow the white list through.
