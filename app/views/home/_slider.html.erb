@@ -1,3 +1,25 @@
-<div id='slider'>
-slide show
+<div id='slider' class="flexslider">
+  <% if @tickets.size > 0 %>
+    <ul class="slides">
+      <% @tickets.each do |ticket| %>
+        <li>
+          <%= image_tag(ticket.image_url) %>
+          <p class="flex-caption"><%= ticket.desc %></p>
+        </li>
+      <% end %>
+    </ul>
+  <% end %>
 </div>
+
+<script type="text/javascript" charset="utf-8">
+  $(window).load(function() {
+    $('.flexslider').flexslider({
+      slideshow: true, 
+      slideshowSpeed: 2000,
+      animation: "slide",
+      animationLoop: true,
+      pauseOnHover: true,
+      directionNav: true,
+    });
+  });
+</script>

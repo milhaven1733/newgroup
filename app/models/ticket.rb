@@ -5,7 +5,7 @@ class Ticket < ActiveRecord::Base
   belongs_to :category
   has_many :group_prices
 
-  mount_uploader :image_url, ImageUploader
+  # mount_uploader :image_url, ImageUploader
 
   validates :name, :start_at, :end_at, :oprice, presence: true
   validates :start_at, time_period: { scope: :end_at }
