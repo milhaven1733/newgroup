@@ -12,4 +12,8 @@ class Ticket < ActiveRecord::Base
   validates :oprice_in_cents, :amount, numericality: true
 
   delegate :name, to: :category, prefix: true, allow_nil: true
+
+  def self.top_deals 
+    self.last(3)
+  end
 end
