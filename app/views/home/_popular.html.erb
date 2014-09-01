@@ -1,3 +1,15 @@
 <div id='top-deals'>
-Top deals
+  <div class="row">
+    <% @top_tickets.each do |ticket| %>
+      <div class="col-sm-6 col-md-4">
+        <div class="thumbnail">
+          <img src="<%= ticket.image_url %>" alt="<%= ticket.name %>">
+          <div class="caption">
+            <h3><%= ticket.name %></h3>
+            <p><%= ticket.desc %></p>
+          </div>
+        </div>
+      </div>
+    <% end %>
+  </div>
 </div>
