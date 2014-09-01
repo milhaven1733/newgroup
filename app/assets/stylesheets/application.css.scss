@@ -1,35 +1,5 @@
 @import "bootstrap-sprockets";
 @import "bootstrap";
 @import "jquery.datetimepicker";
-
-body {
-  margin-top: 50px;
-}
-
-.form-signin {
-  max-width: 330px;
-  padding: 15px;
-  margin: 0 auto;
-}
-
-#container {
-  padding-top: 20px;
-}
-
-.detail {
-  [class^=col-md] {
-    padding-top: 10px;
-  }
-}
-
-.avatar {
-  height: 40px;
-  margin-top: 5px;
-  width: 40px;
-
-  img {
-    height: 100%;
-    border-radius: 50%;
-    width: 100%;
-  }
-}
+@import "common";
+@import "home";

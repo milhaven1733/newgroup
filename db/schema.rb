@@ -32,28 +32,6 @@ ActiveRecord::Schema.define(version: 20140828125249) do
     t.datetime "updated_at"
   end
 
-  create_table "merchants", force: true do |t|
-    t.string   "name"
-    t.string   "address"
-    t.string   "phone"
-    t.string   "avatar_url"
-    t.datetime "created_at"
-    t.datetime "updated_at"
-    t.string   "email",                  default: "", null: false
-    t.string   "encrypted_password",     default: "", null: false
-    t.string   "reset_password_token"
-    t.datetime "reset_password_sent_at"
-    t.datetime "remember_created_at"
-    t.integer  "sign_in_count",          default: 0,  null: false
-    t.datetime "current_sign_in_at"
-    t.datetime "last_sign_in_at"
-    t.inet     "current_sign_in_ip"
-    t.inet     "last_sign_in_ip"
-  end
-
-  add_index "merchants", ["email"], name: "index_merchants_on_email", unique: true, using: :btree
-  add_index "merchants", ["reset_password_token"], name: "index_merchants_on_reset_password_token", unique: true, using: :btree
-
   create_table "tickets", force: true do |t|
     t.integer  "user_id"
     t.string   "name"
