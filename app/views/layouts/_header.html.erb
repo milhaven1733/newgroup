@@ -10,7 +10,15 @@
       <a class="navbar-brand" href="/">GroupEt</a>
     </div>
     <div class='navbar-nav navbar-center'>
-      <a>set city</a>
+      <a href="#" id='set_city'>set city</a>
+      <form class='navbar-form' id='search'>
+        <div class='form-group input-group'>
+          <span class="input-group-addon">
+            <span class='glyphicon glyphicon-search'></span>
+          </span>
+          <input type='text' class='form-control'>
+        </div>
+      </form>
     </div>
     <%- if current_user %>
       <ul class="nav navbar-nav navbar-right">

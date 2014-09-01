@@ -5,7 +5,19 @@ body {
 #header {
   .navbar-center {
     margin-left: 25%;
-    padding: 15px;
+    #set_city {
+      padding: 15px 5px;
+      float: left;
+      color: #777777;
+      &:hover {
+        color: white;
+        background-color: transparent;
+        text-decoration: none;
+      }
+    }
+    #search.navbar-form {
+      float: left;
+    }
   }
 }
 
