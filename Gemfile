@@ -46,3 +46,7 @@ gem 'quiet_assets'
 gem 'priceable'
 gem 'carrierwave'
 gem 'tabletastic', github: 'zlx/tabletastic'
+
+group :test, :development do
+  gem 'ffaker'
+end
