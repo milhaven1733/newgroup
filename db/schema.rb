@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20140902030055) do
+ActiveRecord::Schema.define(version: 20140902040637) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -19,6 +19,13 @@ ActiveRecord::Schema.define(version: 20140902030055) do
   create_table "categories", force: true do |t|
     t.string   "name"
     t.text     "desc"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  create_table "et_groups", force: true do |t|
+    t.string   "name"
+    t.integer  "leader_id"
     t.datetime "created_at"
     t.datetime "updated_at"
   end
@@ -31,6 +38,16 @@ ActiveRecord::Schema.define(version: 20140902030055) do
     t.datetime "created_at"
     t.datetime "updated_at"
   end
+
+  create_table "groups_users", id: false, force: true do |t|
+    t.integer  "user_id"
+    t.integer  "et_group_id"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  add_index "groups_users", ["et_group_id"], name: "index_groups_users_on_et_group_id", using: :btree
+  add_index "groups_users", ["user_id"], name: "index_groups_users_on_user_id", using: :btree
 
   create_table "merchants", force: true do |t|
     t.string   "name"
