@@ -47,6 +47,7 @@ gem 'carrierwave'
 gem 'tabletastic', github: 'zlx/tabletastic'
 gem 'ransack', github: 'activerecord-hackery/ransack', branch: 'rails-4.1'
 gem 'kaminari'
+gem 'haml-rails'
 
 group :test, :development do
   gem 'ffaker'
