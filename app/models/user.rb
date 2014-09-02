@@ -9,4 +9,6 @@ class User < ActiveRecord::Base
   enum role: [:normal, :merchant]
 
   has_many :tickets
+  has_many :et_groups
+  has_and_belongs_to_many :groups, join_table: 'groups_users'
 end
