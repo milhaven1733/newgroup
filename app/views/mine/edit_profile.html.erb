@@ -2,7 +2,7 @@
 
 <hr/>
 
-<%= simple_form_for current_user, url: mine_profile_path, method: :patch do |f| %>
+<%= simple_form_for current_user, url: mine_profile_path, method: :patch, html: {class: 'form-horizontal'} do |f| %>
   <%= f.error_notification %>
 
   <div class="form-inputs">
@@ -16,7 +16,9 @@
     <%= f.input :avatar, as: :file %>
   </div>
 
-  <div class="form-actions">
-    <%= f.button :submit %>
+  <div class="form-group">
+    <div class="col-sm-offset-2 col-sm-10">
+      <%= f.button :submit %>
+    </div>
   </div>
 <% end -%>

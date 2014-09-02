@@ -8,6 +8,7 @@
         <td><%= ticket.amount %></td>
         <td><%= ticket.start_at %></td>
         <td><%= ticket.end_at %></td>
+        <td><%= link_to ticket.user.try(:name), merchant_path(id: ticket.user_id) %></td>
       </tr>
     <% end %>
   </tbody>

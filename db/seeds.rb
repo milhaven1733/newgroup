@@ -4,7 +4,7 @@ User.destroy_all
 Category.destroy_all
 Ticket.destroy_all
 
-merchant = User.create!(email: "merchant@test.com", password: "password", role: "merchant")
+merchant = User.create!(email: "merchant@test.com", password: "password", role: "merchant", name: "merchant")
 User.create!(email: "normal@test.com", password: "password", role: "merchant")
 
 art = Category.create!(name: "Art", desc: "art")

@@ -9,4 +9,8 @@ class User < ActiveRecord::Base
   enum role: [:normal, :merchant]
 
   has_many :tickets
+
+  def avatar_url
+    avatar.try(:url) || "avatar.png"
+  end
 end

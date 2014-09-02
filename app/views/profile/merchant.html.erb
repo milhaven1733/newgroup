@@ -1,0 +1,47 @@
+<div class='row' id='main'>
+  <div class='col-sm-3'>
+    <%= render 'home/sidebar' %>
+  </div>
+  <div class='col-sm-9'>
+    <h2>Merchant Profile</h2>
+    <div class="row">
+      <div class="col-sm-4 big_avatar">
+        <%= image_tag @user.avatar_url %>
+      </div>
+      <div class="col-sm-8">
+        <div class='row'>
+          <div class='col-md-1 '>Name:</div>
+          <div class='col-md-10'><%= @user.name %></div>
+        </div>
+        <div class='row'>
+          <div class='col-md-1 '>Email:</div>
+          <div class='col-md-10'><%= @user.email %></div>
+        </div>
+        <div class='row'>
+          <div class='col-md-1 '>Phone:</div>
+          <div class='col-md-10'><%= @user.phone %></div>
+        </div>
+        <div class='row'>
+          <div class='col-md-1 '>Address:</div>
+          <div class='col-md-10'><%= @user.address %></div>
+        </div>
+      </div>
+    </div>
+    <hr>
+    
+    <h3>Upoming Shows/Exibitions</h3>
+    <div class="row">
+      <% @top_tickets.each do |ticket| %>
+        <div class="col-sm-6 col-md-4">
+          <div class="thumbnail">
+            <img src="<%= ticket.image_url %>" alt="<%= ticket.name %>">
+            <div class="caption">
+              <h3><%= ticket.name %></h3>
+              <p><%= ticket.desc %></p>
+            </div>
+          </div>
+        </div>
+      <% end %>
+    </div>
+    </div>
+</div>

@@ -4,6 +4,8 @@ Rails.application.routes.draw do
   devise_for :users
 
   get 'search', to: "home#search", as: "search"
+  get 'user', to: "profile#user", as: "user"
+  get 'merchant', to: "profile#merchant", as: "merchant"
 
   namespace :mine do
     resources :tickets do
