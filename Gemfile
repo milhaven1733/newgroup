@@ -42,7 +42,6 @@ gem 'spring',        group: :development
 gem 'devise'
 gem 'cancan'
 gem 'simple_form'
-gem 'quiet_assets'
 gem 'priceable'
 gem 'carrierwave'
 gem 'tabletastic', github: 'zlx/tabletastic'
