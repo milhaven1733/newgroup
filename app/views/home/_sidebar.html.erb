@@ -10,11 +10,11 @@
   </div>
   <div class="form-group">
     <%= f.label :end_at_gt, "From" %>
-    <%= f.search_field :end_at_gt, class: "form-control" %>
+    <%= f.search_field :end_at_gt, class: "form-control datetimepicker" %>
   </div>
   <div class="form-group">
     <%= f.label :start_at_lt, "To" %>
-    <%= f.search_field :start_at_lt, class: "form-control" %>
+    <%= f.search_field :start_at_lt, class: "form-control datetimepicker" %>
   </div>
   <%= f.submit "Search", class: "btn btn-default" %>
 <% end %>
