@@ -42,11 +42,17 @@ gem 'spring',        group: :development
 gem 'devise'
 gem 'cancan'
 gem 'simple_form'
-gem 'quiet_assets'
 gem 'priceable'
 gem 'carrierwave'
 gem 'tabletastic', github: 'zlx/tabletastic'
+gem 'ransack', github: 'activerecord-hackery/ransack', branch: 'rails-4.1'
+gem 'kaminari'
 
 group :test, :development do
   gem 'ffaker'
+  gem 'thin'
+  gem 'quiet_assets'
+  gem 'better_errors'
+  gem 'pry'
+  gem 'pry-nav'
 end

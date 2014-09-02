@@ -3,6 +3,8 @@ Rails.application.routes.draw do
 
   devise_for :users
 
+  get 'search', to: "home#search", as: "search"
+
   namespace :mine do
     resources :tickets do
       resources :group_prices
