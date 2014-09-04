@@ -6,6 +6,14 @@ Rails.application.routes.draw do
   get 'search', to: "home#search", as: "search"
   get 'merchant', to: "profile#merchant", as: "merchant"
 
+  resources :tickets do
+    resources :groups do
+      member do
+        post :join_pay
+      end
+    end
+  end
+
   namespace :mine do
     resources :tickets do
       resources :group_prices

@@ -1,0 +1,47 @@
+<h3><%= @ticket.name %></h3>
+
+<div class='main ticket clearfix'>
+  <div class='img-section'>
+    <%= image_tag @ticket.image_url, class: 'ticket-image' %>
+  </div>
+  <div class='info-section col-lg-6'>
+    <div class='info desc'>
+      <div class='title'>Desc:</div>
+      <div class='value'><%= @ticket.desc %></div>
+    </div>
+    <div class='time info'>
+      <div class='title'>Time:</div>
+      <div class='value'><%= "#{@ticket.start_at.to_s(:db)}--#{@ticket.end_at.to_s(:db)}" %></div>
+    </div>
+    <div class='oprice info'>
+      <div class='title'>Origin Price:</div>
+      <div class='value'><%= number_to_currency(@ticket.oprice) %></div>
+    </div>
+    <div class='group-price info'>
+      <div class='title'>Group Price:</div>
+      <div class='value'>
+        <% @ticket.ranked_group_prices.each do |gp| %>
+          <%= "#{gp.range_from} ~ #{gp.range_to}:  #{number_to_currency(gp.price)}" %></br/>
+        <% end -%>
+      </div>
+    </div>
+    <div class='actions info'>
+      <div class='title'>&nbsp</div>
+      <div class='value'>
+        <% @ticket.ranked_groups.each do |g| %>
+          <%= link_to "Join #{g.name}", '#', role: 'button', class: 'btn btn-success', 
+            data: { toggle: 'modal', target: "#join-group-#{g.id}" } %>
+          <%= render 'join_group', group: g %>
+        <% end -%>
+        <%= link_to 'Group It', new_ticket_group_path(@ticket), role: 'button', class: 'btn btn-primary' %>
+      </div>
+    </div>
+  </div>
+</div>
+
+
+<hr/>
+<h3>Popular Ticket</h3>
+<div class='popular'>
+  <%= render partial: 'home/popular' %>
+</div>

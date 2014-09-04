@@ -1,0 +1,5 @@
+<% if @group_user.persisted? %>
+  $("#join-group-<%= @group.id %>").modal("hide");
+<% else %>
+  $("#join-error-<%= @group.id %>").text("<%= @group_user.errors.full_messages.join(",") %>").show();
+<% end -%>
