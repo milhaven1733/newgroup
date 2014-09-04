@@ -32,7 +32,8 @@
 
 <p>
   <strong>Group Prices:</strong>
-  <% @ticket.group_prices.each do |gp| %>
+  <%= link_to 'Add Group Price', new_mine_ticket_group_price_path(@ticket) %>
+  <% @ticket.ranked_group_prices.each do |gp| %>
     <p id='group-price-<%= gp.id %>'><%= gp.display_price %>  <%= link_to 'delete', [:mine, @ticket, gp], remote: true, method: 'DELETE' %></p>
   <% end -%>
 </p>

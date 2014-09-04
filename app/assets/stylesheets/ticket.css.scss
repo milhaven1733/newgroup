@@ -1,0 +1,42 @@
+.ticket {
+  min-height: 400px;
+  .img-section {
+    float: left;
+    width: 34%;
+    .ticket-image {
+      width: 100%;
+    }
+  }
+
+  .info-section {
+    float: left;
+    width: 50%;
+
+    .info {
+      margin: 10px 0px;
+
+      .title {
+        float: left;
+        width: 20%;
+        text-align: left;
+        font-weight: bold;
+
+      }
+
+      .value {
+        float: left;
+        width: 80%;
+      }
+
+      &:before,
+      &:after {
+        content: " ";
+        display: table;
+      }
+
+      &:after {
+        clear: both;
+      }
+    }
+  }
+}

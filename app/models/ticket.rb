@@ -4,8 +4,9 @@ class Ticket < ActiveRecord::Base
   belongs_to :user
   belongs_to :category
   has_many :group_prices
+  has_many :groups, class_name: 'EtGroup'
 
-  # mount_uploader :image_url, ImageUploader
+   mount_uploader :image_url, ImageUploader
 
   validates :name, :start_at, :end_at, :oprice, presence: true
   validates :start_at, time_period: { scope: :end_at }
@@ -15,5 +16,13 @@ class Ticket < ActiveRecord::Base
 
   def self.top_deals 
     self.last(3)
+  end
+
+  def ranked_group_prices
+    group_prices.order(range_from: :asc)
+  end
+
+  def ranked_groups
+    groups.order(deadline: :asc)
   end
 end
