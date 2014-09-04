@@ -7,7 +7,7 @@ class GroupsController < ApplicationController
   end
 
   def create
-    @group = @ticket.groups.new group_params
+    @group = @ticket.groups.new group_params.merge(leader: current_user)
     if @group.save
       redirect_to @ticket, notice: "Create group for ticket success"
     else
@@ -16,7 +16,7 @@ class GroupsController < ApplicationController
   end
 
   def join_pay
-    @group_user = @group.groups_users.new group_user_params.merge(status: :paid)
+    @group_user = @group.groups_users.new group_user_params.merge(user: current_user, status: :paid)
     @group_user.save
   end
 
