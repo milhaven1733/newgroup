@@ -40,6 +40,8 @@ group :development do
 end
 
 group :test, :development do
+  gem 'minitest-rails'
+  gem 'factory_girl_rails'
   gem 'ffaker'
   gem 'thin'
   gem 'better_errors'

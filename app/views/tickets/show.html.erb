@@ -21,7 +21,7 @@
       <div class='title'>Group Price:</div>
       <div class='value'>
         <% @ticket.ranked_group_prices.each do |gp| %>
-          <%= "#{gp.range_from} ~ #{gp.range_to}:  #{number_to_currency(gp.price)}" %></br/>
+          <%= render_group_price gp %></br/>
         <% end -%>
       </div>
     </div>
