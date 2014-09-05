@@ -1,8 +1,13 @@
+// 3 party
 @import "bootstrap-sprockets";
 @import "bootstrap";
 @import "jquery.datetimepicker";
+@import "flexslider";
+@import "devise";
+
+// self
 @import "common";
 @import "home";
 @import "devise";
-@import "flexslider";
 @import "ticket";
+@import "profile";

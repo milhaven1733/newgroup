@@ -20,7 +20,7 @@ Rails.application.routes.draw do
     end
 
     get :profile, :edit_profile
-    patch :profile, to: :update_profile
+    patch :profile, action: :update_profile
   end
 
 end

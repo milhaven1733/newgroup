@@ -3,7 +3,7 @@
     <ul class="slides">
       <% @tickets.each do |ticket| %>
         <li>
-          <%= image_tag(ticket.image_url) %>
+          <%= link_to image_tag(ticket.image_url), ticket %>
           <p class="flex-caption"><%= ticket.desc %></p>
         </li>
       <% end %>
