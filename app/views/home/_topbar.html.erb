@@ -1,5 +1,5 @@
 <ul id='topbar' class="nav nav-justified">
-  <% Category.all.each do |category| %>
+  <% Category.limit(10).each do |category| %>
     <li>
       <%= link_to category.name, search_path(category_id: category.id) %>
     </li>
