@@ -1,0 +1,36 @@
+<div class="panel panel-info">
+  <div class="panel-heading">Wallet</div>
+  <div class="panel-body">
+    Balance: <%= number_to_currency(current_user.balance) %> 
+    <button class="btn btn-success" data-toggle="modal" data-target="#recharge-modal">Recharge</button>
+    <button class="<%= current_user.can_withdraw? ? '' : 'disabled' %> btn btn-primary" data-toggle="modal" data-target="#withdraw-modal">Withdraw</button>
+  </div>
+</div>
+
+<div class="modal fade" id="recharge-modal">
+<div class="modal-dialog">
+  <div class="modal-content">
+    <div class="modal-header">
+      <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
+      <h4 class="modal-title">Recharge</h4>
+      </div>
+      <div class="modal-body">
+    Balance: <%= number_to_currency(current_user.balance) %> 
+    Recharge: <%= text_field_tag "recharge" %>
+<%#<form action="" method="POST">%>
+  <%#<script%>
+    <%#src="https://checkout.stripe.com/checkout.js" class="stripe-button"%>
+    <%#data-key="pk_test_Ln8gG4DZmil512Jt09QJOskk"%>
+    <%#data-amount="2000"%>
+    <%#data-name="Demo Site"%>
+    <%#data-description="2 widgets ($20.00)"%>
+    <%#data-image="/128x128.png">%>
+  <%#</script>%>
+<%#</form>%>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-primary">Confirm</button>
+      </div>
+    </div><!-- /.modal-content -->
+  </div><!-- /.modal-dialog -->
+</div><!-- /.modal -->

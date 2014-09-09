@@ -1,7 +1,7 @@
 class Wallet < ActiveRecord::Base 
   belongs_to :user
 
-  priceable :dollar
+  priceable :balance
 
   def afford?(price)
     dollar >= price

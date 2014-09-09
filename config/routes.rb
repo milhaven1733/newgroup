@@ -18,6 +18,7 @@ Rails.application.routes.draw do
     resources :tickets do
       resources :group_prices
     end
+    resource :wallet
 
     get :profile, :edit_profile
     patch :profile, action: :update_profile
