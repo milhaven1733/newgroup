@@ -1,4 +1,4 @@
-<h3><%= @ticket.name %></h3>
+<h3 class='center'><%= @ticket.name %></h3>
 
 <div class='main ticket clearfix'>
   <div class='img-section'>
@@ -12,6 +12,10 @@
     <div class='time info'>
       <div class='title'>Time:</div>
       <div class='value'><%= "#{@ticket.start_at.to_s(:db)}--#{@ticket.end_at.to_s(:db)}" %></div>
+    </div>
+    <div class='info'>
+      <div class='title'>Quantity:</div>
+      <div class='value'><%= @ticket.amount %></div>
     </div>
     <div class='oprice info'>
       <div class='title'>Origin Price:</div>

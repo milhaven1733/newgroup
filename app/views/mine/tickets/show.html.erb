@@ -1,49 +1,42 @@
+<h3 class='center'><%= @ticket.name %></h3>
+
 <p id="notice"><%= notice %></p>
 
-<p>
-  <strong>Name:</strong>
-  <%= @ticket.name %>
-</p>
-
-<p>
-  <strong>Desc:</strong>
-  <%= @ticket.desc %>
-</p>
-
-<p>
-  <strong>Start at:</strong>
-  <%= @ticket.start_at.to_s(:db) %>
-</p>
-
-<p>
-  <strong>End at:</strong>
-  <%= @ticket.end_at.to_s(:db) %>
-</p>
-
-<p>
-  <strong>Oprice:</strong>
-  <%= @ticket.oprice %>
-</p>
-
-<p>
-  <strong>Amount:</strong>
-  <%= @ticket.amount%>
-</p>
-
-<p>
-  <strong>Group Prices:</strong>
-  <%= link_to 'Add Group Price', new_mine_ticket_group_price_path(@ticket) %>
-  <% @ticket.ranked_group_prices.each do |gp| %>
-    <p id='group-price-<%= gp.id %>'>
-      <%= render_group_price gp %>  <%= link_to 'delete', [:mine, @ticket, gp], remote: true, method: 'DELETE' %>
-    </p>
-  <% end -%>
-</p>
-
-<p>
-  <strong>Image url:</strong>
-  <%= image_tag @ticket.image_url %>
-</p>
-
-<%= link_to 'Edit', edit_mine_ticket_path(@ticket) %> |
-<%= link_to 'Back', mine_tickets_path %>
+<div class='main ticket clearfix'>
+  <div class='img-section'>
+    <%= image_tag @ticket.image_url, class: 'ticket-image' %>
+  </div>
+  <div class='info-section col-lg-6'>
+    <div class='info desc'>
+      <div class='title'>Desc:</div>
+      <div class='value'><%= @ticket.desc %></div>
+    </div>
+    <div class='time info'>
+      <div class='title'>Time:</div>
+      <div class='value'><%= "#{@ticket.start_at.to_s(:db)}--#{@ticket.end_at.to_s(:db)}" %></div>
+    </div>
+    <div class='info'>
+      <div class='title'>Quantity:</div>
+      <div class='value'><%= @ticket.amount %></div>
+    </div>
+    <div class='oprice info'>
+      <div class='title'>Origin Price:</div>
+      <div class='value'><%= number_to_currency(@ticket.oprice) %></div>
+    </div>
+    <div class='group-price info'>
+      <div class='title'>Group Price:</div>
+      <div class='value'>
+        <%= link_to 'Add Group Price', new_mine_ticket_group_price_path(@ticket) %>
+        <% @ticket.ranked_group_prices.each do |gp| %>
+          <p id='group-price-<%= gp.id %>'>
+            <%= render_group_price gp %>  <%= link_to 'delete', [:mine, @ticket, gp], remote: true, method: 'DELETE' %>
+          </p>
+        <% end -%>
+      </div>
+    </div>
+    <div class="info">
+      <%= link_to 'Edit', edit_mine_ticket_path(@ticket) %> |
+      <%= link_to 'Back', mine_tickets_path %>
+    </div>
+  </div>
+</div>
