@@ -30,8 +30,27 @@
       <% end %>
       <div class='row'>
         <div class='col-md-1 '>Avatar:</div>
-        <div class='col-md-10 logo'><%= image_tag current_user.avatar_url %></div>
+        <div class='col-md-10 logo'><%= image_tag current_user.avatar_url, size: '60x60' %></div>
       </div>
     </div>
   </div>
 </div>
+
+<% if @favourite_tickets.present? -%>
+  <h2 class='center'>My Favourite Tickets</h2>
+  <table class="table table-hover">
+    <tbody>
+      <% @favourite_tickets.each do |ticket| %>
+        <tr>
+          <td><%= link_to ticket.name, ticket %></td>
+          <td><%= ticket.category.try(:name) %></td>
+          <td><%= ticket.amount %></td>
+          <td><%= number_to_currency ticket.oprice %></td>
+          <td><%= ticket.start_at %></td>
+          <td><%= ticket.end_at %></td>
+          <td><%= link_to ticket.user.try(:name), merchant_path(id: ticket.user_id) %></td>
+        </tr>
+      <% end %>
+    </tbody>
+  </table>
+<% end -%>
