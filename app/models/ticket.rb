@@ -5,6 +5,7 @@ class Ticket < ActiveRecord::Base
   belongs_to :category
   has_many :group_prices
   has_many :groups, class_name: 'EtGroup'
+  has_many :votes, as: :votable
 
   mount_uploader :image_url, ImageUploader
 

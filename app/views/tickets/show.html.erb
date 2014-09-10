@@ -1,4 +1,9 @@
-<h3 class='center'><%= @ticket.name %></h3>
+<h3 class='center'>
+  <%= @ticket.name %>
+  <a id='favourite' href="<%= like_ticket_path(@ticket) %>" data-voted="<%= have_liked?(@ticket) %>">
+    <span class="glyphicon <%= have_liked?(@ticket) ? 'glyphicon-heart' : 'glyphicon-heart-empty' %>"></span>
+  </a>
+</h3>
 
 <div class='main ticket clearfix'>
   <div class='img-section'>

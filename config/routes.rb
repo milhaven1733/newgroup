@@ -12,6 +12,9 @@ Rails.application.routes.draw do
         post :join_pay
       end
     end
+    member do
+      post :like
+    end
   end
 
   namespace :mine do
