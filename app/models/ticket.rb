@@ -6,7 +6,7 @@ class Ticket < ActiveRecord::Base
   has_many :group_prices
   has_many :groups, class_name: 'EtGroup'
 
-   mount_uploader :image_url, ImageUploader
+  mount_uploader :image_url, ImageUploader
 
   validates :name, :start_at, :end_at, :oprice, presence: true
   validates :start_at, time_period: { scope: :end_at }
