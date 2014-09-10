@@ -2,6 +2,7 @@ class MineController < ApplicationController
   before_action :set_current
 
   def profile
+    @favourite_tickets = @user.favourites
   end
 
   def update_profile
