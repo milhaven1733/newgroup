@@ -30,6 +30,9 @@ gem 'ransack', github: 'activerecord-hackery/ransack', branch: 'rails-4.2'
 gem 'kaminari'
 gem 'haml-rails'
 
+# payment
+gem 'stripe'
+
 # others
 gem 'priceable'
 gem 'quiet_assets'

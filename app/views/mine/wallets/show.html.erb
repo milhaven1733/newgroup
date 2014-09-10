@@ -1,0 +1,10 @@
+<div class="panel panel-info">
+  <div class="panel-heading">Wallet</div>
+  <div class="panel-body">
+    Balance: <%= number_to_currency(current_user.balance) %> 
+    <button class="btn btn-success launch-modal" data-target="#recharge-modal">Recharge</button>
+    <button class="<%= current_user.can_withdraw? ? '' : 'disabled' %> btn btn-primary launch-modal" data-target="#withdraw-modal">Withdraw</button>
+  </div>
+</div>
+
+<%= render 'recharge_modal' %>
