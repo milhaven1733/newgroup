@@ -15,7 +15,7 @@ class User < ActiveRecord::Base
 
   after_create :init_wallet
 
-  delegate :balance, to: :wallet
+  delegate :balance, :balance=, to: :wallet
 
   def avatar_url
     avatar.try(:url) || "avatar.png"

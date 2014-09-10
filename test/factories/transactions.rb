@@ -7,5 +7,6 @@ FactoryGirl.define do
     transaction_type :recharge
     dollar 1
     status :created
+    user_id 1
   end
 end
