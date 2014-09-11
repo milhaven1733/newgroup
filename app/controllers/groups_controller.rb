@@ -9,9 +9,9 @@ class GroupsController < ApplicationController
   def create
     @group = @ticket.groups.new group_params.merge(leader: current_user)
     if @group.save
-      redirect_to @ticket, notice: "Create group for ticket success"
+      redirect_to @ticket, notice: 'Create group for ticket success'
     else
-      render action: :new, error: "Create group for ticket fail"
+      render action: :new, error: 'Create group for ticket fail'
     end
   end
 
@@ -21,6 +21,7 @@ class GroupsController < ApplicationController
   end
 
   private
+
   def set_ticket
     @ticket = Ticket.find params[:ticket_id]
   end

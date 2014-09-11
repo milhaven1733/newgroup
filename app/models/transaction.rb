@@ -11,14 +11,14 @@ class Transaction < ActiveRecord::Base
 
   before_save :update_wallet, if: :success?
 
-
   private
+
   def update_wallet
-    fail "missing according wallet" unless wallet
+    fail 'missing according wallet' unless wallet
     if recharge?
       wallet.update! balance: user.balance + dollar
     elsif withdraw?
-      fail "Balance less than withdraw amount" if user.balance < dollar
+      fail 'Balance less than withdraw amount' if user.balance < dollar
       wallet.update! balance: user.balance - dollar
     end
   end

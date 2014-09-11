@@ -4,5 +4,5 @@ class GroupsUser < ActiveRecord::Base
 
   enum status: [:joined, :paid]
 
-  validates_uniqueness_of :user_id, scope: :et_group_id, message: 'Have Join the group'
+  validates :user_id, uniqueness: { scope: :et_group_id, message: 'Have Join the group' }
 end

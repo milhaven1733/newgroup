@@ -6,12 +6,12 @@ class MineController < ApplicationController
   end
 
   def update_profile
-    if current_user.update user_param
-      redirect_to action: :profile
-    end
+    current_user.update user_param
+    redirect_to action: :profile
   end
 
   private
+
   def set_current
     @user = current_user || current_merchant
   end
@@ -23,5 +23,4 @@ class MineController < ApplicationController
       params.require(:user).permit(:name, :avatar)
     end
   end
-
 end

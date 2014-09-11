@@ -3,7 +3,7 @@
 FactoryGirl.define do
   factory :vote do
     votable_id 1
-    votable_type "MyString"
+    votable_type 'MyString'
     user nil
   end
 end

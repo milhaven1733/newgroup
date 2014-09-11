@@ -16,8 +16,8 @@ class Ticket < ActiveRecord::Base
 
   delegate :name, to: :category, prefix: true, allow_nil: true
 
-  def self.top_deals 
-    self.last(3)
+  def self.top_deals
+    last(3)
   end
 
   def ranked_group_prices
@@ -28,14 +28,14 @@ class Ticket < ActiveRecord::Base
     groups.order(deadline: :asc)
   end
 
-  def price_when count
+  def price_when(count)
     ranked_group_prices
-    .where("range_from <= :count and (range_to >= :count or range_to is null)", { count: count })
+    .where('range_from <= :count and (range_to >= :count or range_to is null)', count: count)
     .first
     .try(:price)
   end
 
-  def ticket_enough? quantity
+  def ticket_enough?(quantity)
     amount >= quantity
   end
 end
