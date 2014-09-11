@@ -4,8 +4,11 @@ $ ->
   $(".launch-modal").click ->
     $($(this).data("target")).modal("toggle")
 
-  $("#recharge").change ->
-    $("#recharge-stripe-button").data("amount", parseInt(parseFloat($(this).val()) * 100)||0)
+  $(".buy-ticket").submit ->
+    count = $("#order_count").val()
+    if (count == "" || parseInt(count) < 5)
+      confirm("You Must buy at least 5 ticket")
+      return false
 
   $('#favourite').on "click",  (e) ->
     e.preventDefault()

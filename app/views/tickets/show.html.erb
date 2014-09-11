@@ -1,7 +1,7 @@
 <h3 class='center'>
   <%= @ticket.name %>
-  <a id='favourite' href="<%= like_ticket_path(@ticket) %>" data-voted="<%= have_liked?(@ticket) %>">
-    <span class="glyphicon <%= have_liked?(@ticket) ? 'glyphicon-heart' : 'glyphicon-heart-empty' %>"></span>
+  <a id='favourite' href="<%= like_ticket_path(@ticket) %>" data-voted="<%= liked?(@ticket) %>">
+    <span class="glyphicon <%= liked?(@ticket) ? 'glyphicon-heart' : 'glyphicon-heart-empty' %>"></span>
   </a>
 </h3>
 
@@ -35,15 +35,20 @@
       </div>
     </div>
     <div class='actions info'>
-      <div class='title'>&nbsp</div>
-      <div class='value'>
-        <% @ticket.ranked_groups.each do |g| %>
-          <%= link_to "Join #{g.name}", '#', role: 'button', class: 'btn btn-success', 
-            data: { toggle: 'modal', target: "#join-group-#{g.id}" } %>
-          <%= render 'join_group', group: g %>
+      <% if current_user %>
+        <%= simple_form_for [@ticket, Order.new], html: { class: 'form-inline buy-ticket' } do |f| %>
+          <div class='title'>Count</div>
+          <div class='value'>
+            <%= f.text_field "count", class: 'form-control' %>
+            <%= f.submit "Buy It", class: 'btn btn-success' %>
+          </div>
         <% end -%>
-        <%= link_to 'Group It', new_ticket_group_path(@ticket), role: 'button', class: 'btn btn-primary' %>
-      </div>
+      <% else %>
+        <div class='title'>&nbsp</div>
+        <div class='value'>
+          <%= link_to 'Sign in', new_user_session_path, class: 'btn btn-primary' %>
+        </div>
+      <% end -%>
     </div>
   </div>
 </div>

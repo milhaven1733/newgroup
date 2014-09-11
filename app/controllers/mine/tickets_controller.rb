@@ -47,6 +47,7 @@ module Mine
     end
 
     private
+
     # Use callbacks to share common setup or constraints between actions.
     def set_ticket
       @ticket = current_user.tickets.find(params[:id])

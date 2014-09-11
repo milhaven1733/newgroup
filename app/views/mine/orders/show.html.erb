@@ -1,0 +1,30 @@
+<div class='main ticket clearfix'>
+  <div class='info-section col-lg-10'>
+    <div class='info'>
+      <div class='title'>Ticket:</div>
+      <div class='value'><%= link_to @order.ticket.name, @order.ticket %></div>
+    </div>
+    <div class='info'>
+      <div class='title'>Price:</div>
+      <div class='value'><%= number_to_currency(@order.price) %></div>
+    </div>
+    <div class='info'>
+      <div class='title'>Quantity:</div>
+      <div class='value'><%= @order.count %></div>
+    </div>
+    <div class='info'>
+      <div class='title'>Amount:</div>
+      <div class='value'><%= number_to_currency(@order.amount) %></div>
+    </div>
+    <div class='info'>
+      <div class='title'>Status:</div>
+      <div class='value'><%= @order.status %></div>
+    </div>
+    <div class='info'>
+      <div class='title'>Created At:</div>
+      <div class='value'>
+        <%= @order.created_at.to_s(:db) %></div>
+      </div>
+    </div>
+  </div>
+</div>
