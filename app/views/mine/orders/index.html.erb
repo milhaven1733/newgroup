@@ -1,0 +1,13 @@
+<h1>Listing Orders</h1>
+
+<%= table_for @orders do |t| %>
+  <%= t.cell(:id) { |o| link_to o.id.to_s, [:mine, o] } %>
+  <%= t.cell(:ticket) { |o| link_to o.ticket.name, o.ticket } %>
+  <%= t.cell(:price) { |o| number_to_currency(o.price) } %>
+  <%= t.cell(:count) { |o| o.count.to_s } %>
+  <%= t.cell(:amount) { |o| number_to_currency(o.amount) } %>
+  <%= t.cell(:status) { |o| o.status.titleize } %>
+  <%= t.cell(:created_at) {|o| render_date o.created_at } %>
+<% end %>
+
+<%= paginate @orders %>

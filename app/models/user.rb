@@ -14,10 +14,11 @@ class User < ActiveRecord::Base
   has_many :votes, foreign_key: :user_id
   has_many :favourites, through: :votes, source: :ticket
   has_one :wallet
+  has_many :orders
 
   after_create :init_wallet
 
-  delegate :balance, :balance=, to: :wallet
+  delegate :balance, :balance=, :afford?, to: :wallet
 
   def avatar_url
     avatar.try(:url) || "avatar.png"
@@ -25,6 +26,10 @@ class User < ActiveRecord::Base
 
   def can_withdraw?
     balance > 0.0
+  end
+
+  def increment_balance amount
+    update! balance: balance - amount
   end
 
   private
