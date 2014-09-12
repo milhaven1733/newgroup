@@ -55,7 +55,18 @@ module Mine
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def ticket_params
-      params.require(:ticket).permit(:category_id, :name, :desc, :start_at, :end_at, :oprice, :amount, :image_url)
+      params.require(:ticket).permit(
+        :category_id, 
+        :name, 
+        :desc, 
+        :start_at, 
+        :end_at, 
+        :oprice, 
+        :student_discount, 
+        :city, 
+        :amount, 
+        :image_url
+      )
     end
   end
 end

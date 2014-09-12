@@ -1,4 +1,6 @@
 class Ticket < ActiveRecord::Base
+  CITIES = %w( Philadelphia NewYork )
+
   priceable :oprice
 
   belongs_to :user
@@ -13,6 +15,8 @@ class Ticket < ActiveRecord::Base
   validates :name, :start_at, :end_at, :oprice, presence: true
   validates :start_at, time_period: { scope: :end_at }
   validates :oprice_in_cents, :amount, numericality: true
+  validates :student_discount, inclusion: { in: 0..100 }
+  validates :city, inclusion: { in: CITIES }
 
   delegate :name, to: :category, prefix: true, allow_nil: true
 
@@ -28,14 +32,20 @@ class Ticket < ActiveRecord::Base
     groups.order(deadline: :asc)
   end
 
-  def price_when(count)
-    ranked_group_prices
-    .where('range_from <= :count and (range_to >= :count or range_to is null)', count: count)
-    .first
-    .try(:price)
+  def price_when(count, for_student = false)
+    price = group_price_by(count).try(:price) || oprice
+    price = price * (100 - student_discount) / 100 if for_student
+    price
   end
 
   def ticket_enough?(quantity)
     amount >= quantity
+  end
+
+  private
+  def group_price_by count
+    ranked_group_prices
+    .where('range_from <= :count and (range_to >= :count or range_to is null)', count: count)
+    .first
   end
 end
