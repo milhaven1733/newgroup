@@ -32,14 +32,20 @@ class Ticket < ActiveRecord::Base
     groups.order(deadline: :asc)
   end
 
-  def price_when(count)
-    ranked_group_prices
-    .where('range_from <= :count and (range_to >= :count or range_to is null)', count: count)
-    .first
-    .try(:price)
+  def price_when(count, for_student = false)
+    price = group_price_by(count).try(:price) || oprice
+    price = price * (100 - student_discount) / 100 if for_student
+    price
   end
 
   def ticket_enough?(quantity)
     amount >= quantity
+  end
+
+  private
+  def group_price_by count
+    ranked_group_prices
+    .where('range_from <= :count and (range_to >= :count or range_to is null)', count: count)
+    .first
   end
 end
