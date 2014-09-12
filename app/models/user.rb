@@ -15,6 +15,11 @@ class User < ActiveRecord::Base
   has_one :wallet
   has_many :orders
 
+  validates :email, format: { 
+    with: /\.edu\Z/, 
+    message: 'student account must regirster with .edu email' 
+  }, if: :is_student?
+
   after_create :init_wallet
 
   delegate :balance, :balance=, :afford?, to: :wallet

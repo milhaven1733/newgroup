@@ -8,5 +8,6 @@ FactoryGirl.define do
     oprice 100
     amount 100
     category_id 1
+    city "NewYork"
   end
 end
