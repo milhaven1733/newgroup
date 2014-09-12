@@ -1,4 +1,6 @@
 class Ticket < ActiveRecord::Base
+  CITIES = %w( Philadelphia NewYork )
+
   priceable :oprice
 
   belongs_to :user
@@ -13,6 +15,8 @@ class Ticket < ActiveRecord::Base
   validates :name, :start_at, :end_at, :oprice, presence: true
   validates :start_at, time_period: { scope: :end_at }
   validates :oprice_in_cents, :amount, numericality: true
+  validates :student_discount, inclusion: { in: 0..100 }
+  validates :city, inclusion: { in: CITIES }
 
   delegate :name, to: :category, prefix: true, allow_nil: true
 

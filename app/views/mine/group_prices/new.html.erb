@@ -1,3 +1,5 @@
+<%= link_to 'Back', mine_ticket_path(@ticket) %>
+
 <h2>Add group price for <%= @ticket.name %></h2>
 <%= simple_form_for([:mine, @ticket, @group_price], html: {class: 'form-horizontal'}) do |f| %>
   <%= f.error_notification %>
@@ -10,8 +12,7 @@
 
   <div class="form-group">
     <div class="col-sm-offset-2 col-sm-10">
-      <%= link_to 'Back', mine_tickets_path, class: 'btn btn-primary' %>
-      <%= f.button :submit %>
+      <%= f.button :submit, class: 'btn btn-primary' %>
     </div>
   </div>
 <% end %>
