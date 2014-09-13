@@ -18,6 +18,11 @@ class Ticket < ActiveRecord::Base
   validates :student_discount, inclusion: { in: 0..100 }
   validates :city, inclusion: { in: CITIES }
 
+  scope :search_by, ->(query) do
+    joins(:category)
+    .where('lower(tickets.name) like :query OR lower(tickets.desc) like :query OR lower(categories.name) like :query', query: "%#{query.downcase}%") 
+  end
+
   delegate :name, to: :category, prefix: true, allow_nil: true
 
   def self.top_deals
