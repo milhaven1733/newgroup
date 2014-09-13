@@ -13,4 +13,13 @@ describe User do
     assert ex.message.include?("Email student account must regirster with .edu email"), "Error message should right"
     assert_nothing_raised { create(:user, email: 'example@test.edu', is_student: true) }
   end
+
+  it "should set default role as normal" do
+    assert_equal 'normal', user.role
+  end
+
+  it "should set role as merchant" do
+    user = create(:user, role: :merchant)
+    assert_equal 'merchant', user.role
+  end
 end
