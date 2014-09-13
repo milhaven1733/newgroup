@@ -3,8 +3,9 @@ Rails.application.routes.draw do
 
   devise_for :users
 
-  get 'search', to: "home#search", as: "search"
   get 'merchant', to: "profile#merchant", as: "merchant"
+  get '/search', to: "home#search", as: :search
+  get '/filter', to: "home#filter", as: :filter
 
   resources :tickets do
     resources :groups do

@@ -20,6 +20,7 @@ class User < ActiveRecord::Base
     message: 'student account must regirster with .edu email' 
   }, if: :is_student?
 
+  before_create :default_role
   after_create :init_wallet
 
   delegate :balance, :balance=, :afford?, to: :wallet
@@ -37,6 +38,10 @@ class User < ActiveRecord::Base
   end
 
   private
+
+  def default_role
+    self.role = :normal unless self.role
+  end
 
   def init_wallet
     create_wallet(balance: 0)

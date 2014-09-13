@@ -48,6 +48,7 @@ group :test, :development do
   gem 'ffaker'
   gem 'thin'
   gem 'better_errors'
+  gem 'binding_of_caller'
   gem 'pry'
   gem 'pry-nav'
 end

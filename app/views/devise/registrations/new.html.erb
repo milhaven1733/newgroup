@@ -6,7 +6,6 @@
   <%= f.text_field :name, autofocus: true, class: 'form-control', placeholder: 'Name' %>
   <%= f.password_field :password, autocomplete: "off", class: 'form-control', placeholder: 'Password' %>
   <%= f.password_field :password_confirmation, autocomplete: "off", class: 'form-control', placeholder: 'Password Confirmation' %>
-  <%= f.select :role, User.roles.keys, {}, class: 'form-control' %>
   <div class='checkbox'>
     <label><%= f.check_box :is_student %> Student </label>
   </div>
