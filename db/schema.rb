@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20140910012517) do
+ActiveRecord::Schema.define(version: 20140912135314) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -54,18 +54,42 @@ ActiveRecord::Schema.define(version: 20140910012517) do
   add_index "groups_users", ["et_group_id"], name: "index_groups_users_on_et_group_id", using: :btree
   add_index "groups_users", ["user_id"], name: "index_groups_users_on_user_id", using: :btree
 
+  create_table "orders", force: true do |t|
+    t.integer  "user_id"
+    t.integer  "ticket_id"
+    t.integer  "count"
+    t.integer  "price_in_cents"
+    t.integer  "amount_in_cents"
+    t.integer  "status",          default: 0
+    t.datetime "created_at",                  null: false
+    t.datetime "updated_at",                  null: false
+  end
+
   create_table "tickets", force: true do |t|
     t.integer  "user_id"
-    t.string   "name",            limit: 255
+    t.string   "name",             limit: 255
     t.text     "desc"
     t.datetime "start_at"
     t.datetime "end_at"
-    t.string   "image_url",       limit: 255
+    t.string   "image_url",        limit: 255
     t.integer  "oprice_in_cents"
     t.integer  "amount"
     t.datetime "created_at"
     t.datetime "updated_at"
     t.integer  "category_id"
+    t.integer  "student_discount",             default: 0
+    t.string   "city"
+  end
+
+  create_table "transactions", force: true do |t|
+    t.string   "token"
+    t.string   "customer_id"
+    t.integer  "transaction_type", default: 0
+    t.integer  "dollar_in_cents"
+    t.integer  "status",           default: 0
+    t.datetime "created_at",                   null: false
+    t.datetime "updated_at",                   null: false
+    t.integer  "user_id"
   end
 
   create_table "users", force: true do |t|
@@ -86,6 +110,7 @@ ActiveRecord::Schema.define(version: 20140910012517) do
     t.string   "phone",                  limit: 255
     t.string   "address",                limit: 255
     t.integer  "role"
+    t.boolean  "is_student"
   end
 
   add_index "users", ["email"], name: "index_users_on_email", unique: true, using: :btree
@@ -103,7 +128,7 @@ ActiveRecord::Schema.define(version: 20140910012517) do
 
   create_table "wallets", force: true do |t|
     t.integer  "user_id"
-    t.integer  "dollar_in_cents"
+    t.integer  "balance_in_cents"
     t.datetime "created_at"
     t.datetime "updated_at"
   end
