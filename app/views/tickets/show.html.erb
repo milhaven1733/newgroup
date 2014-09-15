@@ -11,6 +11,12 @@
   </div>
   <div class='info-section col-lg-6'>
     <div class='info desc'>
+      <div class='title'>Merchant:</div>
+      <div class='value'>
+        <%= link_to @ticket.try(:user).try(:name), merchant_path(id: @ticket.user_id) %>
+      </div>
+    </div>
+    <div class='info desc'>
       <div class='title'>Category:</div>
       <div class='value'><%= @ticket.category_name %></div>
     </div>
@@ -40,7 +46,7 @@
     </div>
     <div class='info'>
       <div class='title'>Student Discount:</div>
-      <div class='value'>-<%= @ticket.student_discount %>%</div>
+      <div class='value'><%= @ticket.student_discount %>%</div>
     </div>
     <div class='actions info'>
       <% if current_user %>

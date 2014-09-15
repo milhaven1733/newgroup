@@ -1,4 +1,9 @@
-<h1>Listing tickets</h1>
+<div class="header">
+  <ul class="nav nav-pills pull-right">
+    <li><%= link_to 'New Ticket', new_mine_ticket_path %></li>
+  </ul>
+  <h3 class="text-muted">Listing tickets</h3>
+</div>
 
 <%= table_for @tickets do |t| %>
   <%= t.cell(:name) {|t| link_to t.name, [:mine, t] } %>
@@ -9,10 +14,14 @@
   <%= t.cell(:start_at) {|t| render_date t.start_at } %>
   <%= t.cell(:end_at){|t| render_date t.end_at } %>
   <%= t.cell(:action) do |t| %>
-    <%= link_to 'Add Group Price', new_mine_ticket_group_price_path(t) %>
-    <%= link_to 'Edit', [:edit, :mine, t] %>
-    <%= link_to 'Destroy', [:mine, t], method: :delete, data: { confirm: 'Are you sure destroy this ticket?' } %>
+    <%= link_to new_mine_ticket_group_price_path(t) do %>
+      <span class="glyphicon glyphicon-plus"></span>
+    <% end -%>
+    <%= link_to [:edit, :mine, t] do %>
+      <span class="glyphicon glyphicon-pencil"></span>
+    <% end -%>
+    <%= link_to [:mine, t], method: :delete, data: { confirm: 'Are you sure destroy this ticket?' } do %>
+      <span class="glyphicon glyphicon-remove"></span>
+    <% end -%>
   <% end %>
 <% end %>
-
-<%= link_to 'New Ticket', new_mine_ticket_path %>
