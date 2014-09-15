@@ -8,8 +8,10 @@
   <div class="form-inputs">
     <%= f.input :email, disabled: true %>
     <%= f.input :name %>
+    <%= f.input :zipcode %>
 
     <% if f.object.merchant? %>
+      <%= f.input :genre %>
       <%= f.input :phone %>
       <%= f.input :address %>
     <% end -%>

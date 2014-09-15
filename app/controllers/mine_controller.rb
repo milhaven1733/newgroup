@@ -18,9 +18,9 @@ class MineController < ApplicationController
 
   def user_param
     if current_user.merchant?
-      params.require(:user).permit(:name, :phone, :avatar, :address)
+      params.require(:user).permit(:name, :zipcode, :genre, :phone, :avatar, :address)
     else
-      params.require(:user).permit(:name, :avatar)
+      params.require(:user).permit(:name, :zipcode, :avatar)
     end
   end
 end
