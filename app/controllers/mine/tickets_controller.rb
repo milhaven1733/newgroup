@@ -65,7 +65,8 @@ module Mine
         :student_discount, 
         :city, 
         :amount, 
-        :image_url
+        :image_url,
+        :shipping
       )
     end
   end

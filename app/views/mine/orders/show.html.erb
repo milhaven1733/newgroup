@@ -17,6 +17,10 @@
       <div class='value'><%= number_to_currency(@order.amount) %></div>
     </div>
     <div class='info'>
+      <div class='title'>Shipping Fee:</div>
+      <div class='value'><%= show_shipping_fee(@order) %></div>
+    </div>
+    <div class='info'>
       <div class='title'>Status:</div>
       <div class='value'><%= @order.status %></div>
     </div>

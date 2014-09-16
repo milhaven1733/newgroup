@@ -2,7 +2,7 @@ class Order < ActiveRecord::Base
   belongs_to :user
   belongs_to :ticket
 
-  priceable :price
+  priceable :price, :shipping
 
   enum status: [:created, :paid]
 
@@ -11,9 +11,13 @@ class Order < ActiveRecord::Base
   validates :count, numericality: { greater_than: 4 }
 
   def amount
-    price * count
+    shipping_fee_included? ? price * count + shipping : price * count
   end
 
+  def shipping_fee_included?
+    !will_call
+  end
+  
   def pay_by(user)
     return false unless user.afford?(amount)
     return false unless ticket.ticket_enough?(count)

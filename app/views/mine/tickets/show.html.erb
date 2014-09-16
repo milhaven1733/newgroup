@@ -33,6 +33,10 @@
       <div class='title'>Student discount:</div>
       <div class='value'><%= @ticket.student_discount %>%</div>
     </div>
+    <div class='oprice info'>
+      <div class='title'>Shipping Fee:</div>
+      <div class='value'><%= number_to_currency(@ticket.shipping) %></div>
+    </div>
     <div class='group-price info'>
       <div class='title'>Group Price:</div>
       <div class='value'>

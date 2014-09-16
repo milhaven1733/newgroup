@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20140915114845) do
+ActiveRecord::Schema.define(version: 20140916191553) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -60,25 +60,28 @@ ActiveRecord::Schema.define(version: 20140915114845) do
     t.integer  "count"
     t.integer  "price_in_cents"
     t.integer  "amount_in_cents"
-    t.integer  "status",          default: 0
-    t.datetime "created_at",                  null: false
-    t.datetime "updated_at",                  null: false
+    t.integer  "status",            default: 0
+    t.datetime "created_at",                    null: false
+    t.datetime "updated_at",                    null: false
+    t.boolean  "will_call"
+    t.integer  "shipping_in_cents"
   end
 
   create_table "tickets", force: true do |t|
     t.integer  "user_id"
-    t.string   "name",             limit: 255
+    t.string   "name",              limit: 255
     t.text     "desc"
     t.datetime "start_at"
     t.datetime "end_at"
-    t.string   "image_url",        limit: 255
+    t.string   "image_url",         limit: 255
     t.integer  "oprice_in_cents"
     t.integer  "amount"
     t.datetime "created_at"
     t.datetime "updated_at"
     t.integer  "category_id"
-    t.integer  "student_discount",             default: 0
+    t.integer  "student_discount",              default: 0
     t.string   "city"
+    t.integer  "shipping_in_cents"
   end
 
   create_table "transactions", force: true do |t|

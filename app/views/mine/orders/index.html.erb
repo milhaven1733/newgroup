@@ -5,6 +5,7 @@
   <%= t.cell(:ticket) { |o| link_to o.ticket.name, o.ticket } %>
   <%= t.cell(:price) { |o| number_to_currency(o.price) } %>
   <%= t.cell(:count) { |o| o.count.to_s } %>
+  <%= t.cell(:shipping) { |o| show_shipping_fee(o) } %>
   <%= t.cell(:amount) { |o| number_to_currency(o.amount) } %>
   <%= t.cell(:status) { |o| o.status.titleize } %>
   <%= t.cell(:created_at) {|o| render_date o.created_at } %>

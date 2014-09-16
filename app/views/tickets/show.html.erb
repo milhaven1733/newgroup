@@ -48,9 +48,17 @@
       <div class='title'>Student Discount:</div>
       <div class='value'><%= @ticket.student_discount %>%</div>
     </div>
+    <div class='oprice info'>
+      <div class='title'>Shipping Fee:</div>
+      <div class='value'><%= number_to_currency(@ticket.shipping) %></div>
+    </div>
     <div class='actions info'>
       <% if current_user %>
         <%= simple_form_for [@ticket, Order.new], html: { class: 'form-inline buy-ticket' } do |f| %>
+          <div class='title'>Will Call:</div>
+          <div class='value'>
+            <%= f.check_box "will_call", {}, "true", "false"%>
+          </div>
           <div class='title'>Count</div>
           <div class='value'>
             <%= f.text_field "count", class: 'form-control' %>

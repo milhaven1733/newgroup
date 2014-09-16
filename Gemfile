@@ -40,6 +40,7 @@ gem 'quiet_assets'
 # preload
 group :development do
   gem 'spring'
+  gem 'byebug'
 end
 
 group :test, :development do

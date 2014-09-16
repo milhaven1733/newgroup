@@ -1,7 +1,7 @@
 class Ticket < ActiveRecord::Base
   CITIES = %w( Philadelphia NewYork )
 
-  priceable :oprice
+  priceable :oprice, :shipping
 
   belongs_to :user
   belongs_to :category

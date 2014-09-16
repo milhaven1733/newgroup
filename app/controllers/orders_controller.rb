@@ -4,7 +4,8 @@ class OrdersController < ApplicationController
   def create
     @order = @ticket.orders.new(order_params
                                 .merge(user: current_user,
-                                       price: @ticket.price_when(order_params[:count])))
+                                       price: @ticket.price_when(order_params[:count]),
+                                       shipping: @ticket.shipping))
     if @order.pay_by(current_user)
       redirect_to [:mine, @order]
     else
@@ -19,6 +20,6 @@ class OrdersController < ApplicationController
   end
 
   def order_params
-    params.require(:order).permit(:count)
+    params.require(:order).permit(:count, :will_call)
   end
 end

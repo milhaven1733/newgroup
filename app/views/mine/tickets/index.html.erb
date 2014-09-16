@@ -13,6 +13,7 @@
   <%= t.cell(:amount) %>
   <%= t.cell(:start_at) {|t| render_date t.start_at } %>
   <%= t.cell(:end_at){|t| render_date t.end_at } %>
+  <%= t.cell(:shipping) %>
   <%= t.cell(:action) do |t| %>
     <%= link_to new_mine_ticket_group_price_path(t) do %>
       <span class="glyphicon glyphicon-plus"></span>
