@@ -14,8 +14,11 @@ class OrdersController < ApplicationController
       redirect_to mine_wallet_path, error: 'Please recharge first'
     elsif result == Order::PayByResult[2]
       flash[:error] = "Not enough tickets"
+      redirect_to @ticket
+    else
+      redirect_to @ticket
     end
-    redirect_to @ticket
+    
   end
 
   private
