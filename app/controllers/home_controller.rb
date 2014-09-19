@@ -11,7 +11,8 @@ class HomeController < ApplicationController
     @q.oprice_in_cents_lteq = params[:q][:oprice_in_cents_lteq].to_f * 100 if params[:q] && params[:q][:oprice_in_cents_lteq].present?
     @q.oprice_in_cents_gteq = params[:q][:oprice_in_cents_gteq].to_f * 100 if params[:q] && params[:q][:oprice_in_cents_gteq].present?
     @tickets = @q.result(distinct: true).page(params[:page])
-    render :search
+    @top_tickets = Ticket.top_deals
+    render :search    
   end
 
   def search

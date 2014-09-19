@@ -1,18 +1,25 @@
-<h2>Search Result</h2>
-<table class="table table-hover">
-  <tbody>
-    <% @tickets.each do |ticket| %>
-      <tr>
-        <td><%= link_to ticket.name, ticket %></td>
-        <td><%= ticket.category.try(:name) %></td>
-        <td><%= ticket.amount %></td>
-        <td><%= number_to_currency ticket.oprice %></td>
-        <td><%= ticket.start_at %></td>
-        <td><%= ticket.end_at %></td>
-        <td><%= link_to ticket.user.try(:name), merchant_path(id: ticket.user_id) %></td>
-      </tr>
-    <% end %>
-  </tbody>
-</table>
-
+<div class='row'>
+  <div class='col-sm-3'>
+    <%= render 'home/sidebar' %>
+  </div>
+  <div class='col-sm-9'>
+    <h2>Search Result</h2>
+    <table class="table table-hover">
+      <tbody>
+        <% @tickets.each do |ticket| %>
+          <tr>
+            <td><%= link_to ticket.name, ticket %></td>
+            <td><%= ticket.category.try(:name) %></td>
+            <td><%= ticket.amount %></td>
+            <td><%= number_to_currency ticket.oprice %></td>
+            <td><%= ticket.start_at %></td>
+            <td><%= ticket.end_at %></td>
+            <td><%= link_to ticket.user.try(:name), merchant_path(id: ticket.user_id) %></td>
+          </tr>
+        <% end %>
+      </tbody>
+    </table>
+    <%= render 'home/popular' %>
+  </div>
+</div>
 <%= paginate @tickets %>
