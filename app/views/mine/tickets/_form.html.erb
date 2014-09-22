@@ -11,7 +11,9 @@
     <%= f.input :oprice %>
     <%= f.input :student_discount %>
     <%= f.input :amount %>
+    <%= image_tag @ticket.image_url.thumb%>
     <%= f.input :image_url, as: :file %>
+    <%= image_tag @ticket.sitting_map.thumb%>
     <%= f.input :sitting_map, as: :file %>
     <%= f.input :shipping %>
   </div>
