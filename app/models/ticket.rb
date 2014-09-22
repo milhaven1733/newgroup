@@ -11,6 +11,7 @@ class Ticket < ActiveRecord::Base
   has_many :orders
 
   mount_uploader :image_url, ImageUploader
+  mount_uploader :sitting_map, SittingMapUploader
 
   validates :name, :start_at, :end_at, :oprice, presence: true
   validates :start_at, time_period: { scope: :end_at }

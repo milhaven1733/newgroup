@@ -66,7 +66,8 @@ module Mine
         :city, 
         :amount, 
         :image_url,
-        :shipping
+        :shipping,
+        :sitting_map
       )
     end
   end
