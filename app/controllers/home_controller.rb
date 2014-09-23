@@ -8,8 +8,10 @@ class HomeController < ApplicationController
     @current_category = Category.where(id: params[:category_id]).last if params[:category_id]
     @q = Ticket.search(params[:q])
     begin
-      @q.time_tag_date_gteq = process_date_param(params[:q][:time_tag_date_gteq])
-      @q.time_tag_date_lteq = process_date_param(params[:q][:time_tag_date_lteq])
+      @q.time_tag_date_gteq = process_date_param(params[:q][:time_tag_date_gteq]) if params[:q][:time_tag_date_gteq]
+      @q.time_tag_date_lteq = process_date_param(params[:q][:time_tag_date_lteq]) if params[:q][:time_tag_date_lteq]
+      @q.time_tag_time_gteq = process_time_param(params[:q][:time_tag_time_gteq]) if params[:q][:time_tag_time_gteq]
+      @q.time_tag_time_lteq = process_time_param(params[:q][:time_tag_time_lteq]) if params[:q][:time_tag_time_lteq]
     rescue
       redirect_to :search, notice: "Invalid Date Format"
       return
@@ -36,5 +38,9 @@ class HomeController < ApplicationController
   
   def process_date_param(date)
     Date.parse(date).strftime("%Y%m%d")
+  end
+  
+  def process_time_param(time)
+    Time.parse(time).strftime("%H%M")
   end
 end

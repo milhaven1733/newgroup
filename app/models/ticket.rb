@@ -20,7 +20,7 @@ class Ticket < ActiveRecord::Base
   validates :student_discount, inclusion: { in: 0..100 }
   validates :city, inclusion: { in: CITIES }
 
-  before_save :time_parse
+  after_save :time_parse
   
   scope :search_by, ->(query) do
     joins(:category)

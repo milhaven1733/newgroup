@@ -1,6 +1,6 @@
 class TimeForTicketSearch < ActiveRecord::Base
   belongs_to :ticket
-  validate :ticket_id, presence: true
+  validates :ticket_id, presence: true
   
   def self.create_time_tag(ticket_id, datetime)
     raise 'datetime argument is not valid' unless datetime.instance_of?(ActiveSupport::TimeWithZone)

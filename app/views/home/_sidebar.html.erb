@@ -11,11 +11,19 @@
   <div class="form-group">
     <%= f.label "Date" %>
     <div class="row">
-      <%= f.search_field :time_tag_date_gteq, class: "form-control datetimepicker" %>
+      <%= f.search_field :time_tag_date_gteq, class: "form-control datepicker" %>
       <div class="col-xs-2">To</div>
-      <%= f.search_field :time_tag_date_lteq, class: "form-control datetimepicker" %>
+      <%= f.search_field :time_tag_date_lteq, class: "form-control datepicker" %>
     </div>
-</div>
+  </div>
+  <div class="form-group">
+    <%= f.label "Time" %>
+    <div class="row">
+      <%= f.search_field :time_tag_time_gteq, class: "form-control timepicker" %>
+      <div class="col-xs-2">To</div>
+      <%= f.search_field :time_tag_time_lteq, class: "form-control timepicker" %>
+    </div>
+  </div>
   <div class="form-group">
     <%= f.label :oprice_in_cents_lteq, "Price" %>
     <div class="row">

@@ -60,7 +60,6 @@ module Mine
         :name, 
         :desc, 
         :start_at, 
-        :end_at, 
         :oprice, 
         :student_discount, 
         :city, 
