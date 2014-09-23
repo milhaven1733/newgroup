@@ -22,7 +22,7 @@ class HomeController < ApplicationController
   end
 
   def search
-    if params[:q]
+    if params[:q] || params[:category_id]
       filter
     else
       @tickets = Ticket.all.page(params[:page])
