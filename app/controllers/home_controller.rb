@@ -13,21 +13,17 @@ class HomeController < ApplicationController
       @q.time_tag_time_gteq = process_time_param(params[:q][:time_tag_time_gteq]) if params[:q][:time_tag_time_gteq]
       @q.time_tag_time_lteq = process_time_param(params[:q][:time_tag_time_lteq]) if params[:q][:time_tag_time_lteq]
     rescue
-      redirect_to :search, notice: "Invalid Date Format"
-      return
+      flash[:notice] = "Invalid Date Format"
     end
     @q.category_id_eq = @current_category.id if @current_category
     @q.oprice_in_cents_lteq = params[:q][:oprice_in_cents_lteq].to_f * 100 if params[:q] && params[:q][:oprice_in_cents_lteq].present?
     @q.oprice_in_cents_gteq = params[:q][:oprice_in_cents_gteq].to_f * 100 if params[:q] && params[:q][:oprice_in_cents_gteq].present?
     @tickets = @q.result(distinct: true).page(params[:page])
-    @top_tickets = Ticket.top_deals
-    render :search    
   end
 
   def search
-    @query = params[:query]
-    if @query
-      @tickets = Ticket.search_by(@query).distinct.page(params[:page])
+    if params[:q]
+      filter
     else
       @tickets = Ticket.all.page(params[:page])
     end

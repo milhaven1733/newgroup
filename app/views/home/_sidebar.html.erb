@@ -1,5 +1,5 @@
 <h3>Search</h3>
-<%= search_form_for Ticket.search, url: filter_path do |f| %>
+<%= search_form_for Ticket.search, url: search_path do |f| %>
   <div class="form-group">
     <%= f.label :name_cont, "Name" %>
     <%= f.search_field :name_cont, class: "form-control" %>
