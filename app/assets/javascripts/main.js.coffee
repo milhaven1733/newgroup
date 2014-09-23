@@ -1,5 +1,5 @@
 $ ->
-  $(".datetimepicker").datetimepicker()
+  $(".datetimepicker").datetimepicker({timepicker:false, format:'Y/m/d'})
 
   $(".launch-modal").click ->
     $($(this).data("target")).modal("toggle")

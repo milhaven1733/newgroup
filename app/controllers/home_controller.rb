@@ -7,6 +7,13 @@ class HomeController < ApplicationController
   def filter
     @current_category = Category.where(id: params[:category_id]).last if params[:category_id]
     @q = Ticket.search(params[:q])
+    begin
+      @q.time_tag_date_gteq = process_date_param(params[:q][:time_tag_date_gteq])
+      @q.time_tag_date_lteq = process_date_param(params[:q][:time_tag_date_lteq])
+    rescue
+      redirect_to :search, notice: "Invalid Date Format"
+      return
+    end
     @q.category_id_eq = @current_category.id if @current_category
     @q.oprice_in_cents_lteq = params[:q][:oprice_in_cents_lteq].to_f * 100 if params[:q] && params[:q][:oprice_in_cents_lteq].present?
     @q.oprice_in_cents_gteq = params[:q][:oprice_in_cents_gteq].to_f * 100 if params[:q] && params[:q][:oprice_in_cents_gteq].present?
@@ -17,6 +24,17 @@ class HomeController < ApplicationController
 
   def search
     @query = params[:query]
-    @tickets = Ticket.search_by(@query).distinct.page(params[:page])
+    if @query
+      @tickets = Ticket.search_by(@query).distinct.page(params[:page])
+    else
+      @tickets = Ticket.all.page(params[:page])
+    end
+    @top_tickets = Ticket.top_deals
+  end
+  
+  private
+  
+  def process_date_param(date)
+    Date.parse(date).strftime("%Y%m%d")
   end
 end

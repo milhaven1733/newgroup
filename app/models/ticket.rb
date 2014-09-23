@@ -9,16 +9,19 @@ class Ticket < ActiveRecord::Base
   has_many :groups, class_name: 'EtGroup'
   has_many :votes, as: :votable
   has_many :orders
+  has_one  :time_tag, class_name: 'TimeForTicketSearch', dependent: :destroy
 
   mount_uploader :image_url, ImageUploader
   mount_uploader :sitting_map, SittingMapUploader
 
-  validates :name, :start_at, :end_at, :oprice, presence: true
-  validates :start_at, time_period: { scope: :end_at }
+  validates :name, :start_at, :oprice, presence: true
+  #validates :start_at, time_period: { scope: :end_at }
   validates :oprice_in_cents, :amount, numericality: true
   validates :student_discount, inclusion: { in: 0..100 }
   validates :city, inclusion: { in: CITIES }
 
+  before_save :time_parse
+  
   scope :search_by, ->(query) do
     joins(:category)
     .where('lower(tickets.name) like :query OR lower(tickets.desc) like :query OR lower(categories.name) like :query', query: "%#{query.downcase}%") 
@@ -46,6 +49,10 @@ class Ticket < ActiveRecord::Base
 
   def ticket_enough?(quantity)
     amount >= quantity
+  end
+  
+  def time_parse
+    TimeForTicketSearch.create_time_tag(self.id, self.start_at)
   end
 
   private
