@@ -1,7 +1,7 @@
 $ ->
   $(".datetimepicker").datetimepicker()
   $(".datepicker").datetimepicker({timepicker:false, format:'Y/m/d'})
-  $(".timepicker").datetimepicker({datepicker:false, format:'H:m'})
+  $(".timepicker").datetimepicker({datepicker:false, format:'H:i'})
 
   $(".launch-modal").click ->
     $($(this).data("target")).modal("toggle")

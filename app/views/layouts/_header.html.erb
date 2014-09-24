@@ -11,12 +11,12 @@
     </div>
     <div class='navbar-nav navbar-center'>
       <a href="#" id='set_city'>set city</a>
-      <%= search_form_for Ticket.search, url: search_path, class: 'navbar-form', id: 'search' do |f| %>
+      <%= form_tag search_path, class: 'navbar-form', method: :GET, id: 'search' do %>
         <div class='form-group input-group'>
           <span class="input-group-addon">
             <span class='glyphicon glyphicon-search'></span>
           </span>
-          <%= f.search_field :city_cont, class: 'form-control' %>
+          <%= select_tag :city, options_for_select(Ticket::CITIES, get_session_city), :onchange => "this.form.submit();", class: 'form-control' %>
         </div>
       <% end -%>
     </div>

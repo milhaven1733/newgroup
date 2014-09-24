@@ -32,7 +32,7 @@ class Ticket < ActiveRecord::Base
   def self.top_deals
     last(3)
   end
-
+  
   def ranked_group_prices
     group_prices.order(range_from: :asc)
   end
