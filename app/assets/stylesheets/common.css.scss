@@ -20,6 +20,7 @@ body {
         text-decoration: none;
       }
     }
+
     #search.navbar-form {
       float: left;
     }
@@ -94,4 +95,11 @@ body {
 
 .big_avatar img {
   width: 100%;
+}
+#header {
+  .city_name {
+    float: left;
+    color: white;
+    padding-top: 15px;
+  }
 }

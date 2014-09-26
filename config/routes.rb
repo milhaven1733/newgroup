@@ -6,7 +6,7 @@ Rails.application.routes.draw do
   get 'merchant', to: "profile#merchant", as: "merchant"
   get '/search', to: "home#search", as: :search
   get '/filter', to: "home#filter", as: :filter
-
+  get '/set_city', to: "home#set_city", as: :set_city
   resources :tickets do
     resources :groups do
       member do

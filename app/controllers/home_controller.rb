@@ -19,19 +19,16 @@ class HomeController < ApplicationController
   end
 
   def filter
-    @q = Ticket.search(@q_params)
+    @q = tickets_of_current_city.search(@q_params)
     date_time_for_filter
     oprice_for_filter
     @tickets = @q.result(distinct: true).page(params[:page])
   end
 
   def search
-    if params[:city]
-      set_session_city(params[:city])
-      @tickets = tickets_of_current_city.page(params[:page])
-    elsif params[:query]
+    if params[:query]
       @query = params[:query]
-      @tickets = Ticket.search_by(@query).distinct.page(params[:page])
+      @tickets = tickets_of_current_city.search_by(@query).distinct.page(params[:page])
     elsif params[:q]
       filter
     else
@@ -40,6 +37,11 @@ class HomeController < ApplicationController
     @top_tickets = tickets_of_current_city.top_deals
   end
   
+  def set_city
+    set_session_city(params[:city])
+    redirect_to action: 'index'
+  end
+
   private
 
   def safty_q_params
