@@ -29,10 +29,13 @@ class HomeController < ApplicationController
     if params[:city]
       set_session_city(params[:city])
       @tickets = tickets_of_current_city.page(params[:page])
+    elsif params[:query]
+      @query = params[:query]
+      @tickets = Ticket.search_by(@query).distinct.page(params[:page])
     elsif params[:q]
       filter
     else
-    @tickets = tickets_of_current_city.page(params[:page])      
+      @tickets = tickets_of_current_city.page(params[:page])      
     end
     @top_tickets = tickets_of_current_city.top_deals
   end
@@ -41,7 +44,7 @@ class HomeController < ApplicationController
 
   def safty_q_params
     @q_params = ActionController::Parameters.new
-    @q_params.merge!(search_params)
+    @q_params.merge!(search_params) if params[:q]
   end
   
   def set_session_city(city)
