@@ -10,4 +10,16 @@ module ApplicationHelper
   def show_shipping_fee(order)
     order.shipping_fee_included? ? number_to_currency(order.shipping) : "Will Call"
   end
+  
+  def category_options
+    Category.all.map{ |category| [category.name, category.id]}.uniq
+  end
+  
+  def q_param_name(type)
+    HomeController::SearchParamsName[type.to_sym]
+  end
+  
+  def saved_selected_item(type)
+    @search_conditions[q_param_name(type)]
+  end
 end

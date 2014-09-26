@@ -1,40 +1,40 @@
 <h3>Search</h3>
 <%= search_form_for Ticket.search, url: search_path do |f| %>
   <div class="form-group">
-    <%= f.label :name_cont, "Name" %>
-    <%= f.search_field :name_cont, value: @search_conditions['name_cont'], class: "form-control" %>
+    <%= f.label q_param_name(:name), "Name" %>
+    <%= f.search_field q_param_name(:name), value: saved_selected_item(:name), class: "form-control" %>
   </div>
   <div class="form-group">
-    <%= f.label :category_name_cont, "Category" %>
-    <%= f.search_field :category_name_cont, value: @search_conditions['category_name_cont'], class: "form-control" %>
+    <%= f.label q_param_name(:category), "Category" %>
+    <%= f.select q_param_name(:category), options_for_select(category_options, saved_selected_item(:category)), {prompt: 'All'}, {class: "form-control"} %>
   </div>
   <div class="form-group">
     <%= f.label "Date From" %>
-    <%= f.search_field :time_tag_date_gteq, value: @search_conditions['time_tag_date_gteq'], class: "form-control datepicker" %>
+    <%= f.search_field q_param_name(:date_begin), value: saved_selected_item(:date_begin), class: "form-control datepicker" %>
     <%= f.label "Date To" %>
-    <%= f.search_field :time_tag_date_lteq, value: @search_conditions['time_tag_date_lteq'], class: "form-control datepicker" %>
+    <%= f.search_field q_param_name(:date_end), value: saved_selected_item(:date_end), class: "form-control datepicker" %>
   </div>
   <div class="form-group">
     <%= f.label "Time From" %>
-    <%= f.search_field :time_tag_time_gteq, value: @search_conditions['time_tag_time_gteq'], class: "form-control timepicker" %>
+    <%= f.search_field q_param_name(:time_begin), value: saved_selected_item(:time_begin), class: "form-control timepicker" %>
     <%= f.label "Time To" %>
-    <%= f.search_field :time_tag_time_lteq, value: @search_conditions['time_tag_time_lteq'], class: "form-control timepicker" %>
+    <%= f.search_field q_param_name(:time_end), value: saved_selected_item(:time_end), class: "form-control timepicker" %>
   </div>
   <div class="form-group">
-    <%= f.label :oprice_in_cents_lteq, "Price" %>
+    <%= f.label q_param_name(:price_begin), "Price" %>
     <div class="row">
       <div class="col-xs-5">
-        <%= f.search_field :oprice_in_cents_gteq, value: @search_conditions['oprice_in_cents_gteq'], class: "form-control" %>
+        <%= f.search_field q_param_name(:price_begin), value: saved_selected_item(:price_begin), class: "form-control" %>
       </div>
       <div class="col-xs-2">To</div>
       <div class="col-xs-5">
-        <%= f.search_field :oprice_in_cents_lteq, value: @search_conditions['oprice_in_cents_lteq'], class: "form-control" %>
+        <%= f.search_field q_param_name(:price_end), value: saved_selected_item(:price_end), class: "form-control" %>
       </div>
     </div>
   </div>
   <div class="form-group">
-    <%= f.label :amount_gteq, "Amount" %>
-    <%= f.search_field :amount_gteq, value: @search_conditions['amount_gteq'], class: "form-control" %>
+    <%= f.label q_param_name(:amount), "Amount" %>
+    <%= f.search_field q_param_name(:amount), value: saved_selected_item(:amount), class: "form-control" %>
   </div>
   <%= f.submit "Search", class: "btn btn-default" %>
 <% end %>
