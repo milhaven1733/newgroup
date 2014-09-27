@@ -22,4 +22,8 @@ module ApplicationHelper
   def saved_selected_item(type)
     @search_conditions[q_param_name(type)]
   end
+  
+  def get_session_city
+    session[:city] || 'Philadelphia'
+  end
 end
