@@ -9,7 +9,6 @@ describe HomeController do
     create(:ticket, category: create(:category, name: 'soMethings'))
     create(:ticket, category: category, name: 'nothings')
     get :search, { query: 'some' }
-
     assert_response :success
     assert_equal 3, assigns(:tickets).size
   end

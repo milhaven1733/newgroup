@@ -40,7 +40,6 @@ gem 'quiet_assets'
 # preload
 group :development do
   gem 'spring'
-  gem 'byebug'
 end
 
 group :test, :development do
@@ -52,6 +51,7 @@ group :test, :development do
   gem 'binding_of_caller'
   gem 'pry'
   gem 'pry-nav'
+  gem 'byebug'
 end
 
 gem "mini_magick"
