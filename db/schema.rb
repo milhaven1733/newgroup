@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20140916191553) do
+ActiveRecord::Schema.define(version: 20140923191039) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -72,7 +72,6 @@ ActiveRecord::Schema.define(version: 20140916191553) do
     t.string   "name",              limit: 255
     t.text     "desc"
     t.datetime "start_at"
-    t.datetime "end_at"
     t.string   "image_url",         limit: 255
     t.integer  "oprice_in_cents"
     t.integer  "amount"
@@ -82,6 +81,15 @@ ActiveRecord::Schema.define(version: 20140916191553) do
     t.integer  "student_discount",              default: 0
     t.string   "city"
     t.integer  "shipping_in_cents"
+    t.string   "sitting_map"
+  end
+
+  create_table "time_for_ticket_searches", force: true do |t|
+    t.integer  "ticket_id"
+    t.integer  "date"
+    t.integer  "time"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
   end
 
   create_table "transactions", force: true do |t|

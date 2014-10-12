@@ -8,21 +8,101 @@ body {
 }
 
 #header {
-  .navbar-center {
-    margin-left: 25%;
-    #set_city {
-      padding: 15px 5px;
-      float: left;
-      color: #777777;
-      &:hover {
+  background-color: black;
+  .navbar-brand {
+    padding: 0 15px;
+    height: 72px;
+  }
+  .navbar-search {
+    width: 35%;
+    min-width: 330px;
+    margin: 20px 0 20px 15%;
+    border: 1px solid rgb(147, 67, 207);
+    height: 30px;
+    border-radius: 6px;
+    form#search {
+      width: 100%;
+      margin: 0;
+      padding: 0;
+      padding-left: 10px;
+      height: 30px;
+      input#query {
+        width: 90%;
+        padding: 0;
+        height: 28px;
+        background: none;
+        color: rgb(255, 255, 255);
+        float: left;
+        border: none;
+        outline:none;
+      }
+      span.glyphicon-search {
+        float: right;
+        margin: 3px 5px;
         color: white;
-        background-color: transparent;
-        text-decoration: none;
+        font-size: 20px;
       }
     }
-
-    #search.navbar-form {
+  }
+  .navbar-right {
+    width: 360px;
+    height: 36px;
+    margin: 18px 0;
+    float: right;
+    ul#user {
+      width: 55%;
+      padding: 0;
+      margin: 0;
+      background: rgb(62, 0, 83);
+      border-top-left-radius: 6px;
+      border-top-right-radius: 0px;
+      border-bottom-right-radius: 0px;
+      border-bottom-left-radius: 6px;
+      height: 35px;
       float: left;
+      list-style: none;
+      li {
+        float: left;
+        padding: 7px 10px;
+        color: rgb(223, 130, 255);
+        font-size: 14px;
+        list-style: none;
+        background: url(devider.jpg) 100% 50% no-repeat;
+        &:last-child {
+          background: none;
+        }
+        a {
+          color: rgb(223, 130, 255);
+          &:hover {
+            color: rgb(223, 130, 255);
+            text-decoration: none;
+          }
+        }
+      }
+    }
+    #city {
+      width: 45%;
+      background: rgb(119, 2, 159);
+      border-top-left-radius: 0px;
+      border-top-right-radius: 6px;
+      border-bottom-right-radius: 6px;
+      border-bottom-left-radius: 0px;
+      height: 35px;
+      float: left;
+      font-size: 14px;
+      line-height: 15px;
+      padding: 10px 15px;
+      span.glyphicon-map-marker {
+        color: white;
+      }
+      a {
+        color: rgb(223, 130, 255);
+        padding-left: 8px;
+        &:hover {
+          color: rgb(223, 130, 255);
+          text-decoration: none;
+        }
+      }
     }
   }
 }

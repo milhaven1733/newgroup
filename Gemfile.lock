@@ -77,6 +77,10 @@ GEM
     bootstrap-sass (3.2.0.2)
       sass (~> 3.2)
     builder (3.2.2)
+    byebug (3.4.0)
+      columnize (~> 0.8)
+      debugger-linecache (~> 1.2)
+      slop (~> 3.6)
     cancan (1.6.10)
     carrierwave (0.10.0)
       activemodel (>= 3.2.0)
@@ -91,8 +95,10 @@ GEM
       coffee-script-source
       execjs
     coffee-script-source (1.8.0)
+    columnize (0.8.9)
     daemons (1.1.9)
     debug_inspector (0.0.2)
+    debugger-linecache (1.2.0)
     erubis (2.7.0)
     eventmachine (1.0.3)
     execjs (2.2.1)
@@ -127,6 +133,8 @@ GEM
       mime-types (>= 1.16, < 3)
     method_source (0.8.2)
     mime-types (2.3)
+    mini_magick (3.7.0)
+      subexec (~> 0.2.1)
     mini_portile (0.6.0)
     minitest (5.4.1)
     minitest-rails (2.1.0)
@@ -204,6 +212,7 @@ GEM
       json (~> 1.8.1)
       mime-types (>= 1.25, < 3.0)
       rest-client (~> 1.4)
+    subexec (0.2.3)
     thin (1.6.2)
       daemons (>= 1.0.9)
       eventmachine (>= 1.0.0)
@@ -226,6 +235,7 @@ DEPENDENCIES
   better_errors
   binding_of_caller
   bootstrap-sass
+  byebug
   cancan
   carrierwave
   coffee-rails (~> 4.0.0)
@@ -237,6 +247,7 @@ DEPENDENCIES
   jbuilder (~> 2.0)
   jquery-rails
   kaminari
+  mini_magick
   minitest-rails
   pg
   priceable
