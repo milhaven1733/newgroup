@@ -1,8 +1,42 @@
 #topbar {
-  background-color: #eee;
-  border: 1px solid #ccc;
-  border-radius: 5px;
-  margin-top: 10px;
+  background-color: #ffb400;
+  width: 100%;
+  ul {
+    margin: 0;
+    padding: 0;
+    height: 43px;
+    list-style: none;
+    li {
+      height: 100%;
+      float: left;
+      color: #f1f1f1;
+      line-height: 36px;
+      position: relative;
+      background: #ffb400;
+      border-right: 1px #ffcc00 solid;
+      &:last-child {
+        border-right: none;
+      }
+      a {
+        font-size: 13px;
+        color: black;
+        line-height: 9px;
+        padding: 17px 10px;
+        text-decoration: none;
+        display: block;
+        &.selected {
+          color: #FFF;
+          text-decoration: none;
+          background: #662d91;
+        }
+        &:hover {
+          color: #FFF;
+          text-decoration: none;
+          background: #662d91;
+        }
+      }
+    }
+  }
   &.nav-justified > li > a {
     border-right: 1px solid #d5d5d5;
      border-left: 1px solid #fff; 

@@ -8,6 +8,7 @@ body {
 }
 
 #header {
+  margin: 0;
   background-color: black;
   .navbar-brand {
     padding: 0 15px;
@@ -107,8 +108,8 @@ body {
   }
 }
 
-#container {
-  padding: 60px 15px 0;
+#wrap {
+  padding: 73px 0 0 0;
 }
 
 .footer {
