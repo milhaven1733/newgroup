@@ -26,7 +26,8 @@ gem 'carrierwave'
 # views
 gem 'tabletastic', github: 'zlx/tabletastic'
 gem 'simple_form'
-gem 'ransack', github: 'activerecord-hackery/ransack', branch: 'rails-4.2'
+#gem 'ransack', github: 'activerecord-hackery/ransack', branch: 'rails-4.2'
+gem 'ransack', '~> 1.4.1'
 gem 'kaminari'
 gem 'haml-rails'
 
