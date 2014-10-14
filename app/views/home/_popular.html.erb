@@ -1,14 +1,28 @@
 <div id='top-deals'>
+  <p class='title'>Top Deals in Your City</p>
+  <div class='arrow'>
+    <%= image_tag "yellow.png" %>
+  </div>
   <div class="row">
-    <% @top_tickets.each do |ticket| %>
-      <div class="col-sm-6 col-md-4">
-        <div class="thumbnail">
-          <%= link_to image_tag(ticket.image_url, alt: ticket.name), ticket %>
-          <div class="caption">
-            <h3><%= ticket.name %></h3>
-            <p><%= ticket.desc %></p>
-          </div>
-        </div>
+    <% @top_tickets.in_groups_of(2) do |tickets| %>
+      <div class='row'>
+        <% tickets.each do |ticket| %>
+          <% if ticket %>
+            <div class="col-md-6 ticket">
+              <%= link_to image_tag(ticket.image_url, alt: ticket.name, size: '180x180'), ticket %>
+              <div class="caption">
+                <h3><%= ticket.name %></h3>
+                <p><%= ticket.desc %></p>
+                <% if ticket.student_discount != 0%>
+                  <h3 class="discount">
+                    <%= ticket.student_discount %>% off
+                  </h3>
+                <% end %>
+              </div>
+              <div class="clear"></div>
+            </div>
+          <% end %>
+        <% end %>
       </div>
     <% end %>
   </div>

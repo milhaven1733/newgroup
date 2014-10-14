@@ -86,4 +86,53 @@
 
 #top-deals {
   width: 100%;
+  p.title {
+    background-color: #fff200;
+    font-size: 22px;
+    font-weight: bolder;
+    color: #3e0053;
+    line-height: 35px;
+    padding-left: 20px;
+    margin: 0;
+  }
+  .arrow {
+    text-align: center;
+    line-height: 9px;
+  }
+  .row {
+    margin: 20px 0;
+    .col-md-6:first-child {
+      padding-left: 0;
+    }
+    .col-md-6:last-child {
+      padding-right: 0;
+    }
+  }
+  .ticket {
+    a img {
+      width: 48%;
+      margin-right: 2%;
+      float: left;
+    }
+    .caption {
+      width: 50%;
+      float: left;
+      h3 {
+        color: white;
+        margin: 0;
+        padding: 0;
+        background-color: #3e0053;
+        line-height: 30px;
+        font-size: 17px;
+        font-weight: bold;
+        &.discount {
+          width: 80%;
+          background: #3e0053;
+          margin: 7px 0;
+          text-align: center;
+          color: #fff200;
+        }
+      }
+    }
+  }
 }

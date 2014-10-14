@@ -14,10 +14,8 @@ class HomeController < ApplicationController
     }
   
   def index
-    #@tickets = tickets_of_current_city
-    #@top_tickets = tickets_of_current_city.top_deals
-    @tickets = Ticket.first(3)
-    @top_tickets = Ticket.first(6)
+    @tickets = tickets_of_current_city
+    @top_tickets = tickets_of_current_city.top_deals
   end
 
   def filter
