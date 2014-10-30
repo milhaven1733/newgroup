@@ -2,14 +2,14 @@
   <%= f.error_notification %>
 
   <div class="form-inputs">
-    <%= f.input :city, collection: Ticket::CITIES %>
-    <%= f.association :category %>
-    <%= f.input :name %>
-    <%= f.input :desc %>
-    <%= f.input :start_at, as: :string, input_html: { class: 'datetimepicker' } %>
-    <%= f.input :oprice %>
-    <%= f.input :student_discount %>
-    <%= f.input :amount %>
+    <%= f.input :city, collection: Ticket::CITIES, prompt: 'Please Select a City...', label: 'Select City' %>
+    <%= f.association :category, prompt: 'Please Select a Genre...', label: 'Genre' %>
+    <%= f.input :name, label: 'Title' %>
+    <%= f.input :desc, label: 'Description', input_html:  {placeholder: '3000 characters max.'} %>
+    <%= f.input :start_at, as: :string, label: 'Date', input_html: { class: 'datetimepicker' } %>
+    <%= f.input :amount, as: :integer, label: 'Total quantity of tickets', input_html: { placeholder: 'box supports up to 6 digits of entry' } %>
+    <%= f.input :oprice, label: 'Original price per ticket' %>
+    <%= f.input :student_discount, label: 'Additional discount for students' %>
     <%= image_tag @ticket.image_url.thumb%>
     <%= f.input :image_url, as: :file %>
     <%= image_tag @ticket.sitting_map.thumb%>
