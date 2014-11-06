@@ -24,6 +24,7 @@ class TicketsController < ApplicationController
                    errors: vote.errors.full_messages }
   end
 
+
   private
 
   def set_ticket
