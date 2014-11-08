@@ -1,7 +1,7 @@
 class Ticket < ActiveRecord::Base
   CITIES = %w( Philadelphia NewYork )
 
-  priceable :oprice, :shipping
+  priceable :oprice, :shipping, :flat_price
 
   belongs_to :user
   belongs_to :category
@@ -19,6 +19,8 @@ class Ticket < ActiveRecord::Base
   validates :oprice_in_cents, :amount, numericality: true
   validates :student_discount, inclusion: { in: 0..100 }
   validates :city, inclusion: { in: CITIES }
+  validates :desc, length: { maximum: 3000 }
+  
 
   after_save :time_parse
   

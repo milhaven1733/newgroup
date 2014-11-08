@@ -1,13 +1,13 @@
 $purple:       #3e0053;
 $light_purple: #75039e;
 $white:        #ffffff;
-$dark_yellow:  #fffc00;
-$light_yellow: #ffb500;
+$dark_yellow:  #ffb500;
+$light_yellow: #fffc00;
 
 .button {
-	background:         linear-gradient($dark_yellow, $light_yellow);
-	background:    -moz-linear-gradient($dark_yellow, $light_yellow);
-	background: -webkit-linear-gradient($dark_yellow, $light_yellow);
+	background:         linear-gradient($light_yellow, $dark_yellow);
+	background:    -moz-linear-gradient($light_yellow, $dark_yellow);
+	background: -webkit-linear-gradient($light_yellow, $dark_yellow);
 }
 
 #new-ticket {
@@ -38,6 +38,8 @@ $light_yellow: #ffb500;
 		background-color: $purple;
 	  border-color: $light_purple;
 		color: white;
+		height: 90px;
+		margin-bottom: 2px;
 	}
 	
 	select {
@@ -69,5 +71,23 @@ $light_yellow: #ffb500;
 	.btn {
 		@extend .button;
 		color: black;
+	}
+	
+	a {
+		color: $light_yellow;
+		&:hover{
+		  color: $dark_yellow;
+		}
+	}
+	
+	#shipping-fee {
+		input {
+			color: $light_purple;
+			text-align: center;
+		}
+	}
+	
+	.will-call {
+		padding-top:10px;
 	}
 }

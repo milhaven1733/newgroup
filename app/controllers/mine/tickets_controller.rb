@@ -13,6 +13,7 @@ module Mine
 
     # GET /tickets/new
     def new
+      redirect_to user_session_path unless current_user && current_user.role != 1
       @ticket = Ticket.new
     end
 
@@ -23,7 +24,10 @@ module Mine
     # POST /tickets
     def create
       @ticket = current_user.tickets.new(ticket_params)
-
+      #@ticket.oprice_in_cents     *= 100
+      #@ticket.flat_price_in_cents *= 100
+      #@ticket.shipping_in_cents   *= 100
+      
       if @ticket.save
         redirect_to [:mine, @ticket], notice: 'Ticket was successfully created.'
       else
@@ -56,16 +60,21 @@ module Mine
     # Never trust parameters from the scary internet, only allow the white list through.
     def ticket_params
       params.require(:ticket).permit(
-        :category_id, 
-        :name, 
+        :city,
+        :category_id,
+        :name,
         :desc, 
-        :start_at, 
-        :oprice, 
-        :student_discount, 
-        :city, 
-        :amount, 
-        :image_url,
+        :start_at,
+        :end_at,
+        :amount,
+        :minimum_amount,
+        :oprice,
+        :flat_discount,
+        :flat_price,
+        :student_discount,
         :shipping,
+        :will_call,
+        :image_url,
         :sitting_map
       )
     end
