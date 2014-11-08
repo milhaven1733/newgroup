@@ -24,9 +24,6 @@ module Mine
     # POST /tickets
     def create
       @ticket = current_user.tickets.new(ticket_params)
-      #@ticket.oprice_in_cents     *= 100
-      #@ticket.flat_price_in_cents *= 100
-      #@ticket.shipping_in_cents   *= 100
       
       if @ticket.save
         redirect_to [:mine, @ticket], notice: 'Ticket was successfully created.'
