@@ -20,7 +20,7 @@ module ApplicationHelper
   end
   
   def saved_selected_item(type)
-    @search_conditions[q_param_name(type)]
+    @search_conditions[q_param_name(type)] if @search_conditions
   end
   
   def get_session_city

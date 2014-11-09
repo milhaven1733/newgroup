@@ -14,6 +14,7 @@ class User < ActiveRecord::Base
   has_many :favourites, through: :votes, source: :ticket
   has_one :wallet
   has_many :orders
+  has_one :merchant_info
 
   validates :email, format: { 
     with: /\.edu\Z/, 
