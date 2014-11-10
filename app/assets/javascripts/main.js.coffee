@@ -28,3 +28,4 @@ $ ->
           $(that).data("voted", true)
     })
     return false
+		

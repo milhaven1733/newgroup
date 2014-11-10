@@ -31,7 +31,7 @@
 						<label>Monday - Friday:</label>
 					</div>
 					<div class="col-xs-6 left">
-						<label><%= @user.merchant_info.workday_opening_time %></label>
+						<label><%= @user.try(:merchant_info).workday_opening_time %></label>
 					</div>
 				</div>
 				<div class="row">
@@ -39,7 +39,7 @@
 						<label>Saturday:</label>
 					</div>
 					<div class="col-xs-6 left">
-						<label><%= @user.merchant_info.sat_opening_time %></label>
+						<label><%= @user.try(:merchant_info).sat_opening_time %></label>
 					</div>
 				</div>
 				<div class="row">
@@ -47,7 +47,7 @@
 						<label>Sunday:</label>
 					</div>
 					<div class="col-xs-6 left">
-						<label><%= @user.merchant_info.workday_opening_time %></label>
+						<label><%= @user.try(:merchant_info).workday_opening_time %></label>
 					</div>
 				</div>
 				<h4>Group Sales Phone</h4>
@@ -68,13 +68,13 @@
 						<div class="col-xs-12 col-sm-6">
 							<h4><%= ticket.name %></h4>
 							<h5><%= ticket.desc %></h5>
-	            <h5 class='gray-light'><%= ticket.category.name %></h5>
+	            <h5 class='gray-light'><%= ticket.try(:category).try(:name) %></h5>
 							<h5 class='gray-light'><%= ticket.start_at.to_date %></h5>
 							<h5 class='gray-light'>
 								<%= ticket.start_at.strftime('%I:%M %p') %> 
 								&nbsp;-&nbsp;
 								<%= ticket.end_at.strftime('%I:%M %p') %> </h5>
-							<h4 class='flat-discount yellow'><%= ticket.flat_discount %>% OFF</h4>
+							<h4 class='flat-discount yellow bold'><%= ticket.flat_discount %>% OFF</h4>
 							<h5 class='purple'>Groups of <%= ticket.minimum_amount %>+</h5>
 						</div>
 					</div>
@@ -90,7 +90,8 @@
 <script src="https://maps.googleapis.com/maps/api/js?v=3.exp"></script>
 <script>
 function initialize() {
-  var myLatlng = new google.maps.LatLng(<%= @user.merchant_info.latitude %>,<%= @user.merchant_info.longitude %>);
+  var myLatlng = new google.maps.LatLng(<%= @user.try(:merchant_info).latitude %>,
+	                                      <%= @user.try(:merchant_info).longitude %>);
   var mapOptions = {
     zoom: 12,
     center: myLatlng

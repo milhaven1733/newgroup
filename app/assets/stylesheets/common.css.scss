@@ -226,3 +226,67 @@ body {
 #body-container {
   margin-top: 10px;
 }
+
+@font-face {
+  font-family: 'opensans';
+  src:url('opensans-condbold.eot');
+  src:url('opensans-condbold.eot?#iefix') format('embedded-opentype'),
+    font_url('opensans-condbold.svg#opensans-condbold') format('svg'),
+    font_url('opensans-condbold.woff') format('woff'),
+    font_url('opensans-condbold.ttf') format('truetype');
+  font-weight: bold;
+  font-style: bold;
+}
+
+@font-face {
+  font-family: 'opensans';
+  src:url('opensans-regular.eot');
+  src:url('opensans-regular.eot?#iefix') format('embedded-opentype'),
+    font_url('opensans-regular.svg#opensans-regular') format('svg'),
+    font_url('opensans-regular.woff') format('woff'),
+    font_url('opensans-regular.ttf') format('truetype');
+  font-weight: normal;
+  font-style: normal;
+}
+
+@font-face {
+  font-family: 'opensans';
+  src:url('opensans-semibold.eot');
+  src:url('opensans-semibold.eot?#iefix') format('embedded-opentype'),
+    font_url('opensans-semibold.svg#opensans-semibold') format('svg'),
+    font_url('opensans-semibold.woff') format('woff'),
+    font_url('opensans-semibold.ttf') format('truetype');
+  font-weight: 500;
+  font-style: 500;
+}
+
+@font-face {
+  font-family: 'rock';
+  src:url('rock.eot');
+  src:url('rock.eot?#iefix') format('embedded-opentype'),
+    font_url('rock.svg#rock') format('svg'),
+    font_url('rock.woff') format('woff'),
+    font_url('rock.ttf') format('truetype');
+  font-weight: normal;
+  font-style: normal;
+}
+
+.opensans {
+	font-family: opensans;
+}
+
+.bold {
+	font-weight: bold;
+}
+
+.semibold {
+	font-weight: 500;
+}
+
+.rock {
+	font-family: rock;
+}
+
+h1,h2,h3,h4,h5,h6 {
+	@extend .opensans;
+}
