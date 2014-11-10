@@ -39,7 +39,7 @@
         </li>
         <div id="city">
           <span class='glyphicon glyphicon-map-marker'></span>
-          <%= link_to 'Select Your City', "#", id: 'set_city', data: { toggle: "modal", target: "#change_city" } %>
+          <%= link_to get_session_city, "#", id: 'set_city', data: { toggle: "modal", target: "#change_city" } %>
         </div>
       </ul>
     <% else %>
