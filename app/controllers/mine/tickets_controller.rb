@@ -13,7 +13,7 @@ module Mine
 
     # GET /tickets/new
     def new
-      redirect_to user_session_path unless current_user && current_user.role != 1
+      redirect_to user_session_path unless current_user && current_user.merchant?
       @ticket = Ticket.new
     end
 

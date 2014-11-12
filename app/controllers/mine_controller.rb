@@ -3,12 +3,15 @@ class MineController < ApplicationController
 
   def profile
     @favourite_tickets = @user.favourites
+    @user.merchant_info ||= @user.build_merchant_info
   end
 
   def update_profile
     current_user.update user_param
     redirect_to action: :profile
   end
+  
+  
 
   private
 
@@ -17,10 +20,25 @@ class MineController < ApplicationController
   end
 
   def user_param
+    params.require(:user).permit(:name,
+                                 :zipcode,
+                                 :avatar,
+                                 :phone,
+                                 :group_name,
+                                 :number_of_group_members,
+                                 :university,
+                                 :wallet_link,
+                                 :billing_address)
     if current_user.merchant?
-      params.require(:user).permit(:name, :zipcode, :genre, :phone, :avatar, :address)
-    else
-      params.require(:user).permit(:name, :zipcode, :avatar)
+      params.require(:user).permit(merchant_info_attributes: [:latitude,
+                                   :longitude,
+                                   :url,
+                                   :workday_opening_time,
+                                   :sat_opening_time,
+                                   :sun_opening_time,
+                                   :orgnization,
+                                   :sale_email,
+                                   :sale_phone])
     end
   end
 end

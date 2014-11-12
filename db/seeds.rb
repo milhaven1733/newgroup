@@ -22,7 +22,7 @@ merchant.tickets.create!(name: "The black eyes11", desc: "The Turn Blue World To
 merchant.tickets.create!(name: "NFL ticket exchange11", desc: " Buy & sell tickets the NFL-approved way.", image_url: "http://media.ticketmaster.com/img/mw/images/1c/be/363423p1.jpg", amount: 12, category: sport, start_at: DateTime.now, oprice_in_cents: 1200, city: "NewYork")
 merchant.tickets.create!(name: "On Tour Now11", desc: " You can still score great resale tickets for One Direction!", image_url: "http://media.ticketmaster.com/img/mw/images/e0/f1/341099p1.jpg", amount: 12, category: art, start_at: DateTime.now, oprice_in_cents: 1200, city: "NewYork")
 
-merchant.merchant_infos.create!(user_id: 1,
+MerchantInfo.create!(user_id: 1,
   latitude: -34.397,
   longitude: 150.644, 
   url: 'http://google.com',

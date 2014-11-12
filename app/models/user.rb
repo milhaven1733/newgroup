@@ -14,7 +14,9 @@ class User < ActiveRecord::Base
   has_many :favourites, through: :votes, source: :ticket
   has_one :wallet
   has_many :orders
-  has_one :merchant_info
+  has_one :merchant_info, dependent: :destroy
+  
+  accepts_nested_attributes_for :merchant_info
 
   validates :email, format: { 
     with: /\.edu\Z/, 

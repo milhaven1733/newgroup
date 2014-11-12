@@ -92,6 +92,6 @@ SimpleForm.setup do |config|
   config.default_wrapper = :bootstrap3
   config.button_class = 'btn btn-default'
   config.error_notification_class = 'alert alert-danger'
-  config.label_class = 'col-lg-2 control-label left-aligned col-md-2 col-sm-2'
+  config.label_class = 'control-label left-aligned'
   config.input_class = 'form-control'
 end
