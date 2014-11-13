@@ -1,7 +1,7 @@
 <div class="container" id='edit-profile'>
 	<h1>Edit Profile</h1>
 	<hr/>
-	<%= simple_form_for current_user, url: mine_profile_path, method: :patch, wrapper: :clean do |f| %>
+	<%= simple_form_for @user, url: mine_profile_path, method: :patch, wrapper: :clean do |f| %>
 	  <%= f.error_notification %>
 
 	  <div class="form-inputs">
@@ -15,21 +15,23 @@
 			<%= f.input :wallet_link %>
 			<%= f.input :billing_address %>
 			<%= f.input :address %>
-			
-		 	<%= f.simple_fields_for :merchant_info do |form| %>
-			  <%= form.input :latitude %>
-			  <%= form.input :longitude %>
-        <%= form.input :workday_opening_time %>
-				<%= form.input :sat_opening_time %>
-				<%= form.input :sun_opening_time %>
-				<%= form.input :orgnization %>
-				<%= form.association :category %>
-				<%= form.input :url %>
-			
-				<%= form.input :sales_phone %>
-        <%= form.input :sales_email %>
-				  
-			<% end  -%>  
+
+      <% if @user.merchant? %>
+        <%= f.simple_fields_for :merchant_info, @merchant_info do |form| %>
+          <%= form.input :latitude %>
+          <%= form.input :longitude %>
+          <%= form.input :workday_opening_time %>
+          <%= form.input :sat_opening_time %>
+          <%= form.input :sun_opening_time %>
+          <%= form.input :orgnization %>
+          <%= form.association :category %>
+          <%= form.input :url %>
+
+          <%= form.input :sales_phone %>
+          <%= form.input :sales_email %>
+
+        <% end  -%>
+      <% end %>
 			<%= f.input :zipcode %>
 	    <%= f.input :avatar, as: :file %>
 	  </div>
