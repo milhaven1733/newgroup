@@ -20,25 +20,27 @@ class MineController < ApplicationController
   end
 
   def user_param
-    params.require(:user).permit(:name,
-                                 :zipcode,
-                                 :avatar,
-                                 :phone,
-                                 :group_name,
-                                 :number_of_group_members,
-                                 :university,
-                                 :wallet_link,
-                                 :billing_address)
+    post_params = [:name,
+                   :zipcode,
+                   :avatar,
+                   :phone,
+                   :group_name,
+                   :number_of_group_members,
+                   :university,
+                   :wallet_link,
+                   :billing_address]
+                   
     if current_user.merchant?
-      params.require(:user).permit(merchant_info_attributes: [:latitude,
-                                   :longitude,
-                                   :url,
-                                   :workday_opening_time,
-                                   :sat_opening_time,
-                                   :sun_opening_time,
-                                   :orgnization,
-                                   :sale_email,
-                                   :sale_phone])
+      post_params << { merchant_info_attributes: [:latitude,
+                                         :longitude,
+                                         :url,
+                                         :workday_opening_time,
+                                         :sat_opening_time,
+                                         :sun_opening_time,
+                                         :orgnization,
+                                         :sale_email,
+                                         :sale_phone] }
     end
+    params.require(:user).permit(post_params)
   end
 end

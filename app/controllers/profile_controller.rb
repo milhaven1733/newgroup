@@ -6,7 +6,10 @@ class ProfileController < ApplicationController
   end
 
   def user
-    
+    #TODO: what is the defination of favorite shows? 
+    @favorite_shows = Ticket.last(6)
+    #TODO: What is the defination of favorite venues
+    @favorite_venues = Ticket.last(6)
   end
   
   private

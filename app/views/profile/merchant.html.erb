@@ -59,27 +59,7 @@
     
     <h3 class='upcoming-deals purple'>Upcoming Deals</h3>
     <div class="row" id="deals">
-      <% @top_tickets.each do |ticket| %>
-        <div class="col-xs-12 col-sm-6">
-					<div class=row>
-						<div class="col-xs-12 col-sm-6 thumbnail">
-							<img src="<%= ticket.image_url %>" alt="<%= ticket.name %>">
-						</div>
-						<div class="col-xs-12 col-sm-6">
-							<h4><%= ticket.name %></h4>
-							<h5><%= ticket.desc %></h5>
-	            <h5 class='gray-light'><%= ticket.try(:category).try(:name) %></h5>
-							<h5 class='gray-light'><%= ticket.start_at.to_date %></h5>
-							<h5 class='gray-light'>
-								<%= ticket.start_at.strftime('%I:%M %p') %> 
-								&nbsp;-&nbsp;
-								<%= ticket.end_at.strftime('%I:%M %p') %> </h5>
-							<h4 class='flat-discount yellow bold'><%= ticket.flat_discount %>% OFF</h4>
-							<h5 class='purple'>Groups of <%= ticket.minimum_amount %>+</h5>
-						</div>
-					</div>
-        </div>
-      <% end %>
+      <%= render 'tickets', object: @top_tickets %>
     </div>
     
 		<div >
@@ -87,23 +67,4 @@
 		</div>
 	</div>
 </div>
-<script src="https://maps.googleapis.com/maps/api/js?v=3.exp"></script>
-<script>
-function initialize() {
-  var myLatlng = new google.maps.LatLng(<%= @user.try(:merchant_info).latitude %>,
-	                                      <%= @user.try(:merchant_info).longitude %>);
-  var mapOptions = {
-    zoom: 12,
-    center: myLatlng
-  }
-  var map = new google.maps.Map(document.getElementById('google-map'), mapOptions);
-
-  var marker = new google.maps.Marker({
-      position: myLatlng,
-      map: map,
-      title: '<%= @user.name %>'
-  });
-}
-
-google.maps.event.addDomListener(window, 'load', initialize);
-</script>
+<%= render 'shared/google_maps' %>
