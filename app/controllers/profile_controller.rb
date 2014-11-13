@@ -5,7 +5,10 @@ class ProfileController < ApplicationController
     @top_tickets = Ticket.top_deals
   end
 
-
+  def user
+    
+  end
+  
   private
 
   def set_user

@@ -14,7 +14,6 @@
 			<%= f.input :university %>
 			<%= f.input :wallet_link %>
 			<%= f.input :billing_address %>
-			<%= f.input :genre %>
 			<%= f.input :address %>
 			
 		 	<%= f.simple_fields_for :merchant_info do |form| %>
@@ -24,6 +23,7 @@
 				<%= form.input :sat_opening_time %>
 				<%= form.input :sun_opening_time %>
 				<%= form.input :orgnization %>
+				<%= form.association :category %>
 				<%= form.input :url %>
 			
 				<%= form.input :sales_phone %>
