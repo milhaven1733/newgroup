@@ -1,0 +1,15 @@
+<div class="form-inputs">
+  <%= f.input :avatar, as: :file %>
+  <%= f.input :email, disabled: true, input_html: { style: "color: #fffc00" }, as: :email %>
+  <%= f.input :name, required: true %>
+
+  <%= f.simple_fields_for :user_info, @user_info do |form| %>
+    <%= form.input :phone, as: :tel %>
+    <%= form.input :group_name, wrapper_html: false %>
+    <%= form.input :number_of_group_members %>
+    <%= form.input :university %>
+    <%= form.input :address %>
+    <%= form.input :zipcode, as: :integer %>
+    <%= form.input :billing_address %>
+  <% end  -%>
+</div>

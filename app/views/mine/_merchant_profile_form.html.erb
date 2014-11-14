@@ -1,0 +1,16 @@
+<div class="form-inputs">
+  <%= f.input :email, disabled: true, as: :email, input_html: { style: "color: #fffc00" } %>
+  <%= f.input :name %>
+  <%= f.input :avatar, as: :file %>
+  <%= f.simple_fields_for :merchant_info, @merchant_info do |form| %>
+    <%= form.input :orgnization, required: true %>
+    <%= form.association :category %>
+    <%= form.input :address %>
+    <%= form.input :workday_opening_time %>
+    <%= form.input :sat_opening_time %>
+    <%= form.input :sun_opening_time %>
+    <%= form.input :url, as: :url %>
+    <%= form.input :sales_phone, as: :tel %>
+    <%= form.input :sales_email, required: true, as: :email %>
+  <% end  -%>
+</div>

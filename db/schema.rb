@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20141113005003) do
+ActiveRecord::Schema.define(version: 20141114205513) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -68,6 +68,8 @@ ActiveRecord::Schema.define(version: 20141113005003) do
     t.string   "sales_email"
     t.string   "sales_phone"
     t.integer  "category_id"
+    t.string   "phone"
+    t.string   "address"
   end
 
   create_table "orders", force: true do |t|
@@ -124,13 +126,28 @@ ActiveRecord::Schema.define(version: 20141113005003) do
     t.integer  "user_id"
   end
 
+  create_table "user_infos", force: true do |t|
+    t.string   "phone"
+    t.string   "address"
+    t.boolean  "is_student"
+    t.string   "zipcode"
+    t.string   "group_name"
+    t.integer  "number_of_group_members"
+    t.string   "university"
+    t.string   "billing_address"
+    t.string   "wallet_link"
+    t.datetime "created_at",              null: false
+    t.datetime "updated_at",              null: false
+    t.integer  "user_id"
+  end
+
   create_table "users", force: true do |t|
-    t.string   "email",                   default: "", null: false
-    t.string   "encrypted_password",      default: "", null: false
+    t.string   "email",                  default: "", null: false
+    t.string   "encrypted_password",     default: "", null: false
     t.string   "reset_password_token"
     t.datetime "reset_password_sent_at"
     t.datetime "remember_created_at"
-    t.integer  "sign_in_count",           default: 0,  null: false
+    t.integer  "sign_in_count",          default: 0,  null: false
     t.datetime "current_sign_in_at"
     t.datetime "last_sign_in_at"
     t.inet     "current_sign_in_ip"
@@ -139,16 +156,7 @@ ActiveRecord::Schema.define(version: 20141113005003) do
     t.datetime "updated_at"
     t.string   "name"
     t.string   "avatar"
-    t.string   "phone"
-    t.string   "address"
     t.integer  "role"
-    t.boolean  "is_student"
-    t.string   "zipcode"
-    t.string   "group_name"
-    t.integer  "number_of_group_members"
-    t.string   "university"
-    t.string   "billing_address"
-    t.string   "wallet_link"
   end
 
   add_index "users", ["email"], name: "index_users_on_email", unique: true, using: :btree

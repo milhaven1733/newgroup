@@ -15,13 +15,15 @@ class User < ActiveRecord::Base
   has_one :wallet
   has_many :orders
   has_one :merchant_info, dependent: :destroy
+  has_one :user_info, dependent: :destroy
   
   accepts_nested_attributes_for :merchant_info
+  accepts_nested_attributes_for :user_info
 
-  validates :email, format: { 
-    with: /\.edu\Z/, 
-    message: 'student account must regirster with .edu email' 
-  }, if: :is_student?
+  #validates :email, format: { 
+    #with: /\.edu\Z/, 
+    #message: 'student account must regirster with .edu email' 
+  #}, if: :is_student
 
   before_create :default_role
   after_create :init_wallet

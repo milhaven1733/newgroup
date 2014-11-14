@@ -1,0 +1,43 @@
+<div class='row'>
+  <div class='col-md-4'>Name:</div>
+  <div class='col-md-8'><%= current_user.name %></div>
+</div>
+<div class='row'>
+  <div class='col-md-4'>Email:</div>
+  <div class='col-md-8'><%= current_user.email %></div>
+</div>
+<div class='row'>
+  <div class='col-md-4'>Orgnization Name:</div>
+  <div class='col-md-8'><%= current_user.merchant_info.try(:orgnization) %></div>
+</div>
+<div class='row'>
+  <div class='col-md-4'>Phone:</div>
+  <div class='col-md-8'><%= current_user.merchant_info.try(:phone) %></div>
+</div>
+<div class='row'>
+  <div class='col-md-4'>Genre:</div>
+  <div class='col-md-8'><%= current_user.try(:merchant_info).try(:category).try(:name) %></div>
+</div>
+<div class='row'>
+  <div class='col-md-4'>Hours of Operation:</div>
+  <div class='col-md-8'><%= current_user.try(:merchant_info).try(:workday_opening_time) %></div>
+  <div class='col-md-8 col-md-offset-4'><%= current_user.try(:merchant_info).try(:sat_opening_time) %></div>
+  <div class='col-md-8 col-md-offset-4'><%= current_user.try(:merchant_info).try(:sun_opening_time) %></div>
+</div>
+<div class='row'>
+  <div class='col-md-4'>Sales Manager Email:</div>
+  <div class='col-md-8'><%= current_user.try(:merchant_info).try(:sales_email) %></div>
+</div>
+<div class='row'>
+  <div class='col-md-4'>Sales Manager Phone:</div>
+  <div class='col-md-8'><%= current_user.try(:merchant_info).try(:sales_phone) %></div>
+</div>
+
+<div class='row'>
+  <div class='col-md-4'>Address:</div>
+  <div class='col-md-8'><%= current_user.address %></div>
+</div>
+<div class='row'>
+  <div class='col-md-4'>Avatar:</div>
+  <div class='col-md-8 logo'><%= image_tag current_user.avatar_url, size: '60x60' %></div>
+</div>

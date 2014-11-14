@@ -9,37 +9,11 @@
     </div>
 
     <div class="panel-body">
-      <div class='row'>
-        <div class='col-md-2'>Name:</div>
-        <div class='col-md-10'><%= current_user.name %></div>
-      </div>
-      <div class='row'>
-        <div class='col-md-2'>Email:</div>
-        <div class='col-md-10'><%= current_user.email %></div>
-      </div>
-      <div class='row'>
-        <div class='col-md-2'>Zipcode:</div>
-        <div class='col-md-10'><%= current_user.zipcode %></div>
-      </div>
-
       <% if current_user.merchant? %>
-        <div class='row'>
-          <div class='col-md-2'>Genre:</div>
-          <div class='col-md-10'><%= current_user.try(:merchant_info).try(:category).try(:name) %></div>
-        </div>
-        <div class='row'>
-          <div class='col-md-2'>Phone:</div>
-          <div class='col-md-10'><%= current_user.phone %></div>
-        </div>
-        <div class='row'>
-          <div class='col-md-2'>Address:</div>
-          <div class='col-md-10'><%= current_user.address %></div>
-        </div>
+        <%= render 'merchant_profile_table' %>
+      <% else %>
+        <%= render 'user_profile_table' %>
       <% end %>
-      <div class='row'>
-        <div class='col-md-2'>Avatar:</div>
-        <div class='col-md-10 logo'><%= image_tag current_user.avatar_url, size: '60x60' %></div>
-      </div>
     </div>
   </div>
 </div>
