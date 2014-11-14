@@ -33,12 +33,33 @@
 }
 
 @font-face {
+  font-family: 'opensans';
+  src:url('OpenSans-SemiboldItalic.ttf');
+  font-weight: bold;
+  font-style: bold;
+}
+
+@font-face {
   font-family: 'rock';
   src:url('rock.eot');
   src:url('rock.eot?#iefix') format('embedded-opentype'),
     font_url('rock.svg#rock') format('svg'),
     font_url('rock.woff') format('woff'),
     font_url('rock.ttf') format('truetype');
+  font-weight: normal;
+  font-style: normal;
+}
+
+@font-face {
+  font-family: 'Oswald';
+  src:url('Oswald-Regular.otf');
+  font-weight: normal;
+  font-style: normal;
+}
+
+@font-face {
+  font-family: 'LeagueGothic';
+  src:url('LeagueGothic-Regular.otf');
   font-weight: normal;
   font-style: normal;
 }
