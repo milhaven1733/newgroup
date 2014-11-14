@@ -14,7 +14,11 @@
 			<%= f.input :university %>
 			<%= f.input :wallet_link %>
 			<%= f.input :billing_address %>
+			<% if @user.merchant?  %>
+			  <%= f.input :address, required: true %>
+			<% else %>
 			<%= f.input :address %>
+			<% end %>
 
       <% if @user.merchant? %>
         <%= f.simple_fields_for :merchant_info, @merchant_info do |form| %>
@@ -24,16 +28,16 @@
           <%= form.input :sat_opening_time %>
           <%= form.input :sun_opening_time %>
           <%= form.input :orgnization %>
-          <%= form.association :category %>
+          <%= form.association :category, required: true %>
           <%= form.input :url %>
 
-          <%= form.input :sales_phone %>
-          <%= form.input :sales_email %>
+          <%= form.input :sales_phone, required: true %>
+          <%= form.input :sales_email, required: true %>
 
         <% end  -%>
       <% end %>
 			<%= f.input :zipcode %>
-	    <%= f.input :avatar, as: :file %>
+			<%= f.input :avatar, as: :file %>
 	  </div>
 
 	  <div class="form-group">
@@ -44,8 +48,4 @@
 	<% end -%>
 	
 </div>
-
-
-
-
-
+<%= javascript_include_tag 'form_validate' %>
