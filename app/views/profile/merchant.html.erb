@@ -13,7 +13,7 @@
         <%= image_tag @user.avatar_url %>
       </div>
       <div class="col-xs-7">
-        <h5 class='address gray-light'><%= @user.address %></h5>
+        <h5 class='address gray-light'><%= @user.merchant_info.try(:address) %></h5>
 				<div id="google-map">
 			
 				</div>
@@ -51,7 +51,7 @@
 					</div>
 				</div>
 				<h4>Group Sales Phone</h4>
-				<h5 class='purple'><b><%= @user.phone %></b></h5>
+				<h5 class='purple'><b><%= @user.merchant_info.try(:phone) %></b></h5>
 				<h5 class='email'><%= @user.email %></h5>
       </div>
     </div>
