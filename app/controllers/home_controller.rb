@@ -41,6 +41,10 @@ class HomeController < ApplicationController
     set_session_city(params[:city])
     redirect_to action: 'index'
   end
+  
+  def about_us
+    
+  end
 
   private
 

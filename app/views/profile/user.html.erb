@@ -4,20 +4,20 @@
 			<%= image_tag current_user.avatar.middle.url if current_user.avatar? %>
 		</div>
 		<div class="col-xs-12">
-			<p><%= current_user.name %></p>
-			<p><%= current_user.email %></p>
-			<p><%= current_user.university %></p>
-			<p><%= current_user.group_name %></p>
-			<p><%= current_user.address %></p>
-			<p><%= current_user.last_sign_in_at %></p>
+			<h5 class='gray-light'><%= current_user.name %></h5>
+			<h5><%= current_user.email %></h5>
+			<h5><%= current_user.university %></h5>
+			<h5><%= current_user.group_name %></h5>
+			<h5><%= current_user.address %></h5>
+			<h5><%= current_user.last_sign_in_at %></h5>
 		</div>
 	</div>
 	<div class="col-xs-8" id="deals">
-		<h3 class='upcoming-deals purple'>Upcoming Deals</h3>
+		<h3 class='upcoming-deals purple'>Favorite Shows</h3>
     <div class="row" id="deals">
       <%= render 'tickets', object: @favorite_shows %>
     </div>
-		<h3 class='upcoming-deals purple'>Upcoming Deals</h3>
+		<h3 class='upcoming-deals purple'>Favorite Venues</h3>
     <div class="row" id="deals">
       <%= render 'tickets', object: @favorite_venues %>
     </div>
