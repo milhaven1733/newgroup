@@ -6,7 +6,7 @@
       <%= f.search_field q_param_name(:name), value: saved_selected_item(:name), class: "form-control", :placeholder => "Name" %>
     </div>
     <div class="form-group">
-      <%= f.select q_param_name(:category), options_for_select(category_options, saved_selected_item(:category)), {prompt: 'All'}, {class: "form-control"} %>
+      <%= f.select q_param_name(:category), options_for_select(category_options, saved_selected_item(:category)), {prompt: 'Genre'}, {class: "form-control"} %>
     </div>
     <div class="form-group">
       <%= f.search_field q_param_name(:date_begin), value: saved_selected_item(:date_begin), class: "form-control datepicker", placeholder: "Date From" %>

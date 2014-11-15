@@ -2,15 +2,15 @@ class HomeController < ApplicationController
   before_action :save_search_conditions, only: [:index, :search]
   helper_method :get_session_city
   before_action :safty_q_params, only: :search
-  SearchParamsName = { name: 'name_cont', 
+  SearchParamsName = { name: 'Title', 
     category: 'category_id_eq',
-    date_begin: 'time_tag_date_gteq',
-    date_end: 'time_tag_date_lteq',
-    time_begin: 'time_tag_time_gteq',
-    time_end: 'time_tag_time_lteq',
-    price_begin: 'oprice_in_cents_gteq',
-    price_end: 'oprice_in_cents_lteq',
-    amount: 'amount_gteq'
+    date_begin: 'Date From',
+    date_end: 'Date To',
+    time_begin: 'Time From',
+    time_end: 'Time To',
+    price_begin: 'Price From',
+    price_end: 'Price To',
+    amount: 'Quantity'
     }
   
   def index

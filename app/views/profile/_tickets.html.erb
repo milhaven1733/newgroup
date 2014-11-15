@@ -6,7 +6,6 @@
 			</div>
 			<div class="col-xs-12 col-sm-6">
 				<h4><%= link_to ticket.name, ticket %></h4>
-				<h5 style='overflow:hidden;height:15px;'><%= ticket.desc %></h5>
         <h5 class='gray-light'><%= ticket.try(:category).try(:name) %></h5>
 				<h5 class='gray-light'><%= ticket.start_at.to_date %></h5>
 				<h5 class='gray-light'>

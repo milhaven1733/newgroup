@@ -48,12 +48,14 @@ body {
         float: left;
         border: none;
         outline:none;
+				padding-top: 40px;
       }
       span.glyphicon-search {
         float: right;
         margin: 3px 5px;
         color: white;
         font-size: 20px;
+				padding-top:25px;
       }
     }
   }
@@ -193,13 +195,12 @@ body {
 
 .avatar {
   height: 40px;
-  margin-top: 5px;
-  width: 40px;
+  margin: 0px;
+  width:  40px;
 
   img {
     height: 100%;
     border-radius: 10%;
-    width: 100%;
   }
 }
 

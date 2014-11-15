@@ -2,7 +2,7 @@
   <% if @search_conditions %>
     <div class="container">
       <ul>
-        <% Category.limit(10).each do |category| %>
+        <% Category.limit(12).each do |category| %>
           <li>
             <%= link_to category.name, search_path(q: @search_conditions.merge(q_param_name(:category) => category.id)) %>
           </li>

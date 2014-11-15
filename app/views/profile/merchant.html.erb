@@ -5,7 +5,7 @@
   <div class='col-xs-9'>
     <h2 class='text-center'>
 			Merchant Profile
-			<span class='glyphicon glyphicon-star purple'></span>
+			<span class='glyphicon glyphicon-star-empty purple'></span>
 		</h2>
 		
     <div class="row">
@@ -14,19 +14,16 @@
       </div>
       <div class="col-xs-7">
         <h5 class='address gray-light'><%= @user.merchant_info.try(:address) %></h5>
-				<div id="google-map">
-			
-				</div>
+				<!-- Google Maps Cavas -->
+				<div id="google-map"></div>
+				
 				<div class="row">
 					<div class="col-xs-4">
-						<h6>Hours of Operation<span></h6>
-					</div>
-					<div class="col-xs-8">
-						<hr style='height:5px'>
+						<p class='operation'>Hours of Operation</p>
 					</div>
 				</div>
 				
-				<div class="row">
+				<div class="row opening-time">
 					<div class="col-xs-6 purple">
 						<label>Monday - Friday:</label>
 					</div>
@@ -34,7 +31,7 @@
 						<label><%= @user.try(:merchant_info).workday_opening_time %></label>
 					</div>
 				</div>
-				<div class="row">
+				<div class="row opening-time">
 					<div class="col-xs-6 purple">
 						<label>Saturday:</label>
 					</div>
@@ -42,7 +39,7 @@
 						<label><%= @user.merchant_info.try(:sat_opening_time) %></label>
 					</div>
 				</div>
-				<div class="row">
+				<div class="row opening-time">
 					<div class="col-xs-6 purple">
 						<label>Sunday:</label>
 					</div>
@@ -50,9 +47,9 @@
 						<label><%= @user.merchant_info.try(:workday_opening_time) %></label>
 					</div>
 				</div>
-				<h4>Group Sales Phone</h4>
-				<h5 class='purple'><b><%= @user.merchant_info.try(:phone) %></b></h5>
-				<h5 class='email'><%= @user.email %></h5>
+				<p class='group-sales-phone'>Group Sales Phone</p>
+				<p class='phone-number purple'><b><%= @user.merchant_info.try(:phone) %></b></p>
+				<p class='email'><%= mail_to @user.email %></p>
       </div>
     </div>
     <hr>
