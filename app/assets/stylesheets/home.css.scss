@@ -17,7 +17,6 @@
       &:last-child {
         border-right: none;
       }
-      width: 14%;
       a {
         font-size: 13px;
         color: black;
@@ -85,7 +84,7 @@
 #slider {
   width: 100%;
 	.slides {
-	  height: 550px;
+	  height: 150px;
 		overflow: hidden;
 	}
 }
@@ -95,7 +94,9 @@
   p.title {
     background-color: #fff200;
     font-size: 22px;
-    font-weight: bolder;
+    font-weight: 500;
+		font-style:500;
+		font-family:Oswald;
     color: #3e0053;
     line-height: 35px;
     padding-left: 20px;
