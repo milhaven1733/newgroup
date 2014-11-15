@@ -31,7 +31,7 @@
 						<label>Monday - Friday:</label>
 					</div>
 					<div class="col-xs-6 left">
-						<label><%= @user.try(:merchant_info).workday_opening_time %></label>
+						<label><%= @user.merchant_info.try(:workday_opening_time) %></label>
 					</div>
 				</div>
 				<div class="row">

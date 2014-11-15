@@ -1,8 +1,8 @@
 <script src="https://maps.googleapis.com/maps/api/js?v=3.exp"></script>
 <script>
 	function initialize() {
-    var lat = <%= @user.try(:merchant_info).latitude ? @user.try(:merchant_info).latitude : 0%>;
-    var lng = <%= @user.try(:merchant_info).longitude ? @user.try(:merchant_info).longitude : 0%>;
+    var lat = <%= @user.merchant_info.try(:latitude) ? @user.merchant_info.try(:latitude) : 0%>;
+    var lng = <%= @user.merchant_info.try(:longitude) ? @user.merchant_info.try(:longitude) : 0%>;
 
 	  var myLatlng = new google.maps.LatLng(lat, lng);
 	  var mapOptions = {
