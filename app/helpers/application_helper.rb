@@ -26,4 +26,8 @@ module ApplicationHelper
   def get_session_city
     session[:city] || 'Philadelphia'
   end
+
+  def profile_url
+    current_user.merchant? ? merchant_path(current_user) : user_path(current_user)
+  end
 end

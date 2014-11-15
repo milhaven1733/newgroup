@@ -9,7 +9,7 @@ class ProfileController < ApplicationController
   def user
     return if @user.merchant?
     #TODO: what is the defination of favorite shows? 
-    @favorite_shows = Ticket.last(6)
+    @favorite_shows = @user.favourites
     #TODO: What is the defination of favorite venues
     @favorite_venues = Ticket.last(6)
   end

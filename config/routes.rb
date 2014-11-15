@@ -3,8 +3,8 @@ Rails.application.routes.draw do
 
   devise_for :users
 
-  get 'merchant',  to: "profile#merchant", as: "merchant"
-  get 'user',      to: "profile#user",     as: "user"
+  get 'merchant/:id',  to: "profile#merchant", as: "merchant"
+  get 'user/:id',      to: "profile#user",     as: "user"
   get '/search',   to: "home#search",      as: :search
   get '/filter',   to: "home#filter",      as: :filter
   get '/set_city', to: "home#set_city",    as: :set_city
