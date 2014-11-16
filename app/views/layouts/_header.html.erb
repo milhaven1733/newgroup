@@ -18,31 +18,35 @@
       <% end -%>
     </div>
     <%- if current_user %>
-		  <!--
       <ul class="nav navbar-nav navbar-right" id="user">
         <li class='avatar'><%= image_tag current_user.avatar_url %></li>
         <li class="dropdown">
 	        <a class="dropdown-toggle" data-toggle="dropdown" href="#">
 	          <%= current_user.name %><span class="caret"></span>
 	        </a>
-	        
+	        <ul class="dropdown-menu" role="menu">
+	          <li role="presentation">
+		          <% if can?(:manage, Ticket) %>
+		            <%= link_to 'Tickets', mine_tickets_path %>
+		          <% end %>
+					
+							<% if request.path == merchant_path(current_user) %>
+		             <%= link_to 'Edit Profile', mine_edit_profile_path %>
+							<% else %>
+							   <%= link_to 'Profile', merchant_path(current_user) %>
+							<% end %>
+					
+		          <%= link_to 'Wallet', mine_wallet_path %>
+		          <%= link_to 'Orders', mine_orders_path %>
+		          <%= link_to 'Log out', destroy_user_session_path, method: :delete %>
+	          </li>
+	        </ul>
         </li>
         <div id="city">
           <span class='glyphicon glyphicon-map-marker'></span>
           <%= link_to get_session_city, "#", id: 'set_city', data: { toggle: "modal", target: "#change_city" } %>
         </div>
       </ul>
-			-->
-      <div class="navbar-right">
-        <ul id="user">
-          <li><%= link_to current_user.name, new_user_session_path %></li>
-          <li><%= link_to "Profile", "#" %></li>
-        </ul>
-        <div id="city">
-          <span class='glyphicon glyphicon-map-marker'></span>
-          <%= link_to 'Select Your City', "#", id: 'set_city', data: { toggle: "modal", target: "#change_city" } %>
-        </div>
-      </div>
     <% else %>
       <div class="navbar-right">
         <ul id="user">
