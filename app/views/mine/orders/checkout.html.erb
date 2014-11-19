@@ -1,0 +1,51 @@
+<div id="check-out" class="container">
+	<h1 class="center">CHECK OUT</h1>
+	<div class="row">
+		<div class="col-xs-12 col-sm-6">
+			<p>
+				<label class="purple">Name:</label>
+				<%= @order.ticket.name %>
+			</p>
+			<p>
+				<label class="purple">Address:</label>
+				<%= current_user.try(:user_info).try(:address) %>
+			</p>
+			<p class="purple">Enter Billing Aaddress</p>
+			<p>
+				<span><input id="use-shipping" type="radio" /></span>Use Shipping Address
+			</p>
+			
+			<%= simple_form_for [:mine, @order] do |f| %>
+			  <%= simple_fields_for :order_info, @order_info do |info| %>
+				  <%= info.input_field :first_address %>
+					<%= info.input_field :secondary_address %>
+					<%= info.input_field :city %>
+					<%= info.input_field :state %>
+					<%= info.input_field :zipcode %>
+		</div>
+		<div class="col-xs-12 col-sm-6">
+			  <p>
+					<label>Price per ticket:</label>
+					 $1000.00
+				</p>
+				<p>
+					<label>Total Ticket Quantity:</label>
+					 xxx
+				 </p>
+				<p>
+					<label>Shiping Fee:</label>
+					$5
+				</p>
+				<p>
+					<label>Booking Fee:</label>
+					 $5.00
+				</p>
+					<%= info.input_field :price %>
+				<a>Invite Group Members To Pay</a>
+				<% end  %>
+				<%= f.button :submit, 'PAYMENT', class: 'button' %>
+			
+			<% end %>
+		</div>
+	</div>
+</div>
