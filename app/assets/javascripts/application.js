@@ -15,4 +15,5 @@
 //= require bootstrap-sprockets
 //= require vendor
 //= require main
-//= require new_ticket
+//= require ticket_new
+//= require ticket_show
