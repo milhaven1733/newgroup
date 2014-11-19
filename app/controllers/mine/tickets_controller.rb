@@ -1,10 +1,15 @@
 module Mine
   class TicketsController < ApplicationController
+    before_action :authenticate_user!
     before_action :set_ticket, only: [:show, :edit, :update, :destroy]
 
     # GET /tickets
     def index
-      @tickets = current_user.tickets
+      if current_user.merchant?
+        @tickets = current_user.tickets
+      else
+        redirect_to root_path
+      end
     end
 
     # GET /tickets/1

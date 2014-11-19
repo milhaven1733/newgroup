@@ -1,6 +1,7 @@
 class Order < ActiveRecord::Base
   belongs_to :user
   belongs_to :ticket
+  has_one :order_info
 
   priceable :price, :shipping
 

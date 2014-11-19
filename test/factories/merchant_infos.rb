@@ -1,12 +1,17 @@
 # Read about factories at https://github.com/thoughtbot/factory_girl
+include Faker
 
 FactoryGirl.define do
   factory :merchant_info do
     user_id 1
-    longitude 1.5
-    latitude 1.5
-    opening_time "2014-11-09 08:43:51"
-    closing_time "2014-11-09 08:43:51"
-    url "MyString"
+    longitude Address.longitude
+    latitude Address.latitude
+    workday_opening_time "08:30 AM - 10:30 PM"
+    sat_opening_time "08:30 AM - 10:30 PM"
+    sun_opening_time "08:30 AM - 10:30 PM"
+    url Internet.url
+    orgnization Company.name
+    sales_email Internet.email
+    sales_phone PhoneNumber.phone_number
   end
 end

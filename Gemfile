@@ -1,5 +1,5 @@
-source 'https://rubygems.org'
-#source 'https://ruby.taobao.org'
+#source 'https://rubygems.org'
+source 'https://ruby.taobao.org'
 
 gem 'rails', '4.2.0.beta1'
 gem 'pg'
@@ -18,7 +18,7 @@ gem 'jbuilder', '~> 2.0'
 
 # login & auth
 gem 'devise', github: 'plataformatec/devise', branch: 'lm-rails-4-2'
-gem 'cancan'
+gem 'cancancan', '~> 1.9'
 
 # image uploader
 gem 'carrierwave'
@@ -46,13 +46,26 @@ end
 group :test, :development do
   gem 'minitest-rails'
   gem 'factory_girl_rails'
-  gem 'ffaker'
+  gem 'faker'
   gem 'thin'
   gem 'better_errors'
   gem 'binding_of_caller'
   gem 'pry'
   gem 'pry-nav'
   gem 'byebug'
+  gem 'rspec-rails'
+  gem 'guard-spork'
+  gem 'guard-rspec'
+  gem 'spork-rails'
+  gem 'childprocess'
+end
+
+group :test do
+  gem 'selenium-webdriver'
+  gem 'capybara'
+  gem 'cucumber-rails', :require=>false
+  #Database Cleaner is a set of strategis for cleaing your database in Ruby
+  gem 'database_cleaner',git:'https://github.com/bmabey/database_cleaner.git'  
 end
 
 gem "mini_magick"

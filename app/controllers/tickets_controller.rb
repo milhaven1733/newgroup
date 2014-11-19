@@ -2,7 +2,9 @@ class TicketsController < ApplicationController
   before_action :set_ticket
 
   def show
-    @top_tickets = Ticket.top_deals
+    @order = Order.new
+    cookies[:flat_price] = @ticket.flat_price
+    cookies[:amount] = @ticket.amount
   end
 
   def like

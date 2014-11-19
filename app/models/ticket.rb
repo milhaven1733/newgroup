@@ -56,6 +56,14 @@ class Ticket < ActiveRecord::Base
   def time_parse
     TimeForTicketSearch.create_time_tag(self.id, self.start_at)
   end
+  
+  def time_range
+    if (start_at.to_date <= end_at.to_date) && (end_at > start_at)
+      "#{start_at.strftime('%m/%d/%Y')}\n#{start_at.strftime('%H:%M %p')} - #{end_at.strftime('%H:%M %p')}"
+    else
+      "Invalid ticket time range, Please contact merchant administrator!"
+    end
+  end
 
   private
   def group_price_by count
