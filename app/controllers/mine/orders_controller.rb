@@ -14,8 +14,6 @@ module Mine
       @order = current_user.orders.new(order_params.merge(status: :created))
       if @order.save
         render :checkout
-      else
-        render ticket_path(params[:ticket_id]), notice: "Please check input again."
       end
     end
     
