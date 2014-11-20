@@ -2,7 +2,7 @@ class TicketsController < ApplicationController
   before_action :set_ticket
 
   def show
-    @order = Order.new
+    @order = Order.new(ticket_id: @ticket.id)
     cookies[:flat_price] = @ticket.flat_price
     cookies[:amount] = @ticket.amount
   end

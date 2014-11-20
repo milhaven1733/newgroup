@@ -29,7 +29,7 @@
 					<span><%= @ticket.minimum_amount  %></span>
 				</p>
 				<%= simple_form_for [:mine, @order] do |f| %>
-				  <%= f.input :ticket_id, input_html:{ value: @ticket.id }, as: :hidden  %>
+          <%= f.input_field :ticket_id, as: :hidden %>
 					<div class="row">
 						<div class="col-xs-6">
 							<span class="light-purple">Quantity:</span>
@@ -52,7 +52,6 @@
 							<span class="light-purple">Booking Fee:</span>
 						</div>
 						<div class="col-xs-6">
-							<%= f.input_field :booking_fee, as: :hidden %>
 							<label id="booking-fee" class="purple-back">$5</label>							
 						</div>
 					</div>
@@ -63,4 +62,3 @@
 		</div>  
   </div>
 </div>
-<%= javascript_include_tag 'ticket_show' %>

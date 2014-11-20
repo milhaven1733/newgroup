@@ -33,7 +33,11 @@ Rails.application.routes.draw do
     get :profile, :edit_profile
     patch :profile, action: :update_profile
 
-    resources :orders
+    resources :orders do
+      member do
+        get :checkout
+      end
+    end
   end
 
 end

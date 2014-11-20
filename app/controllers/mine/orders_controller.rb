@@ -1,6 +1,7 @@
 module Mine
   class OrdersController < ApplicationController
     before_action :authenticate_user!
+    before_action :set_order, only: :checkout
     
     def index
       @orders = current_user.orders.order(id: :desc).page params[:page]
@@ -12,21 +13,32 @@ module Mine
     
     def create
       @order = current_user.orders.new(order_params.merge(status: :created))
+      @order.calc_amount
+
       if @order.save
-        render :checkout
+        redirect_to action: :checkout, id: @order.id
       else
-        render ticket_path(params[:ticket_id]), notice: "Please check input again."
+        flash[:error] = @order.errors.full_messages.join(', ')
+        redirect_to ticket_path(order_params[:ticket_id])
       end
     end
     
+    def checkout
+
+    end
+
     def update
       #TODO: Deal with payment thing
     end
     
     private
-    
+
+    def set_order
+      @order = Order.find(params[:id])
+    end
+
     def order_params
-      params.require(:order).permit(:ticket_id, :count, :price, :booking_fee)
+      params.require(:order).permit(:ticket_id, :count)
     end
     
   end

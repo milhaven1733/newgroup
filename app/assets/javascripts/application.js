@@ -16,3 +16,4 @@
 //= require vendor
 //= require main
 //= require new_ticket
+//= require ticket_show

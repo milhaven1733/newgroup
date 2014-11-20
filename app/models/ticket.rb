@@ -16,7 +16,8 @@ class Ticket < ActiveRecord::Base
 
   validates :name, :start_at, :oprice, presence: true
   #validates :start_at, time_period: { scope: :end_at }
-  validates :oprice_in_cents, :amount, numericality: true
+  validates :oprice_in_cents, :flat_price, numericality: {  greater_than: 0 }
+  validates :oprice_in_cents, :amount, :shipping, :flat_price, numericality: true
   validates :student_discount, inclusion: { in: 0..100 }
   validates :city, inclusion: { in: CITIES }
   validates :desc, length: { maximum: 3000 }
@@ -44,7 +45,7 @@ class Ticket < ActiveRecord::Base
   end
 
   def price_when(count, for_student = false)
-    price = group_price_by(count).try(:price) || oprice
+    price = group_price_by(count).try(:price) || flat_price || oprice
     price = price * (100 - student_discount) / 100 if for_student
     price
   end
@@ -58,7 +59,7 @@ class Ticket < ActiveRecord::Base
   end
   
   def time_range
-    if (start_at.to_date <= end_at.to_date) && (end_at > start_at)
+    if (start_at and end_at) and (start_at.to_date <= end_at.to_date) && (end_at > start_at)
       "#{start_at.strftime('%m/%d/%Y')}\n#{start_at.strftime('%H:%M %p')} - #{end_at.strftime('%H:%M %p')}"
     else
       "Invalid ticket time range, Please contact merchant administrator!"

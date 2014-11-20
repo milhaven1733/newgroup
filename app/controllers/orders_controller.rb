@@ -7,7 +7,6 @@ class OrdersController < ApplicationController
                                        price: @ticket.price_when(order_params[:count]),
                                        shipping: @ticket.shipping))
     result = @order.pay_by(current_user)
-
     if result == Order::PayByResult[0]
       redirect_to [:mine, @order]
     elsif result == Order::PayByResult[1]
