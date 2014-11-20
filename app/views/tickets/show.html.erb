@@ -15,7 +15,7 @@
 					<%= @ticket.desc %>
 				</p>
 				<p>
-					<span class="purple-back" id="flat-price">
+					<span class="purple-back circle-angle" id="flat-price">
 						$<%= @ticket.flat_price %>
 					</span>
 					<span>&nbsp;Per Ticket</span>
@@ -43,8 +43,7 @@
 							<span class="light-purple">Total Price:</span>
 						</div>
 						<div class="col-xs-4">
-							<%= f.input_field :price, as: :hidden %>
-							<label id="total-price" class="purple-back">$00.00</label>
+							<label id="total-price" class="purple-back circle-angle">$00.00</label>
 						</div>
 					</div>
 					<div class="row">
@@ -52,7 +51,7 @@
 							<span class="light-purple">Booking Fee:</span>
 						</div>
 						<div class="col-xs-6">
-							<label id="booking-fee" class="purple-back">$5</label>							
+							<label id="booking-fee" class="purple-back circle-angle">$5</label>							
 						</div>
 					</div>
 					<%= f.button :submit, 'CHECK OUT', class: 'button', disable: true %>

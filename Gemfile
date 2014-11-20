@@ -58,6 +58,7 @@ group :test, :development do
   gem 'guard-rspec'
   gem 'spork-rails'
   gem 'childprocess'
+  gem 'guard-livereload', require: false
 end
 
 group :test do

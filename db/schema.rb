@@ -72,6 +72,15 @@ ActiveRecord::Schema.define(version: 20141120133005) do
     t.string   "address"
   end
 
+  create_table "order_infos", force: true do |t|
+    t.integer "order_id"
+    t.string  "first_address"
+    t.string  "secondary_address"
+    t.string  "city"
+    t.string  "state"
+    t.string  "zipcode"
+  end
+
   create_table "orders", force: true do |t|
     t.integer  "user_id"
     t.integer  "ticket_id"
