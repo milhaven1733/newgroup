@@ -10,7 +10,7 @@ class Order < ActiveRecord::Base
   validates :amount, :user_id, :ticket_id, :price_in_cents, :count, presence: true
   validates :price_in_cents, :amount, numericality: { greater_than: 0 }
   validates :shipping_in_cents, :booking_fee, numericality: true
-  validates :count, numericality: { greater_than: 4 }
+  validates :count, numericality: { greater_than: ->(order) { order.ticket.try(:minimum_amount) - 1 || 4 } }
 
   before_save :calc_amount, if: 'amount.nil?'
   
@@ -18,7 +18,7 @@ class Order < ActiveRecord::Base
 
   def calc_amount
     set_price
-    self.shipping_in_cents ||= 0
+    self.shipping_in_cents = ticket.shipping_in_cents || 0
     self.booking_fee_in_cents ||= 0
     self.amount_in_cents = shipping_fee_included? ? price_in_cents * count + shipping_in_cents + booking_fee_in_cents : price_in_cents * count + booking_fee_in_cents
   end
