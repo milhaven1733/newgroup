@@ -11,7 +11,7 @@ class Ticket < ActiveRecord::Base
   has_many :orders
   has_one  :time_tag, class_name: 'TimeForTicketSearch', dependent: :destroy
 
-  mount_uploader :image_url, ImageUploader
+  mount_uploader :image, ImageUploader
   mount_uploader :sitting_map, SittingMapUploader
 
   validates :name, :start_at, :oprice, presence: true
@@ -58,12 +58,20 @@ class Ticket < ActiveRecord::Base
     TimeForTicketSearch.create_time_tag(self.id, self.start_at)
   end
   
-  def time_range
+  def time_range(type = :number)
     if (start_at and end_at) and (start_at.to_date <= end_at.to_date) && (end_at > start_at)
-      "#{start_at.strftime('%m/%d/%Y')}\n#{start_at.strftime('%H:%M %p')} - #{end_at.strftime('%H:%M %p')}"
+      if type == :number
+        "#{start_at.strftime('%m/%d/%Y')}<br>#{start_at.strftime('%H:%M %p')} - #{end_at.strftime('%H:%M %p')}".html_safe
+      elsif type == :word
+        "#{start_at.strftime('%B %d, %Y')}<br>#{start_at.strftime('%H:%M %p')} - #{end_at.strftime('%H:%M %p')}".html_safe
+      end
     else
       "Invalid ticket time range, Please contact merchant administrator!"
     end
+  end
+  
+  def sold
+    self.orders.where(status: :paid).sum(:count)
   end
 
   private

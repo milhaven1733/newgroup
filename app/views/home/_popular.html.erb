@@ -9,7 +9,7 @@
         <% tickets.each do |ticket| %>
           <% if ticket %>
             <div class="col-md-6 ticket">
-              <%= link_to image_tag(ticket.image_url, alt: ticket.name, size: '180x180'), ticket %>
+              <%= link_to image_tag(ticket.image, alt: ticket.name, size: '180x180'), ticket %>
               <div class="caption">
                 <h3><%= ticket.name %></h3>
                 <p><%= ticket.desc %></p>
