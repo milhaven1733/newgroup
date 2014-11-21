@@ -1,3 +1,5 @@
+@import "color_defination";
+
 .white {
   color: white;
 }
@@ -22,8 +24,23 @@
 .gray{
 	color: #dfdfdf;
 }
+
 .yellow-linear-gradient {
 	background:         linear-gradient(#fffc00, #ffb500);
 	background:    -moz-linear-gradient(#fffc00, #ffb500);
 	background: -webkit-linear-gradient(#fffc00, #ffb500);
+}
+
+.purple-back {
+	background-color: #75039e;
+	color: yellow;
+	font-size: 20px;
+	padding: 5px;
+}
+
+.light-purple-back {
+	background-color: $light_purple;
+	color: yellow;
+	font-size: 20px;
+	padding: 5px;
 }

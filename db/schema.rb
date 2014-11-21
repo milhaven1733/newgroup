@@ -11,20 +11,20 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20141120133005) do
+ActiveRecord::Schema.define(version: 20141121021822) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
   create_table "categories", force: true do |t|
-    t.string   "name",       limit: 255
+    t.string   "name"
     t.text     "desc"
     t.datetime "created_at"
     t.datetime "updated_at"
   end
 
   create_table "et_groups", force: true do |t|
-    t.string   "name",          limit: 255
+    t.string   "name"
     t.integer  "leader_id"
     t.datetime "created_at"
     t.datetime "updated_at"
@@ -97,16 +97,15 @@ ActiveRecord::Schema.define(version: 20141120133005) do
 
   create_table "tickets", force: true do |t|
     t.integer  "user_id"
-    t.string   "name",                limit: 255
+    t.string   "name"
     t.text     "desc"
     t.datetime "start_at"
-    t.string   "image_url",           limit: 255
     t.integer  "oprice_in_cents"
     t.integer  "amount"
     t.datetime "created_at"
     t.datetime "updated_at"
     t.integer  "category_id"
-    t.integer  "student_discount",                default: 0
+    t.integer  "student_discount",    default: 0
     t.string   "city"
     t.integer  "shipping_in_cents"
     t.string   "sitting_map"
@@ -115,6 +114,7 @@ ActiveRecord::Schema.define(version: 20141120133005) do
     t.datetime "end_at"
     t.integer  "flat_price_in_cents"
     t.boolean  "will_call"
+    t.string   "image"
   end
 
   create_table "time_for_ticket_searches", force: true do |t|
@@ -152,20 +152,20 @@ ActiveRecord::Schema.define(version: 20141120133005) do
   end
 
   create_table "users", force: true do |t|
-    t.string   "email",                  limit: 255, default: "", null: false
-    t.string   "encrypted_password",     limit: 255, default: "", null: false
-    t.string   "reset_password_token",   limit: 255
+    t.string   "email",                  default: "", null: false
+    t.string   "encrypted_password",     default: "", null: false
+    t.string   "reset_password_token"
     t.datetime "reset_password_sent_at"
     t.datetime "remember_created_at"
-    t.integer  "sign_in_count",                      default: 0,  null: false
+    t.integer  "sign_in_count",          default: 0,  null: false
     t.datetime "current_sign_in_at"
     t.datetime "last_sign_in_at"
     t.inet     "current_sign_in_ip"
     t.inet     "last_sign_in_ip"
     t.datetime "created_at"
     t.datetime "updated_at"
-    t.string   "name",                   limit: 255
-    t.string   "avatar",                 limit: 255
+    t.string   "name"
+    t.string   "avatar"
     t.integer  "role"
   end
 

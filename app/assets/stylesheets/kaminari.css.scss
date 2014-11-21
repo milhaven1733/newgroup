@@ -1,0 +1,11 @@
+@import "color_defination";
+
+#kaminari {
+	a {
+	  background-color: $light_purple;
+		color: yellow;
+	}
+	.active {
+		border-color: yellow;
+	}
+}

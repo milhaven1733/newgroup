@@ -6,7 +6,7 @@ module Mine
     # GET /tickets
     def index
       if current_user.merchant?
-        @tickets = current_user.tickets
+        @tickets = current_user.tickets.page(params[:page]).per(20)
       else
         redirect_to root_path
       end
@@ -76,7 +76,7 @@ module Mine
         :student_discount,
         :shipping,
         :will_call,
-        :image_url,
+        :image,
         :sitting_map
       )
     end

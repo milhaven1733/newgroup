@@ -2,26 +2,10 @@
   <ul class="nav nav-pills pull-right">
     <li><%= link_to 'New Ticket', new_mine_ticket_path %></li>
   </ul>
-  <h3 class="text-muted">Listing tickets</h3>
+  <h1 class="text-center league-gothic">Ticket Listing</h1>
 </div>
-
-<%= table_for @tickets do |t| %>
-  <%= t.cell(:name) {|t| link_to t.name, [:mine, t] } %>
-  <%= t.cell(:desc) %>
-  <%= t.cell(:category) {|t| t.category_name } %>
-  <%= t.cell(:oprice) %>
-  <%= t.cell(:amount) %>
-  <%= t.cell(:start_at) {|t| render_date t.start_at } %>
-  <%= t.cell(:shipping) %>
-  <%= t.cell(:action) do |t| %>
-    <%= link_to new_mine_ticket_group_price_path(t) do %>
-      <span class="glyphicon glyphicon-plus"></span>
-    <% end -%>
-    <%= link_to [:edit, :mine, t] do %>
-      <span class="glyphicon glyphicon-pencil"></span>
-    <% end -%>
-    <%= link_to [:mine, t], method: :delete, data: { confirm: 'Are you sure destroy this ticket?' } do %>
-      <span class="glyphicon glyphicon-remove"></span>
-    <% end -%>
-  <% end %>
-<% end %>
+<div class="ticket-lists table-responsive">
+	<%= render 'table' %>
+</div>
+<%= paginate @tickets %>
+<%= page_entries_info @tickets %>

@@ -220,6 +220,9 @@ body {
 	font-family: opensans;
 }
 
+.league-gothic {
+	font-family: LeagueGothic;
+}
 .bold {
 	font-weight: bold;
 }
@@ -232,10 +235,14 @@ body {
 	font-family: rock;
 }
 
-h1,h2,h3,h4,h5,h6 {
+h2,h3,h4,h5,h6 {
 	@extend .opensans;
 }
 
 .circle-angle {
 	border-radius: 5px;
+}
+
+.vertical-center {
+	vertical-align: middle;
 }
