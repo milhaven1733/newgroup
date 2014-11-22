@@ -1,0 +1,66 @@
+<div id="check-out" class="container">
+	<h1 class="center">CHECK OUT</h1>
+	<div class="row">
+		<div class="col-xs-12 col-sm-6">
+			<p>
+				<label class="purple">Name:</label>
+				<%= @ticket.name %>
+			</p>
+			<p>
+			<%= simple_form_for @order, url: ticket_orders_path(@ticket) do |f| %>
+				<label class="purple">Shipping Address:</label>
+			  <%= simple_fields_for :shipping_address, @shipping_address do |addr| %>
+				  <%= addr.input_field :first, placeholder: "Address line 1" %>
+					<%= addr.input_field :second, placeholder: "Address line 2" %>
+					<%= addr.input_field :city, placeholder: "City" %>
+					<%= addr.input_field :state, placeholder: "State" %>
+					<%= addr.input_field :zipcode, placeholder: "Zip" %>
+        <% end %>
+			</p>
+			<p class="purple">Enter Billing Address</p>
+			<p>
+				<span><input id="use-shipping" type="radio" /></span>Use Shipping Address
+			</p>
+			
+			  <%= simple_fields_for :billing_address, @billing_address do |addr| %>
+				  <%= addr.input_field :first, placeholder: "Address line 1" %>
+					<%= addr.input_field :second, placeholder: "Address line 2" %>
+					<%= addr.input_field :city, placeholder: "City" %>
+					<%= addr.input_field :state, placeholder: "State" %>
+					<%= addr.input_field :zipcode, placeholder: "Zip" %>
+        <% end %>
+		</div>
+		<div class="col-xs-12 col-sm-6">
+			  <p>
+					<label class="purple">Price per ticket:</label>
+					 &nbsp;&nbsp;$<%= @order.price %>
+				</p>
+				<p>
+					<label class="purple">Total Ticket Quantity:</label>
+					 &nbsp;&nbsp;<%= @order.count %>
+				 </p>
+				<p>
+					<label class="purple">Shipping Fee:</label>
+					&nbsp;&nbsp;$<%= @order.shipping %>
+				</p>
+        <p>
+					<label class="purple">Will Call:</label>
+					&nbsp;&nbsp;<%= f.input_field :will_call %>
+        </p>
+				<p>
+					<label class="purple">Booking Fee:</label>
+					 &nbsp;&nbsp;$5
+				</p>
+				<p style="background-color: #000; width: 50%; padding:5px; border-radius: 5px;">
+					<label class="purple">Total Price: </label>
+					<label id="total-price" class="yellow"> $<%= @order.amount %></label>
+				</p>
+				<a style="background-color: #750393; color:yellow; padding:5px; border-radius: 5px; margin:10px 0;" href="#">Invite Group Members To Pay</a>
+        <%= f.input_field :count, as: :hidden %>
+				<div style="margin-top: 10px;" >
+					<%= f.button :submit, 'PAYMENT', class: 'button', input_html: { } %>
+				</div>
+			<% end %>
+		</div>
+	</div>
+</div>

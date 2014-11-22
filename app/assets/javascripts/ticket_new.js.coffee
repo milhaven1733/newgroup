@@ -15,9 +15,17 @@ from_percentage = (str) ->
 		str
 		
 $ ->
-	$('#ticket_oprice').change ->
+	if $('#ticket_oprice').val() > 0
 		$('#ticket_flat_discount').removeAttr('disabled')
 		$('#ticket_flat_price').removeAttr('disabled')
+	
+  $('#ticket_oprice').change ->
+    if $('#ticket_oprice').val() > 0
+      $('#ticket_flat_discount').removeAttr('disabled')
+      $('#ticket_flat_price').removeAttr('disabled')
+    else
+      $('#ticket_flat_discount').attr('disabled', 'disabled')
+      $('#ticket_flat_price').attr('disabled', 'disabled')
 		
   $("#ticket_flat_discount").change ->
     oprice = $("#ticket_oprice").val()

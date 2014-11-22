@@ -29,13 +29,7 @@
 		          <% if can?(:manage, Ticket) %>
 		            <%= link_to 'Tickets', mine_tickets_path %>
 		          <% end %>
-					
-							<% if request.path == merchant_path(current_user) %>
-		             <%= link_to 'Edit Profile', mine_edit_profile_path %>
-							<% else %>
-							   <%= link_to 'Profile', merchant_path(current_user) %>
-							<% end %>
-					
+ 					    <%= link_to 'Profile', mine_profile_path %>
 		          <%= link_to 'Wallet', mine_wallet_path %>
 		          <%= link_to 'Orders', mine_orders_path %>
 		          <%= link_to 'Log out', destroy_user_session_path, method: :delete %>

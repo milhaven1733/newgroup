@@ -1,7 +1,8 @@
 class Order < ActiveRecord::Base
   belongs_to :user
   belongs_to :ticket
-  has_one :order_info
+  belongs_to :shipping_address, class_name: 'Adress'
+  belongs_to :billing_address, class_name: 'Adress'
 
   priceable :price, :shipping, :amount, :booking_fee
 
@@ -10,22 +11,26 @@ class Order < ActiveRecord::Base
   validates :amount, :user_id, :ticket_id, :price_in_cents, :count, presence: true
   validates :price_in_cents, :amount, numericality: { greater_than: 0 }
   validates :shipping_in_cents, :booking_fee, numericality: true
-  validates :count, numericality: { greater_than: ->(order) { order.ticket.try(:minimum_amount) - 1 || 4 } }
+  validates :count, numericality: { greater_than_or_equal_to: ->(order) { order.ticket.try(:minimum_amount) || 5 } }
 
-  before_save :calc_amount, if: 'amount.nil?'
-  
-  PayByResult = [:sucess, :not_enough_money, :not_enough_tickets]
+  accepts_nested_attributes_for :shipping_address, :billing_address
+
+  PayByResult = [:sucess, :not_enough_money, :not_enough_tickets, :not_ready]
 
   def calc_amount
     set_price
-    self.shipping_in_cents = ticket.shipping_in_cents || 0
+    set_shipping_fee
     self.booking_fee_in_cents ||= 0
-    self.amount_in_cents = shipping_fee_included? ? price_in_cents * count + shipping_in_cents + booking_fee_in_cents : price_in_cents * count + booking_fee_in_cents
+    self.amount_in_cents = price_in_cents * count + shipping_in_cents + booking_fee_in_cents
   end
 
   def set_price
-    count ||= 0
+    self.count ||= 0
     self.price_in_cents = ticket.price_when(count, user.user_info.try(:is_student)) * 100
+  end
+
+  def set_shipping_fee
+    self.shipping_in_cents = (shipping_fee_included? ? ticket.shipping_in_cents : 0) || 0
   end
 
   def shipping_fee_included?
@@ -33,6 +38,7 @@ class Order < ActiveRecord::Base
   end
 
   def pay_by(user)
+    return PayByResult[3] unless self.valid?
     return PayByResult[1] unless user.afford?(amount)
     return PayByResult[2] unless ticket.ticket_enough?(count)
     Order.transaction do

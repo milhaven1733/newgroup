@@ -2,7 +2,7 @@ class TicketsController < ApplicationController
   before_action :set_ticket
 
   def show
-    @order = Order.new(ticket_id: @ticket.id)
+    @order = Order.new
     cookies[:flat_price] = @ticket.flat_price
     cookies[:amount] = @ticket.amount
   end
@@ -25,7 +25,6 @@ class TicketsController < ApplicationController
     render json: { alert: 'something wrong happend!',
                    errors: vote.errors.full_messages }
   end
-
 
   private
 

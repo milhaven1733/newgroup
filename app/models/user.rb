@@ -30,6 +30,14 @@ class User < ActiveRecord::Base
 
   delegate :balance, :balance=, :afford?, to: :wallet
 
+  def address
+    if merchant?
+      merchant_info.address
+    else
+      user_info.address
+    end
+  end
+
   def avatar_url
     avatar.try(:url) || 'avatar.png'
   end
