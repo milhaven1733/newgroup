@@ -1,14 +1,8 @@
-<h1>Listing Orders</h1>
-
-<%= table_for @orders do |t| %>
-  <%= t.cell(:id) { |o| link_to o.id.to_s, [:mine, o] } %>
-  <%= t.cell(:ticket) { |o| link_to o.ticket.name, o.ticket } %>
-  <%= t.cell(:price) { |o| number_to_currency(o.price) } %>
-  <%= t.cell(:count) { |o| o.count.to_s } %>
-  <%= t.cell(:shipping) { |o| show_shipping_fee(o) } %>
-  <%= t.cell(:amount) { |o| number_to_currency(o.amount) } %>
-  <%= t.cell(:status) { |o| o.status.titleize } %>
-  <%= t.cell(:created_at) {|o| render_date o.created_at } %>
-<% end %>
-
+<div class="header">
+  <h1 class="text-center league-gothic">Order Listing</h1>
+</div>
+<div class="order-lists table-responsive">
+	<%= render 'table' %>
+</div>
 <%= paginate @orders %>
+<%= page_entries_info @orders %>

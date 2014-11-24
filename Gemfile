@@ -53,7 +53,6 @@ group :test, :development do
   gem 'pry'
   gem 'pry-nav'
   gem 'byebug'
-  gem 'rspec-rails'
   gem 'guard-spork'
   gem 'guard-rspec'
   gem 'spork-rails'
@@ -63,6 +62,7 @@ end
 
 group :test do
   gem 'selenium-webdriver'
+  gem 'rspec-rails'
   gem 'capybara'
   gem 'cucumber-rails', :require=>false
   #Database Cleaner is a set of strategis for cleaing your database in Ruby

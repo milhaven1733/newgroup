@@ -14,6 +14,8 @@ class Order < ActiveRecord::Base
 
   before_save :calc_amount, if: 'amount.nil?'
   
+  scope :merchant_orders, ->(user_id) { self.joins(:ticket).where(tickets: { user_id: user_id }) }
+  
   PayByResult = [:sucess, :not_enough_money, :not_enough_tickets]
 
   def calc_amount

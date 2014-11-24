@@ -4,7 +4,11 @@ module Mine
     before_action :set_order, only: :checkout
     
     def index
-      @orders = current_user.orders.order(id: :desc).page params[:page]
+      if current_user.normal?
+        @orders = current_user.orders.order(id: :desc).page(params[:page]).per(20)
+      elsif current_user.merchant?
+        @orders = Order.merchant_orders(current_user.id).page(params[:page]).per(20)
+      end
     end
 
     def show
