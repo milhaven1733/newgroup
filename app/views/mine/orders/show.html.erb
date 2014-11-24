@@ -1,34 +1,43 @@
-<div class='main ticket clearfix'>
-  <div class='info-section col-lg-10'>
-    <div class='info'>
-      <div class='title'>Ticket:</div>
-      <div class='value'><%= link_to @order.ticket.name, @order.ticket %></div>
-    </div>
-    <div class='info'>
-      <div class='title'>Price:</div>
-      <div class='value'><%= number_to_currency(@order.price) %></div>
-    </div>
-    <div class='info'>
-      <div class='title'>Quantity:</div>
-      <div class='value'><%= @order.count %></div>
-    </div>
-    <div class='info'>
-      <div class='title'>Amount:</div>
-      <div class='value'><%= number_to_currency(@order.amount) %></div>
-    </div>
-    <div class='info'>
-      <div class='title'>Shipping Fee:</div>
-      <div class='value'><%= show_shipping_fee(@order) %></div>
-    </div>
-    <div class='info'>
-      <div class='title'>Status:</div>
-      <div class='value'><%= @order.status %></div>
-    </div>
-    <div class='info'>
-      <div class='title'>Created At:</div>
-      <div class='value'>
-        <%= @order.created_at.to_s(:db) %></div>
-      </div>
-    </div>
+<div class="row" id="show-ticket">
+	<div class="col-xs-12 col-sm-3">
+		<%= render 'home/sidebar' %>
+	</div>
+  <div class="col-xs-12 col-sm-9">
+		<div class="row">
+			<h1 class="text-center"><%= @order.ticket.name  %></h1>
+			<div class="col-xs-12 col-sm-6">
+				<%= link_to (image_tag @order.ticket.image_url), @order.ticket %>
+				<p><%= @order.ticket.time_range %></p>
+			</div>
+			<div class="col-xs-12 col-sm-6">
+				<p><%= @order.ticket.category.name %></p>
+				<p class="ticket_desc">
+					<%= @order.ticket.desc %>
+				</p>
+				<p>
+					<span class="purple-back circle-angle" id="flat-price">
+						<%= number_to_currency(@order.ticket.flat_price) %>
+					</span>
+					<span>&nbsp;Per Ticket</span>
+				</p>
+				<p>
+					<span class="light-purple"> Quantity: </span>
+					<span id="quantity"><%= @order.count %></span>
+				</p>
+				<p>
+					<span class="light-purple"> Shipping Fee: </span>
+					<span id="shipping"><%= number_to_currency(@order.shipping) %></span>
+				</p>
+				<p>
+					<span class="light-purple"> Booking Fee: </span>
+					<span id="quantity"><%= number_to_currency(@order.booking_fee) %></span>
+				</p>
+				<p>
+					<span class="light-purple">Amount: </span>
+					<span><%= number_to_currency(@order.amount)  %></span>
+				</p>
+
+			</div>	
+		</div>  
   </div>
 </div>
