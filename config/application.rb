@@ -23,5 +23,6 @@ module Group
     config.generators do |g|
       g.test_framework :minitest, spec: true, fixture: false
     end
+    config.assets.paths << Rails.root.join("vendor", "assets", "images")
   end
 end
