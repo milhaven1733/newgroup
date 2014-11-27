@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20141122014420) do
+ActiveRecord::Schema.define(version: 20141127013804) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -108,8 +108,8 @@ ActiveRecord::Schema.define(version: 20141122014420) do
     t.boolean  "will_call"
     t.integer  "shipping_in_cents"
     t.integer  "booking_fee_in_cents"
-    t.integer  "shipping_address"
-    t.integer  "billing_address"
+    t.integer  "shipping_address_id"
+    t.integer  "billing_address_id"
   end
 
   create_table "tickets", force: true do |t|

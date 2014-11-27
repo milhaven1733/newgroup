@@ -59,6 +59,7 @@ group :test, :development do
   gem 'spork-rails'
   gem 'childprocess'
   gem 'guard-livereload', require: false
+  gem 'shoulda-matchers'
 end
 
 group :test do

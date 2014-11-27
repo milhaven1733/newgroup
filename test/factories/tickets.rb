@@ -8,5 +8,6 @@ FactoryGirl.define do
     amount 100
     category_id 1
     city "Philadelphia"
+    flat_price 80
   end
 end

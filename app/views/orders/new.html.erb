@@ -9,7 +9,7 @@
 			<p>
 			<%= simple_form_for @order, url: ticket_orders_path(@ticket) do |f| %>
 				<label class="purple">Shipping Address:</label>
-			  <%= simple_fields_for :shipping_address, @shipping_address do |addr| %>
+			  <%= f.simple_fields_for :shipping_address, @shipping_address do |addr| %>
 				  <%= addr.input_field :first, placeholder: "Address line 1" %>
 					<%= addr.input_field :second, placeholder: "Address line 2" %>
 					<%= addr.input_field :city, placeholder: "City" %>
@@ -22,7 +22,7 @@
 				<span><input id="use-shipping" type="radio" /></span>Use Shipping Address
 			</p>
 			
-			  <%= simple_fields_for :billing_address, @billing_address do |addr| %>
+			  <%= f.simple_fields_for :billing_address, @billing_address do |addr| %>
 				  <%= addr.input_field :first, placeholder: "Address line 1" %>
 					<%= addr.input_field :second, placeholder: "Address line 2" %>
 					<%= addr.input_field :city, placeholder: "City" %>
@@ -33,7 +33,7 @@
 		<div class="col-xs-12 col-sm-6">
 			  <p>
 					<label class="purple">Price per ticket:</label>
-					 &nbsp;&nbsp;$<%= @order.price %>
+					 &nbsp;&nbsp;$<%= @ticket.oprice %>
 				</p>
 				<p>
 					<label class="purple">Total Ticket Quantity:</label>
@@ -41,7 +41,7 @@
 				 </p>
 				<p>
 					<label class="purple">Shipping Fee:</label>
-					&nbsp;&nbsp;$<%= @order.shipping %>
+					&nbsp;&nbsp;$<%= @ticket.shipping %>
 				</p>
         <p>
 					<label class="purple">Will Call:</label>
