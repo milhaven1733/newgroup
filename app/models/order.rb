@@ -17,6 +17,8 @@ class Order < ActiveRecord::Base
 
   PayByResult = [:sucess, :not_enough_money, :not_enough_tickets, :not_ready]
 
+  scope :merchant_orders, ->(user_id) { self.joins(:ticket).where(tickets: { user_id: user_id }) }
+
   def calc_amount
     set_price
     set_shipping_fee

@@ -94,6 +94,7 @@ ActiveRecord::Schema.define(version: 20141127013804) do
     t.integer  "category_id"
     t.string   "phone"
     t.string   "address"
+    t.integer  "ticket_id"
   end
 
   create_table "orders", force: true do |t|
@@ -205,5 +206,4 @@ ActiveRecord::Schema.define(version: 20141127013804) do
     t.datetime "created_at"
     t.datetime "updated_at"
   end
-
 end

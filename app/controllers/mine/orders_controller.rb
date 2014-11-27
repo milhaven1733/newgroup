@@ -1,14 +1,17 @@
 module Mine
   class OrdersController < ApplicationController
     before_action :authenticate_user!
-    before_action :set_order, only: :checkout
+    before_action :set_order, only: [:checkout, :show]
     
     def index
-      @orders = current_user.orders.order(id: :desc).page params[:page]
+      if current_user.normal?
+        @orders = current_user.orders.order(id: :desc).page(params[:page]).per(20)
+      elsif current_user.merchant?
+        @orders = Order.merchant_orders(current_user.id).page(params[:page]).per(20)
+      end
     end
 
     def show
-      @order = current_user.orders.find params[:id]
     end
     
     def update

@@ -29,6 +29,7 @@ merchant.tickets.create!(name: "NFL ticket exchange11", desc: " Buy & sell ticke
 merchant.tickets.create!(name: "On Tour Now11", desc: " You can still score great resale tickets for One Direction!", image_url: "http://media.ticketmaster.com/img/mw/images/e0/f1/341099p1.jpg", amount: 12, category: dance, start_at: DateTime.now, end_at:(DateTime.now + 2.hours), oprice_in_cents: 1200, city: "NewYork")
 
 merchant_info = MerchantInfo.create!(user_id: merchant.id,
+                                    ticket_id: ticket.id,
                                     latitude: -34.397,
                                     longitude: 150.644, 
                                     url: Internet.url,
