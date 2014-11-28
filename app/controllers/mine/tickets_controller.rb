@@ -33,8 +33,13 @@ module Mine
       if @ticket.save
         redirect_to [:mine, @ticket], notice: 'Ticket was successfully created.'
       else
+        flash[:error] = @ticket.errors.full_messages.join(', ')
         render :new
       end
+    rescue Exception => e
+      @ticket = Ticket.new
+      flash[:error] = e.inspect
+      render :new
     end
 
     # PATCH/PUT /tickets/1
@@ -81,4 +86,5 @@ module Mine
       )
     end
   end
+
 end

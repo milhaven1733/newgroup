@@ -24,14 +24,12 @@ RSpec.describe OrdersController, :type => :controller do
              }, ticket_id: ticket.id}
 
     it "get order amount price" do
-      ticket.update(flat_price_in_cents: 2000)
       post_order
       amount = assigns(:order).amount
       expect(amount).to eq(120.0)
     end
 
     it "address should not be nil" do
-      ticket.update(flat_price_in_cents: 2000)
       post_order
       assigns(:order).shipping_address.should_not be_nil
       assigns(:order).billing_address.should_not be_nil
@@ -39,7 +37,6 @@ RSpec.describe OrdersController, :type => :controller do
 
 
     it "wallet balance should decrease" do
-      ticket.update(flat_price_in_cents: 2000)
       user.wallet.update(balance_in_cents: 100000)
       post_order
       user.reload
@@ -47,7 +44,7 @@ RSpec.describe OrdersController, :type => :controller do
     end
 
     it "wallet balance not enough" do
-      ticket.update(flat_price_in_cents: 2000, amount: 100)
+      ticket.update( amount: 100)
       user.wallet.update(balance_in_cents: 10000)
       post_order
       user.reload
@@ -56,7 +53,7 @@ RSpec.describe OrdersController, :type => :controller do
     end
 
     it "ticket amount should decrease" do
-      ticket.update(flat_price_in_cents: 2000, amount: 100)
+      ticket.update(amount: 100)
       user.wallet.update(balance_in_cents: 100000)
       post_order
       ticket.reload
@@ -64,11 +61,17 @@ RSpec.describe OrdersController, :type => :controller do
     end
 
     it "should redirect to /mine/order" do
-      ticket.update(flat_price_in_cents: 2000)
       user.wallet.update(balance_in_cents: 100000)
       post_order
       order_id = Order.first.id
       expect(response).to redirect_to mine_order_path(order_id)
+    end
+
+    it "order price should include shipping fee" do
+      ticket.update(shipping_in_cents: 1000)
+      post_order
+      amount = assigns(:order).amount
+      expect(amount).to eq(130.0)
     end
   end
 end

@@ -1,16 +1,17 @@
 class Order < ActiveRecord::Base
   belongs_to :user
   belongs_to :ticket
-  belongs_to :shipping_address, class_name: 'Adress'
-  belongs_to :billing_address, class_name: 'Adress'
+  belongs_to :shipping_address, class_name: 'Adress', dependent: :destroy
+  belongs_to :billing_address, class_name: 'Adress', dependent: :destroy
 
   priceable :price, :shipping, :amount, :booking_fee
 
   enum status: [:created, :paid]
 
-  validates :amount, :user_id, :ticket_id, :price_in_cents, :count, presence: true
-  validates :price_in_cents, :amount, numericality: { greater_than: 0 }
-  validates :shipping_in_cents, :booking_fee, numericality: true
+  validates :amount_in_cents, :user_id, :ticket_id, :price_in_cents, :count,
+                :shipping_address, :billing_address, presence: true
+  validates :price_in_cents, :amount_in_cents, numericality: { greater_than: 0 }
+  validates :shipping_in_cents, :booking_fee_in_cents, numericality: true
   validates :count, numericality: { greater_than_or_equal_to: ->(order) { order.ticket.try(:minimum_amount) || 5 } }
 
   accepts_nested_attributes_for :shipping_address, :billing_address

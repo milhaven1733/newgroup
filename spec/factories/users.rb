@@ -9,5 +9,17 @@ FactoryGirl.define do
       sequence(:email) { |n| "example#{n}@test.edu" }
       is_student true
     end
+    factory :merchant do
+      sequence(:email) { |n| "example#{n}@test.com" }
+      password 'password123456'
+      password_confirmation 'password123456'
+      sequence(:name) { |n| "example#{n}" }
+      role 'merchant'
+
+      trait :student do
+        sequence(:email) { |n| "example#{n}@test.edu" }
+        is_student true
+      end
+    end
   end
 end

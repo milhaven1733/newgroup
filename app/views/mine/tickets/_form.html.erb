@@ -4,78 +4,78 @@
   <%= f.association :category, prompt: 'Please Select a Genre...', label: false %>
   <%= f.input_field :name, placeholder: 'Title' %>
   <%= f.input_field :desc, placeholder: 'Discription:' %>
-	<p> &nbsp;&nbsp;<small>(3000 characters max.)</small> </p>
-	
-	<div class=row>
-		<div class='col-xs-6'>
-      <%= f.input_field :start_at, as: :string, placeholder: 'Start Time', class: 'datetimepicker' %>
-		</div>
+  <p> &nbsp;&nbsp;<small>(3000 characters max.)</small> </p>
+
+  <div class=row>
     <div class='col-xs-6'>
-    	<%= f.input_field :end_at, as: :string, placeholder: 'End Time', class: 'datetimepicker' %>
+      <%= f.input_field :start_at, as: :string, placeholder: 'Start Time', id: 'datetimepicker' %>
     </div>
-	</div>
-			
-	<%= f.input_field :amount, as: :integer, placeholder: 'Total quantity of tickets', input_html: { placeholder: 'box supports up to 6 digits of entry' } %>
-	<%= f.input_field :minimum_amount, as: :string, placeholder: 'Minimum tickets for purchase:' %>
-	<%= f.input_field :oprice, placeholder: "Original price per ticket: 100." %>
-	<div class='row'>
-	  <div class='col-xs-5'>
-			<%= f.input_field :flat_discount, as: :string, placeholder: "Flat Discount Ticket: 80%", disabled: true %>
-		</div>
-		<div class='col-xs-2 center' style='padding-top:20px;'> or </div>
-	  <div class='col-xs-5'>
-			<%= f.input_field :flat_price, as: :string, placeholder: "Flat Price per Ticket: 100", disabled: true %>
-		</div>
-	</div>
+    <div class='col-xs-6'>
+      <%= f.input_field :end_at, as: :string, placeholder: 'End Time', id: 'datetimepicker' %>
+    </div>
+  </div>
+
+  <%= f.input_field :amount, as: :integer, placeholder: 'Total quantity of tickets', input_html: { placeholder: 'box supports up to 6 digits of entry' } %>
+  <%= f.input_field :minimum_amount, as: :string, placeholder: 'Minimum tickets for purchase:' %>
+  <%= f.input_field :oprice, placeholder: "Original price per ticket: $100." %>
+  <div class='row'>
+    <div class='col-xs-5'>
+      <%= f.input_field :flat_discount, as: :string, placeholder: "Flat Discount per Ticket: 20%", disabled: true %>
+    </div>
+    <div class='col-xs-2 center' style='padding-top:20px;'> or </div>
+    <div class='col-xs-5'>
+      <%= f.input_field :flat_price, as: :string, placeholder: "Flat Price per Ticket: $100", disabled: true %>
+    </div>
+  </div>
   <div id='discount' class='row'>
-		<div class='container'>
-			<div class='col-xs-8' id='additional_discount'>
-		    <span><input type='checkbox' id='has-student-discount'/></span>
-		    <span> Additional Discount for Students?</span>
-			</div>
-			<div class='col-xs-2' id='student-discount'>
-			  <%= f.input_field :student_discount, as: :string, disabled: true, value: '20%' %>
-		  </div>
-		</div>
-	</div>
-	<a href='#'> Click here to price your tickets by tiers and award greater discounts for bigger groups.</a>
-	
-	<div class='row'>
+    <div class='container'>
+      <div class='col-xs-8' id='additional_discount'>
+        <span><input type='checkbox' id='has-student-discount'/></span>
+        <span> Additional Discount for Students?</span>
+      </div>
+      <div class='col-xs-2' id='student-discount'>
+        <%= f.input_field :student_discount, as: :string, disabled: true, placeholder: '20%' %>
+      </div>
+    </div>
+  </div>
+  <a href='#'> Click here to price your tickets by tiers and award greater discounts for bigger groups.</a>
+
+  <div class='row'>
     <div class='col-xs-4' style='padding-top:15px;'>
-			<span>&nbsp;&nbsp;Shipping Fee</span>
+      <span>&nbsp;&nbsp;Shipping Fee</span>
     </div>
     <div class='col-xs-2' id='shipping-fee'>
       <%= f.input_field :shipping %>
     </div>
   </div>
-	
-	<div class='row'>
+
+  <div class='row'>
     <div class='col-xs-3'>
-    	<input type='checkbox' id='free-shipping' />
-			<label>Free Shipping</label>
+      <input type='checkbox' id='free-shipping' />
+      <label>Free Shipping</label>
     </div>
     <div class='col-xs-9'>
-    	<input id="ticket_will_call" name="ticket[will_call]" type="checkbox" />
-			<label>Free Will Call Pick-up</label>
+      <input id="ticket_will_call" name="ticket[will_call]" type="checkbox" />
+      <label>Free Will Call Pick-up</label>
     </div>
   </div>
-	<div class="row">
-		<div class='col-xs-8' style='padding-top:10px;'>&nbsp;&nbsp;Performace image(max 5 MB.This will appear on search results.)</div>
-		<div class="col-xs-4">
-			<%= f.input_field :image, as: :file %>
-		</div>
-	</div>
-	<div class="row">
-		<div class='col-xs-8' style='padding-top:10px;'>&nbsp;&nbsp;Seating Level</div>
-		<div class="col-xs-4">
-			<%= f.input_field :sitting_map, as: :file %>
-		</div>
-	</div>
+  <div class="row">
+    <div class='col-xs-8' style='padding-top:10px;'>&nbsp;&nbsp;Performace image(max 5 MB.This will appear on search results.)</div>
+    <div class="col-xs-4">
+      <%= f.input_field :image, as: :file %>
+    </div>
+  </div>
+  <div class="row">
+    <div class='col-xs-8' style='padding-top:10px;'>&nbsp;&nbsp;Seating Level</div>
+    <div class="col-xs-4">
+      <%= f.input_field :sitting_map, as: :file %>
+    </div>
+  </div>
 
-	<div class="row">
-		<div class="col-xs-4 col-xs-offset-4">
-			<%= f.button :submit, 'UPLOAD TICKET LISTING' %>
-		</div>
-	</div>
+  <div class="row">
+    <div class="col-xs-4 col-xs-offset-4">
+      <%= f.button :submit, 'UPLOAD TICKET LISTING' %>
+    </div>
+  </div>
 
 <% end %>

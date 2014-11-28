@@ -14,17 +14,20 @@ class Ticket < ActiveRecord::Base
   mount_uploader :image, ImageUploader
   mount_uploader :sitting_map, SittingMapUploader
 
-  validates :name, :start_at, :oprice, presence: true
-  #validates :start_at, time_period: { scope: :end_at }
-  validates :oprice_in_cents, :flat_price, numericality: {  greater_than: 0 }
-  validates :oprice_in_cents, :amount, :shipping, :flat_price, numericality: true
-  validates :student_discount, inclusion: { in: 0..100 }
+  validates :minimum_amount, :amount, :name, :start_at, :end_at, :oprice, :city, :category_id,
+               :shipping,  :flat_price, :flat_discount, presence: true
+  validates :start_at, time_period: { scope: :end_at }
+  validates :oprice, :flat_price, numericality: {  greater_than: 0 }
+  validates :shipping, numericality: { greater_than_or_equal_to: 0 }
   validates :city, inclusion: { in: CITIES }
   validates :desc, length: { maximum: 3000 }
-  
+  validates :flat_price, numericality: { equal_to: Proc.new { |t| t.oprice * (100 - t.flat_discount) / 100 if t.oprice and t.flat_discount } }
+  validates :flat_discount, :student_discount, inclusion: { in: 0..100 }
+  validates :minimum_amount, numericality: { greater_than_or_equal_to: 5 }
+
 
   after_save :time_parse
-  
+
   scope :search_by, ->(query) do
     joins(:category)
     .where('lower(tickets.name) like :query OR lower(tickets.desc) like :query OR lower(categories.name) like :query', query: "%#{query.downcase}%") 
@@ -35,7 +38,7 @@ class Ticket < ActiveRecord::Base
   def self.top_deals
     last(4)
   end
-  
+
   def ranked_group_prices
     group_prices.order(range_from: :asc)
   end
@@ -53,11 +56,11 @@ class Ticket < ActiveRecord::Base
   def ticket_enough?(quantity)
     amount >= quantity
   end
-  
+
   def time_parse
     TimeForTicketSearch.create_time_tag(self.id, self.start_at)
   end
-  
+
   def time_range(type = :number)
     if (start_at and end_at) and (start_at.to_date <= end_at.to_date) && (end_at > start_at)
       if type == :number
@@ -69,7 +72,7 @@ class Ticket < ActiveRecord::Base
       "Invalid ticket time range, Please contact merchant administrator!"
     end
   end
-  
+
   def sold
     self.orders.where(status: :paid).sum(:count)
   end

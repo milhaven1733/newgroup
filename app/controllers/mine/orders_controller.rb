@@ -17,7 +17,7 @@ module Mine
     def update
       #TODO: Deal with payment thing
     end
-    
+
     private
 
     def set_order
