@@ -13,5 +13,9 @@ FactoryGirl.define do
     university "MyString"
     billing_address Address.street_address
     wallet_link Internet.url
+
+    factory :student_info do
+      is_student true
+    end
   end
 end

@@ -73,5 +73,14 @@ RSpec.describe OrdersController, :type => :controller do
       amount = assigns(:order).amount
       expect(amount).to eq(130.0)
     end
+
+    it "order price should include student discount" do
+      user_info = FactoryGirl.create(:student_info)
+      user.user_info = user_info
+      ticket.update(student_discount: 10)
+      post_order
+      amount = assigns(:order).amount
+      expect(amount).to eq(20.0 * 0.9 * 6)
+    end
   end
 end

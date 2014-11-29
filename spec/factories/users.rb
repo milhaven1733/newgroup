@@ -5,21 +5,13 @@ FactoryGirl.define do
     password_confirmation 'password123456'
     sequence(:name) { |n| "example#{n}" }
 
-    trait :student do
+    factory :student do
       sequence(:email) { |n| "example#{n}@test.edu" }
-      is_student true
+      user_info { FactoryGirl.create(:student_info) }
     end
-    factory :merchant do
-      sequence(:email) { |n| "example#{n}@test.com" }
-      password 'password123456'
-      password_confirmation 'password123456'
-      sequence(:name) { |n| "example#{n}" }
-      role 'merchant'
 
-      trait :student do
-        sequence(:email) { |n| "example#{n}@test.edu" }
-        is_student true
-      end
+    factory :merchant do
+      role 'merchant'
     end
   end
 end
