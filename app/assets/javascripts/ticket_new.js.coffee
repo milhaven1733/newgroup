@@ -37,3 +37,17 @@ $ ->
 			
 	$('#free-shipping').click ->
 		$('#ticket_shipping').val(0) if $(this).prop('checked')
+	
+	$('#price-tiers').click (event) ->
+		event.preventDefault()
+		$('#group-price-tiers').modal('show')
+	
+	$('#group-price-tiers-list').hide()
+	
+	$('#group-price-tiers-add').click (event) ->
+		event.preventDefault()
+		range_from = $('#group_prices_range_from').val()
+		range_to = $('#group_prices_range_to').val()
+		range = range_from + " - " + range_to
+		price = $('#group_prices_price').val()
+		$('#group-price-tiers-table tbody').append("<tr><td>" + range + "</td><td>$" + price + "</td></tr>")

@@ -22,6 +22,7 @@ class Ticket < ActiveRecord::Base
   validates :city, inclusion: { in: CITIES }
   validates :desc, length: { maximum: 3000 }
   
+  accepts_nested_attributes_for :group_prices, reject_if: :all_blank?
 
   after_save :time_parse
   

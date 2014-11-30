@@ -38,7 +38,14 @@
 		  </div>
 		</div>
 	</div>
-	<%= link_to "Click here to price your tickets by tiers and award greater discounts for bigger groups.", new_mine_ticket_group_price_path(@ticket) %>
+	<%= link_to "Click here to price your tickets by tiers and award greater discounts for bigger groups.", root_path, id: "price-tiers" %>
+	
+  <%= render "price_tier" %>
+	
+	<!--	group prices nestd form  -->
+	<%= simple_fields_for(:group_prices, id:"group-price-tiers-form" ) do |builder| %>
+		<%= render "group_price_fields", f: builder %>
+	<% end %>
 	
 	<div class='row'>
     <div class='col-xs-4' style='padding-top:15px;'>
