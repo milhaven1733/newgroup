@@ -20,6 +20,7 @@ module Mine
     def new
       redirect_to user_session_path unless current_user && current_user.merchant?
       @ticket = Ticket.new
+      1.times { @ticket.group_prices.build }
     end
 
     # GET /tickets/1/edit
@@ -31,10 +32,15 @@ module Mine
       @ticket = current_user.tickets.new(ticket_params)
       
       if @ticket.save
-        redirect_to [:mine, @ticket], notice: 'Ticket was successfully created.'
+        respond_to do |format|
+          format.html { redirect_to [:mine, @ticket], notice: 'Ticket was successfully created.' }
+          format.json { render json: @ticket }
+        end
       else
-        flash[:error] = @ticket.errors.full_messages.join(', ')
-        render :new
+        respond_to do |formant|
+          format.html { render :new, notice: 'Faild to create new ticket, please try again.' }
+          format.json { render json: { error_code: 0 } }
+        end
       end
     rescue Exception => e
       @ticket = Ticket.new
@@ -82,7 +88,8 @@ module Mine
         :shipping,
         :will_call,
         :image,
-        :sitting_map
+        :sitting_map,
+        group_prices_attributes: [:range_from, :range_to, :price]
       )
     end
   end

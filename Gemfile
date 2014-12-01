@@ -37,6 +37,7 @@ gem 'stripe'
 # others
 gem 'priceable'
 gem 'quiet_assets'
+gem 'nested_form_fields'
 
 # preload
 group :development do

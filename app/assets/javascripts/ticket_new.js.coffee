@@ -14,13 +14,23 @@ from_percentage = (str) ->
   else
     str
 
+get_flat_price = (oprice, discount) ->
+  return 0 if discount > 100 or discount < 0
+  oprice * (100 - discount) / 100
+
+get_discount = (oprice, flat_price) ->
+  return 0 if flat_price.to_i > oprice or flat_price < 0
+  100 - flat_price % oprice
+
 $ ->
+  $.cookie('group_prices_fields_num', 0)
+
   if $('#ticket_oprice').val() > 0
     $('#ticket_flat_discount').removeAttr('disabled')
     $('#ticket_flat_price').removeAttr('disabled')
 
   $('#ticket_oprice').keyup ->
-    if $('#ticket_oprice').val() > 0
+    if $(this).val() > 0
       $('#ticket_flat_discount').removeAttr('disabled')
       $('#ticket_flat_price').removeAttr('disabled')
     else
@@ -30,12 +40,13 @@ $ ->
   $("#ticket_flat_discount").keyup ->
     oprice = $("#ticket_oprice").val()
     discount = $(this).val()
-    $("#ticket_flat_price").val oprice * (100 - discount) / 100
+    $("#ticket_flat_price").val(get_flat_price(oprice, discount))
 
   $("#ticket_flat_price").keyup ->
     oprice = $("#ticket_oprice").val()
     price = $(this).val()
-    $("#ticket_flat_discount").val (1 - price / oprice).toFixed(2) * 100
+    
+    $("#ticket_flat_discount").val(get_discount(oprice, price))
 
   $('#has-student-discount').click ->
     if $(this).is(':checked')
@@ -45,3 +56,46 @@ $ ->
 
   $('#free-shipping').click ->
     $('#ticket_shipping').val(0) if $(this).prop('checked')
+
+  $('#price-tiers').click (event) ->
+    event.preventDefault()
+    $('#group-price-tiers').modal('show')
+
+    fields_num = $.cookie('group_prices_fields_num')
+    fields_id = "#ticket_group_prices_attributes_" + fields_num
+    fields_range_from = fields_id + "_range_from"
+    fields_range_to = fields_id + "_range_to"
+
+    range_max = $("#ticket_amount").val();
+    range_min = $("#ticket_minimum_amount").val();
+    if parseInt(range_max) then range_max = parseInt(range_max) else range_max = 100
+    if parseInt(range_min) then range_min = parseInt(range_min) else range_min = 5
+    $("#slider").slider("option", {min: range_min, max:range_max})
+    range = range_min + " - " + range_max
+    price = $('#ticket_oprice').val()
+    $('#group-price-tiers-table tbody').append("<tr><td>" + range + "</td><td>$" + price + "</td></tr>")
+
+  $('#group-price-tiers-add').click (event) ->
+    event.preventDefault()
+    fields_num = $.cookie('group_prices_fields_num')
+
+    fields_id = "#ticket_group_prices_attributes_" + fields_num
+    fields_range_from = fields_id + "_range_from"
+    fields_range_to = fields_id + "_range_to"
+    fields_price = fields_id + "_price"
+    range_from = $(fields_range_from).attr("value")
+    range_to = $(fields_range_to).attr("value")
+    range = range_from + " - " + range_to
+    price = $('#group_prices_price').val()
+    fields_price = $(fields_price).attr("value")
+    $('#group-price-tiers-table tbody').append("<tr><td>" + range + "</td><td>$" + price + "</td></tr>")
+    $.cookie('group_prices_fields_num', parseInt(fields_num) + 1)
+
+  $('#ticket_amount').change ->
+    $('#ticket_group_prices_attributes_0_range_to').attr("value", $(this).val())
+
+  $('#ticket_minimum_amount').change ->
+    $('#ticket_group_prices_attributes_0_range_from').attr("value", $(this).val())
+
+  $('#ticket_oprice').change ->
+    $('#ticket_group_prices_attributes_0_price').attr("value", $(this).val())
