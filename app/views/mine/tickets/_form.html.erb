@@ -40,10 +40,10 @@
 	</div>
 	<%= link_to "Click here to price your tickets by tiers and award greater discounts for bigger groups.", root_path, id: "price-tiers" %>
 	
-  <%= render "price_tier" %>
+  <%= render "price_tier", form: f %>
 	
 	<!--	group prices nestd form  -->
-	<%= simple_fields_for(:group_prices, id:"group-price-tiers-form" ) do |builder| %>
+	<%= f.nested_fields_for(:group_prices) do |builder| %>
 		<%= render "group_price_fields", f: builder %>
 	<% end %>
 	

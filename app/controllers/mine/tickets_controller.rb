@@ -20,7 +20,7 @@ module Mine
     def new
       redirect_to user_session_path unless current_user && current_user.merchant?
       @ticket = Ticket.new
-      2.times { @ticket.group_prices.build }
+      1.times { @ticket.group_prices.build }
     end
 
     # GET /tickets/1/edit
@@ -38,7 +38,7 @@ module Mine
         end
       else
         respond_to do |formant|
-          format.html { render html: :new }
+          format.html { render :new, notice: 'Faild to create new ticket, please try again.' }
           format.json { render json: { error_code: 0 } }
         end
       end
