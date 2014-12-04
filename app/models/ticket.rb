@@ -78,6 +78,7 @@ class Ticket < ActiveRecord::Base
   end
 
   private
+  
   def group_price_by count
     ranked_group_prices
     .where('range_from <= :count and (range_to >= :count or range_to is null)', count: count)
