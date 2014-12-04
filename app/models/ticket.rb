@@ -25,6 +25,7 @@ class Ticket < ActiveRecord::Base
   validates :flat_discount, :student_discount, inclusion: { in: 0..100 }
   validates :minimum_amount, numericality: { greater_than_or_equal_to: 5 }
 
+  accepts_nested_attributes_for :group_prices, allow_destroy: true
 
   after_save :time_parse
 

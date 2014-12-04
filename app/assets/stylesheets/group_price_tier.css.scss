@@ -1,0 +1,32 @@
+@import "color_defination";
+
+#group-price-tiers {
+	padding: 20px;
+	background-color: $purple;
+	color: white;
+	border-radius: 5px;
+	form {
+	  margin-top:20px;
+		input {
+		  background-color: $purple;
+			color: white;
+			border-color: $light_purple;
+			&[type=submit]{
+				color: black;
+			}
+		}
+	}	
+	table tr td {
+		background-color: $light_purple;
+		text-align: center;
+	}
+	#slider {
+		margin-top:12px;
+	}
+	.modal-content {
+		background-color: $light_purple;
+	}
+	.form-group label {
+		padding-top: 15px;
+	}
+}

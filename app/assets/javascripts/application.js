@@ -17,3 +17,4 @@
 //= require main
 //= require ticket_new
 //= require ticket_show
+//= require nested_form_fields

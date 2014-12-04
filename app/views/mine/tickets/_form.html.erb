@@ -28,19 +28,26 @@
     </div>
   </div>
   <div id='discount' class='row'>
-    <div class='container'>
-      <div class='col-xs-8' id='additional_discount'>
-        <span><input type='checkbox' id='has-student-discount'/></span>
-        <span> Additional Discount for Students?</span>
-      </div>
-      <div class='col-xs-2' id='student-discount'>
-        <%= f.input_field :student_discount, as: :string, disabled: true, placeholder: '20%' %>
-      </div>
-    </div>
-  </div>
-  <a href='#'> Click here to price your tickets by tiers and award greater discounts for bigger groups.</a>
-
-  <div class='row'>
+		<div class='container'>
+			<div class='col-xs-8' id='additional_discount'>
+		    <span><input type='checkbox' id='has-student-discount'/></span>
+		    <span> Additional Discount for Students?</span>
+			</div>
+			<div class='col-xs-2' id='student-discount'>
+			  <%= f.input_field :student_discount, as: :string, disabled: true, value: '20%' %>
+		  </div>
+		</div>
+	</div>
+	<%= link_to "Click here to price your tickets by tiers and award greater discounts for bigger groups.", root_path, id: "price-tiers" %>
+	
+  <%= render "price_tier", form: f %>
+	
+	<!--	group prices nestd form  -->
+	<%= f.nested_fields_for(:group_prices) do |builder| %>
+		<%= render "group_price_fields", f: builder %>
+	<% end %>
+	
+	<div class='row'>
     <div class='col-xs-4' style='padding-top:15px;'>
       <span>&nbsp;&nbsp;Shipping Fee</span>
     </div>
