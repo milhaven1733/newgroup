@@ -43,4 +43,16 @@
 	color: yellow;
 	font-size: 20px;
 	padding: 5px;
+	border-bottom:1px solid #eeeeee;
+}
+.col-lg-8.center-block.profile{
+	.panel-body{
+		background-color:#75039e;
+	}
+	.col-md-4{
+		color:yellow;
+	}
+	.col-md-8{
+		color:white;
+	}
 }
