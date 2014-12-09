@@ -20,89 +20,84 @@ zoo         = Category.create!(name: "Zoo/Aquarium",    desc: "zoo")
 park        = Category.create!(name: "Amusement Parks", desc: "parks")
 historic    = Category.create!(name: "Historic Sites",  desc: "historic sites")
 
-ticket = merchant.tickets.create!(name:             "The black eyes",
+ticket1 = merchant.tickets.create!(name:             "The black eyes",
                                   desc:             " The Turn Blue World Tour starts September 5! See the Grammy Award winning duo perform in your city.", 
                                   remote_image_url: "http://media.ticketmaster.com/img/mw/images/a6/81/356598p1.jpg",
-                                  flat_price:       600,
-                                  flat_discount:    50,
                                   amount:           12, 
                                   category:         music, 
                                   start_at:         DateTime.now, 
                                   end_at:           (DateTime.now + 2.hours),
-                                  oprice:           1200,
                                   minimum_amount:   5,
-                                  shipping:         5,
                                   city:             "NewYork")
 
-merchant.tickets.create!(name:                      "NFL ticket exchange",
+ticket2 = merchant.tickets.create!(name:            "NFL ticket exchange",
                          desc:                      " Buy & sell tickets the NFL-approved way.",
                          remote_image_url:          "http://media.ticketmaster.com/img/mw/images/1c/be/363423p1.jpg",
-                         flat_price:                600,
-                         flat_discount:             50,
                          amount:                    12,
                          category:                  orchestra,
                          start_at:                  DateTime.now,
                          end_at:                    (DateTime.now + 2.hours),
                          oprice:                 1200,
                          minimum_amount:            5,
-                         shipping:                  5,
                          city:                      "NewYork")
 
-merchant.tickets.create!(name:                      "On Tour Now",
+ticket3 = merchant.tickets.create!(name:            "On Tour Now",
                          desc:                      " You can still score great resale tickets for One Direction!", 
                          remote_image_url:          "http://media.ticketmaster.com/img/mw/images/e0/f1/341099p1.jpg", 
-                         flat_price:                600,
-                         flat_discount:             50, 
                          amount:                    12,
                          category:                  ballet,
                          start_at:                  DateTime.now,
                          end_at:                    (DateTime.now + 2.hours),
-                         oprice:                          1200,
                          minimum_amount:            5,
-                         shipping:                  5,
                          city:                      "NewYork")
                          
 merchant.tickets.create!(name:                      "The black eyes11", 
                          desc:                      "The Turn Blue World Tour starts September 5! See the Grammy Award winning duo perform in your city.", 
                          remote_image_url:          "http://media.ticketmaster.com/img/mw/images/a6/81/356598p1.jpg", 
-                         flat_price:                600,
-                         flat_discount:             50, 
                          amount:                    12, 
                          category:                  music, 
                          start_at:                  DateTime.now, 
                          end_at:                    (DateTime.now + 2.hours), 
-                         oprice:                          1200, 
                          minimum_amount:            5,
-                         shipping:                  5,
                          city:                      "NewYork")
                         
 merchant.tickets.create!(name:                      "NFL ticket exchange11",
                          desc:                      " Buy & sell tickets the NFL-approved way.",
                          remote_image_url:          "http://media.ticketmaster.com/img/mw/images/1c/be/363423p1.jpg",
-                         flat_price:                600,
-                         flat_discount:             50,
                          amount:                    12,
                          category:                  orchestra,
                          start_at:                  DateTime.now,
                          end_at:                    (DateTime.now + 2.hours),
-                         oprice:                          1200,
                          minimum_amount:            5,
-                         shipping:                  5,
                          city:                      "NewYork")
                          
 merchant.tickets.create!(name:                      "On Tour Now11",
                          desc:                      " You can still score great resale tickets for One Direction!",
                          remote_image_url:          "http://media.ticketmaster.com/img/mw/images/e0/f1/341099p1.jpg",
-                         flat_price:                600,
-                         flat_discount:             50,
                          amount:                    12,
                          category:                  dance,
                          start_at:                  DateTime.now,
                          end_at:                    (DateTime.now + 2.hours),
-                         oprice:                          1200,
                          minimum_amount:            5,
-                         shipping:                  5,
                          city:                      "NewYork")
+
+ticket1.group_prices.create!(range_from:             80,    
+                            range_to:               120,
+                            price_in_cents:         130,
+                            discount:               100,
+                            student_discount:       90)
+
+ticket2.group_prices.create!(range_from:            100,    
+                            range_to:               140,
+                            price_in_cents:         150,
+                            discount:               120,
+                            student_discount:       110)
+
+ticket3.group_prices.create!(range_from:            200,    
+                            range_to:               240,
+                            price_in_cents:         250,
+                            discount:               220,
+                            student_discount:       205)
 
 merchant_info = MerchantInfo.create!(user_id: merchant.id,
                                     ticket_id: ticket.id,
