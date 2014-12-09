@@ -33,7 +33,7 @@
 		<div class="col-xs-12 col-sm-6">
 			  <p>
 					<label class="purple">Price per ticket:</label>
-					 &nbsp;&nbsp;$<%= @ticket.oprice %>
+					 &nbsp;&nbsp;$<%= @ticket.oprice(@order.count) %>
 				</p>
 				<p>
 					<label class="purple">Total Ticket Quantity:</label>

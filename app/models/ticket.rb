@@ -86,7 +86,7 @@ class Ticket < ActiveRecord::Base
   ##
   # get flat price by group price tier
   #
-  def flat_prcie(count)
+  def flat_price(count)
     group_price_by(count) ? group_price_by(count).price : Float::INFINITY
   end
   
