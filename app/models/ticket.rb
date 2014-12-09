@@ -100,8 +100,8 @@ class Ticket < ActiveRecord::Base
   ##
   # get origin price
   #
-  def oprice(count)
-    group_price_by(count) ? group_price_by(count).oprice : Float::INFINITYexigt
+  def oprice
+    group_prices.first.oprice
   end
 
   private
