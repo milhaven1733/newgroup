@@ -9,7 +9,7 @@ class ProfileController < ApplicationController
   def user
     return if @user.merchant?
     @favorite_shows = @user.favourites
-    @favorite_venues = Ticket.last(6)
+    @favorite_venues = @user.favorite_merchants
   end
 
   def like
