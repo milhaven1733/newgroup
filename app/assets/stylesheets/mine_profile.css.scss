@@ -1,0 +1,20 @@
+@import "color_defination";
+
+.dark-purple-back {
+	background-color: $purple;
+	color: $light_yellow;
+}
+
+.light-purple-back {
+	background-color: $light_purple;
+	color: $light_yellow;
+	border-color: $light_purple;
+	padding: 5px 10px;
+	border-radius: 5px;
+}
+
+.panel {
+	@extend .dark-purple-back;
+	border-radius: 10px;
+	border-color: $light_purple;
+}

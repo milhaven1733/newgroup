@@ -1,0 +1,28 @@
+@import "color_defination";
+
+.sign-up-in {
+	background-color: $purple;
+	border-radius: 5px;
+	color: white;
+	
+	::-webkit-input-placeholder { color:$white; }
+	::-moz-placeholder { color:$white; } /* firefox 19+ */
+	:-ms-input-placeholder { color:$white; } /* ie */
+	input:-moz-placeholder { color:$white; }
+	
+	input {
+		background-color: $purple;
+		border-color: $light_purple;
+		&:not([type=submit]) { color: white; }
+	}
+	
+	select {
+		background: $purple;
+		border-color: $light_purple;
+		color: white;
+	}
+	
+	h2 {
+		color: yellow;
+	}
+}

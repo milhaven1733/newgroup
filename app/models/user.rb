@@ -10,7 +10,7 @@ class User < ActiveRecord::Base
 
   has_many :tickets
   has_many :et_groups
-  has_many :votes, foreign_key: :user_id
+  has_many :votes, as: :votable
   has_many :favourites, through: :votes, source: :ticket
   has_one :wallet
   has_many :orders
