@@ -28,6 +28,7 @@ ticket1 = merchant.tickets.create!(name:             "The black eyes",
                                   start_at:         DateTime.now, 
                                   end_at:           (DateTime.now + 2.hours),
                                   minimum_amount:   5,
+                                  shipping:         5,
                                   city:             "NewYork")
 
 ticket2 = merchant.tickets.create!(name:            "NFL ticket exchange",
@@ -37,8 +38,8 @@ ticket2 = merchant.tickets.create!(name:            "NFL ticket exchange",
                          category:                  orchestra,
                          start_at:                  DateTime.now,
                          end_at:                    (DateTime.now + 2.hours),
-                         oprice:                 1200,
                          minimum_amount:            5,
+                         shipping:                  5,
                          city:                      "NewYork")
 
 ticket3 = merchant.tickets.create!(name:            "On Tour Now",
@@ -49,6 +50,7 @@ ticket3 = merchant.tickets.create!(name:            "On Tour Now",
                          start_at:                  DateTime.now,
                          end_at:                    (DateTime.now + 2.hours),
                          minimum_amount:            5,
+                         shipping:                  5,
                          city:                      "NewYork")
                          
 merchant.tickets.create!(name:                      "The black eyes11", 
@@ -59,6 +61,7 @@ merchant.tickets.create!(name:                      "The black eyes11",
                          start_at:                  DateTime.now, 
                          end_at:                    (DateTime.now + 2.hours), 
                          minimum_amount:            5,
+                         shipping:                  5,
                          city:                      "NewYork")
                         
 merchant.tickets.create!(name:                      "NFL ticket exchange11",
@@ -69,6 +72,7 @@ merchant.tickets.create!(name:                      "NFL ticket exchange11",
                          start_at:                  DateTime.now,
                          end_at:                    (DateTime.now + 2.hours),
                          minimum_amount:            5,
+                         shipping:                  5,
                          city:                      "NewYork")
                          
 merchant.tickets.create!(name:                      "On Tour Now11",
@@ -79,28 +83,32 @@ merchant.tickets.create!(name:                      "On Tour Now11",
                          start_at:                  DateTime.now,
                          end_at:                    (DateTime.now + 2.hours),
                          minimum_amount:            5,
+                         shipping:                  5,
                          city:                      "NewYork")
 
-ticket1.group_prices.create!(range_from:             80,    
-                            range_to:               120,
-                            price_in_cents:         130,
-                            discount:               100,
-                            student_discount:       90)
+ticket1.group_prices.create!(range_from:            80,    
+                             range_to:              120,
+                             price:                 120,
+                             oprice:                108,
+                             discount:              90,
+                             student_discount:      85)
 
 ticket2.group_prices.create!(range_from:            100,    
-                            range_to:               140,
-                            price_in_cents:         150,
-                            discount:               120,
-                            student_discount:       110)
+                             range_to:              140,
+                             price:                 140,
+                             oprice:                126,
+                             discount:              90,
+                             student_discount:      80)
 
 ticket3.group_prices.create!(range_from:            200,    
-                            range_to:               240,
-                            price_in_cents:         250,
-                            discount:               220,
-                            student_discount:       205)
+                             range_to:              240,
+                             price:                 240,
+                             oprice:                204,
+                             discount:              85,
+                             student_discount:      60)
 
 merchant_info = MerchantInfo.create!(user_id: merchant.id,
-                                    ticket_id: ticket.id,
+                                    ticket_id: ticket1.id,
                                     latitude: -34.397,
                                     longitude: 150.644, 
                                     url: Faker::Internet.url,
