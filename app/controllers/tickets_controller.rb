@@ -3,7 +3,7 @@ class TicketsController < ApplicationController
 
   def show
     @order = Order.new
-    cookies[:flat_price] = @ticket.flat_price
+    cookies[:flat_price] = @ticket.flat_price(5)
     cookies[:amount] = @ticket.amount
   end
 

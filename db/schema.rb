@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20141127013804) do
+ActiveRecord::Schema.define(version: 20141208103601) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -52,6 +52,9 @@ ActiveRecord::Schema.define(version: 20141127013804) do
     t.integer  "price_in_cents"
     t.datetime "created_at"
     t.datetime "updated_at"
+    t.integer  "discount"
+    t.integer  "student_discount"
+    t.integer  "oprice_in_cents"
   end
 
   create_table "groups_users", force: true do |t|
@@ -115,19 +118,15 @@ ActiveRecord::Schema.define(version: 20141127013804) do
     t.string   "name"
     t.text     "desc"
     t.datetime "start_at"
-    t.integer  "oprice_in_cents"
     t.integer  "amount"
     t.datetime "created_at"
     t.datetime "updated_at"
     t.integer  "category_id"
-    t.integer  "student_discount",    default: 0
     t.string   "city"
     t.integer  "shipping_in_cents"
     t.string   "sitting_map"
     t.integer  "minimum_amount"
-    t.integer  "flat_discount"
     t.datetime "end_at"
-    t.integer  "flat_price_in_cents"
     t.boolean  "will_call"
     t.string   "image"
   end
@@ -186,6 +185,17 @@ ActiveRecord::Schema.define(version: 20141127013804) do
 
   add_index "users", ["email"], name: "index_users_on_email", unique: true, using: :btree
   add_index "users", ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true, using: :btree
+
+  create_table "vote_merchants", force: true do |t|
+    t.integer  "favorite_venue_id"
+    t.integer  "voter_id"
+    t.datetime "created_at",        null: false
+    t.datetime "updated_at",        null: false
+  end
+
+  add_index "vote_merchants", ["favorite_venue_id", "voter_id"], name: "index_vote_merchants_on_favorite_venue_id_and_voter_id", unique: true, using: :btree
+  add_index "vote_merchants", ["favorite_venue_id"], name: "index_vote_merchants_on_favorite_venue_id", using: :btree
+  add_index "vote_merchants", ["voter_id"], name: "index_vote_merchants_on_voter_id", using: :btree
 
   create_table "votes", force: true do |t|
     t.integer  "votable_id"
