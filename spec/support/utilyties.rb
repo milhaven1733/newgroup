@@ -1,6 +1,15 @@
-def log_in(user)
-  visit new_user_session_path
-  fill_in 'user[email]', with: user.email
-  fill_in 'user[password]', with: user.password
-  click_button 'Log in'
+module WaitForAjax
+  def wait_for_ajax
+    Timeout.timeout(Capybara.default_wait_time) do
+      loop until finished_all_ajax_requests?
+    end
+  end
+
+  def finished_all_ajax_requests?
+    page.evaluate_script('jQuery.active').zero?
+  end
+end
+
+RSpec.configure do |config|
+  config.include WaitForAjax, type: :feature
 end

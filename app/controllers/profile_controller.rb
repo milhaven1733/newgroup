@@ -8,12 +8,21 @@ class ProfileController < ApplicationController
 
   def user
     return if @user.merchant?
-    #TODO: what is the defination of favorite shows? 
     @favorite_shows = @user.favourites
-    #TODO: What is the defination of favorite venues
     @favorite_venues = Ticket.last(6)
   end
 
+  def like
+    return if current_user == @user
+    if !current_user.voted?(@user)
+      current_user.favorite_merchants << @user
+    else
+      current_user.favorite_merchants.delete(@user)
+    end
+    respond_to do |format|
+      format.js
+    end
+  end
   private
 
   def set_user

@@ -10,13 +10,16 @@ class User < ActiveRecord::Base
 
   has_many :tickets
   has_many :et_groups
-  has_many :votes, as: :votable
+  has_many :votes, foreign_key: :user_id
   has_many :favourites, through: :votes, source: :ticket
   has_one :wallet
   has_many :orders
   has_one :merchant_info, dependent: :destroy
   has_one :user_info, dependent: :destroy
-  
+  has_many :merchant_votes, as: :votable, class_name: 'Vote'
+  has_many :favorite_merchant_votes, -> { where(votes: {votable_type: 'User'}) }, foreign_key: :user_id, class_name: 'Vote'
+  has_many :favorite_merchants, through: :favorite_merchant_votes
+
   accepts_nested_attributes_for :merchant_info
   accepts_nested_attributes_for :user_info
 
@@ -48,6 +51,10 @@ class User < ActiveRecord::Base
 
   def increment_balance(amount)
     update! balance: balance - amount
+  end
+
+  def voted?(other)
+    favorite_merchants.include?(other)
   end
 
   private

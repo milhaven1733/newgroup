@@ -26,7 +26,7 @@
 				</p>
 				<p>
 					<span class="light-purple">Minimum for Purchase: </span>
-					<span><%= @ticket.minimum_amount  %></span>
+        <span><%= @ticket.minimum_amount  %></span>
 				</p>
 				<%= simple_form_for @order, url: new_ticket_order_path(@ticket), method: :get do |f| %>
 					<div class="row">

@@ -5,6 +5,7 @@ Rails.application.routes.draw do
 
   get 'merchant/:id',  to: "profile#merchant", as: "merchant"
   get 'user/:id',      to: "profile#user",     as: "user"
+  post 'merchant/:id/like', to: 'profile#like', as: 'like_merchant'
   get '/search',   to: "home#search",      as: :search
   get '/filter',   to: "home#filter",      as: :filter
   get '/set_city', to: "home#set_city",    as: :set_city

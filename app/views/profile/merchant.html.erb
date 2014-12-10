@@ -3,65 +3,63 @@
     <%= render 'home/sidebar' %>
   </div>
   <div class='col-xs-9'>
-    <h2 class='text-center'>
-			Merchant Profile
-			<span class='glyphicon glyphicon-star-empty purple'></span>
-		</h2>
-		
+    <div class="vote-form">
+      <%= render "vote" %>
+    </div>
     <div class="row">
       <div class="col-xs-5 big_avatar">
         <%= image_tag @user.avatar_url %>
       </div>
       <div class="col-xs-7">
         <h5 class='address gray-light'><%= @user.merchant_info.try(:address) %></h5>
-				<!-- Google Maps Cavas -->
-				<div id="google-map"></div>
-				
-				<div class="row">
-					<div class="col-xs-4">
-						<p class='operation'>Hours of Operation</p>
-					</div>
-				</div>
-				
-				<div class="row opening-time">
-					<div class="col-xs-6 purple">
-						<label>Monday - Friday:</label>
-					</div>
-					<div class="col-xs-6 left">
-						<label><%= @user.merchant_info.try(:workday_opening_time) %></label>
-					</div>
-				</div>
-				<div class="row opening-time">
-					<div class="col-xs-6 purple">
-						<label>Saturday:</label>
-					</div>
-					<div class="col-xs-6 left">
-						<label><%= @user.merchant_info.try(:sat_opening_time) %></label>
-					</div>
-				</div>
-				<div class="row opening-time">
-					<div class="col-xs-6 purple">
-						<label>Sunday:</label>
-					</div>
-					<div class="col-xs-6 left">
-						<label><%= @user.merchant_info.try(:workday_opening_time) %></label>
-					</div>
-				</div>
-				<p class='group-sales-phone'>Group Sales Phone</p>
-				<p class='phone-number purple'><b><%= @user.merchant_info.try(:phone) %></b></p>
-				<p class='email'><%= mail_to @user.email %></p>
+        <!-- Google Maps Cavas -->
+        <div id="google-map"></div>
+
+        <div class="row">
+          <div class="col-xs-4">
+            <p class='operation'>Hours of Operation</p>
+          </div>
+        </div>
+
+        <div class="row opening-time">
+          <div class="col-xs-6 purple">
+            <label>Monday - Friday:</label>
+          </div>
+          <div class="col-xs-6 left">
+            <label><%= @user.merchant_info.try(:workday_opening_time) %></label>
+          </div>
+        </div>
+        <div class="row opening-time">
+          <div class="col-xs-6 purple">
+            <label>Saturday:</label>
+          </div>
+          <div class="col-xs-6 left">
+            <label><%= @user.merchant_info.try(:sat_opening_time) %></label>
+          </div>
+        </div>
+        <div class="row opening-time">
+          <div class="col-xs-6 purple">
+            <label>Sunday:</label>
+          </div>
+          <div class="col-xs-6 left">
+            <label><%= @user.merchant_info.try(:workday_opening_time) %></label>
+          </div>
+        </div>
+        <p class='group-sales-phone'>Group Sales Phone</p>
+        <p class='phone-number purple'><b><%= @user.merchant_info.try(:phone) %></b></p>
+        <p class='email'><%= mail_to @user.email %></p>
       </div>
     </div>
     <hr>
-    
+
     <h3 class='upcoming-deals purple'>Upcoming Deals</h3>
     <div class="row" id="deals">
       <%= render 'shared/tickets', object: @top_tickets %>
     </div>
-    
-		<div >
-			
-		</div>
-	</div>
+
+    <div >
+
+    </div>
+  </div>
 </div>
 <%= render 'shared/google_maps' %>

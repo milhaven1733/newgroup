@@ -50,14 +50,14 @@ body {
         float: left;
         border: none;
         outline:none;
-				padding-top: 40px;
+        padding-top: 40px;
       }
       span.glyphicon-search {
         float: right;
         margin: 3px 5px;
         color: white;
         font-size: 20px;
-				padding-top:25px;
+        padding-top:25px;
       }
     }
   }
@@ -219,40 +219,46 @@ body {
 }
 
 .opensans {
-	font-family: opensans;
+  font-family: opensans;
 }
 
 .league-gothic {
-	font-family: LeagueGothic;
+  font-family: LeagueGothic;
 }
 .bold {
-	font-weight: bold;
+  font-weight: bold;
 }
 
 .semibold {
-	font-weight: 500;
+  font-weight: 500;
 }
 
 .rock {
-	font-family: rock;
+  font-family: rock;
 }
 
 h2,h3,h4,h5,h6 {
-	@extend .opensans;
+  @extend .opensans;
 }
 
 .circle-angle {
-	border-radius: 5px;
+  border-radius: 5px;
 }
 
 .vertical-center {
-	vertical-align: middle;
+  vertical-align: middle;
 }
 
 table {
-	background-color: $light_purple;
-	color: white;
-	tr td {
-	  background-color: $light_purple;
-	}
+  background-color: $light_purple;
+  color: white;
+  tr td {
+    background-color: $light_purple;
+  }
+}
+
+.button-as-link {
+  background:none!important;
+  border:none;
+  padding:0!important;
 }

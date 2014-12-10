@@ -1,9 +1,12 @@
-<%= form_for [:mine, current_user.vote_merchants.build(favorite_venue_id: @user.id)], remote: true do |f| %>
-  <%= f.hidden_field :favorite_venue_id %>
-  <h2 class='text-center'>
-		Merchant Profile
-		<button class="button-as-link">
-			<span id="merchant-favorite" class='glyphicon glyphicon-star-empty purple'></span>
-		</button>
-	</h2>
-<% end %>
+<h2 class='text-center'>
+  Merchant Profile
+  <% if current_user != @user %>
+    <%= link_to like_merchant_path(@user), class: "button-as-link", method: :post, remote: true do %>
+      <% if current_user.voted?(@user) %>
+        <span id="merchant-favorite" class='glyphicon glyphicon-star purple'></span>
+      <% else %>
+        <span id="merchant-favorite" class='glyphicon glyphicon-star-empty purple'></span>
+      <% end %>
+    <% end %>
+  <% end %>
+</h2>

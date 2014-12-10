@@ -69,6 +69,7 @@ group :test do
   gem 'cucumber-rails', :require=>false
   #Database Cleaner is a set of strategis for cleaing your database in Ruby
   gem 'database_cleaner',git:'https://github.com/bmabey/database_cleaner.git'  
+  gem "poltergeist"
 end
 
 gem "mini_magick"
