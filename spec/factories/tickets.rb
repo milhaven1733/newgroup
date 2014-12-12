@@ -9,11 +9,7 @@ FactoryGirl.define do
     city "Philadelphia"
     minimum_amount 5
     end_at { Time.now + 1.hour }
-    
-    factory :price_tier do
-      after(:create) do |ticket|
-        create(:group_price, ticket: ticket)
-      end
-    end
+    oprice 100
+    student_discount 10
   end
 end

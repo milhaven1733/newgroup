@@ -1,7 +1,7 @@
 class Ticket < ActiveRecord::Base
   CITIES = %w( Philadelphia NewYork )
 
-  priceable :shipping
+  priceable :oprice, :shipping
 
   belongs_to :user
   belongs_to :category
@@ -14,13 +14,14 @@ class Ticket < ActiveRecord::Base
   mount_uploader :image, ImageUploader
   mount_uploader :sitting_map, SittingMapUploader
 
-  validates :minimum_amount, :amount, :name, :start_at, :end_at, :city, :category_id,
+  validates :minimum_amount, :amount, :name, :start_at, :end_at, :oprice, :city, :category_id,
                :shipping, presence: true
   validates :start_at, time_period: { scope: :end_at }
-  
+  validates :oprice, numericality: {  greater_than: 0 }
   validates :shipping, numericality: { greater_than_or_equal_to: 0 }
   validates :city, inclusion: { in: CITIES }
   validates :desc, length: { maximum: 3000 }
+  validates :student_discount, inclusion: { in: 0..100 }, allow_nil: true
   validates :minimum_amount, numericality: { greater_than_or_equal_to: 5 }
 
   accepts_nested_attributes_for :group_prices, allow_destroy: true
@@ -47,8 +48,8 @@ class Ticket < ActiveRecord::Base
   end
 
   def price_when(count, for_student = false)
-    price = group_price_by(count).try(:price) || flat_price(count) || oprice(count)
-    price = price * (100 - student_discount(count)) / 100 if for_student
+    price = group_price_by(count).try(:price) || flat_price || oprice
+    price = price * (100 - student_discount) / 100 if for_student
     price
   end
 
@@ -76,39 +77,30 @@ class Ticket < ActiveRecord::Base
     self.orders.where(status: :paid).sum(:count)
   end
 
-  ##
-  # get flat discount from group price tier
-  #
-  def flat_discount(count)
-     group_price_by(count) ? group_price_by(count).discount : 100
+  def flat_price count, for_student = false
+    (for_student ? group_price_for_student(count) : group_price_by(count).try(:price)) || oprice
   end
-  
-  ##
-  # get flat price by group price tier
-  #
-  def flat_price(count)
-    group_price_by(count) ? group_price_by(count).price : Float::INFINITY
-  end
-  
-  ##
-  # get student_discount
-  #
-  def student_discount(count)
-    group_price_by(count) ? group_price_by(count).student_discount : 0
-  end
-  
-  ##
-  # get origin price
-  #
-  def oprice
-    group_prices.first.oprice
+
+  def flat_discount count, for_student = false
+    (for_student ? flat_discount_for_student(count) : group_price_by(count).try(:discount)) || 0
   end
 
   private
-  
   def group_price_by count
     ranked_group_prices
     .where('range_from <= :count and (range_to >= :count or range_to is null)', count: count)
     .first
+  end
+
+  def group_price_for_student count
+    oprice * (100 - flat_discount_for_student(count)) / 100
+  end
+
+  def flat_discount_for_student count
+    if gp = group_price_by(count)
+      gp.discount + student_discount
+    else
+      0
+    end
   end
 end

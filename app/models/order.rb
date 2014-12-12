@@ -29,7 +29,6 @@ class Order < ActiveRecord::Base
 
   def set_price
     self.count ||= 0
-    byebug
     self.price_in_cents = ticket.price_when(count, user.try(:user_info).try(:is_student)) * 100
   end
 
