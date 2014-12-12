@@ -37,7 +37,11 @@ class Ticket < ActiveRecord::Base
   delegate :name, to: :category, prefix: true, allow_nil: true
 
   def self.top_deals
-    last(4)
+    last(4).reverse
+  end
+  
+  def self.more
+    all[0,count-4]
   end
 
   def ranked_group_prices

@@ -4,6 +4,11 @@ class ProfileController < ApplicationController
   def merchant
     return unless @user.merchant?
     @top_tickets = Ticket.top_deals
+    @more_tickets = Ticket.more
+    respond_to do |format|
+      format.html {render "merchant"}
+      format.js
+    end
   end
 
   def user

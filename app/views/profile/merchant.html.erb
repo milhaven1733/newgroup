@@ -55,6 +55,7 @@
     <h3 class='upcoming-deals purple'>Upcoming Deals</h3>
     <div class="row" id="deals">
       <%= render 'shared/tickets', object: @top_tickets %>
+			<%=link_to "More>>","",remote: true ,class: "btn btn-default btn-xs  pull-right",id:"more"%>
     </div>
 
     <div >
