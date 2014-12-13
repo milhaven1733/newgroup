@@ -1,7 +1,7 @@
 require 'rails_helper'
 
 RSpec.describe OrdersController, :type => :controller do
-  let(:user) { FactoryGirl.create(:user) }
+  let(:user) { FactoryGirl.create(:normal) }
 
   before do
     sign_in user
@@ -17,8 +17,8 @@ RSpec.describe OrdersController, :type => :controller do
 
   describe "POST create" do
 
-    let(:ticket) {FactoryGirl.create(:ticket)}
-    let(:post_order) {post :create, order: {count: 6,
+    let(:ticket) {FactoryGirl.create(:ticket_with_group_prices)}
+    let(:post_order) {post :create, order: {count: 12,
              shipping_address_attributes: {first: 'abc', second: 'abc', zipcode: '11345', city: 'Flushing', state: 'NY'},
              billing_address_attributes: {first: 'abc', second: 'abc', zipcode: '11345', city: 'Flushing', state: 'NY'}
              }, ticket_id: ticket.id}
@@ -26,7 +26,7 @@ RSpec.describe OrdersController, :type => :controller do
     it "get order amount price" do
       post_order
       amount = assigns(:order).amount
-      expect(amount).to eq(120.0)
+      expect(amount).to eq(50.0 * 12)
     end
 
     it "address should not be nil" do
@@ -35,12 +35,11 @@ RSpec.describe OrdersController, :type => :controller do
       assigns(:order).billing_address.should_not be_nil
     end
 
-
     it "wallet balance should decrease" do
       user.wallet.update(balance_in_cents: 100000)
       post_order
       user.reload
-      user.wallet.balance.should == 1000 - 20 * 6
+      user.wallet.balance.should == (1000 - 50 * 12)
     end
 
     it "wallet balance not enough" do
@@ -57,7 +56,7 @@ RSpec.describe OrdersController, :type => :controller do
       user.wallet.update(balance_in_cents: 100000)
       post_order
       ticket.reload
-      ticket.amount.should == 94
+      ticket.amount.should == (100 - 12)
     end
 
     it "should redirect to /mine/order" do
@@ -71,16 +70,15 @@ RSpec.describe OrdersController, :type => :controller do
       ticket.update(shipping_in_cents: 1000)
       post_order
       amount = assigns(:order).amount
-      expect(amount).to eq(130.0)
+      expect(amount).to eq(50 * 12 + 10)
     end
 
     it "order price should include student discount" do
-      user_info = FactoryGirl.create(:student_info)
-      user.user_info = user_info
+      user.user_info.update(is_student: true)
       ticket.update(student_discount: 10)
       post_order
       amount = assigns(:order).amount
-      expect(amount).to eq(20.0 * 0.9 * 6)
+      expect(amount).to eq(40.0 * 12)
     end
   end
 end

@@ -5,9 +5,21 @@ FactoryGirl.define do
     password_confirmation 'password123456'
     sequence(:name) { |n| "example#{n}" }
 
+    factory :normal do
+      role 'normal'
+      after(:create) do |user|
+        user.user_info = build(:user_info)
+        user.save
+      end
+    end
+
     factory :student do
       sequence(:email) { |n| "example#{n}@test.edu" }
-      user_info { FactoryGirl.create(:student_info) }
+      role 'normal'
+      after(:create) do |user|
+        user.user_info = build(:student_info)
+        user.save
+      end
     end
 
     factory :merchant do

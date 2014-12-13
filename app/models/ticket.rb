@@ -77,11 +77,11 @@ class Ticket < ActiveRecord::Base
     self.orders.where(status: :paid).sum(:count)
   end
 
-  def flat_price count, for_student = false
+  def flat_price count = 5, for_student = false
     (for_student ? group_price_for_student(count) : group_price_by(count).try(:price)) || oprice
   end
 
-  def flat_discount count, for_student = false
+  def flat_discount count = 5, for_student = false
     (for_student ? flat_discount_for_student(count) : group_price_by(count).try(:discount)) || 0
   end
 
