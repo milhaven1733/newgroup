@@ -5,7 +5,7 @@ Category.destroy_all
 Ticket.destroy_all
 
 merchant = User.create!(email: "merchant@test.com", password: "password", role: "merchant", name: "merchant")
-User.create!(email: "normal@test.com", password: "password", role: "merchant")
+User.create!(email: "normal@test.com", password: "password", role: "normal")
 
 music       = Category.create!(name: "Musicals",        desc: "music")
 theater     = Category.create!(name: "Theater",         desc: "theater")
@@ -20,6 +20,19 @@ zoo         = Category.create!(name: "Zoo/Aquarium",    desc: "zoo")
 park        = Category.create!(name: "Amusement Parks", desc: "parks")
 historic    = Category.create!(name: "Historic Sites",  desc: "historic sites")
 
+gp_1 = GroupPrice.create!(range_from:            80,    
+                             range_to:              120,
+                             discount:              90)
+
+gp_2 = GroupPrice.create!(range_from:            100,    
+                             range_to:              140,
+                             discount:              90)
+
+gp_3 = GroupPrice.create!(range_from:            200,    
+                             range_to:              240,
+                             discount:              85)
+
+
 ticket1 = merchant.tickets.create!(name:             "The black eyes",
                                   desc:             " The Turn Blue World Tour starts September 5! See the Grammy Award winning duo perform in your city.", 
                                   remote_image_url: "http://media.ticketmaster.com/img/mw/images/a6/81/356598p1.jpg",
@@ -29,7 +42,9 @@ ticket1 = merchant.tickets.create!(name:             "The black eyes",
                                   end_at:           (DateTime.now + 2.hours),
                                   minimum_amount:   5,
                                   shipping:         5,
-                                  city:             "NewYork")
+                                  city:             "NewYork",
+                                  oprice:           100)
+ticket1.group_prices << [gp_1, gp_2, gp_3]
 
 ticket2 = merchant.tickets.create!(name:            "NFL ticket exchange",
                          desc:                      " Buy & sell tickets the NFL-approved way.",
@@ -40,7 +55,9 @@ ticket2 = merchant.tickets.create!(name:            "NFL ticket exchange",
                          end_at:                    (DateTime.now + 2.hours),
                          minimum_amount:            5,
                          shipping:                  5,
+                         oprice:                    80,
                          city:                      "NewYork")
+ticket2.group_prices << [gp_1, gp_2, gp_3]
 
 ticket3 = merchant.tickets.create!(name:            "On Tour Now",
                          desc:                      " You can still score great resale tickets for One Direction!", 
@@ -51,9 +68,11 @@ ticket3 = merchant.tickets.create!(name:            "On Tour Now",
                          end_at:                    (DateTime.now + 2.hours),
                          minimum_amount:            5,
                          shipping:                  5,
+                         oprice:                    90,
                          city:                      "NewYork")
-                         
-merchant.tickets.create!(name:                      "The black eyes11", 
+ticket3.group_prices << [gp_1, gp_2, gp_3]
+
+ticket4 = merchant.tickets.create!(name:                      "The black eyes11", 
                          desc:                      "The Turn Blue World Tour starts September 5! See the Grammy Award winning duo perform in your city.", 
                          remote_image_url:          "http://media.ticketmaster.com/img/mw/images/a6/81/356598p1.jpg", 
                          amount:                    12, 
@@ -62,9 +81,12 @@ merchant.tickets.create!(name:                      "The black eyes11",
                          end_at:                    (DateTime.now + 2.hours), 
                          minimum_amount:            5,
                          shipping:                  5,
+                         oprice:                    50,
                          city:                      "NewYork")
+ticket4.group_prices << [gp_1, gp_2, gp_3]
+
                         
-merchant.tickets.create!(name:                      "NFL ticket exchange11",
+ticket5 = merchant.tickets.create!(name:                      "NFL ticket exchange11",
                          desc:                      " Buy & sell tickets the NFL-approved way.",
                          remote_image_url:          "http://media.ticketmaster.com/img/mw/images/1c/be/363423p1.jpg",
                          amount:                    12,
@@ -73,9 +95,11 @@ merchant.tickets.create!(name:                      "NFL ticket exchange11",
                          end_at:                    (DateTime.now + 2.hours),
                          minimum_amount:            5,
                          shipping:                  5,
+                         oprice:                    100,
                          city:                      "NewYork")
-                         
-merchant.tickets.create!(name:                      "On Tour Now11",
+ticket5.group_prices << [gp_1, gp_2, gp_3]
+
+ticket6 = merchant.tickets.create!(name:                      "On Tour Now11",
                          desc:                      " You can still score great resale tickets for One Direction!",
                          remote_image_url:          "http://media.ticketmaster.com/img/mw/images/e0/f1/341099p1.jpg",
                          amount:                    12,
@@ -84,28 +108,9 @@ merchant.tickets.create!(name:                      "On Tour Now11",
                          end_at:                    (DateTime.now + 2.hours),
                          minimum_amount:            5,
                          shipping:                  5,
+                         oprice:                    100,
                          city:                      "NewYork")
-
-ticket1.group_prices.create!(range_from:            80,    
-                             range_to:              120,
-                             price:                 120,
-                             oprice:                108,
-                             discount:              90,
-                             student_discount:      85)
-
-ticket2.group_prices.create!(range_from:            100,    
-                             range_to:              140,
-                             price:                 140,
-                             oprice:                126,
-                             discount:              90,
-                             student_discount:      80)
-
-ticket3.group_prices.create!(range_from:            200,    
-                             range_to:              240,
-                             price:                 240,
-                             oprice:                204,
-                             discount:              85,
-                             student_discount:      60)
+ticket6.group_prices << [gp_1, gp_2, gp_3]
 
 merchant_info = MerchantInfo.create!(user_id: merchant.id,
                                     ticket_id: ticket1.id,
