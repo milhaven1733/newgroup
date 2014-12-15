@@ -3,7 +3,6 @@ include Faker
 
 FactoryGirl.define do
   factory :user_info do
-    user_id 1
     phone PhoneNumber.phone_number
     address Address.street_address
     is_student false

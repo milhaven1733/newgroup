@@ -1,7 +1,7 @@
 class Ticket < ActiveRecord::Base
   CITIES = %w( Philadelphia NewYork )
 
-  priceable :oprice, :shipping, :flat_price
+  priceable :oprice, :shipping
 
   belongs_to :user
   belongs_to :category
@@ -15,14 +15,13 @@ class Ticket < ActiveRecord::Base
   mount_uploader :sitting_map, SittingMapUploader
 
   validates :minimum_amount, :amount, :name, :start_at, :end_at, :oprice, :city, :category_id,
-               :shipping,  :flat_price, :flat_discount, presence: true
+               :shipping, presence: true
   validates :start_at, time_period: { scope: :end_at }
-  validates :oprice, :flat_price, numericality: {  greater_than: 0 }
+  validates :oprice, numericality: {  greater_than: 0 }
   validates :shipping, numericality: { greater_than_or_equal_to: 0 }
   validates :city, inclusion: { in: CITIES }
   validates :desc, length: { maximum: 3000 }
-  validates :flat_price, numericality: { equal_to: Proc.new { |t| t.oprice * (100 - t.flat_discount) / 100 if t.oprice and t.flat_discount } }
-  validates :flat_discount, :student_discount, inclusion: { in: 0..100 }
+  validates :student_discount, inclusion: { in: 0..100 }, allow_nil: true
   validates :minimum_amount, numericality: { greater_than_or_equal_to: 5 }
 
   accepts_nested_attributes_for :group_prices, allow_destroy: true
@@ -82,11 +81,30 @@ class Ticket < ActiveRecord::Base
     self.orders.where(status: :paid).sum(:count)
   end
 
+  def flat_price count = 5, for_student = false
+    (for_student ? group_price_for_student(count) : group_price_by(count).try(:price)) || oprice
+  end
+
+  def flat_discount count = 5, for_student = false
+    (for_student ? flat_discount_for_student(count) : group_price_by(count).try(:discount)) || 0
+  end
+
   private
-  
   def group_price_by count
     ranked_group_prices
     .where('range_from <= :count and (range_to >= :count or range_to is null)', count: count)
     .first
+  end
+
+  def group_price_for_student count
+    oprice * (100 - flat_discount_for_student(count)) / 100
+  end
+
+  def flat_discount_for_student count
+    if gp = group_price_by(count)
+      gp.discount + student_discount
+    else
+      0
+    end
   end
 end

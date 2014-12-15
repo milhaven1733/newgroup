@@ -8,14 +8,12 @@ class OrdersController < ApplicationController
       cookies[:count] = { value: params[:order][:count], expired: Time.now + 1.hour }
     end
     @order = Order.new(count: cookies[:count], ticket: @ticket)
-    @order.calc_amount
   end
 
   def create
     @order = @ticket.orders.new(order_params
                                 .merge(user: current_user, status: :created))
-    @order.calc_amount
-    unless @order.valid?
+    unless @order.save
       flash[:error] = @order.errors.full_messages.join(', ')
       render :new and return
     end
