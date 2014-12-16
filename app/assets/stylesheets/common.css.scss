@@ -61,13 +61,44 @@ body {
       }
     }
   }
+  .nav.navbar-nav.navbar-right{
+    li.dropdown{
+      background:#3e0053;
+      padding: 7px 10px;
+      height:35px;
+      /*border-top-left-radius: 6px;*/
+      /*border-bottom-left-radius: 6px;*/
+      a{
+        padding:0;
+        color: #df82ff;
+        &:focus{
+          background-color:#3e0053;
+        }
+      }
+      .dropdown-menu{
+        a{
+          padding: 3px 20px;
+          color: #333333;
+        }
+      }
+    }
+    .avatar img{
+      width:36px;
+      height:36px;
+    }
+    .open{
+      .dropdown-toggle{
+        background-color:#3e0053;
+      }
+    }
+  }
   .navbar-right {
     width: 360px;
     height: 36px;
     margin: 18px 0;
     float: right;
     ul#user {
-      width: 55%;
+      width: 39%;
       padding: 0;
       margin: 0;
       background: rgb(62, 0, 83);
@@ -95,6 +126,30 @@ body {
             text-decoration: none;
           }
         }
+      }
+    }
+    .dropdown-menu{
+      min-width: 140px;
+      margin-top:2px;
+      &:before{
+        content: '';
+        display: inline-block;
+        border-left: 6px solid transparent;
+        border-right: 6px solid transparent;
+        border-bottom: 6px solid #CCC;
+        position: absolute;
+        top: -7px;
+        right: 9px;
+      }
+      &:after{
+        content: '';
+        display: inline-block;
+        border-left: 6px solid transparent;
+        border-right: 6px solid transparent;
+        border-bottom: 6px solid white;
+        position: absolute;
+        top: -6px;
+        right: 9px;
       }
     }
     #city {
