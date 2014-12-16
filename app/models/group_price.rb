@@ -5,7 +5,7 @@ class GroupPrice < ActiveRecord::Base
 
   validates :range_from, :range_to, :discount, presence: true, numericality: true
   validates :discount, inclusion: { in: 0..100 }
-  delegate :oprice, to: :ticket, if: :ticket
+  delegate :oprice, to: :ticket, allow_nil: true
 
   def count_range
     "#{ range_from } to #{ range_to }"

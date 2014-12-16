@@ -5,17 +5,15 @@ module Mine
 
     def new
       redirect_to root_path unless current_user.merchant?
-      @group_prices = GroupPrice.where("ticket_id = ?", @ticket.id).order(:range_from)
-      @group_price = GroupPrice.new
     end
 
     def create
       @group_price = @ticket.group_prices.new(group_price_param)
       if @group_price.save
-        @group_prices = GroupPrice.where("ticket_id = ?", @ticket.id)
-        render json: @group_prices
+        redirect_to [:mine, @ticket], notice: 'Create Price Tier Success'
       else
-        render json: { error_code: 0 }
+        flash[:error] = @group_price.errors.full_messages.join(', ')
+        render :new
       end
     end
 
@@ -31,7 +29,7 @@ module Mine
     end
 
     def group_price_param
-      params.require(:group_price).permit(:range_from, :range_to, :price)
+      params.require(:group_price).permit(:range_from, :range_to, :discount)
     end
   end
 end

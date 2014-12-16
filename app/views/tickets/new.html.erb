@@ -1,26 +1,26 @@
 <div class='container' id="new_ticket">
-	<h2>NEW TICKET LISTING</h2>
-	<%= simple_form_for @ticket do |f| %>
-	<%= f.input_field :city, placeholder: "Select your country" %>
-	<%= f.input_field :category_id, placeholder: "Select your genre" %>
-	<%= f.input_field :name %>
-	<%= f.input_field :desc %>
-	<%= f.input_field :start_at, as: :string %>
-	<p>Time Range</p>
-	<div class="frame">
-		<span>Total quantity of tickets:</span>
-	  <%= f.input_field :amount, placeholder: "Total quantity of tickets" %>
-	</div>
-	<%= f.input_field :minimum_amount, placeholder: "Minimum tickets for purchase" %>
-	<%= f.input_field :oprice_in_cents, placeholder: "Original price per ticket" %>
-	<%= f.input_field :flat_discount %>
-	<% #f.input_field :flat_price %>
-	<% #f.input_field :has_student_discount, as: :boolean %>
-	<%= f.input_field :student_discount %>
-	<%= f.input_field :shipping_in_cents %>
-	<p>Performace image (max 5 MB. This will appear on search results)</p>
-	<%= f.file_field :image %>
-	<%= f.file_field :sitting_map %>
-	<%= f.button :submit, 'UPLOAD TICKET LISTING'%>
-	<% end %>
+  <h2>NEW TICKET LISTING</h2>
+  <%= simple_form_for @ticket do |f| %>
+    <%= f.input_field :city, placeholder: "Select your country" %>
+    <%= f.input_field :category_id, placeholder: "Select your genre" %>
+    <%= f.input_field :name %>
+    <%= f.input_field :desc %>
+    <%= f.input_field :start_at, as: :string %>
+    <p>Time Range</p>
+    <div class="frame">
+      <span>Total quantity of tickets:</span>
+      <%= f.input_field :amount, placeholder: "Total quantity of tickets" %>
+    </div>
+    <%= f.input_field :minimum_amount, placeholder: "Minimum tickets for purchase" %>
+    <%= f.input_field :oprice_in_cents, placeholder: "Original price per ticket" %>
+    <%= f.input_field :flat_discount %>
+    <% #f.input_field :flat_price %>
+    <% #f.input_field :has_student_discount, as: :boolean %>
+    <%= f.input_field :student_discount %>
+    <%= f.input_field :shipping_in_cents %>
+    <p>Performace image (max 5 MB. This will appear on search results)</p>
+    <%= f.file_field :image %>
+    <%= f.file_field :sitting_map %>
+    <%= f.button :submit, 'UPLOAD TICKET LISTING'%>
+  <% end %>
 </div>

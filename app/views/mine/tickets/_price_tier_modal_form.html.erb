@@ -1,16 +1,6 @@
-<div id="group-price-tiers-form">
-		<div class="row">
-	    <label class="col-xs-3 control-label">Quantity Range:</label>
-			<!-- price slider -->
-			<div class="col-xs-4">
-				<div id="slider"></div>
-			</div>
-			<label  class="col-xs-3 control-label" id="quantity-range"></label>
-		</div>
-		<div class="row form-group">
-			<label class="col-xs-2 control-label">Price:</label>
-			<div class="col-xs-2">
-			  <input id="group_prices_price" class="form-control" name="modal-price" />
-		  </div>
-		</div>
-</div>
+<%= simple_form_for [:mine, GroupPrice.new]  do |f| %>
+  <%= f.input :range_from %>
+  <%= f.input :range_to %>
+  <%= f.input :discount %>
+  <%= f.submit :add_price_tier %>
+<% end %>

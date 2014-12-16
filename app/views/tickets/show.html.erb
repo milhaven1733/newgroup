@@ -16,7 +16,7 @@
 				</p>
 				<p>
 					<span class="purple-back circle-angle" id="flat-price">
-						$<%= @ticket.flat_price(5) %>
+						$<%= @ticket.flat_price(5, current_user.is_student) %>
 					</span>
 					<span>&nbsp;Per Ticket</span>
 				</p>

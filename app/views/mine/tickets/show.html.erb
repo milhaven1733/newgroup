@@ -1,6 +1,5 @@
-<h3 class='center'><%= @ticket.name %></h3>
-
-<div class='main clearfix'>
+<div class='main clearfix purple-back'>
+  <h3 class='center'><%= @ticket.name %></h3>
   <div class='img-section'>
     <%= image_tag @ticket.image, class: 'ticket-image' %>
     <%= image_tag @ticket.sitting_map, class: 'ticket-image' %>
@@ -20,7 +19,7 @@
     </div>
     <div class='time info'>
       <div class='title'>Time:</div>
-      <div class='value'><%= "#{@ticket.start_at.to_s(:db)}" %></div>
+      <div class='value'><%= raw @ticket.time_range %></div>
     </div>
     <div class='info'>
       <div class='title'>Quantity:</div>
@@ -37,6 +36,10 @@
     <div class='oprice info'>
       <div class='title'>Shipping Fee:</div>
       <div class='value'><%= number_to_currency(@ticket.shipping) %></div>
+    </div>
+    <div class='oprice info'>
+      <div class='title'>Will Call:</div>
+      <div class='value'><%= @ticket.will_call %></div>
     </div>
     <div class='group-price info'>
       <div class='title'>Group Price:</div>

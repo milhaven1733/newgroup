@@ -30,7 +30,6 @@ module Mine
     # POST /tickets
     def create
       @ticket = current_user.tickets.new(ticket_params)
-      
       if @ticket.save
         respond_to do |format|
           format.html { redirect_to [:mine, @ticket], notice: 'Ticket was successfully created.' }
