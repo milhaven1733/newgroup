@@ -199,7 +199,7 @@ merchant_info = MerchantInfo.create!(user_id: merchant.id,
                                     sales_phone: 1234567890,
                                     sales_email:'sales@email.com')
   
-user_info = UserInfo.create!(user_id:    user.id,
+user_info = UserInfo.create!(user_id:    merchant.id,
                              phone:      Faker::PhoneNumber.phone_number,
                              address:    Faker::Address.street_address,
                              zipcode:    Faker::Address.zip,
