@@ -23,5 +23,16 @@ feature "Orders", :type => :feature do
       visit new_ticket_order_path(ticket, order: {count: 20})
       page.should have_content '$1000'
     end
+
+    it "total_price should include student discount" do
+      user.build_user_info(is_student: true)
+      user.save
+      visit new_ticket_order_path(ticket, order: {count: 6})
+      page.should have_content '$360'
+    end
+
+    it "total price should without shipping when will call selected" do
+      pending "user select will call, then total price should auto change"
+    end
   end
 end
