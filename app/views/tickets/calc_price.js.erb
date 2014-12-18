@@ -1,0 +1,8 @@
+<% if @valid %>
+  $('#total-price').html("$<%= @total_price %>");
+  $('#flat-price').html("$<%= @flat_price %>");
+  $('#check-out').prop('disabled', false);
+<% else %>
+  $('#check-out').prop('disabled', true);
+  alert('Your input quantity must be greater than 0 and less than the left tickets quantity');
+<% end %>

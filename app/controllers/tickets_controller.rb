@@ -26,6 +26,16 @@ class TicketsController < ApplicationController
                    errors: vote.errors.full_messages }
   end
 
+  def calc_price
+    count = params[:count].to_i
+    @valid = count > 0 && (@ticket.amount - count) >= 0
+    @flat_price = @ticket.flat_price(count, current_user.is_student)
+    @total_price = @flat_price * count
+    respond_to do |format|
+      format.js
+    end
+  end
+
   private
 
   def set_ticket
