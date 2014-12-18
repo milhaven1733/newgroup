@@ -1,0 +1,9 @@
+doctype html
+html
+  head
+    title Group Et
+    = stylesheet_link_tag "application_mobile"
+    = javascript_include_tag "application_mobile"
+    = csrf_meta_tags
+  body
+    = yield
