@@ -1,0 +1,19 @@
+/*
+ *= require vendor
+ *= require_self
+ *= require_tree .
+ */
+// 3 party
+@import "bootstrap-sprockets";
+@import "bootstrap";
+@import "devise";
+
+// self
+@import "common";
+@import "color";
+@import "custom_fonts";
+@import "home";
+@import "devise";
+@import "ticket";
+@import "merchant_profile";
+
