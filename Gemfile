@@ -1,15 +1,14 @@
 source 'https://rubygems.org'
 #source 'https://ruby.taobao.org'
 
-gem 'rails', '4.2.0.beta1'
+gem 'rails', '4.2.0.rc3'
 gem 'pg'
 
 # sass & js
 gem 'bootstrap-sass'
-gem 'sass-rails', '~> 5.0.0.beta1'
+gem 'sass-rails', '~> 5.0'
 gem 'uglifier', '>= 1.3.0'
-gem 'coffee-rails', '~> 4.0.0'
-gem 'sprockets-rails', '~> 3.0.0.beta1'
+gem 'coffee-rails', '~> 4.1.0'
 gem 'jquery-rails'
 gem 'i18n', '~> 0.7.0.beta1'
 
@@ -22,6 +21,7 @@ gem 'cancancan', '~> 1.9'
 
 # image uploader
 gem 'carrierwave'
+gem "mini_magick"
 
 # views
 gem 'tabletastic', github: 'zlx/tabletastic'
@@ -72,4 +72,3 @@ group :test do
   gem "poltergeist"
 end
 
-gem "mini_magick"
