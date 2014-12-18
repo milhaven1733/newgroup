@@ -30,7 +30,7 @@
           <% end %>
         </p>
         <p>
-          <% if current_user.is_student %>
+          <% if current_user.try(:is_student) %>
             <span>Student Discount:<%= @ticket.student_discount%></span>
           <% end %>
         </p>
@@ -46,7 +46,7 @@
           <div class='row'>
             Price after discount
             <span class="purple-back circle-angle" id="flat-price">
-              $<%= @flat_price || @ticket.flat_price(0, current_user.is_student) %>
+              $<%= @flat_price || @ticket.flat_price(0, current_user.try(:is_student)) %>
             </span>
           <span>&nbsp;Per Ticket</span>
         </div>

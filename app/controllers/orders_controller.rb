@@ -6,8 +6,11 @@ class OrdersController < ApplicationController
     @billing_address = Adress.new
     if params[:order]
       cookies[:count] = { value: params[:order][:count], expired: Time.now + 1.hour }
+    else
+      cookies[:count] = { value: 5, expired: Time.now + 1.hour }
     end
-    @order = Order.new(count: cookies[:count], ticket: @ticket)
+    @order = Order.new(count: cookies[:count], ticket: @ticket, user: current_user)
+    @order.calc_amount
   end
 
   def create

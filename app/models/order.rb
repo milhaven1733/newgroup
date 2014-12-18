@@ -17,12 +17,13 @@ class Order < ActiveRecord::Base
 
   scope :merchant_orders, ->(user_id) { self.joins(:ticket).where(tickets: { user_id: user_id }) }
 
-  before_create :calc_amount
+  before_create :calc_amount, if: 'amount.nil?'
 
   def calc_amount
     set_price
     set_shipping_fee
     self.booking_fee ||= 0
+    self.count ||= 0
     self.amount = price * count + shipping + booking_fee
   end
 
