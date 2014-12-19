@@ -3,13 +3,14 @@
 		font-family: LeagueGothic;
 	}
   .purple-back {
-  	background-color: #75039e;
-		color: yellow;
+  	background-color: #fff;
+		color: #75039e;
 		font-size: 20px;
 		padding: 5px;
+    font-family:"Helvetica Neue", Helvetica, Arial, sans-serif;
   }
 	.light-purple {
-		font-size: 22px;
+		font-size: 14px;
 		color: #75039e;
 	}
 	img {
@@ -21,4 +22,20 @@
 	label {
 		font-weight: normal;
 	}
+  .category_name{
+    font-size:24px;
+    font-family: LeagueGothic;
+  }
+  .original_price{
+    color:#75039e;
+  }
+  .price_tier{
+    font-size:24px;
+    font-family: LeagueGothic;
+  }
+  .discount_text{
+    font-size:24px;
+    margin-left:0;
+    font-family: LeagueGothic;
+  }
 }

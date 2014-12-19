@@ -8,23 +8,23 @@
       <div class="col-xs-12 col-sm-6">
         <%= image_tag @ticket.image %>
         <p><%= @ticket.time_range %>
-          <%= link_to "About Merchant>>",merchant_path(@ticket.user),class: "about-merchant-link button"%>
+          <%= link_to "About Merchant>>",merchant_path(@ticket.user),class: "about-merchant-link btn btn-xs button"%>
         </p>
       </div>
       <div class="col-xs-12 col-sm-6">
-        <p><%= @ticket.category.try(:name) %></p>
+        <p class="category_name"><%= @ticket.category.try(:name) %></p>
         <p class="ticket_desc">
-        <%= @ticket.desc %>
+          <%= @ticket.desc %>
         </p>
-        <p>
-        Original Price
-        <span class="purple-back circle-angle">
-          $<%= @ticket.oprice %>
-      </span>
-      <span>&nbsp;Per Ticket</span>
-      </p>
+        <p class="original_price">
+          Original Price
+          <span class="purple-back circle-angle">
+            $<%= @ticket.oprice %>
+          </span>
+          <span>&nbsp;Per Ticket</span>
+        </p>
       <p>
-      Price Tier:
+      <span class="price_tier">Price Tier:</span>
       <br/>
       <% @ticket.group_prices.try(:each) do |gp| %>
             <span>Quantity:<%= gp.count_range%></span>
@@ -45,13 +45,13 @@
         <span><%= @ticket.minimum_amount  %></span>
         </p>
         <%= simple_form_for @order, url: new_ticket_order_path(@ticket), method: :get do |f| %>
-          <div class='row'>
+          <div class='row discount_text'>
             Price after discount
             <span class="purple-back circle-angle" id="flat-price">
               $<%= @flat_price || @ticket.flat_price(0, current_user.try(:is_student)) %>
             </span>
-          <span>&nbsp;Per Ticket</span>
-        </div>
+            <span>&nbsp;Per Ticket</span>
+          </div>
         <div class="row">
           <div class="col-xs-6">
             <span class="light-purple">Quantity:</span>
