@@ -12,8 +12,8 @@
       </a>
     </div>
     <div class='navbar-nav navbar-search'>
-      <%= form_tag search_path, class: 'navbar-form', method: :GET, id: 'search' do %>
-        <%= text_field_tag "query", @query, placeholder: 'Quick Search' %>
+      <%= form_for TicketsSearch.new, url: search_path, method: :GET, html: { id: 'search', class: 'navbar-form'} do |f|  %>
+        <%= f.text_field :query, placeholder: 'Quick Search' %>
         <span class='glyphicon glyphicon-search'></span>
       <% end -%>
     </div>

@@ -24,16 +24,16 @@
       <%= f.label "Price Range" %>
       <div class="row">
         <div class="col-xs-5">
-          <%= f.input_field :oprice_in_cents_gteq, class: "form-control" %>
+          <%= f.input_field :oprice_gteq, class: "form-control" %>
         </div>
         <div class="col-xs-2 white">To</div>
         <div class="col-xs-5">
-          <%= f.input_field :oprice_in_cents_lteq, class: "form-control" %>
+          <%= f.input_field :oprice_lteq, class: "form-control" %>
         </div>
       </div>
     </div>
     <div class="form-group">
-      <%= f.input :amount_gteq, class: "form-control", placeholder: "Quantity" %>
+      <%= f.input_field :amount_gteq, class: "form-control", placeholder: "Quantity" %>
     </div>
     <%= f.button :submit, "Search Group Tickets", class: "btn btn-default" %>
   <% end %>

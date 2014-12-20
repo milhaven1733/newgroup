@@ -30,8 +30,9 @@ class Ticket < ActiveRecord::Base
 
   scope :search_by, ->(query) do
     joins(:category)
-    .where('lower(tickets.name) like :query OR lower(tickets.desc) like :query OR lower(categories.name) like :query', query: "%#{query.downcase}%") 
+    .where('lower(tickets.name) like :query OR lower(tickets.desc) like :query OR lower(categories.name) like :query', query: "%#{query.downcase}%")
   end
+  scope :by_city, ->(city) { where(city: city) }
 
   delegate :name, to: :category, prefix: true, allow_nil: true
 
