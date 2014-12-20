@@ -1,4 +1,5 @@
 class MineController < ApplicationController
+  before_action :authenticate_user!
 
   def profile
     @favourite_tickets = current_user.favourites

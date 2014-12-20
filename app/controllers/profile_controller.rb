@@ -3,6 +3,7 @@ class ProfileController < ApplicationController
 
   def merchant
     return unless @user.merchant?
+    @tickets_search = TicketsSearch.new
     @top_tickets = Ticket.top_deals
     @more_tickets = Ticket.more
     respond_to do |format|

@@ -17,7 +17,7 @@ class Order < ActiveRecord::Base
 
   scope :merchant_orders, ->(user_id) { self.joins(:ticket).where(tickets: { user_id: user_id }) }
 
-  before_create :calc_amount, if: 'amount.nil?'
+  before_create :calc_amount, if: 'amount == 0.0'
 
   def calc_amount
     set_price

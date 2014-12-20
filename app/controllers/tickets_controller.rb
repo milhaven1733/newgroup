@@ -3,8 +3,7 @@ class TicketsController < ApplicationController
 
   def show
     @order = Order.new
-    cookies[:flat_price] = @ticket.flat_price(5)
-    cookies[:amount] = @ticket.amount
+    @tickets_search = TicketsSearch.new
   end
 
   def like
@@ -29,7 +28,7 @@ class TicketsController < ApplicationController
   def calc_price
     count = params[:count].to_i
     @valid = count > 0 && (@ticket.amount - count) >= 0
-    @flat_price = @ticket.flat_price(count, current_user.is_student)
+    @flat_price = @ticket.flat_price(count, current_user.try(:is_student))
     @total_price = @flat_price * count
     respond_to do |format|
       format.js

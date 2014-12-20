@@ -1,5 +1,6 @@
 class OrdersController < ApplicationController
   before_action :set_ticket
+  before_action :authenticate_user!
 
   def new
     @shipping_address = Adress.new
