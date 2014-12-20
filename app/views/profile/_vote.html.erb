@@ -2,7 +2,7 @@
   <% @user.try(:merchant_info).try(:orgnization) %>
   <% if current_user != @user %>
     <%= link_to like_merchant_path(@user), class: "button-as-link", method: :post, remote: true do %>
-      <% if current_user.voted?(@user) %>
+      <% if current_user.try(:voted?, @user) %>
         <span id="merchant-favorite" class='glyphicon glyphicon-star purple'></span>
       <% else %>
         <span id="merchant-favorite" class='glyphicon glyphicon-star-empty purple'></span>

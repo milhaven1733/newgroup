@@ -1,40 +1,40 @@
 <div id="search_area">
   <p class='title'>SEARCH</p>
   <p class='subtitle'>Filter by entering at least one field.</p>
-  <%= search_form_for Ticket.search, url: search_path do |f| %>
+  <%= simple_form_for @tickets_search, url: search_path, method: :get do |f| %>
     <div class="form-group">
-      <%= f.search_field q_param_name(:name), value: saved_selected_item(:name), class: "form-control", :placeholder => "Name" %>
+      <%= f.input_field :name_cont, class: "form-control", :placeholder => "Name" %>
     </div>
     <div class="form-group">
-      <%= f.select q_param_name(:category), options_for_select(category_options, saved_selected_item(:category)), {prompt: 'Genre'}, {class: "form-control"} %>
+      <%= f.input_field :category_id_eq, collection: category_options, prompt: 'Genre', class: "form-control" %>
     </div>
     <div class="form-group">
-      <%= f.search_field q_param_name(:date_begin), value: saved_selected_item(:date_begin), class: "form-control datepicker", placeholder: "Date From" %>
+      <%= f.input_field :time_tag_date_gteq, class: "form-control datepicker", placeholder: "Date From" %>
     </div>
     <div class="form-group">
-      <%= f.search_field q_param_name(:date_end), value: saved_selected_item(:date_end), class: "form-control datepicker", placeholder: "Date To" %>
+      <%= f.input_field :time_tag_date_lteq, class: "form-control datepicker", placeholder: "Date To" %>
     </div>
     <div class="form-group">
-      <%= f.search_field q_param_name(:time_begin), value: saved_selected_item(:time_begin), class: "form-control timepicker", placeholder: "Time From" %>
+      <%= f.input_field :time_tag_time_gteq, class: "form-control timepicker", placeholder: "Time From" %>
     </div>
     <div class="form-group">
-      <%= f.search_field q_param_name(:time_end), value: saved_selected_item(:time_end), class: "form-control timepicker", placeholder: "Time To" %>
+      <%= f.input_field :time_tag_time_lteq, class: "form-control timepicker", placeholder: "Time To" %>
     </div>
     <div class="form-group">
       <%= f.label "Price Range" %>
       <div class="row">
         <div class="col-xs-5">
-          <%= f.search_field q_param_name(:price_begin), value: saved_selected_item(:price_begin), class: "form-control" %>
+          <%= f.input_field :oprice_in_cents_gteq, class: "form-control" %>
         </div>
         <div class="col-xs-2 white">To</div>
         <div class="col-xs-5">
-          <%= f.search_field q_param_name(:price_end), value: saved_selected_item(:price_end), class: "form-control" %>
+          <%= f.input_field :oprice_in_cents_lteq, class: "form-control" %>
         </div>
       </div>
     </div>
     <div class="form-group">
-      <%= f.search_field q_param_name(:amount), value: saved_selected_item(:amount), class: "form-control", placeholder: "Quantity" %>
+      <%= f.input :amount_gteq, class: "form-control", placeholder: "Quantity" %>
     </div>
-    <%= f.submit "Search Group Tickets", class: "btn btn-default" %>
+    <%= f.button :submit, "Search Group Tickets", class: "btn btn-default" %>
   <% end %>
 </div>
