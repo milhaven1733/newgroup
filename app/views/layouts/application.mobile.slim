@@ -10,4 +10,7 @@ html
     = javascript_include_tag "application_mobile"
     = csrf_meta_tags
   body
-    = yield
+    header(class='bar bar-nav')
+      = content_for :title
+    .content
+      = yield
