@@ -7,10 +7,9 @@ html
     meta content="yes" name="apple-mobile-web-app-capable"
     meta content="black" name="apple-mobile-web-app-status-bar-style"
     = stylesheet_link_tag "application_mobile"
-    = javascript_include_tag "application_mobile"
     = csrf_meta_tags
   body
     header(class='bar bar-nav')
       = content_for :title
-    .content
-      = yield
+    = yield
+    = javascript_include_tag "application_mobile"

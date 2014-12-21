@@ -1,20 +1,39 @@
 - content_for :title do
-  h1.title Ratchet
-  a(class="icon icon-gear pull-right")
+  a(href="#popover")
+    h1.title 
+      | GroupEt
+      span(class="icon icon-caret")
+  = link_to "", new_user_session_path, class: "icon icon-person pull-right", data: {transition: "slide-in"}
 
-p.content-padded Thanks for downloading Ratchet. This is an example HTML page that's linked up to compiled Ratchet CSS and JS, has the proper meta tags and the HTML structure. Need some more help before you start filling this with your own content? Check out some Ratchet resources:
-.card
+#popover.popover
+  header(class="bar bar-nav")
+   h1.title Choose Category
   ul.table-view
-    li.table-view-cell
-      a.push-right href="http://goratchet.com" 
-        strong Ratchet documentation
-    li.table-view-cell
-      a.push-right href="https://github.com/twbs/ratchet/" 
-        strong Ratchet on Github
-    li.table-view-cell
-      a.push-right href="https://groups.google.com/forum/#!forum/goratchet" 
-        strong Ratchet Google group
-    li.table-view-cell
-      a.push-right href="https://twitter.com/goratchet" 
-        strong Ratchet on Twitter
+    li.table-view-cell Item1
+    li.table-view-cell Item2
+    li.table-view-cell Item3
+    li.table-view-cell Item4
+    li.table-view-cell Item5
+    li.table-view-cell Item6
+
+div(class="bar bar-standard bar-header-secondary")
+  = form_tag search_path, method: 'GET' do
+    = search_field_tag "query", @query, placeholder: 'Quick Search'
+
+.content
+  p.content-padded Thanks for downloading Ratchet. This is an example HTML page that's linked up to compiled Ratchet CSS and JS, has the proper meta tags and the HTML structure. Need some more help before you start filling this with your own content? Check out some Ratchet resources:
+  .card
+    ul.table-view
+      li.table-view-cell
+        a.push-right href="http://goratchet.com" 
+          strong Ratchet documentation
+      li.table-view-cell
+        a.push-right href="https://github.com/twbs/ratchet/" 
+          strong Ratchet on Github
+      li.table-view-cell
+        a.push-right href="https://groups.google.com/forum/#!forum/goratchet" 
+          strong Ratchet Google group
+      li.table-view-cell
+        a.push-right href="https://twitter.com/goratchet" 
+          strong Ratchet on Twitter
 
