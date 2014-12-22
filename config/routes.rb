@@ -1,7 +1,7 @@
 Rails.application.routes.draw do
   root "home#index"
 
-  devise_for :users
+  devise_for :users, controllers: { registrations: "registrations", sessions: "sessions" }
 
   get 'merchant/:id',  to: "profile#merchant", as: "merchant"
   get 'user/:id',      to: "profile#user",     as: "user"

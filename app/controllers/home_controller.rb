@@ -5,6 +5,11 @@ class HomeController < ApplicationController
     @tickets = Ticket.by_city(get_session_city)
     @top_tickets = @tickets.top_deals
     @tickets_search = TicketsSearch.new
+
+    respond_to do |format|
+      format.mobile { render "index.mobile.slim" }
+      format.html { render "index.html.erb" }
+    end
   end
 
   def search

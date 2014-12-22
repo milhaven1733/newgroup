@@ -26,10 +26,12 @@ div(class="bar bar-standard bar-header-secondary")
   .card
     ul.table-view
       li.table-view-cell
-        a.push-right(href="choose-theater.html" data= {transition: "slide-in"})
+        = link_to "aaa", new_user_session_path, class: "pull-right", data: {transition: "slide-in"}
+      li.table-view-cell
+        a.push-right(href="404.html" data={transition: "slide-in"})
           strong Ratchet documentation
       li.table-view-cell
-        a.push-right(href="choose-theater.html" data= {transition: "slide-in"})
+        a.push-right(href="/users/sign_in" data={transition: "slide-in"})
           strong Ratchet on Github
       li.table-view-cell
         a.push-right href="https://groups.google.com/forum/#!forum/goratchet" 
