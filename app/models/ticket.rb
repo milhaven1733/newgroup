@@ -40,10 +40,6 @@ class Ticket < ActiveRecord::Base
     last(6).reverse
   end
 
-  def self.more
-    all[0,count-4]
-  end
-
   def ranked_group_prices
     group_prices.order(range_from: :asc)
   end

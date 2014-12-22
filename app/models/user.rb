@@ -61,6 +61,14 @@ class User < ActiveRecord::Base
     user_info.try(:is_student) || false
   end
 
+  def top_deals
+    tickets.last(6).reverse
+  end
+
+  def more_tickets
+    tickets - top_deals
+  end
+
   private
 
   def default_role

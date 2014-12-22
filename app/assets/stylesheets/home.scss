@@ -115,41 +115,41 @@
       padding-right: 0;
     }
   }
-  .ticket {
-    a img {
-      width: 48%;
-      margin-right: 2%;
-      float: left;
+}
+.ticket {
+  a img {
+    width: 53%;
+    margin-right: 2%;
+    float: left;
+  }
+  .caption {
+    width: 45%;
+    float: left;
+    .desc {
+      overflow: hidden;
+      height: 38px;
     }
-    .caption {
-      width: 50%;
-      float: left;
-      .desc {
-        overflow: hidden;
-        height: 38px;
+    .flat-discount {
+      font-size: 18px;
+    }
+    h3 {
+      color: white;
+      margin: 0;
+      padding: 0;
+      background-color: #3e0053;
+      line-height: 30px;
+      font-size: 17px;
+      font-weight: bold;
+      &.discount {
+        width: 80%;
+        background: #3e0053;
+        margin: 7px 0;
+        text-align: center;
+        color: #fff200;
       }
-      .flat-discount {
-        font-size: 18px;
-      }
-      h3 {
+      a {
         color: white;
-        margin: 0;
-        padding: 0;
-        background-color: #3e0053;
-        line-height: 30px;
-        font-size: 17px;
-        font-weight: bold;
-        &.discount {
-          width: 80%;
-          background: #3e0053;
-          margin: 7px 0;
-          text-align: center;
-          color: #fff200;
-        }
-        a {
-          color: white;
-          margin-left: 5px;
-        }
+        margin-left: 5px;
       }
     }
   }
