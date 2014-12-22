@@ -9,21 +9,15 @@ class TicketsController < ApplicationController
 
   def like
     fail 'unauth' if current_user.blank?
-
-    voted = params[:voted]
     ticket = Ticket.find(params[:id])
-
-    if voted == 'true'
-      ticket.votes.where(user: current_user).try(:first).destroy
+    if current_user.tickets_voted?(ticket)
+      current_user.favourites.delete(ticket)
     else
-      ticket.votes.create!(user: current_user)
+      current_user.favourites << ticket
     end
-
-    render json: { notice: 'successfully voted' }
-  rescue => err
-    logger.error("votes transaction error: #{err}")
-    render json: { alert: 'something wrong happend!',
-                   errors: vote.errors.full_messages }
+    respond_to do |format|
+      format.js
+    end
   end
 
   def calc_price

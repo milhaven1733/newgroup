@@ -76,7 +76,14 @@
             <label id="booking-fee" class="purple-back circle-angle">$5</label>							
           </div>
         </div>
-        <%= f.button :submit, 'CHECK OUT', class: 'button', disabled: true, id: "check-out" %>
+        <div class="row">
+          <div class="col-xs-6">
+            <%= f.button :submit, 'CHECK OUT', class: 'button', disabled: true, id: "check-out" %>
+          </div>
+          <div class="col-xs-6 collect-link">
+            <%= render "vote"%>
+          </div>
+        </div>
       <% end  %>
 
     </div>	

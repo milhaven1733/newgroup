@@ -1,0 +1,6 @@
+<% if current_user.tickets_voted?(@ticket)%>
+  <%= link_to 'Unsubscribe', like_ticket_path(@ticket), method: :post,remote: true,  class: ' btn btn-defau    lt button', id: "collect-button"%>
+<% else %>
+ <%= link_to 'Favorite', like_ticket_path(@ticket), method: :post,remote: true,  class: ' btn btn-defau    lt button', id: "collect-button"%>
+<%end%>
+
