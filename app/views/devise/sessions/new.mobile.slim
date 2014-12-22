@@ -1,3 +1,12 @@
 - content_for :title do
   h1.title Sign In
-  = link_to "", root_path, class: "icon icon-left-nav pull-left", data: {transition: "fade"}
+  = link_to "", root_path, class: "icon icon-home pull-left", data: {transition: "fade"}
+  = link_to new_user_registration_path, class: "btn btn-link btn-nav pull-right", data: {transition: "slide-in"} do
+    | Sign up
+    span(class="icon icon-right-nav")
+
+.main
+  = form_for(resource, as: resource_name, url: session_path(resource_name)) do |f|
+    = f.email_field :email, autocomplete: "off", placeholder: "Email"
+    = f.password_field :password, autocomplete: "off", placeholder: "Password"
+    = f.submit "Log in", class: 'btn btn-positive btn-block'
