@@ -124,6 +124,13 @@
     .caption {
       width: 50%;
       float: left;
+      .desc {
+        overflow: hidden;
+        height: 38px;
+      }
+      .flat-discount {
+        font-size: 18px;
+      }
       h3 {
         color: white;
         margin: 0;
@@ -138,6 +145,10 @@
           margin: 7px 0;
           text-align: center;
           color: #fff200;
+        }
+        a {
+          color: white;
+          margin-left: 5px;
         }
       }
     }
