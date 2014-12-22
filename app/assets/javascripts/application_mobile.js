@@ -1,2 +1,3 @@
 //= require jquery
-//= require ratchet.min
+//= require jquery_ujs
+//= require jquery.mobile

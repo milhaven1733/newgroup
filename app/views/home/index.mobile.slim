@@ -1,12 +1,8 @@
 - content_for :title do
   - if @search_conditions
-    a(href="#popover")
-      h1.title 
-        | GroupEt
-        span(class="icon icon-caret")
+      h1 GroupEt
   - else
     h1.title GroupEt
-  = link_to "", new_user_session_path, class: "icon icon-person pull-right", data: {transition: "slide-in"}
 
 - if @search_conditions
   #popover.popover
@@ -19,36 +15,4 @@
 
 div(class="bar bar-standard bar-header-secondary")
   = form_tag search_path, method: 'GET' do
-    = search_field_tag "query", @query, placeholder: 'Quick Search'
-
-.content
-  p.content-padded Thanks for downloading Ratchet. This is an example HTML page that's linked up to compiled Ratchet CSS and JS, has the proper meta tags and the HTML structure. Need some more help before you start filling this with your own content? Check out some Ratchet resources:
-  .card
-    ul.table-view
-      li.table-view-cell
-        = link_to "aaa", new_user_session_path, class: "pull-right", data: {transition: "slide-in"}
-      li.table-view-cell
-        a.push-right(href="404.html" data={transition: "slide-in"})
-          strong Ratchet documentation
-      li.table-view-cell
-        a.push-right(href="/users/sign_in" data={transition: "slide-in"})
-          strong Ratchet on Github
-      li.table-view-cell
-        a.push-right href="https://groups.google.com/forum/#!forum/goratchet" 
-          strong Ratchet Google group
-      li.table-view-cell
-        a.push-right href="https://twitter.com/goratchet" 
-          strong Ratchet on Twitter
-
-nav(class='bar bar-tab')
-  a.tab-item href="#set_city"
-    | select your city
-
-#set_city.modal
-  header(class='bar bar-nav')
-    a(class="icon icon-close pull-right" href="#set_city")
-    h1.title set city
-  .main
-    = form_tag set_city_path, method: :get do
-      = select_tag 'city', options_for_select(Ticket::CITIES, get_session_city)
-      = button_tag 'Confirm', class: 'btn btn-positive btn-block btn-outlined'
+    = search_field_tag "query", @query, placeholder: 'Quick Search' 

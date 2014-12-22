@@ -9,7 +9,8 @@ html
     = stylesheet_link_tag "application_mobile"
     = csrf_meta_tags
   body
-    header(class='bar bar-nav')
-      = content_for :title
-    = yield
+    div(data={role: "page"})
+      header(data={role: "header"} class="ui-icon-gear ui-btn-icon-right")
+        = content_for :title
+      = yield
     = javascript_include_tag "application_mobile"

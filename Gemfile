@@ -40,6 +40,7 @@ gem 'quiet_assets'
 gem 'nested_form_fields'
 gem 'will_paginate'
 gem 'mobile-fu'
+gem 'jquery_mobile_rails'
 
 # preload
 group :development do
