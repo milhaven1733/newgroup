@@ -10,6 +10,7 @@ class Order < ActiveRecord::Base
 
   validates :user_id, :ticket_id, :count, :shipping_address, :billing_address, presence: true
   validates :count, numericality: { greater_than_or_equal_to: ->(order) { order.ticket.try(:minimum_amount) || 5 } }
+  validates :count, :amount, numericality: { greateer_than: 0 }
 
   accepts_nested_attributes_for :shipping_address, :billing_address
 

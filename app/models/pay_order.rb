@@ -4,6 +4,7 @@ class PayOrder
 
   validates :balance, numericality: { greater_than_or_equal_to: :total_price }
   validates :tickets_quantity, numericality: { greater_than_or_equal_to: :purchase_quantity }
+  validates :total_price, :purchase_quantity, numericality: { greateer_than: 0 }
 
   def initialize(order)
     self.order = order
