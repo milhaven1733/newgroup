@@ -9,6 +9,9 @@ require 'capybara/poltergeist'
 Capybara.javascript_driver = :poltergeist
 Dir[Rails.root.join("spec/support/**/*.rb")].each { |f| require f }
 ActiveRecord::Migration.maintain_test_schema!
+Capybara.register_driver :poltergeist do |app|
+  Capybara::Poltergeist::Driver.new(app, {debug: false, :default_wait_time => 30, :timeout => 90})
+end
 
 RSpec.configure do |config|
   config.use_transactional_fixtures = false
