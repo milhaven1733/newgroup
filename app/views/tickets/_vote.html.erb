@@ -1,6 +1,8 @@
-<% if current_user.tickets_voted?(@ticket)%>
-  <%= link_to 'Unsubscribe', like_ticket_path(@ticket), method: :post,remote: true,  class: ' btn btn-defau    lt button', id: "collect-button"%>
-<% else %>
- <%= link_to 'Favorite', like_ticket_path(@ticket), method: :post,remote: true,  class: ' btn btn-defau    lt button', id: "collect-button"%>
+<%= link_to  like_ticket_path(@ticket), method: :post,remote: true, id: "collect-button" do%>
+  <% if current_user.tickets_voted?(@ticket)%>
+    <span id="ticket-favorite" class='glyphicon glyphicon-star purple'></span>
+  <% else %>
+    <span id="ticket-favorite" class='glyphicon glyphicon-star-empty purple'></span>
+  <%end%>
 <%end%>
 
