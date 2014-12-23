@@ -1,20 +1,19 @@
-<h3>Create Group</h3>
+<div class="container" id="edit-profile">
+  <h1>Create Group</h1>
+  <hr/>
 
-<hr/>
+  <%= simple_form_for([@ticket, @group], url: ticket_groups_path,wrapper: :clean, html: {class: 'form-horizontal'}) do |f| %>
+    <%= f.error_notification %>
 
-<%= simple_form_for([@ticket, @group], url: ticket_groups_path, html: {class: 'form-horizontal'}) do |f| %>
-  <%= f.error_notification %>
-
-  <div class="form-inputs">
-    <%= f.input :name %>
-    <%= f.input :deadline, as: :string, input_html: { class: 'datetimepicker' } %>
-    <%= f.input :target_amount %>
-  </div>
-
-  <div class="form-group">
-    <div class="col-sm-offset-2 col-sm-10">
-      <%= f.button :submit %>
+    <div class="form-group">
+      <div class="col-xs-offset- col-xs-10">
+        <div class="form-inputs">
+          <%= f.input :name %>
+          <%= f.input :deadline, as: :string, input_html: { class: 'datetimepicker' } %>
+          <%= f.input :target_amount %>
+        </div>
+        <%= f.button :submit %>
+      </div>
     </div>
-  </div>
-
-<% end -%>
+  <% end -%>
+</div>
