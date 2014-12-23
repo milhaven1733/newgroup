@@ -4,7 +4,7 @@
   </div>
   <div class='col-sm-9'>
     <h1 class="center league-gothic">Search Result</h1>
-		<%= render partial: 'shared/ticket', collection: @tickets, as: :ticket %>
+    <%= render partial: 'shared/ticket', collection: @tickets, as: :ticket %>
+    <%= will_paginate @tickets, :page_links => false %>
   </div>
 </div>
-<%= paginate @tickets %>

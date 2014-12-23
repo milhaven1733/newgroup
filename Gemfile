@@ -38,7 +38,7 @@ gem 'stripe'
 gem 'priceable'
 gem 'quiet_assets'
 gem 'nested_form_fields'
-
+gem 'will_paginate'
 # preload
 group :development do
   gem 'spring'

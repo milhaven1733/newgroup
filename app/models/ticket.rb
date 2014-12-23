@@ -36,6 +36,8 @@ class Ticket < ActiveRecord::Base
 
   delegate :name, to: :category, prefix: true, allow_nil: true
 
+  self.per_page = 6
+
   def self.top_deals
     last(6).reverse
   end

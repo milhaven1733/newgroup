@@ -65,11 +65,18 @@
       color: white;
       font-weight: normal;
     }
-    input[type='text'], select, option {
+    input[type='text'] {
       border: 1px solid #a81ed6;
       color: white;
       font-size: 13px;
       background: none;
+    }
+    select {
+      color: gray;
+    }
+    option {
+      background-color: #3e0053;
+      color: white;
     }
     input[type='submit'] {
       width: 100%;
