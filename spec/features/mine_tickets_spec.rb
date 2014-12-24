@@ -41,7 +41,7 @@ feature "Mine Tickets" do
           fill_in "ticket[amount]", with: 500
           fill_in "ticket[minimum_amount]", with: 10
           fill_in "ticket[oprice]", with: 1000
-          find('#has-student-discount').set(true)
+          find('#has-student-discount').trigger('click')
           find('#ticket_student_discount').set('10')
           find('#ticket_shipping').set('10.0')
           find('#ticket_will_call').set(true)
