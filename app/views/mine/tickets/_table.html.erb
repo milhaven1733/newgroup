@@ -9,30 +9,36 @@
 		 <th class="center">Quantity Sold</th>
 		 <th class="center">Price Per Ticket</th>
 		 <th class="center">% Discount</th>
+     <th class='center'>Show</th>
 		 <th class="center">Edit</th>
 		 <th class="center">Delete</th>
 	  </tr>
   </thead>
-	<% @tickets.each_with_index do |ticket, index| %>
-	  <tr>
-			<td class="purple-back">
-				<% if params[:page]  %>
-				  <%= (params[:page].to_i - 1 ) * 20 + index + 1 %>
-				<% else  %>
-				<%= index + 1%>
-				<% end %>
-			</td>
-			<td><%= link_to (image_tag ticket.image_url(:thumb)), ticket, alt: ticket.name %></td>
-			<td>
-				<h3><%= link_to ticket.name, mine_ticket_path(ticket) %></h3>
-				<p><%= ticket.time_range(:word) %></p>
-			</td>
-			<td class="center" style="vertical-align: middle"><%= ticket.created_at.strftime("%m/%d/%Y")  %></td>
-			<td class="center" style="vertical-align: middle"><%= ticket.amount %></td>
-			<td class="center" style="vertical-align: middle"><%= ticket.sold %></td>
-			<td class="center" style="vertical-align: middle">$<%= ticket.flat_price(5) %></td>
-			<td class="center" style="vertical-align: middle"><%= ticket.flat_discount(5) %>%</td>
-			<td class="center" style="vertical-align: middle">
+  <% @tickets.each_with_index do |ticket, index| %>
+    <tr>
+      <td class="purple-back">
+        <% if params[:page]  %>
+          <%= (params[:page].to_i - 1 ) * 20 + index + 1 %>
+        <% else  %>
+          <%= index + 1%>
+        <% end %>
+      </td>
+      <td><%= link_to (image_tag ticket.image_url(:thumb)), ticket, alt: ticket.name %></td>
+      <td>
+        <h3><%= link_to ticket.name, mine_ticket_path(ticket) %></h3>
+        <p><%= ticket.time_range(:word) %></p>
+      </td>
+      <td class="center" style="vertical-align: middle"><%= ticket.created_at.strftime("%m/%d/%Y")  %></td>
+      <td class="center" style="vertical-align: middle"><%= ticket.amount %></td>
+      <td class="center" style="vertical-align: middle"><%= ticket.sold %></td>
+      <td class="center" style="vertical-align: middle">$<%= ticket.flat_price(5) %></td>
+      <td class="center" style="vertical-align: middle"><%= ticket.flat_discount(5) %>%</td>
+      <td class="center" style="vertical-align: middle">
+        <%= link_to mine_ticket_path(ticket) do %>
+          <span class="glyphicon glyphicon-eye-open"></span>
+        <% end %>
+      </td>
+      <td class="center" style="vertical-align: middle">
         <%= link_to edit_mine_ticket_path(ticket) do %>
           <span class="glyphicon glyphicon-pencil"></span>
         <% end -%>
