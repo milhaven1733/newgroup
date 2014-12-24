@@ -5,12 +5,21 @@
         <img src="<%= venue.try(:merchant_info).try(:image) %>" alt="<%= venue.try(:merchant_info).try(:orgnization) %>">
       </div>
       <div class="col-xs-12 col-sm-6">
-        <h4><%= link_to venue.try(:merchant_info).try(:orgnization), merchant_path(venue) %></h4>
-        <h5 class='gray-light'><%= venue.try(:merchant_info).try(:address) %></h5>
-        <h5 class='gray-light'></h5>
+        <h4><%= link_to "Orgnization: #{venue.try(:merchant_info).try(:orgnization)}", merchant_path(venue) %></h4>
         <h5 class='gray-light'>
+          <%= venue.try(:name) %>
+        </h5>
+        <h5 class='gray-light'>
+          <%= venue.merchant_info.try(:category).try(:name) %>
+        </h5>
+        <h5 class="gray-light">
           <%= venue.merchant_info.try(:workday_opening_time) %>
-          <%= venue.merchant_info.try(:workday_opening_time) %>
+        </h5>
+        <h5 class='gray-light'>
+          <%= venue.try(:user_info).try(:address) %>
+        </h5>
+        <h5 class='gray-light'>
+          <%= venue.try(:merchant_info).try(:phone)%>
         </h5>
         <h4 class='flat-discount yellow bold'></h4>
         <h5 class='purple'></h5>

@@ -57,6 +57,10 @@ class User < ActiveRecord::Base
     favorite_merchants.include?(other)
   end
 
+  def tickets_voted?(other)
+    favourites.include?(other)
+  end
+
   def is_student
     user_info.try(:is_student) || false
   end
