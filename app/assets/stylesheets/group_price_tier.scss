@@ -30,3 +30,15 @@
 		padding-top: 15px;
 	}
 }
+#group-prices-tier {
+  min-height: 300px;
+  #new_group_price {
+    input {
+      background-color: #75039e;
+      margin: 5px;
+    }
+    input[type='submit'] {
+      color: yellow;
+    }
+  }
+}
