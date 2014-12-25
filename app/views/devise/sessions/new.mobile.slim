@@ -1,9 +1,7 @@
-- content_for :title do
+- content_for :header do
   h1.title Sign In
-  = link_to "", root_path, class: "icon icon-home pull-left", data: {transition: "fade"}
-  = link_to new_user_registration_path, class: "btn btn-link btn-nav pull-right", data: {transition: "slide-in"} do
-    | Sign up
-    span(class="icon icon-right-nav")
+  = link_to "", root_path, class: "ui-btn ui-mini ui-icon-home ui-btn-icon-notext ui-corner-all ui-btn-left", data: {transition: "slidedown"}
+  = link_to "", new_user_registration_path, class: "ui-btn ui-mini ui-icon-user ui-btn-icon-notext ui-corner-all ui-btn-right", data: {transition: "slidefade"}
 
 .content
   = form_for(resource, as: resource_name, url: session_path(resource_name)) do |f|

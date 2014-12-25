@@ -6,6 +6,7 @@ class ApplicationController < ActionController::Base
   has_mobile_fu
 
   before_action :configure_permitted_parameters, if: :devise_controller?
+  before_filter :set_request_format
 
   protected
 
@@ -15,5 +16,9 @@ class ApplicationController < ActionController::Base
 
   def force_tablet_html
     session[:tablet_view] = false
+  end
+
+  def set_request_format
+    request.format = :mobile if is_mobile_device?
   end
 end
