@@ -2,14 +2,14 @@ class BaseUploader < CarrierWave::Uploader::Base
   include CarrierWave::MiniMagick
   storage :file
   
-  process :resize_to_fit => [800, 800]
+  process :resize_to_fill => [800, 800]
   
   version :middle do
-    process :resize_to_fit => [300, 300]
+    process :resize_to_fill => [300, 300]
   end
 
   version :thumb do
-    process :resize_to_fit => [100, 100]
+    process :resize_to_fill => [100, 100]
   end
   
   def store_dir

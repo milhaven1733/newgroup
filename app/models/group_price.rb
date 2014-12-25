@@ -12,7 +12,7 @@ class GroupPrice < ActiveRecord::Base
   end
 
   def price
-    oprice ? oprice * (100 - discount) / 100 : 0
+    (oprice ? oprice * (100 - discount) / 100 : 0).round 2
   end
   ##
   # Is this count in this price tier?

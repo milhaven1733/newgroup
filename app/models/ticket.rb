@@ -81,7 +81,8 @@ class Ticket < ActiveRecord::Base
   end
 
   def flat_price count = 5, for_student = false
-    (for_student ? group_price_for_student(count) : group_price_by(count).try(:price)) || oprice
+    fp = (for_student ? group_price_for_student(count) : group_price_by(count).try(:price)) || oprice
+    fp.round 2
   end
 
   def flat_discount count = 5, for_student = false

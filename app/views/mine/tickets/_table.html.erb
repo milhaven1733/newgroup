@@ -25,7 +25,7 @@
       </td>
       <td><%= link_to (image_tag ticket.image_url(:thumb)), ticket, alt: ticket.name %></td>
       <td>
-        <h3><%= link_to ticket.name, mine_ticket_path(ticket) %></h3>
+        <h3><%= link_to ticket.name, ticket_path(ticket) %></h3>
         <p><%= ticket.time_range(:word) %></p>
       </td>
       <td class="center" style="vertical-align: middle"><%= ticket.created_at.strftime("%m/%d/%Y")  %></td>
