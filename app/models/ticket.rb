@@ -34,6 +34,8 @@ class Ticket < ActiveRecord::Base
   end
 
   scope :search_by_price_range, ->(price_from, price_to, count, is_student = false) do
+    price_from ||= 0
+    price_to ||= 10000
     if is_student
       search_by_count(count)
       .where('ROUND((100.0 - group_prices.discount - tickets.student_discount) / 100 * tickets.oprice_in_cents / 100, 2) BETWEEN :price_from AND :price_to', price_from: price_from, price_to: price_to)

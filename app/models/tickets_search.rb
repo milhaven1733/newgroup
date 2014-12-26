@@ -6,7 +6,9 @@ class TicketsSearch
 
   def initialize(q_params = nil)
     if q_params
-      q_params.each { |key, value| self.send("#{key}=", value) }
+      q_params.each { |key, value| self.send("#{key}=", value.present? ? value : nil) }
+      q_params.delete('oprice_lteq')
+      q_params.delete('oprice_gteq')
       self.q_params = q_params
     end
   end
@@ -18,6 +20,7 @@ class TicketsSearch
       date_time_for_filter
       q = Ticket.by_city(city).search(q_params)
       @tickets = q.result(distinct: true)
+      @tickets = @tickets.search_by_price_range(oprice_gteq, oprice_lteq, amount_gteq)
     end
   end
 
