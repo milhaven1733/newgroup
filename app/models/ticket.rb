@@ -28,7 +28,8 @@ class Ticket < ActiveRecord::Base
 
   after_save :time_parse
 
-  scope :search_by_count, ->(count = 5) do
+  scope :search_by_count, ->(count) do
+    count ||= 5
     joins(:group_prices)
     .where(':count BETWEEN group_prices.range_from AND group_prices.range_to', count: count)
   end
