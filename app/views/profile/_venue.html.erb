@@ -1,29 +1,14 @@
-<% object.try(:each) do |venue| %>
-  <div class="col-xs-12 col-sm-6">
-    <div class=row>
-      <div class="col-xs-12 col-sm-6 thumbnail">
-        <img src="<%= venue.try(:merchant_info).try(:image) %>" alt="<%= venue.try(:merchant_info).try(:orgnization) %>">
-      </div>
-      <div class="col-xs-12 col-sm-6">
-        <h4><%= link_to "Orgnization: #{venue.try(:merchant_info).try(:orgnization)}", merchant_path(venue) %></h4>
-        <h5 class='gray-light'>
-          <%= venue.try(:name) %>
-        </h5>
-        <h5 class='gray-light'>
-          <%= venue.merchant_info.try(:category).try(:name) %>
-        </h5>
-        <h5 class="gray-light">
-          <%= venue.merchant_info.try(:workday_opening_time) %>
-        </h5>
-        <h5 class='gray-light'>
-          <%= venue.try(:user_info).try(:address) %>
-        </h5>
-        <h5 class='gray-light'>
-          <%= venue.try(:merchant_info).try(:phone)%>
-        </h5>
-        <h4 class='flat-discount yellow bold'></h4>
-        <h5 class='purple'></h5>
-      </div>
-    </div>
+<div class="col-xs-12 col-sm-6 ticket">
+  <%= link_to image_tag(venue.try(:avatar_url)), alt: venue.try(:merchant_info).try(:orgnization) %>
+  <div class="caption">
+    <h3><%= link_to "#{venue.try(:merchant_info).try(:orgnization)}", merchant_path(venue) %></h3>
+    <div class='gray-light'><%= venue.try(:name) %></div>
+    <h5 class='gray-light'><%= venue.merchant_info.try(:category).try(:name) %></h5>
+    <h5 class='gray-light'>Mon-Fri: <%= venue.merchant_info.try(:workday_opening_time) %></h5>
+    <h5 class='gray-light'>Sat: <%= venue.merchant_info.try(:sat_opening_time) %></h5>
+    <h5 class='gray-light'>Sun: <%= venue.merchant_info.try(:sun_opening_time) %></h5>
+    <h5 class='gray-light'><%= venue.try(:merchant_info).try(:address) %></h5>
+    <h5 class='gray-light'><%= venue.try(:merchant_info).try(:sales_phone)%></h5>
+    <h5 class='gray-light'><%= venue.try(:merchant_info).try(:sales_email)%></h5>
   </div>
-<% end %>
+</div>
