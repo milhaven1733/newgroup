@@ -26,4 +26,34 @@ RSpec.describe Ticket, :type => :model do
       ticket.flat_discount(12, true).should eq 60
     end
   end
+
+  describe "search tickets by price range" do
+    before :each do
+      10.times.each_with_index do |i|
+        ticket = FactoryGirl.create(:ticket_with_group_prices)
+        ticket.update(oprice: 10 * i)
+      end
+    end
+    it 'get tickets with given price range and count' do
+      tickets = Ticket.search_by_price_range(30, 40, 20)
+      puts 'TICKETS SEARCH RESULT TOTAL'
+      p tickets.count
+      tickets.each do |ticket|
+        ticket.flat_price(20).should be_between(30.0, 40.0)
+        ticket.flat_price(5).should_not be_between(30.0, 40.0)
+      end
+
+      tickets = Ticket.search_by_price_range(60, 70, 10)
+      puts 'TICKETS SEARCH RESULT TOTAL'
+      p tickets.count
+      tickets.each { |ticket| ticket.flat_price(10).should be_between(50.0, 70.0) }
+    end
+
+    it 'get student discount tickets with given price range and count' do
+      tickets = Ticket.search_by_price_range(30, 40, 20, true)
+      puts 'TICKETS SEARCH RESULT TOTAL'
+      p tickets.count
+      tickets.each { |ticket| ticket.flat_price(20, true).should be_between(30.0, 40.0) }
+    end
+  end
 end

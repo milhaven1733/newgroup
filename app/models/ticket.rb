@@ -28,6 +28,21 @@ class Ticket < ActiveRecord::Base
 
   after_save :time_parse
 
+  scope :search_by_count, ->(count = 5) do
+    joins(:group_prices)
+    .where(':count BETWEEN group_prices.range_from AND group_prices.range_to', count: count)
+  end
+
+  scope :search_by_price_range, ->(price_from, price_to, count, is_student = false) do
+    if is_student
+      search_by_count(count)
+      .where('ROUND((100.0 - group_prices.discount - tickets.student_discount) / 100 * tickets.oprice_in_cents / 100, 2) BETWEEN :price_from AND :price_to', price_from: price_from, price_to: price_to)
+    else
+      search_by_count(count)
+      .where('ROUND((100.0 - group_prices.discount) / 100 * tickets.oprice_in_cents / 100, 2) BETWEEN :price_from AND :price_to', price_from: price_from, price_to: price_to)
+    end
+  end
+
   scope :search_by, ->(query) do
     joins(:category)
     .where('lower(tickets.name) like :query OR lower(tickets.desc) like :query OR lower(categories.name) like :query', query: "%#{query.downcase}%")

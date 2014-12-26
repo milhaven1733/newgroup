@@ -4,6 +4,7 @@ class GroupPrice < ActiveRecord::Base
   belongs_to :ticket
 
   validates :range_from, :range_to, :discount, presence: true, numericality: true
+  validates :range_to, numericality: { greater_than: :range_from }
   validates :discount, inclusion: { in: 0..100 }
   delegate :oprice, to: :ticket, allow_nil: true
 
