@@ -55,6 +55,18 @@ class Ticket < ActiveRecord::Base
 
   self.per_page = 6
 
+  def image_url
+    image.try(:url) || 'default_pic.jpg'
+  end
+
+  def image_middle
+    image.try(:middle).try(:url) || 'default_pic.jpg'
+  end
+
+  def image_thumb
+    image.try(:thumb).try(:url) || 'default_pic.jpg'
+  end
+
   def self.top_deals
     last(6).reverse
   end
