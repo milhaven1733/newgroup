@@ -15,7 +15,7 @@ class OrdersController < ApplicationController
   def create
     @order = @ticket.orders.new(order_params
                                 .merge(user: current_user, status: :created))
-    unless @order.save
+    unless @order.valid?
       flash[:error] = @order.errors.full_messages.join(', ')
       render :new and return
     end

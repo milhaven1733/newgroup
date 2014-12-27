@@ -1,43 +1,50 @@
 <div class="row" id="show-ticket">
-	<div class="col-xs-12 col-sm-3">
-		<%= render 'home/sidebar' %>
-	</div>
   <div class="col-xs-12 col-sm-9">
-		<div class="row">
-			<h1 class="text-center"><%= @order.ticket.name  %></h1>
-			<div class="col-xs-12 col-sm-6">
-				<%= link_to (image_tag @order.ticket.image_url), @order.ticket %>
-				<p><%= @order.ticket.time_range %></p>
-			</div>
-			<div class="col-xs-12 col-sm-6">
-				<p><%= @order.ticket.category.name %></p>
-				<p class="ticket_desc">
-					<%= @order.ticket.desc %>
-				</p>
-				<p>
-					<span class="purple-back circle-angle" id="flat-price">
-						<%= number_to_currency(@order.(ticket.flat_price(5))) %>
-					</span>
-					<span>&nbsp;Per Ticket</span>
-				</p>
-				<p>
-					<span class="light-purple"> Quantity: </span>
-					<span id="quantity"><%= @order.count %></span>
-				</p>
-				<p>
-					<span class="light-purple"> Shipping Fee: </span>
-					<span id="shipping"><%= number_to_currency(@order.shipping) %></span>
-				</p>
-				<p>
-					<span class="light-purple"> Booking Fee: </span>
-					<span id="quantity"><%= number_to_currency(@order.booking_fee) %></span>
-				</p>
-				<p>
-					<span class="light-purple">Amount: </span>
-					<span><%= number_to_currency(@order.amount)  %></span>
-				</p>
+    <div class="row">
+      <h1 class="text-center"><%= link_to @order.ticket.name, @order.ticket  %></h1>
+      <div class="col-xs-12 col-sm-6">
+        <%= link_to (image_tag @order.ticket.image_url), @order.ticket %>
+        <p><%= @order.ticket.try(:time_range) %></p>
+      </div>
+      <div class="col-xs-12 col-sm-6">
+        <p><%= @order.ticket.category.name %></p>
+        <p class="ticket_desc">
+        <%= @order.ticket.desc %>
+        </p>
+        <p>
+        <span class="purple-back circle-angle" id="flat-price">
+          <%= number_to_currency(@order.price) %>
+        </span>
+        <span>&nbsp;Per Ticket</span>
+        </p>
+        <p>
+        <span class="light-purple"> Quantity: </span>
+        <span id="quantity"><%= @order.count %></span>
+        </p>
+        <% if current_user.try(:is_student) %>
+          <p>
+            <span class='light-purple'> Student Discount: </span>
+            <span><%= @order.try(:ticket).try(:student_discount) %>
+          </p>
+        <% end %>
+        <p>
+        <span class="light-purple"> Shipping Fee: </span>
+        <span id="shipping"><%= number_to_currency(@order.shipping) %></span>
+        </p>
+        <p>
+        <span class="light-purple"> Booking Fee: </span>
+        <span id="quantity"><%= number_to_currency(@order.booking_fee) %></span>
+        </p>
+        <p>
+        <span class="light-purple">Amount: </span>
+        <span class='purple-back circle-angle'><%= number_to_currency(@order.amount)  %></span>
+        </p>
+        <p>
+        <span class="light-purple">Shipping Address: </span>
+        <span><%= @order.shipping_address.show_address %>
+        </p>
 
-			</div>	
-		</div>  
+      </div>	
+    </div>  
   </div>
 </div>
