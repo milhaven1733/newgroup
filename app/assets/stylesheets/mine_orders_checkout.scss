@@ -1,21 +1,21 @@
 #check-out {
-	h1 {
-		font-family: LeagueGothic;
-	}
-	
-	input {
-		background-color: #3e0053;
-		margin: 2px;
-		width: 50%;
-		&[tpe="text"] {
-			color: white;
-		}
-		&[type="radio"] {
-			width:15px;
-		}
-	}
-	
-	p label {
-		color: #75039;
-	}
+  h1 {
+    font-family: LeagueGothic;
+  }
+
+  input {
+    &[type="text"] {
+      color: white;
+      background-color: #3e0053;
+      margin: 2px;
+      width: 50%;
+    }
+    &[type="radio"] {
+      width:15px;
+    }
+  }
+
+  p label {
+    color: #75039;
+  }
 }

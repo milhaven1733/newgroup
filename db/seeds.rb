@@ -32,6 +32,8 @@ UserInfo.create!(user_id:    student.id,
                              zipcode:    Faker::Address.zip,
                              group_name: Faker::Company.name,
                              is_student: true)
+user.Wallet.update!(balence: 10000)
+student.wallet.update!(balence: 10000)
 
 music       = Category.create!(name: "Musicals",        desc: "music")
 theater     = Category.create!(name: "Theater",         desc: "theater")
