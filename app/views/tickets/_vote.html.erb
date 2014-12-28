@@ -1,5 +1,5 @@
 <%= link_to  like_ticket_path(@ticket), method: :post,remote: true, id: "collect-button" do%>
-  <% if current_user.tickets_voted?(@ticket)%>
+  <% if current_user.try(:tickets_voted?,@ticket)%>
     <span id="ticket-favorite" class='glyphicon glyphicon-star purple'></span>
   <% else %>
     <span id="ticket-favorite" class='glyphicon glyphicon-star-empty purple'></span>

@@ -53,7 +53,7 @@ student.wallet.update!(balance: 10000)
 images = ["http://media.ticketmaster.com/img/mw/images/a6/81/356598p1.jpg",
          "http://media.ticketmaster.com/img/mw/images/1c/be/363423p1.jpg",
          "http://media.ticketmaster.com/img/mw/images/e0/f1/341099p1.jpg"]
-50.times.each do
+100.times.each do
   print '.'
   ticket = merchant.tickets.new
   ticket.name = Faker::Lorem.word
