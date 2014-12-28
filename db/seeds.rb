@@ -19,7 +19,7 @@ historic    = Category.create!(name: "Historic Sites",  desc: "historic sites")
 
 merchant = User.create!(email: "merchant@test.com", password: "password", role: "merchant", name: "merchant")
 user = User.create!(email: "normal@test.com", password: "password", role: "normal", name: 'user1')
-student = User.create!(email: 'student@test.com', password: 'password', role:'normal', name: 'student1')
+student = User.create!(email: 'student@test.edu', password: 'password', role:'normal', name: 'student1')
 
 merchant.create_merchant_info!(latitude: -34.397,
                                     longitude: 150.644, 
