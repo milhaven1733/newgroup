@@ -55,5 +55,17 @@ RSpec.describe Ticket, :type => :model do
       p tickets.count
       tickets.each { |ticket| ticket.flat_price(20, true).should be_between(30.0, 40.0) }
     end
+
+    it 'should search sucess when only has one price edge' do
+      tickets = Ticket.search_by_price_range(30, nil, nil)
+      puts 'TICKETS SEARCH RESULT TOTAL'
+      p tickets.count
+      tickets.each { |ticket| ticket.flat_price.should >= 30 }
+
+      tickets = Ticket.search_by_price_range(nil, 50, nil)
+      puts 'TICKETS SEARCH RESULT TOTAL'
+      p tickets.count
+      tickets.each { |ticket| ticket.flat_price.should <= 50 }
+    end
   end
 end
