@@ -4,11 +4,24 @@ User.destroy_all
 Category.destroy_all
 Ticket.destroy_all
 
+music       = Category.create!(name: "Musicals",        desc: "music")
+theater     = Category.create!(name: "Theater",         desc: "theater")
+ballet      = Category.create!(name: "Ballet",          desc: "ballet")
+dance       = Category.create!(name: "Dance",           desc: "dance")
+opera       = Category.create!(name: "Opera",           desc: "opera")
+orchestra   = Category.create!(name: "Orchestra",       desc: "orchestra")
+museum      = Category.create!(name: "Museums",         desc: "museum")
+comedy      = Category.create!(name: "Comedy",          desc: "comedy")
+movie       = Category.create!(name: "Movie Theater",   desc: "movie")
+zoo         = Category.create!(name: "Zoo/Aquarium",    desc: "zoo")
+park        = Category.create!(name: "Amusement Parks", desc: "parks")
+historic    = Category.create!(name: "Historic Sites",  desc: "historic sites")
+
 merchant = User.create!(email: "merchant@test.com", password: "password", role: "merchant", name: "merchant")
 user = User.create!(email: "normal@test.com", password: "password", role: "normal", name: 'user1')
 student = User.create!(email: 'student@test.com', password: 'password', role:'normal', name: 'student1')
 
-merchant.merchant_info.create!(latitude: -34.397,
+merchant.create_merchant_info!(latitude: -34.397,
                                     longitude: 150.644, 
                                     url: Faker::Internet.url,
                                     workday_opening_time: '7:00 am - 10:00 pm',
@@ -32,21 +45,9 @@ UserInfo.create!(user_id:    student.id,
                              zipcode:    Faker::Address.zip,
                              group_name: Faker::Company.name,
                              is_student: true)
-user.Wallet.update!(balence: 10000)
-student.wallet.update!(balence: 10000)
+user.wallet.update!(balance: 10000)
+student.wallet.update!(balance: 10000)
 
-music       = Category.create!(name: "Musicals",        desc: "music")
-theater     = Category.create!(name: "Theater",         desc: "theater")
-ballet      = Category.create!(name: "Ballet",          desc: "ballet")
-dance       = Category.create!(name: "Dance",           desc: "dance")
-opera       = Category.create!(name: "Opera",           desc: "opera")
-orchestra   = Category.create!(name: "Orchestra",       desc: "orchestra")
-museum      = Category.create!(name: "Museums",         desc: "museum")
-comedy      = Category.create!(name: "Comedy",          desc: "comedy")
-movie       = Category.create!(name: "Movie Theater",   desc: "movie")
-zoo         = Category.create!(name: "Zoo/Aquarium",    desc: "zoo")
-park        = Category.create!(name: "Amusement Parks", desc: "parks")
-historic    = Category.create!(name: "Historic Sites",  desc: "historic sites")
 
 #create tickets
 images = ["http://media.ticketmaster.com/img/mw/images/a6/81/356598p1.jpg",
