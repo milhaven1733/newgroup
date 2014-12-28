@@ -10,7 +10,7 @@ class Order < ActiveRecord::Base
 
   validates :user_id, :ticket_id, :count, :shipping_address, :billing_address, presence: true
   validates :count, numericality: { greater_than_or_equal_to: ->(order) { order.ticket.try(:minimum_amount) || 5 } }
-  validates :count, :amount, numericality: { greateer_than: 0 }
+  validates :count, :amount, numericality: { greater_than: 0 }
 
   accepts_nested_attributes_for :shipping_address, :billing_address
 
@@ -18,7 +18,7 @@ class Order < ActiveRecord::Base
 
   scope :merchant_orders, ->(user_id) { self.joins(:ticket).where(tickets: { user_id: user_id }) }
 
-  before_create :calc_amount, if: 'amount == 0.0'
+  before_create :calc_amount
 
   def calc_amount
     set_price

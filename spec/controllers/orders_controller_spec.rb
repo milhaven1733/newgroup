@@ -43,7 +43,6 @@ RSpec.describe OrdersController, :type => :controller do
     end
 
     it "wallet balance not enough" do
-      ticket.update( amount: 100)
       user.wallet.update(balance_in_cents: 10000)
       post_order
       user.reload
@@ -79,6 +78,12 @@ RSpec.describe OrdersController, :type => :controller do
       post_order
       amount = assigns(:order).amount
       expect(amount).to eq(40.0 * 12)
+    end
+
+    it "order should not be paid when ticket price is 0" do
+      ticket.update(oprice: 0)
+      post_order
+      assigns(:order).status.should eq 'created'
     end
   end
 end
