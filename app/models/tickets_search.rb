@@ -2,7 +2,9 @@ class TicketsSearch
   #This class is for ticket search form
   include ActiveModel::Model
   attr_accessor :name_cont, :category_id_eq, :time_tag_date_gteq, :time_tag_date_lteq, :query,
-    :time_tag_time_gteq, :time_tag_time_lteq, :oprice_gteq, :oprice_lteq, :amount_gteq, :q_params
+    :time_tag_time_gteq, :time_tag_time_lteq, :oprice_gteq, :oprice_lteq, :amount_gteq, :q_params, :user
+
+  validates :amount_gteq, :oprice_lteq, :oprice_gteq, numericality: { greater_than: 0 }, allow_nil: true
 
   def initialize(q_params = nil)
     if q_params
@@ -17,10 +19,11 @@ class TicketsSearch
     if q_params[:query]
       @tickets = Ticket.search_by(q_params[:query])
     else
+      return Ticket.none unless self.valid?
       date_time_for_filter
       q = Ticket.by_city(city).search(q_params)
       @tickets = q.result(distinct: true)
-      @tickets = @tickets.search_by_price_range(oprice_gteq, oprice_lteq, amount_gteq)
+      @tickets = @tickets.search_by_price_range(oprice_gteq, oprice_lteq, amount_gteq, user.try(:is_student))
     end
   end
 

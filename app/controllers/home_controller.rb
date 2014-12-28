@@ -8,8 +8,8 @@ class HomeController < ApplicationController
   end
 
   def search
-    @tickets_search = TicketsSearch.new(q_params)
-    @tickets = @tickets_search.search_result(get_session_city).page(params[:page])
+    @tickets_search = TicketsSearch.new(q_params.merge(user: current_user))
+    @tickets = @tickets_search.search_result(get_session_city).try(:page, params[:page])
   end
 
   def set_city
