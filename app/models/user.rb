@@ -62,7 +62,7 @@ class User < ActiveRecord::Base
   end
 
   def is_student
-    user_info.try(:is_student) || false
+    user_info.try(:is_student) || student_email_valid?
   end
 
   def top_deals
@@ -71,6 +71,10 @@ class User < ActiveRecord::Base
 
   def more_tickets
     tickets - top_deals
+  end
+
+  def student_email_valid?
+    email.match(/\.edu\Z/) ? true : false
   end
 
   private

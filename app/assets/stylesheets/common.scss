@@ -9,12 +9,12 @@ body {
   margin: 0 0 60px 0;
 }
 
-.container {
-  margin: auto;
-  width: 80%;
-}
-
 #header {
+  .container {
+    margin: auto;
+    width: 85%;
+    min-width: 855px;
+  }
   margin: 0;
   background-color: black;
   .navbar-brand {
@@ -22,9 +22,8 @@ body {
     height: 72px;
   }
   .navbar-search {
-    width: 38%;
-    min-width: 330px;
-    margin: 20px 0 20px 6%;
+    width: 35%;
+    margin: 20px 0 20px 2%;
     border: 1px solid rgb(147, 67, 207);
     height: 30px;
     border-radius: 6px;
@@ -36,13 +35,13 @@ body {
     }
     form#search {
       width: 100%;
-      margin-top: -7%;
       padding: 0;
       padding-left: 10px;
       height: 30px;
       float: left;
+      margin: 0;
       input#tickets_search_query {
-        width: 90%;
+        width: 87%;
         padding: 0;
         height: 28px;
         background: none;
@@ -50,14 +49,12 @@ body {
         float: left;
         border: none;
         outline:none;
-        padding-top: 40px;
       }
       span.glyphicon-search {
         float: right;
         margin: 3px 5px;
         color: white;
         font-size: 20px;
-        padding-top:25px;
       }
     }
   }
@@ -99,12 +96,12 @@ body {
     }
   }
   .navbar-right {
-    width: 360px;
+    width: 36%;
     height: 36px;
     margin: 18px 0;
     float: right;
     ul#user {
-      width: 42%;
+      width: 48%;
       padding: 0;
       margin: 0;
       background: rgb(62, 0, 83);
