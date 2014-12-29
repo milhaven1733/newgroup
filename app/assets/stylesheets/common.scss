@@ -9,11 +9,16 @@ body {
   margin: 0 0 60px 0;
 }
 
+#wrap .container {
+  margin: auto;
+  width: 85%;
+}
+
 #header {
+  min-width: 885px;
   .container {
     margin: auto;
-    width: 85%;
-    min-width: 855px;
+    width: 90%;
   }
   margin: 0;
   background-color: black;
@@ -23,7 +28,7 @@ body {
   }
   .navbar-search {
     width: 35%;
-    margin: 20px 0 20px 2%;
+    margin: 20px 0 20px 4%;
     border: 1px solid rgb(147, 67, 207);
     height: 30px;
     border-radius: 6px;
@@ -101,7 +106,7 @@ body {
     margin: 18px 0;
     float: right;
     ul#user {
-      width: 48%;
+      width: 160px;
       padding: 0;
       margin: 0;
       background: rgb(62, 0, 83);
@@ -119,6 +124,7 @@ body {
         font-size: 14px;
         list-style: none;
         background: url(devider.jpg) 100% 50% no-repeat;
+        width: 50%;
         &:last-child {
           background: none;
         }

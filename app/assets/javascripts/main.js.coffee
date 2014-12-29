@@ -28,4 +28,10 @@ $ ->
           $(that).data("voted", true)
     })
     return false
-		
+
+  $('#use-shipping').on "click", (e) ->
+    $('#order_billing_address_attributes_first').val($('#order_shipping_address_attributes_first').val())
+    $('#order_billing_address_attributes_second').val($('#order_shipping_address_attributes_second').val())
+    $('#order_billing_address_attributes_city').val $('#order_shipping_address_attributes_city').val()
+    $('#order_billing_address_attributes_state').val $('#order_shipping_address_attributes_state').val()
+    $('#order_billing_address_attributes_zipcode').val $('#order_shipping_address_attributes_zipcode').val()
