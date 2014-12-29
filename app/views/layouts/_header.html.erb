@@ -8,7 +8,7 @@
         <span class="icon-bar"></span>
       </button>
       <a class="navbar-brand" href="/">
-        <%= image_tag "logo.jpg", size: "136x72" %>
+        <%= image_tag "logo.png", size: "200x73" %>
       </a>
     </div>
     <div class='navbar-nav navbar-search'>
@@ -19,38 +19,38 @@
     </div>
     <%- if current_user %>
       <ul class="nav navbar-nav navbar-right" id="user">
-        <li class='avatar'><%= image_tag current_user.avatar_url %></li>
-        <li class="dropdown">
-        <a class="dropdown-toggle" data-toggle="dropdown" href="#">
-          Profile<span class="caret"></span>
-        </a>
-        <ul class="dropdown-menu" role="menu">
-          <li role="presentation">
-          <% if can?(:manage, Ticket) %>
-            <%= link_to 'Tickets', mine_tickets_path %>
-          <% end %>
-          <%= link_to 'Profile', mine_profile_path %>
-          <%= link_to 'Wallet', mine_wallet_path %>
-          <%= link_to 'Orders', mine_orders_path %>
-          <%= link_to 'Log out', destroy_user_session_path, method: :delete %>
-          </li>
-        </ul>
-        </li>
         <div id="city">
           <span class='glyphicon glyphicon-map-marker'></span>
           <%= link_to get_session_city || 'Select Your City', "#", id: 'set_city', data: { toggle: "modal", target: "#change_city" } %>
         </div>
+        <li class="dropdown">
+          <a class="dropdown-toggle" data-toggle="dropdown" href="#">
+            Profile<span class="caret"></span>
+          </a>
+          <ul class="dropdown-menu" role="menu">
+            <li role="presentation">
+            <% if can?(:manage, Ticket) %>
+              <%= link_to 'Tickets', mine_tickets_path %>
+            <% end %>
+            <%= link_to 'Profile', mine_profile_path %>
+            <%= link_to 'Wallet', mine_wallet_path %>
+            <%= link_to 'Orders', mine_orders_path %>
+            <%= link_to 'Log out', destroy_user_session_path, method: :delete %>
+            </li>
+          </ul>
+        </li>
+        <li class='avatar'><%= image_tag current_user.avatar_url %></li>
       </ul>
     <% else %>
       <div class="navbar-right">
+        <div id="city">
+          <span class='glyphicon glyphicon-map-marker'></span>
+          <%= link_to get_session_city || 'Select Your City', "#", id: 'set_city', data: { toggle: "modal", target: "#change_city" } %>
+        </div>
         <ul id="user">
           <li><%= link_to "Sign Up", new_user_registration_path %></li>
           <li><%= link_to "Sign In", new_user_session_path %></li>
         </ul>
-        <div id="city">
-          <span class='glyphicon glyphicon-map-marker'></span>
-          <%= link_to get_session_city || 'Select Your City', "#", id: 'set_city', data: { toggle: "modal", target: "#change_city" } %>
-        </div>
       </div>
     <% end %>
   </div>
