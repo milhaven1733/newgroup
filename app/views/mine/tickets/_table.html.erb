@@ -23,7 +23,7 @@
           <%= index + 1%>
         <% end %>
       </td>
-      <td><%= link_to (image_tag ticket.image_url(:thumb)), ticket, alt: ticket.name %></td>
+      <td><%= link_to (image_tag ticket.image_thumb), ticket, alt: ticket.name %></td>
       <td>
         <h3><%= link_to ticket.name, ticket_path(ticket) %></h3>
         <p><%= ticket.time_range(:word) %></p>
