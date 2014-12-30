@@ -1,6 +1,6 @@
 <div id='header' class="navbar navbar-inverse navbar-fixed-top" role="navigation">
   <div class="container">
-    <div class="navbar-header">
+    <div class="navbar-header col-md-3">
       <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
         <span class="sr-only">Toggle navigation</span>
         <span class="icon-bar"></span>
@@ -11,14 +11,14 @@
         <%= image_tag "logo.png", size: "200x73" %>
       </a>
     </div>
-    <div class='navbar-nav navbar-search'>
+    <div class='navbar-nav navbar-search col-md-4'>
       <%= form_for TicketsSearch.new, url: search_path, method: :GET, html: { id: 'search', class: 'navbar-form'} do |f|  %>
         <%= f.text_field :query, placeholder: 'Quick Search' %>
         <span class='glyphicon glyphicon-search'></span>
       <% end -%>
     </div>
     <%- if current_user %>
-      <ul class="nav navbar-nav navbar-right" id="user">
+      <ul class="nav navbar-nav navbar-right col-md-4" id="user">
         <div id="city">
           <span class='glyphicon glyphicon-map-marker'></span>
           <%= link_to get_session_city || 'Select Your City', "#", id: 'set_city', data: { toggle: "modal", target: "#change_city" } %>
@@ -42,7 +42,7 @@
         <li class='avatar'><%= image_tag current_user.avatar_url %></li>
       </ul>
     <% else %>
-      <div class="navbar-right">
+      <div class="navbar-right col-md-4">
         <div id="city">
           <span class='glyphicon glyphicon-map-marker'></span>
           <%= link_to get_session_city || 'Select Your City', "#", id: 'set_city', data: { toggle: "modal", target: "#change_city" } %>

@@ -15,7 +15,6 @@ body {
 }
 
 #header {
-  min-width: 885px;
   .container {
     margin: auto;
     width: 90%;
@@ -27,7 +26,6 @@ body {
     height: 72px;
   }
   .navbar-search {
-    width: 35%;
     margin: 20px 0 20px 4%;
     border: 1px solid rgb(147, 67, 207);
     height: 30px;
@@ -46,7 +44,6 @@ body {
       float: left;
       margin: 0;
       input#tickets_search_query {
-        width: 87%;
         padding: 0;
         height: 28px;
         background: none;
@@ -101,12 +98,11 @@ body {
     }
   }
   .navbar-right {
-    width: 36%;
     height: 36px;
     margin: 18px 0;
     float: right;
+    padding: 0;
     ul#user {
-      width: 160px;
       padding: 0;
       margin: 0;
       background: rgb(62, 0, 83);
@@ -124,7 +120,6 @@ body {
         font-size: 14px;
         list-style: none;
         background: url(devider.jpg) 100% 50% no-repeat;
-        width: 50%;
         &:last-child {
           background: none;
         }
@@ -162,7 +157,6 @@ body {
       }
     }
     #city {
-      width: 48%;
       background: rgb(119, 2, 159);
       border-top-left-radius: 0px;
       border-top-right-radius: 6px;
