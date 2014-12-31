@@ -35,9 +35,9 @@ class User < ActiveRecord::Base
 
   def address
     if merchant?
-      merchant_info.address
+      merchant_info.try(:address).try(:show_address)
     else
-      user_info.address
+      user_info.try(:address).try(:show_address)
     end
   end
 

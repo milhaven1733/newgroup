@@ -17,6 +17,7 @@ class MineController < ApplicationController
   def edit_profile
     if current_user.merchant?
       @merchant_info = current_user.merchant_info || MerchantInfo.new(user_id: current_user.id)
+      @address = @merchant_info.address || @merchant_info.build_address
 		else
 			@user_info = current_user.user_info || UserInfo.new(user_id: current_user.id)
       @address = @user_info.address || @user_info.build_address
@@ -27,40 +28,45 @@ class MineController < ApplicationController
 
   def merchant_param
     params.require(:user).permit(:name,
-																 :email,
+                                 :email,
                                  :avatar,
                                  merchant_info_attributes:
-                                   [:latitude, :longitude,
-																	 :category_id,
-																	 :address,
-                                   :phone,
-                                   :url,
-                                   :workday_opening_time,
-                                   :sat_opening_time,
-                                   :sun_opening_time,
-                                   :orgnization,
-                                   :sales_email,
-                                   :sales_phone]
+                                 [:latitude, :longitude,
+                                  :category_id,
+                                  :phone,
+                                  :url,
+                                  :workday_opening_time,
+                                  :sat_opening_time,
+                                  :sun_opening_time,
+                                  :orgnization,
+                                  :sales_email,
+                                  :sales_phone,
+                                   address_attributes:[:first,
+                                                       :second,
+                                                       :city,
+                                                       :state,
+                                                       :zipcode]
+                                   ]
                                 )
   end
   def user_param
     params.require(:user).permit(:name,
-                   :avatar,
-                   :email,
-                   user_info_attributes:[
-                   :zipcode,
-                   :phone,
-                   :group_name,
-                   :number_of_group_members,
-                   :university,
-                   :wallet_link,
-                   :billing_address,
-                   address_attributes:[:first,
-                   :second,
-                   :city,
-                   :state,
-                   :zipcode]
-                   ]
-                  )
+                                 :avatar,
+                                 :email,
+                                 user_info_attributes:[
+                                   :zipcode,
+                                   :phone,
+                                   :group_name,
+                                   :number_of_group_members,
+                                   :university,
+                                   :wallet_link,
+                                   :billing_address,
+                                   address_attributes:[:first,
+                                                       :second,
+                                                       :city,
+                                                       :state,
+                                                       :zipcode]
+                                 ]
+                                )
   end
 end

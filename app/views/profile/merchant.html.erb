@@ -11,7 +11,7 @@
         <%= image_tag @user.avatar_url %>
       </div>
       <div class="col-xs-7">
-        <h5 class='address gray-light'><%= @user.merchant_info.try(:address) %></h5>
+        <h5 class='address gray-light'><%= @user.try(:address) %></h5>
         <!-- Google Maps Cavas -->
         <div id="google-map"></div>
 
