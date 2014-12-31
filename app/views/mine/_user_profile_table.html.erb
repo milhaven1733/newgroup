@@ -24,11 +24,7 @@
 </div>
 <div class='row'>
   <div class='col-md-4'>Address:</div>
-  <div class='col-md-8'><%= current_user.user_info.try(:address) %></div>
-</div>
-<div class='row'>
-  <div class='col-md-4'>Billing Address:</div>
-  <div class='col-md-8'><%= current_user.user_info.try(:billing_address) %></div>
+  <div class='col-md-8'><%= current_user.user_info.try(:show_address) %></div>
 </div>
 <div class='row'>
   <div class='col-md-4'>Wallet Url:</div>

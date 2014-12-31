@@ -11,10 +11,22 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20141212190108) do
+ActiveRecord::Schema.define(version: 20141231203825) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
+
+  create_table "addresses", force: true do |t|
+    t.string   "first"
+    t.string   "second"
+    t.string   "city"
+    t.string   "state"
+    t.string   "zipcode"
+    t.integer  "addressable_id"
+    t.string   "addressabel_type"
+    t.datetime "created_at",       null: false
+    t.datetime "updated_at",       null: false
+  end
 
   create_table "adresses", force: true do |t|
     t.string   "first"
@@ -29,14 +41,14 @@ ActiveRecord::Schema.define(version: 20141212190108) do
   end
 
   create_table "categories", force: true do |t|
-    t.string   "name"
+    t.string   "name",       limit: 255
     t.text     "desc"
     t.datetime "created_at"
     t.datetime "updated_at"
   end
 
   create_table "et_groups", force: true do |t|
-    t.string   "name"
+    t.string   "name",          limit: 255
     t.integer  "leader_id"
     t.datetime "created_at"
     t.datetime "updated_at"
@@ -82,17 +94,7 @@ ActiveRecord::Schema.define(version: 20141212190108) do
     t.string   "sales_phone"
     t.integer  "category_id"
     t.string   "phone"
-    t.string   "address"
     t.integer  "ticket_id"
-  end
-
-  create_table "order_infos", force: true do |t|
-    t.integer "order_id"
-    t.string  "first_address"
-    t.string  "secondary_address"
-    t.string  "city"
-    t.string  "state"
-    t.string  "zipcode"
   end
 
   create_table "orders", force: true do |t|
@@ -113,15 +115,13 @@ ActiveRecord::Schema.define(version: 20141212190108) do
 
   create_table "tickets", force: true do |t|
     t.integer  "user_id"
-    t.string   "name"
+    t.string   "name",              limit: 255
     t.text     "desc"
     t.datetime "start_at"
-    t.integer  "oprice_in_cents"
     t.integer  "amount"
     t.datetime "created_at"
     t.datetime "updated_at"
     t.integer  "category_id"
-    t.integer  "student_discount",  default: 0
     t.string   "city"
     t.integer  "shipping_in_cents"
     t.string   "sitting_map"
@@ -129,6 +129,8 @@ ActiveRecord::Schema.define(version: 20141212190108) do
     t.datetime "end_at"
     t.boolean  "will_call"
     t.string   "image"
+    t.integer  "student_discount"
+    t.integer  "oprice_in_cents"
   end
 
   create_table "time_for_ticket_searches", force: true do |t|
@@ -152,7 +154,6 @@ ActiveRecord::Schema.define(version: 20141212190108) do
 
   create_table "user_infos", force: true do |t|
     t.string   "phone"
-    t.string   "address"
     t.boolean  "is_student"
     t.string   "zipcode"
     t.string   "group_name"
@@ -166,20 +167,20 @@ ActiveRecord::Schema.define(version: 20141212190108) do
   end
 
   create_table "users", force: true do |t|
-    t.string   "email",                  default: "", null: false
-    t.string   "encrypted_password",     default: "", null: false
-    t.string   "reset_password_token"
+    t.string   "email",                  limit: 255, default: "", null: false
+    t.string   "encrypted_password",     limit: 255, default: "", null: false
+    t.string   "reset_password_token",   limit: 255
     t.datetime "reset_password_sent_at"
     t.datetime "remember_created_at"
-    t.integer  "sign_in_count",          default: 0,  null: false
+    t.integer  "sign_in_count",                      default: 0,  null: false
     t.datetime "current_sign_in_at"
     t.datetime "last_sign_in_at"
     t.inet     "current_sign_in_ip"
     t.inet     "last_sign_in_ip"
     t.datetime "created_at"
     t.datetime "updated_at"
-    t.string   "name"
-    t.string   "avatar"
+    t.string   "name",                   limit: 255
+    t.string   "avatar",                 limit: 255
     t.integer  "role"
   end
 

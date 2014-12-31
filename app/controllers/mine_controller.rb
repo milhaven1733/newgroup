@@ -19,6 +19,7 @@ class MineController < ApplicationController
       @merchant_info = current_user.merchant_info || MerchantInfo.new(user_id: current_user.id)
 		else
 			@user_info = current_user.user_info || UserInfo.new(user_id: current_user.id)
+      @address = @user_info.address || @user_info.build_address
     end
   end
 
@@ -48,13 +49,18 @@ class MineController < ApplicationController
                    :email,
                    user_info_attributes:[
                    :zipcode,
-                   :address,
                    :phone,
                    :group_name,
                    :number_of_group_members,
                    :university,
                    :wallet_link,
-                   :billing_address]
+                   :billing_address,
+                   address_attributes:[:first,
+                   :second,
+                   :city,
+                   :state,
+                   :zipcode]
+                   ]
                   )
   end
 end
