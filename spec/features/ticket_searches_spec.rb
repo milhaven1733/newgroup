@@ -47,7 +47,6 @@ feature "TicketSearches", :type => :feature do
         fill_in 'tickets_search[oprice_gteq]', with: 'abcd'
         click_button('Search Group Tickets')
       end
-      page.should have_content 'Search Result'
       page.should_not have_selector '.ticket'
     end
 
