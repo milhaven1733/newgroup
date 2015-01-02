@@ -9,6 +9,7 @@ FactoryGirl.define do
       role 'normal'
       after(:create) do |user|
         user.user_info = build(:user_info)
+        user.user_info.address = build(:adress)
         user.save
       end
     end
@@ -24,6 +25,11 @@ FactoryGirl.define do
 
     factory :merchant do
       role 'merchant'
+      after(:create) do |user|
+        user.merchant_info = build(:merchant_info)
+        user.merchant_info.address = build(:adress)
+        user.save
+      end
     end
   end
 end

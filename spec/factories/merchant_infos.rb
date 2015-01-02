@@ -3,7 +3,6 @@ include Faker
 
 FactoryGirl.define do
   factory :merchant_info do
-    user_id 1
     longitude Address.longitude
     latitude Address.latitude
     workday_opening_time "08:30 AM - 10:30 PM"
