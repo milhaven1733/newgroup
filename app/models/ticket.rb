@@ -99,6 +99,8 @@ class Ticket < ActiveRecord::Base
         "#{start_at.strftime('%m/%d/%Y')}<br>#{start_at.strftime('%H:%M %p')} - #{end_at.strftime('%H:%M %p')}".html_safe
       elsif type == :word
         "#{start_at.strftime('%B %d, %Y')}<br>#{start_at.strftime('%H:%M %p')} - #{end_at.strftime('%H:%M %p')}".html_safe
+      elsif type == :start
+        "#{start_at.strftime('%m/%d/%Y')}<br>#{start_at.strftime('%H:%M %p')}".html_safe
       end
     else
       "Invalid ticket time range, Please contact merchant administrator!"
