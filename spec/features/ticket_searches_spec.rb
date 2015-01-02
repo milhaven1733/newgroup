@@ -63,4 +63,33 @@ feature "TicketSearches", :type => :feature do
       Ticket.all.each { |ticket| count += 1 if ticket.flat_price(5, true) >= 40 and ticket.flat_price(5, true) <= 80 }
     end
   end
+
+  describe "search by ticket price" do
+    before do
+      6.times do |i|
+        ticket = FactoryGirl.create(:ticket_with_group_prices)
+        ticket.update(start_at: Date.new(2015, 01, 01) + i.days, end_at: Date.new(2015, 01, 01) + (i + 1).days)
+      end
+    end
+
+    it "should search by date" do
+      visit root_path
+      within('#new_tickets_search') do
+        fill_in 'tickets_search[time_tag_date_gteq]', with: '01/02/2015'
+        fill_in 'tickets_search[time_tag_date_lteq]', with: '01/04/2015'
+        click_button('Search Group Tickets')
+      end
+      page.should have_selector '.ticket', count: 3
+    end
+
+    it "should search by only start date" do
+      visit root_path
+      within('#new_tickets_search') do
+        fill_in 'tickets_search[time_tag_date_gteq]', with: '01/04/2015'
+        click_button('Search Group Tickets')
+      end
+      page.should have_selector '.ticket', count: 3
+
+    end
+  end
 end

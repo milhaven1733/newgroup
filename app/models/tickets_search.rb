@@ -38,7 +38,7 @@ class TicketsSearch
   end
 
   def process_date_param(date)
-    Date.parse(date).strftime("%Y%m%d")
+    Date.strptime(date, '%m/%d/%Y').strftime('%Y%m%d')
   end
 
   def process_time_param(time)

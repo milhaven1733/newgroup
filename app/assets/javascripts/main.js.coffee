@@ -1,6 +1,6 @@
 $ ->
-  $(".datetimepicker,#datetimepicker").datetimepicker()
-  $(".datepicker").datetimepicker({timepicker:false, format:'Y/m/d'})
+  $(".datetimepicker,#datetimepicker").datetimepicker({format: 'm/d/Y H:i'})
+  $(".datepicker").datetimepicker({timepicker:false, format:'m/d/Y'})
   $(".timepicker").datetimepicker({datepicker:false, format:'H:i'})
 
   $(".launch-modal").click ->
