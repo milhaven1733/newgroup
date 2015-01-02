@@ -32,19 +32,28 @@ merchant.create_merchant_info!(latitude: -34.397,
                                     phone: 1234567890,
                                     sales_phone: 1234567890,
                                     sales_email:'sales@email.com')
+merchant.merchant_info.create_address(first: Faker::Address.street_address,
+                                      second: Faker::Address.secondary_address,
+                                      city: Faker::Address.city,
+                                      state: Faker::Address.state,
+                                      zipcode: Faker::Address.zip)
 
-UserInfo.create!(user_id:    user.id,
-                             phone:      Faker::PhoneNumber.phone_number,
-                             address:    Faker::Address.street_address,
-                             zipcode:    Faker::Address.zip,
+user.create_user_info!(phone:      Faker::PhoneNumber.phone_number,
                              group_name: Faker::Company.name,
                              )
-UserInfo.create!(user_id:    student.id,
-                             phone:      Faker::PhoneNumber.phone_number,
-                             address:    Faker::Address.street_address,
-                             zipcode:    Faker::Address.zip,
+user.user_info.create_address(first: Faker::Address.street_address,
+                                      second: Faker::Address.secondary_address,
+                                      city: Faker::Address.city,
+                                      state: Faker::Address.state,
+                                      zipcode: Faker::Address.zip)
+student.create_user_info!(phone:      Faker::PhoneNumber.phone_number,
                              group_name: Faker::Company.name,
                              is_student: true)
+student.user_info.create_address(first: Faker::Address.street_address,
+                                      second: Faker::Address.secondary_address,
+                                      city: Faker::Address.city,
+                                      state: Faker::Address.state,
+                                      zipcode: Faker::Address.zip)
 user.wallet.update!(balance: 10000)
 student.wallet.update!(balance: 10000)
 
