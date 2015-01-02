@@ -10,7 +10,7 @@
       </h1>
       <div class="col-xs-12 col-sm-6">
         <%= image_tag @ticket.image.middle %>
-        <p><%= @ticket.time_range %>
+        <p><%= @ticket.time_range(:start) %>
           <%= link_to "About Merchant>>",merchant_path(@ticket.user),class: "about-merchant-link btn btn-xs button"%>
         </p>
       </div>
@@ -26,7 +26,7 @@
           <span>&nbsp;Per Ticket</span>
         </p>
       <p>
-      <span class="price_tier">Group Price Tier:</span>
+      <span class="price_tier">Group Price Tiers:</span>
       <br/>
       <p>
         <% @ticket.group_prices.try(:each) do |gp| %>

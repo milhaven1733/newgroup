@@ -34,7 +34,7 @@
           <td><%= ticket.category.try(:name) %></td>
           <td><%= ticket.amount %></td>
           <td><%= number_to_currency ticket.oprice %></td>
-          <td><%= ticket.start_at %></td>
+          <td><%= ticket.start_at.strftime("%m/%d/%Y - %H:%M %p") %></td>
           <td><%= link_to ticket.user.try(:name), merchant_path(id: ticket.user_id) %></td>
         </tr>
       <% end %>
