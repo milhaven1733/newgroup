@@ -43,8 +43,7 @@ class HomeController < ApplicationController
   end
 
   def get_session_city
-    #session[:city] || 'Philadelphia'
-    session[:city] || 'NewYork'
+    session[:city] || 'Philadelphia'
   end
 
   def q_params
