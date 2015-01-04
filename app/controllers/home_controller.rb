@@ -19,11 +19,21 @@ class HomeController < ApplicationController
 
   def set_city
     set_session_city(params[:city])
-    redirect_to action: 'index'
+    redirect_to root_path
   end
 
   def about_us
+  end
+  
+  def mobile_search
+    @q = Ticket.search(params[:q])
 
+    if params[:q].present?
+      @q.oprice_in_cents_lteq = params[:q][:oprice_in_cents_lteq].to_f * 100 if params[:q][:oprice_in_cents_lteq].present?
+      @q.oprice_in_cents_gteq = params[:q][:oprice_in_cents_gteq].to_f * 100 if params[:q][:oprice_in_cents_gteq].present?
+    end
+
+    @tickets = @q.result
   end
 
   private
@@ -33,7 +43,8 @@ class HomeController < ApplicationController
   end
 
   def get_session_city
-    session[:city] || 'Philadelphia'
+    #session[:city] || 'Philadelphia'
+    session[:city] || 'NewYork'
   end
 
   def q_params

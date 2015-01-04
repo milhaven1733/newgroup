@@ -1,23 +1,54 @@
+- random = Random.new_seed 
 - content_for :header do
     h1.title GroupEt
-    a href="/search" data-transition="slidedown" class="ui-btn ui-mini ui-icon-search ui-btn-icon-notext ui-corner-all ui-btn-left" 
+    a href="/mobile_search" data-transition="slidedown" class="ui-btn ui-mini ui-icon-search ui-btn-icon-notext ui-corner-all ui-btn-left" 
     = link_to "", new_user_session_path, class: "ui-btn ui-mini ui-icon-user ui-btn-icon-notext ui-corner-all ui-btn-right", data: {transition: "slidefade"}
 
 - content_for :footer do
   div data-role="navbar"
     ul
       li
-        a href="#popupMenu" data={icon: "bullets", rel: "popup", transition: "pop", position_to: "window"}
+        a href="#popupMenu#{random}" data={icon: "bullets", rel: "popup", transition: "pop", position_to: "window"}
       li
-        a href="#" data-icon="location"
+        a href="#set_city#{random}" data={icon: "location", rel: "popup", transition: "pop", position_to: "window"}
 
-#popupMenu data={role: "popup", overlay_theme: 'a', theme: 'a', dimissable: false}
+div id="popupMenu#{random}" data={role: "popup", overlay_theme: 'a', theme: 'a', dimissable: false}
   ul data-inset="true" data-role="listview"
     li data-role="list-divider"  Choose an action
     - Category.limit(12).each do |category|
-      li= link_to category.name, search_path(q: @search_conditions.merge(q_param_name(:category) => category.id))
+      li= link_to category.name, mobile_search_path(q: @search_conditions.merge(q_param_name(:category) => category.id))
 
+div id="set_city#{random}" data={role: "popup", overlay_theme: 'a', theme: 'a', dimissable: false}
+  ul data-inset="true" data-role="listview"
+    li data-role="list-divider" Please set your city
+    li= link_to "Philadelphia", set_city_path(city: "Philadelphia")
+    li= link_to "NewYork", set_city_path(city: "NewYork")
 
-div(class="bar bar-standard bar-header-secondary")
-  = form_tag search_path, method: 'GET' do
-    = search_field_tag "query", @query, placeholder: 'Quick Search' 
+-if @tickets.size > 0
+  .flexslider
+    ul.slides
+      - @tickets.each do |ticket|
+        li= link_to image_tag(ticket.image), ticket
+
+ul#search_result(data-role="listview" data-inset="true")
+  - @top_tickets.each do |ticket|
+    li
+      = link_to ticket do
+        = image_tag ticket.image
+        h2= ticket.name
+        p= ticket.start_at.to_date
+
+- content_for :javascript do
+  javascript:
+    $("body").pagecontainer({ 
+      change: function(){
+        $('.flexslider').flexslider({
+          slideshow: true, 
+          slideshowSpeed: 4000,
+          animation: "slide",
+          animationLoop: true,
+          pauseOnHover: true,
+          directionNav: false,
+        });
+      }
+    }); 

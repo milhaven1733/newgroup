@@ -7,6 +7,7 @@ Rails.application.routes.draw do
   get 'user/:id',      to: "profile#user",     as: "user"
   post 'merchant/:id/like', to: 'profile#like', as: 'like_merchant'
   get '/search',   to: "home#search",      as: :search
+  get '/mobile_search', to: "home#mobile_search", as: :mobile_search
   get '/set_city', to: "home#set_city",    as: :set_city
   get 'about_us',  to: "home#about_us",    as: :about_us
 

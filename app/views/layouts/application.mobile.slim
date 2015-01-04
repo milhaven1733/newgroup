@@ -5,13 +5,15 @@ html
     title Group Et
     meta content="initial-scale=1, maximum-scale=1" name="viewport"
     = stylesheet_link_tag "application_mobile"
+    = javascript_include_tag "application_mobile"
     = csrf_meta_tags
   body
     div(data={role: "page"})
       header(data={role: "header", position: "fixed"})
         = content_for :header
-      = yield
+      div(data={role: "content"})
+        = yield
       footer(data={role: "footer", position: "fixed"})
         = content_for :footer
+      = content_for :javascript
 
-    = javascript_include_tag "application_mobile"
