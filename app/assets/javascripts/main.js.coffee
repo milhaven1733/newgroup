@@ -1,5 +1,5 @@
 $ ->
-  $(".datetimepicker,#datetimepicker").datetimepicker({format: 'm/d/Y H:i'})
+  $(".datetimepicker,#datetimepicker").datetimepicker()
   $(".datepicker").datetimepicker({timepicker:false, format:'m/d/Y'})
   $(".timepicker").datetimepicker({datepicker:false, format:'H:i'})
 
