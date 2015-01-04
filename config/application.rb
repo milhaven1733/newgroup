@@ -24,5 +24,7 @@ module Group
       g.test_framework :minitest, spec: true, fixture: false
     end
     config.assets.paths << Rails.root.join("vendor", "assets", "images")
+    config.assets.paths << Rails.root.join('app', 'assets', 'fonts')
+    config.assets.precompile += %w( *.svg *.eot *.woff *.ttf )
   end
 end

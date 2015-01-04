@@ -1,7 +1,7 @@
 source 'https://rubygems.org'
 #source 'https://ruby.taobao.org'
 
-gem 'rails', '4.2.0.rc3'
+gem 'rails', '~> 4.2.0'
 gem 'pg'
 
 # sass & js
@@ -29,7 +29,7 @@ gem 'simple_form'
 #gem 'ransack', github: 'activerecord-hackery/ransack', branch: 'rails-4.2'
 gem 'ransack', '~> 1.4.1'
 gem 'kaminari'
-gem 'haml-rails'
+gem 'slim'
 
 # payment
 gem 'stripe'
@@ -39,6 +39,9 @@ gem 'priceable'
 gem 'quiet_assets'
 gem 'nested_form_fields'
 gem 'will_paginate'
+gem 'mobile-fu'
+gem 'jquery_mobile_rails'
+
 # preload
 group :development do
   gem 'spring'

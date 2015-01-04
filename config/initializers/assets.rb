@@ -8,3 +8,4 @@ Rails.application.config.assets.version = '1.0'
 # Rails.application.config.assets.precompile += %w( search.js )
 Rails.application.config.assets.precompile += %w( form_validate.js slider.js )
 Rails.application.config.assets.precompile += %w( *.jpg *.png *.gif *.jpeg )
+Rails.application.config.assets.precompile += %w( application_mobile.css application_mobile.js )

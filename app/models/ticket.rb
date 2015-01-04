@@ -71,6 +71,15 @@ class Ticket < ActiveRecord::Base
     last(6).reverse
   end
 
+  attr_accessor :start_at_date, :start_at_time
+  ransacker :start_at_date do
+    Arel.sql('date(start_at)')
+  end
+
+  ransacker :start_at_time do
+    Arel.sql('(start_at)::time')
+  end
+
   def ranked_group_prices
     group_prices.order(range_from: :asc)
   end

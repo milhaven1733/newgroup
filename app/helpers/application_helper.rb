@@ -30,4 +30,8 @@ module ApplicationHelper
   def profile_url
     current_user.merchant? ? merchant_path(current_user) : user_path(current_user)
   end
+
+  def format_datetime(datetime)
+    datetime.try(:strftime, '%I:%M %p')
+  end
 end

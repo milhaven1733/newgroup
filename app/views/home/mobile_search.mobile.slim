@@ -1,0 +1,33 @@
+= content_for :header do
+  h2.title SEARCH
+  = link_to "", root_path, class: "ui-btn ui-mini ui-icon-home ui-btn-icon-notext ui-corner-all ui-btn-left", data: {transition: "slidedown"}
+
+- if params[:q].present? and @tickets.present?
+  ul#search_result(data-role="listview" data-inset="true")
+    - @tickets.each do |ticket|
+      li
+        = link_to ticket do
+          = image_tag ticket.image
+          h2= ticket.name
+          p= ticket.start_at.to_date
+  hr
+
+#search_area
+  h3 Filter by entering at least one field.
+  = search_form_for @q, url: mobile_search_path do |f|
+    = f.text_field :name_cont, placeholder: "Name"
+    = f.select :category_id_eq, Category.all.collect { |c| [c.name, c.id] }, placeholder: "Category", include_blank: true
+
+    label Date From
+    = f.date_field :start_at_date_gteq, value: @q.start_at_date_gteq
+    label Date To
+    = f.date_field :start_at_date_lteq, value: @q.start_at_date_lteq
+    label Time From
+    = f.time_field :start_at_time_gteq, value: @q.start_at_time_gteq
+    label Time To
+    = f.time_field :start_at_time_lteq, value: @q.start_at_time_lteq
+
+    = f.text_field :oprice_in_cents_gteq, placeholder: "Price From", value: @q.oprice_in_cents_gteq.present? ? @q.oprice_in_cents_gteq / 100 : nil
+    = f.text_field :oprice_in_cents_lteq, placeholder: "Price To", value: @q.oprice_in_cents_lteq.present? ? @q.oprice_in_cents_lteq / 100 : nil
+    = f.number_field :amount_lteq, placeholder: "Quantity"
+    = f.submit "Search Group Tickets"

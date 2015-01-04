@@ -1,0 +1,37 @@
+= content_for :header do
+  h2.title= @ticket.name
+  = link_to "", root_path, class: "ui-btn ui-mini ui-icon-home ui-btn-icon-notext ui-corner-all ui-btn-left", data: {transition: "slidedown"}
+
+.ticket
+  = image_tag  @ticket.image
+  .ui-corner-all.custom-corners
+    .ui-bar.ui-bar-a
+      h3 Info
+    .ui-body.ui-body-a
+      p category: #{@ticket.category.try(:name)}
+      p= @ticket.time_range
+
+  .ui-corner-all.custom-corners
+    .ui-bar.ui-bar-a
+      h3 Description
+    .ui-body.ui-body-a
+      = @ticket.desc
+
+  .ui-corner-all.custom-corners
+    .ui-bar.ui-bar-a
+      h3 Price
+    .ui-body.ui-body-a
+      p
+        | Original Price &nbsp;
+        span.purple-circle= "$#{@ticket.oprice}"
+        | &nbsp; Per Ticket
+      - if @ticket.group_prices.present?
+        p Price Tier:
+        - @ticket.group_prices.each do |gp|
+          p
+            span Quantity: #{gp.count_range}; &nbsp;
+            span Price: $#{gp.price}
+      - if current_user.try(:is_student)
+        p Student Discount: #{@ticket.student_discount}
+      p Total Quantity: #{@ticket.amount}
+      p Minimum for Purchase: #{@ticket.minimum_amount}
