@@ -1,5 +1,17 @@
-.main {
-  padding-top: 55px;
-  padding-left: 6px;
-  padding-right: 6px;
+li.ui-li-has-thumb {
+  img {
+    height: 100%;
+  }
+}
+
+.ticket {
+  img {
+    width: 100%;
+  }
+  .purple-circle {
+  	background-color: #75039e;
+  	color: yellow;
+  	padding: 5px;
+    border-radius: 5px;
+  }
 }

@@ -30,6 +30,7 @@ div id="set_city#{random}" data={role: "popup", overlay_theme: 'a', theme: 'a', 
       - @tickets.each do |ticket|
         li= link_to image_tag(ticket.image), ticket
 
+h3 Top Deals In Your City
 ul#search_result(data-role="listview" data-inset="true")
   - @top_tickets.each do |ticket|
     li
