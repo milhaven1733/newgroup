@@ -13,7 +13,9 @@ class HomeController < ApplicationController
   end
 
   def search
-    @tickets_search = TicketsSearch.new(q_params.merge(user: current_user))
+    @tickets_search = TicketsSearch.new(q_params) do |ts|
+      ts.user = current_user
+    end
     @tickets = @tickets_search.search_result(get_session_city).try(:page, params[:page])
   end
 
@@ -26,14 +28,10 @@ class HomeController < ApplicationController
   end
   
   def mobile_search
-    @q = Ticket.search(params[:q])
-
-    if params[:q].present?
-      @q.oprice_in_cents_lteq = params[:q][:oprice_in_cents_lteq].to_f * 100 if params[:q][:oprice_in_cents_lteq].present?
-      @q.oprice_in_cents_gteq = params[:q][:oprice_in_cents_gteq].to_f * 100 if params[:q][:oprice_in_cents_gteq].present?
+    @tickets_search = TicketsSearch.new(q_params) do |ts|
+      ts.user = current_user
     end
-
-    @tickets = @q.result
+    @tickets = @tickets_search.search_result(get_session_city).try(:page, params[:page])
   end
 
   private
@@ -47,16 +45,20 @@ class HomeController < ApplicationController
   end
 
   def q_params
-    params.require(:tickets_search).permit(:name_cont,
-                              :category_id_eq,
-                              :time_tag_date_gteq,
-                              :time_tag_date_lteq,
-                              :time_tag_time_gteq,
-                              :time_tag_time_lteq,
-                              :oprice_gteq,
-                              :oprice_lteq,
-                              :amount_gteq,
-                              :query
-                             )
+    if params[:tickets_search]
+      params.require(:tickets_search).permit(:name,
+                                :category_id,
+                                :date_from,
+                                :date_to,
+                                :time_from,
+                                :time_to,
+                                :price_from,
+                                :price_to,
+                                :amount,
+                                :query
+                               )
+    else
+      {}
+    end
   end
 end
