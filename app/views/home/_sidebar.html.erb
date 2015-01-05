@@ -3,37 +3,37 @@
   <p class='subtitle'>Filter by entering at least one field.</p>
   <%= simple_form_for @tickets_search, url: search_path, method: :get do |f| %>
     <div class="form-group">
-      <%= f.input_field :name_cont, class: "form-control", :placeholder => "Name" %>
+      <%= f.input_field :name, class: "form-control", :placeholder => "Name" %>
     </div>
     <div class="form-group">
-      <%= f.input_field :category_id_eq, collection: category_options, prompt: 'Genre', class: "form-control" %>
+      <%= f.input_field :category_id, collection: category_options, prompt: 'Genre', class: "form-control" %>
     </div>
     <div class="form-group">
-      <%= f.input_field :time_tag_date_gteq, class: "form-control datepicker", placeholder: "Date From" %>
+      <%= f.input_field :date_from, class: "form-control datepicker", placeholder: "Date From" %>
     </div>
     <div class="form-group">
-      <%= f.input_field :time_tag_date_lteq, class: "form-control datepicker", placeholder: "Date To" %>
+      <%= f.input_field :date_to, class: "form-control datepicker", placeholder: "Date To" %>
     </div>
     <div class="form-group">
-      <%= f.input_field :time_tag_time_gteq, class: "form-control timepicker", placeholder: "Time From" %>
+      <%= f.input_field :time_from, class: "form-control timepicker", placeholder: "Time From" %>
     </div>
     <div class="form-group">
-      <%= f.input_field :time_tag_time_lteq, class: "form-control timepicker", placeholder: "Time To" %>
+      <%= f.input_field :time_to, class: "form-control timepicker", placeholder: "Time To" %>
     </div>
     <div class="form-group">
       <%= f.label "Price Range" %>
       <div class="row">
         <div class="col-xs-5">
-          <%= f.input_field :oprice_gteq, class: "form-control" %>
+          <%= f.input_field :price_from, class: "form-control" %>
         </div>
         <div class="col-xs-2 white">To</div>
         <div class="col-xs-5">
-          <%= f.input_field :oprice_lteq, class: "form-control" %>
+          <%= f.input_field :price_to, class: "form-control" %>
         </div>
       </div>
     </div>
     <div class="form-group">
-      <%= f.input_field :amount_gteq, class: "form-control", placeholder: "Quantity" %>
+      <%= f.input_field :amount, class: "form-control", placeholder: "Quantity" %>
     </div>
     <%= f.button :submit, "Search Group Tickets", class: "btn btn-default" %>
   <% end %>
