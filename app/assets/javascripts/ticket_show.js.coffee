@@ -15,3 +15,8 @@ $ ->
       id: ticket_id
       count: $(this).val()
       (data) -> console.log('Calculate Price Success')
+$ ->
+  $('#order_count').keypress (e)->
+    if e.keyCode == 13
+      $(this).blur()
+      return false
