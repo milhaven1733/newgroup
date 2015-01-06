@@ -44,18 +44,18 @@
         = f.input :count, placeholder: "Enter", input_html: {class: "purple-back"}, label: "Quantity:"
 
         label Total Price:
-        input type="text" disabled="true" id="total-price"
+        span id="total-price" $0.00
 
         label Booking Fee:
-        input type="text" disabled="true" id="booking-fee"
+        span id="booking-fee" $0.00
 
         label 
           | Price after discount(per ticket)
-        label
+        span id="flat-price"
           | $
           = @flat_price || @ticket.flat_price(0, current_user.try(:is_student))
 
-        = f.button :submit, "CHECK OUT", class: "button", disabled: true, id: "check-out"
+        = f.button :submit, "CHECK OUT", class: "button", disabled: true, id: "check-out", data: {role: "none"}
 
 - content_for :javascript do
   coffee: 
@@ -80,7 +80,11 @@
           type: "POST"
           success: (data)->
             console.log('Calculate Price Success')
-        })
+        }) 
+
+      $( "body" ).on "pagecontainerloadfailed", (event, ui) ->
+        alert(ui.xhr.responseText)
+        
 
     $ ->
       $('#order_count').keypress (e)->
