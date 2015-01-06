@@ -30,7 +30,7 @@
       <br/>
       <p>
         <% @ticket.group_prices.try(:each) do |gp| %>
-          <p><span class="light-purple small">From <%= gp.count_range%> Get $<%= gp.price %></span></p>
+          <p><span class="light-purple small"><%= gp.count_range%> tickets: $<%= gp.price %> each</span></p>
         <% end %>
       </p>
       </p>
