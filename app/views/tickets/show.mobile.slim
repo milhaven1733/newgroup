@@ -2,7 +2,7 @@
   h2.title= @ticket.name
   = link_to "", root_path, class: "ui-btn ui-mini ui-icon-home ui-btn-icon-notext ui-corner-all ui-btn-left", data: {transition: "slidedown"}
 
-.ticket
+.ticket data={ticket_id: "#{@ticket.id}"}
   = image_tag  @ticket.image
   .ui-corner-all.custom-corners
     .ui-bar.ui-bar-a
@@ -26,7 +26,7 @@
         span.purple-circle= "$#{@ticket.oprice}"
         | &nbsp; Per Ticket
       - if @ticket.group_prices.present?
-        p Price Tier:
+        p Group Price Tier:
         - @ticket.group_prices.each do |gp|
           p
             span Quantity: #{gp.count_range}; &nbsp;
@@ -35,3 +35,52 @@
         p Student Discount: #{@ticket.student_discount}
       p Total Quantity: #{@ticket.amount}
       p Minimum for Purchase: #{@ticket.minimum_amount}
+
+  .ui-corner-all.custom-corners
+    .ui-bar.ui-bar-a
+      h3 Purchase
+    .ui-body.ui-body-a
+      = simple_form_for @order, url: new_ticket_order_path(@ticket), method: :get do |f|
+        = f.input :count, placeholder: "Enter", input_html: {class: "purple-back"}, label: "Quantity:"
+
+        label Total Price:
+        input type="text" disabled="true" id="total-price"
+
+        label Booking Fee:
+        input type="text" disabled="true" id="booking-fee"
+
+        label 
+          | Price after discount(per ticket)
+        label
+          | $
+          = @flat_price || @ticket.flat_price(0, current_user.try(:is_student))
+
+        = f.button :submit, "CHECK OUT", class: "button", disabled: true, id: "check-out"
+
+- content_for :javascript do
+  coffee: 
+    cal_booking_fee = (quantity) ->
+      if quantity > 50 then 10 else 5
+
+    is_exeed = (quantity, amount) ->
+      if quantity > amount then amount else quantity
+
+    $ ->
+      $('#order_count').change ->
+        quantity = $(this).val()
+        booking_fee = cal_booking_fee(quantity)
+        ticket_id = $(".ticket").data("ticket-id")
+        $('#booking-fee').text('$' + booking_fee)
+        $('#order_booking_fee').val(booking_fee)
+        $('#check-out').attr('disabled', false)
+
+        $.post '/tickets/' + ticket_id + '/calc_price',
+          id: ticket_id
+          count: $(this).val()
+          (data) -> console.log('Calculate Price Success')
+    $ ->
+      $('#order_count').keypress (e)->
+        if e.keyCode == 13
+          $(this).blur()
+          return false
+
