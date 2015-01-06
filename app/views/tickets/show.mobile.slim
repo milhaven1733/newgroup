@@ -73,11 +73,15 @@
         $('#booking-fee').text('$' + booking_fee)
         $('#order_booking_fee').val(booking_fee)
         $('#check-out').attr('disabled', false)
+        $.ajax({ 
+          url: "/tickets/#{ticket_id}/calc_price"
+          data: {count: $(this).val()}
+          dataType: "script"
+          type: "POST"
+          success: (data)->
+            console.log('Calculate Price Success')
+        })
 
-        $.post '/tickets/' + ticket_id + '/calc_price',
-          id: ticket_id
-          count: $(this).val()
-          (data) -> console.log('Calculate Price Success')
     $ ->
       $('#order_count').keypress (e)->
         if e.keyCode == 13
