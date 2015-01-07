@@ -9,7 +9,7 @@ Rails.application.routes.draw do
   get '/search',   to: "home#search",      as: :search
   get '/mobile_search', to: "home#mobile_search", as: :mobile_search
   get '/set_city', to: "home#set_city",    as: :set_city
-  get 'about_us',  to: "home#about_us",    as: :about_us
+  get 'about',  to: "home#about",    as: :about
 
   resources :tickets do
     resources :groups do

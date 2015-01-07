@@ -24,7 +24,7 @@ class HomeController < ApplicationController
     redirect_to root_path
   end
 
-  def about_us
+  def about
   end
   
   def mobile_search
