@@ -31,7 +31,11 @@ class HomeController < ApplicationController
     @tickets_search = TicketsSearch.new(q_params) do |ts|
       ts.user = current_user
     end
-    @tickets = @tickets_search.search_result(get_session_city).try(:page, params[:page])
+    if q_params.present?
+      @tickets = @tickets_search.search_result(get_session_city).try(:page, params[:page])
+    else
+      @tickets = nil
+    end
   end
 
   private

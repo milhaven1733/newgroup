@@ -82,9 +82,14 @@
             console.log('Calculate Price Success')
         }) 
 
-      $( "body" ).on "pagecontainerloadfailed", (event, ui) ->
-        alert(ui.xhr.responseText)
-        
+      $("body").pagecontainer({ 
+        loadfailed: (event, ui)->
+          event.preventDefault()
+          alert(ui.xhr.responseText)
+          ui.deferred.reject(ui.absUrl, ui.options)
+        changefailed: (event, ui) ->
+          $(".ui-loader").hide()
+      })
 
     $ ->
       $('#order_count').keypress (e)->
