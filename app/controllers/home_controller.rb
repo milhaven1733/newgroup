@@ -24,9 +24,6 @@ class HomeController < ApplicationController
     redirect_to root_path
   end
 
-  def about_us
-  end
-  
   def mobile_search
     @tickets_search = TicketsSearch.new(q_params) do |ts|
       ts.user = current_user
