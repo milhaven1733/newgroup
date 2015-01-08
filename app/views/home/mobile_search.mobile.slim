@@ -10,6 +10,8 @@
           = image_tag ticket.image
           h2= ticket.name
           p= ticket.start_at.to_date
+
+  = will_paginate @tickets, :page_links => false
   hr
 
 #search_area

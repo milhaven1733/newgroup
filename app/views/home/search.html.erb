@@ -3,7 +3,7 @@
     <%= render 'home/sidebar' %>
   </div>
   <div class='col-sm-9'>
-    <h1 class="center league-gothic">Search Results</h1>
+    <h1 class="center league-gothic">Search Results(<%= @tickets.count %>)</h1>
     <%= render partial: 'shared/ticket', collection: @tickets, as: :ticket %>
     <%= will_paginate @tickets, :page_links => false %>
   </div>
