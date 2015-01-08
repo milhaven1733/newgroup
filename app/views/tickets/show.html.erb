@@ -11,7 +11,7 @@
       <div class="col-xs-12 col-sm-6">
         <%= image_tag @ticket.image.middle %>
         <p><%= @ticket.time_range(:start) %>
-          <%= link_to "About Merchant>>",merchant_path(@ticket.user),class: "about-merchant-link btn btn-xs button"%>
+          <%= link_to "About Venue>>",merchant_path(@ticket.user),class: "about-merchant-link btn btn-xs button"%>
         </p>
       </div>
       <div class="col-xs-12 col-sm-6">

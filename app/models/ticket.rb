@@ -112,7 +112,7 @@ class Ticket < ActiveRecord::Base
         "#{start_at.strftime('%m/%d/%Y')}<br>#{start_at.strftime('%H:%M %p')}".html_safe
       end
     else
-      "Invalid ticket time range, Please contact merchant administrator!"
+      "Invalid ticket time range, Please contact venue administrator!"
     end
   end
 
