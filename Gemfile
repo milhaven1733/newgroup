@@ -30,6 +30,7 @@ gem 'simple_form'
 gem 'ransack', '~> 1.4.1'
 gem 'kaminari'
 gem 'slim'
+gem 'sass-globbing'
 
 # payment
 gem 'stripe'

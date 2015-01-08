@@ -15,3 +15,11 @@ li.ui-li-has-thumb {
     border-radius: 5px;
   }
 }
+
+ul.slides {
+  li a{
+    height: 160px;
+    overflow-y: hidden;
+    float: left;
+  }
+}

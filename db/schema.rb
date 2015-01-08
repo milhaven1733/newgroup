@@ -16,7 +16,7 @@ ActiveRecord::Schema.define(version: 20141231203825) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
-  create_table "adresses", force: true do |t|
+  create_table "adresses", force: :cascade do |t|
     t.string   "first"
     t.string   "second"
     t.string   "zipcode"
@@ -28,14 +28,14 @@ ActiveRecord::Schema.define(version: 20141231203825) do
     t.datetime "updated_at",       null: false
   end
 
-  create_table "categories", force: true do |t|
+  create_table "categories", force: :cascade do |t|
     t.string   "name",       limit: 255
     t.text     "desc"
     t.datetime "created_at"
     t.datetime "updated_at"
   end
 
-  create_table "et_groups", force: true do |t|
+  create_table "et_groups", force: :cascade do |t|
     t.string   "name",          limit: 255
     t.integer  "leader_id"
     t.datetime "created_at"
@@ -45,7 +45,7 @@ ActiveRecord::Schema.define(version: 20141231203825) do
     t.integer  "target_amount"
   end
 
-  create_table "group_prices", force: true do |t|
+  create_table "group_prices", force: :cascade do |t|
     t.integer  "ticket_id"
     t.integer  "range_from"
     t.integer  "range_to"
@@ -55,7 +55,7 @@ ActiveRecord::Schema.define(version: 20141231203825) do
     t.integer  "discount"
   end
 
-  create_table "groups_users", force: true do |t|
+  create_table "groups_users", force: :cascade do |t|
     t.integer  "user_id"
     t.integer  "et_group_id"
     t.datetime "created_at"
@@ -67,7 +67,7 @@ ActiveRecord::Schema.define(version: 20141231203825) do
   add_index "groups_users", ["et_group_id"], name: "index_groups_users_on_et_group_id", using: :btree
   add_index "groups_users", ["user_id"], name: "index_groups_users_on_user_id", using: :btree
 
-  create_table "merchant_infos", force: true do |t|
+  create_table "merchant_infos", force: :cascade do |t|
     t.integer  "user_id"
     t.float    "longitude"
     t.float    "latitude"
@@ -85,7 +85,7 @@ ActiveRecord::Schema.define(version: 20141231203825) do
     t.integer  "ticket_id"
   end
 
-  create_table "order_infos", force: true do |t|
+  create_table "order_infos", force: :cascade do |t|
     t.integer "order_id"
     t.string  "first_address"
     t.string  "secondary_address"
@@ -94,7 +94,7 @@ ActiveRecord::Schema.define(version: 20141231203825) do
     t.string  "zipcode"
   end
 
-  create_table "orders", force: true do |t|
+  create_table "orders", force: :cascade do |t|
     t.integer  "user_id"
     t.integer  "ticket_id"
     t.integer  "count"
@@ -110,7 +110,7 @@ ActiveRecord::Schema.define(version: 20141231203825) do
     t.integer  "billing_address_id"
   end
 
-  create_table "tickets", force: true do |t|
+  create_table "tickets", force: :cascade do |t|
     t.integer  "user_id"
     t.string   "name",              limit: 255
     t.text     "desc"
@@ -130,7 +130,7 @@ ActiveRecord::Schema.define(version: 20141231203825) do
     t.string   "image"
   end
 
-  create_table "time_for_ticket_searches", force: true do |t|
+  create_table "time_for_ticket_searches", force: :cascade do |t|
     t.integer  "ticket_id"
     t.integer  "date"
     t.integer  "time"
@@ -138,7 +138,7 @@ ActiveRecord::Schema.define(version: 20141231203825) do
     t.datetime "updated_at", null: false
   end
 
-  create_table "transactions", force: true do |t|
+  create_table "transactions", force: :cascade do |t|
     t.string   "token"
     t.string   "customer_id"
     t.integer  "transaction_type", default: 0
@@ -149,7 +149,7 @@ ActiveRecord::Schema.define(version: 20141231203825) do
     t.integer  "user_id"
   end
 
-  create_table "user_infos", force: true do |t|
+  create_table "user_infos", force: :cascade do |t|
     t.string   "phone"
     t.boolean  "is_student"
     t.string   "zipcode"
@@ -163,7 +163,7 @@ ActiveRecord::Schema.define(version: 20141231203825) do
     t.integer  "user_id"
   end
 
-  create_table "users", force: true do |t|
+  create_table "users", force: :cascade do |t|
     t.string   "email",                  limit: 255, default: "", null: false
     t.string   "encrypted_password",     limit: 255, default: "", null: false
     t.string   "reset_password_token",   limit: 255
@@ -184,7 +184,7 @@ ActiveRecord::Schema.define(version: 20141231203825) do
   add_index "users", ["email"], name: "index_users_on_email", unique: true, using: :btree
   add_index "users", ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true, using: :btree
 
-  create_table "votes", force: true do |t|
+  create_table "votes", force: :cascade do |t|
     t.integer  "votable_id"
     t.string   "votable_type"
     t.integer  "user_id"
@@ -194,7 +194,7 @@ ActiveRecord::Schema.define(version: 20141231203825) do
 
   add_index "votes", ["user_id"], name: "index_votes_on_user_id", using: :btree
 
-  create_table "wallets", force: true do |t|
+  create_table "wallets", force: :cascade do |t|
     t.integer  "user_id"
     t.integer  "balance_in_cents"
     t.datetime "created_at"

@@ -1,16 +1,17 @@
 /*
  *= require vendor
- *= require_self
  */
+
 // 3 party
 @import "bootstrap-sprockets";
 @import "bootstrap";
 
 // self
-@import "common";
-@import "color";
-@import "custom_fonts";
-@import "home";
-@import "devise";
-@import "ticket";
-@import "merchant_profile";
+@import "web/*";
+//@import "web/common";
+//@import "web/color";
+//@import "web/custom_fonts";
+//@import "web/home";
+//@import "web/devise";
+//@import "web/ticket";
+//@import "web/merchant_profile";

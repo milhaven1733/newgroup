@@ -31,6 +31,7 @@ class TicketsController < ApplicationController
     @total_price = @flat_price * count
     respond_to do |format|
       format.js
+      format.mobile { render template: "tickets/calc_price.js.erb"}
     end
   end
 
