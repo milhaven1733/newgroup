@@ -44,7 +44,7 @@ feature "Mine Tickets" do
           find('#has-student-discount').trigger('click')
           find('#ticket_student_discount').set('10')
           find('#ticket_shipping').set('10.0')
-          find('#ticket_will_call').set(true)
+          find('#ticket_will_call').trigger('click')
 
           click_button "UPLOAD TICKET LISTING"
         end

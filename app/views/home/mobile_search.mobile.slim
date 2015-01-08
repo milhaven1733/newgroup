@@ -2,7 +2,7 @@
   h2.title SEARCH
   = link_to "", root_path, class: "ui-btn ui-mini ui-icon-home ui-btn-icon-notext ui-corner-all ui-btn-left", data: {transition: "slidedown"}
 
-- if params[:q].present? and @tickets.present?
+- if @tickets.present?
   ul#search_result(data-role="listview" data-inset="true")
     - @tickets.each do |ticket|
       li

@@ -17,7 +17,6 @@ class TicketsSearch
       Ticket.search_by(query)
     else
       return Ticket.none unless self.valid?
-      date_time_for_filter
       q = Ticket.by_city(city).search(to_q_hash)
       tickets = q.result(distinct: true)
       tickets.search_by_price_range(price_from, price_to, amount, user.try(:is_student))
@@ -26,24 +25,19 @@ class TicketsSearch
 
   private
 
-  def date_time_for_filter
-    self.date_from = process_date_param(date_from)
-    self.date_to = process_date_param(date_to)
-    self.time_from = process_time_param(time_from)
-    self.time_to = process_time_param(time_to)
-  rescue
-  end
-
   def process_date_param(date)
-    Date.strptime(date, '%m/%d/%Y').strftime('%Y%m%d')
+    Date.strptime(date, '%m/%d/%Y')
+  rescue
+    nil
   end
 
   def process_time_param(time)
-    Time.parse(time).strftime("%H%M")
+    Time.parse(time)
+  rescue
+    nil
   end
 
   def to_q_hash
-    {name_cont: name, category_id_eq: category_id, time_tag_date_gteq: date_from, time_tag_date_lteq: date_to,
-    time_tag_time_gteq: time_from, time_tag_time_lteq: time_to, amount_gteq: amount}
+    {name_cont: name, category_id_eq: category_id, start_at_date_gteq: process_date_param(date_from), start_at_date_lteq: process_date_param(date_to), start_at_time_gteq: process_time_param(time_from), start_at_time_lteq: process_time_param(time_to), amount_gteq: amount}
   end
 end

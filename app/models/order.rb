@@ -25,7 +25,7 @@ class Order < ActiveRecord::Base
     set_shipping_fee
     self.booking_fee ||= 0
     self.count ||= 0
-    self.amount = price * count + shipping + booking_fee
+    self.amount = (price * count + shipping + booking_fee).round(2)
   end
 
   def set_price

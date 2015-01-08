@@ -20,8 +20,8 @@ feature "TicketSearches", :type => :feature do
     it 'should success when given price range' do
       visit root_path
       within('#new_tickets_search') do
-        fill_in 'tickets_search[oprice_gteq]', with: 20
-        fill_in 'tickets_search[oprice_lteq]', with: 50
+        fill_in 'tickets_search[price_from]', with: 20
+        fill_in 'tickets_search[price_to]', with: 50
         click_button('Search Group Tickets')
       end
       count = 0
@@ -33,7 +33,7 @@ feature "TicketSearches", :type => :feature do
     it 'should success when has one side price edge' do
       visit root_path
       within('#new_tickets_search') do
-        fill_in 'tickets_search[oprice_gteq]', with: 20
+        fill_in 'tickets_search[price_from]', with: 20
         click_button('Search Group Tickets')
       end
       count = 0
@@ -44,7 +44,7 @@ feature "TicketSearches", :type => :feature do
     it 'should success when has invalid price value' do
       visit root_path
       within('#new_tickets_search') do
-        fill_in 'tickets_search[oprice_gteq]', with: 'abcd'
+        fill_in 'tickets_search[price_from]', with: 'abcd'
         click_button('Search Group Tickets')
       end
       page.should_not have_selector '.ticket'
@@ -54,8 +54,8 @@ feature "TicketSearches", :type => :feature do
       user.user_info.update(is_student: true)
       visit root_path
       within('#new_tickets_search') do
-        fill_in 'tickets_search[oprice_gteq]', with: 40
-        fill_in 'tickets_search[oprice_lteq]', with: 80
+        fill_in 'tickets_search[price_from]', with: 40
+        fill_in 'tickets_search[price_to]', with: 80
         click_button('Search Group Tickets')
       end
       count = 0
@@ -63,7 +63,7 @@ feature "TicketSearches", :type => :feature do
     end
   end
 
-  describe "search by ticket price" do
+  describe "search by date and time" do
     before do
       6.times do |i|
         ticket = FactoryGirl.create(:ticket_with_group_prices)
@@ -74,8 +74,8 @@ feature "TicketSearches", :type => :feature do
     it "should search by date" do
       visit root_path
       within('#new_tickets_search') do
-        fill_in 'tickets_search[time_tag_date_gteq]', with: '01/02/2015'
-        fill_in 'tickets_search[time_tag_date_lteq]', with: '01/04/2015'
+        fill_in 'tickets_search[date_from]', with: '01/02/2015'
+        fill_in 'tickets_search[date_to]', with: '01/04/2015'
         click_button('Search Group Tickets')
       end
       page.should have_selector '.ticket', count: 3
@@ -84,11 +84,38 @@ feature "TicketSearches", :type => :feature do
     it "should search by only start date" do
       visit root_path
       within('#new_tickets_search') do
-        fill_in 'tickets_search[time_tag_date_gteq]', with: '01/04/2015'
+        fill_in 'tickets_search[date_from]', with: '01/04/2015'
         click_button('Search Group Tickets')
       end
       page.should have_selector '.ticket', count: 3
+    end
+  end
 
+  describe "search by time" do
+    before do
+      6.times do |i|
+        ticket = FactoryGirl.create(:ticket_with_group_prices)
+        ticket.update(start_at: DateTime.new(2015, 01, 01, 01, 0, 0) + i.hours, end_at: DateTime.new(2015, 01, 01, 01, 0, 0) + (i + 1).hours)
+      end
+    end
+
+    it "should get results by time period" do
+      visit root_path
+      within('#new_tickets_search') do
+        fill_in 'tickets_search[time_from]', with: '04:00'
+        fill_in 'tickets_search[time_to]', with: '06:00'
+        click_button('Search Group Tickets')
+      end
+      page.should have_selector '.ticket', count: 3
+    end
+
+    it "should get results by only start time" do
+      visit root_path
+      within('#new_tickets_search') do
+        fill_in 'tickets_search[time_from]', with: '06:00'
+        click_button('Search Group Tickets')
+      end
+      page.should have_selector '.ticket', count: 1
     end
   end
 end

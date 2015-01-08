@@ -26,8 +26,6 @@ class Ticket < ActiveRecord::Base
 
   accepts_nested_attributes_for :group_prices, allow_destroy: true
 
-  after_save :time_parse
-
   scope :search_by_count, ->(count) do
     count ||= 5
     joins(:group_prices)
