@@ -6,10 +6,10 @@ class User < ActiveRecord::Base
 
   mount_uploader :avatar, ImageUploader
 
-  enum role: [:normal, :merchant]
+  enum role: [:normal, :merchant, :admin]
 
   has_many :tickets
-  has_many :et_groups
+  has_many :et_groups, foreign_key: :leader_id
   has_many :votes, foreign_key: :user_id
   has_many :favourites, through: :votes, source: :ticket
   has_one :wallet
