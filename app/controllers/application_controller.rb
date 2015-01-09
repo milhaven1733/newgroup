@@ -11,7 +11,7 @@ class ApplicationController < ActionController::Base
   protected
 
   def configure_permitted_parameters
-    devise_parameter_sanitizer.for(:sign_up) << [:name, :is_student]
+    devise_parameter_sanitizer.for(:sign_up) << [:name, :role]
   end
 
   def force_tablet_html

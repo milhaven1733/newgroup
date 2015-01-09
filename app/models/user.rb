@@ -33,6 +33,10 @@ class User < ActiveRecord::Base
 
   delegate :balance, :balance=, :afford?, to: :wallet
 
+  def merchant?
+    role == 'merchant' and verification
+  end
+
   def address
     if merchant?
       merchant_info.try(:address).try(:show_address)

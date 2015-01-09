@@ -4,6 +4,7 @@ FactoryGirl.define do
     password 'password123456'
     password_confirmation 'password123456'
     sequence(:name) { |n| "example#{n}" }
+    verification true
 
     factory :normal do
       role 'normal'
