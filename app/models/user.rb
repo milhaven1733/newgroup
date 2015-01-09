@@ -37,6 +37,10 @@ class User < ActiveRecord::Base
     role == 'merchant' and verification
   end
 
+  def admin?
+    role == 'admin' and verification
+  end
+
   def address
     if merchant?
       merchant_info.try(:address).try(:show_address)
