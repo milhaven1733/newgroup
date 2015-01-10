@@ -6,8 +6,8 @@ class TicketsController < ApplicationController
     @tickets_search = TicketsSearch.new
 
     respond_to do |format|
-      format.mobile { render 'show.mobile.slim' }
       format.html { render 'show.html.erb' }
+      format.mobile { render 'show.mobile.slim' }
     end
   end
 

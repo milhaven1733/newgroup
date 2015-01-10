@@ -1,3 +1,12 @@
+<% content_for :social_share do %> 
+  <meta property="fb:app_id" content="<%= Rails.application.secrets.facebook["api_key"] %>" />
+  <meta property="og:type" content="website" /> 
+  <meta property="og:url" content="<%= request.original_url %>" />
+  <meta property="og:title" content="<%= @ticket.name %>" />
+  <meta property="og:description" content="<%= @ticket.desc %>" /> 
+  <meta property="og:image" content="<%= request.protocol + request.host_with_port + @ticket.image.middle.to_s %>" /> 
+<% end %>
+
 <div class="row" id="show-ticket">
   <div class="col-xs-12 col-sm-3">
     <%= render 'home/sidebar' %>
@@ -12,6 +21,9 @@
         <%= image_tag @ticket.image.middle %>
         <p><%= @ticket.time_range(:start) %>
           <%= link_to "About Venue>>",merchant_path(@ticket.user),class: "about-merchant-link btn btn-xs button"%>
+          <!-- Share  Begin--> 
+          <%= link_to "share to facebook", gen_ticket_share_url(@ticket), class: "btn btn-xs button" %>
+          <!-- Share  End-->
         </p>
       </div>
       <div class="col-xs-12 col-sm-6">

@@ -34,4 +34,13 @@ module ApplicationHelper
   def format_datetime(datetime)
     datetime.try(:strftime, '%I:%M %p')
   end
+
+  def gen_ticket_share_url(ticket)
+    share_url = "https://www.facebook.com/dialog/share?"
+    share_url << "app_id=#{CGI.escape(Rails.application.secrets.facebook["api_key"])}"
+    share_url << "&display=popup"
+    share_url << "&href=#{ticket_url(ticket)}"
+    share_url << "&redirect_uri=#{ticket_url(ticket)}"
+    share_url
+  end
 end
