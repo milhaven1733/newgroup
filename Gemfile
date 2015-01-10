@@ -42,7 +42,7 @@ gem 'nested_form_fields'
 gem 'will_paginate'
 gem 'mobile-fu'
 gem 'jquery_mobile_rails'
-
+gem 'rails_admin'
 # preload
 group :development do
   gem 'spring'
