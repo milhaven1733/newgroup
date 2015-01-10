@@ -1,0 +1,18 @@
+common: &common
+  MAILER_RECIEVER:
+    - chou.amen@gmail.com
+    #- caok1231@gmail.com
+    #- xiongbo027@gmail.com
+    - ken@seeice.com
+  MAILER_PASSWORD: ''
+  MAILER_SMTP: 'smtp.gmail.com'
+  MAILER_SENDER: 'info@group-et.com'
+development:
+  <<: *common
+test:
+  <<: *common
+production:
+  MAILER_RECIEVER: 'alisa.melekhina@gmail.com'
+  MAILER_PASSWORD: ''
+  MAILER_SMTP: 'smtp.gmail.com'
+  MAILER_SENDER: 'info@group-et.com'
