@@ -13,6 +13,8 @@ Rails.application.routes.draw do
 
   controller :static_page do
     get 'about', as: :about
+    get 'terms', as: :terms
+    get 'privacy', as: :privacy
   end
 
   resources :tickets do
