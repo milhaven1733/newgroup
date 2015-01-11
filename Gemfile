@@ -21,34 +21,37 @@ gem 'cancancan', '~> 1.9'
 
 # image uploader
 gem 'carrierwave'
-gem "mini_magick"
+gem 'mini_magick'
 
 # views
 gem 'tabletastic', github: 'zlx/tabletastic'
 gem 'simple_form'
-#gem 'ransack', github: 'activerecord-hackery/ransack', branch: 'rails-4.2'
 gem 'ransack', '~> 1.4.1'
 gem 'kaminari'
 gem 'slim'
 gem 'sass-globbing'
+gem 'will_paginate'
+gem 'nested_form_fields'
 
 # payment
 gem 'stripe'
 
-# others
-gem 'priceable'
-gem 'quiet_assets'
-gem 'nested_form_fields'
-gem 'will_paginate'
+# mobile
 gem 'mobile-fu'
 gem 'jquery_mobile_rails'
+
+# others
+gem 'priceable'
 gem 'rails_admin'
+gem 'figaro'
+
 # preload
 group :development do
   gem 'spring'
 end
 
 group :test, :development do
+  gem 'quiet_assets'
   gem 'minitest-rails'
   gem 'factory_girl_rails'
   gem 'faker'
@@ -73,6 +76,6 @@ group :test do
   gem 'cucumber-rails', :require=>false
   #Database Cleaner is a set of strategis for cleaing your database in Ruby
   gem 'database_cleaner',git:'https://github.com/bmabey/database_cleaner.git'  
-  gem "poltergeist"
+  gem 'poltergeist'
 end
 

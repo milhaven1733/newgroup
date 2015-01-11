@@ -22,3 +22,6 @@ config/database.yml
 public/uploads
 .DS_Store
 /spring/*.pid
+
+# Ignore application configuration
+/config/application.yml

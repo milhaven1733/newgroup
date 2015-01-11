@@ -1,0 +1,19 @@
+# Add configuration values here, as shown below.
+#
+# pusher_app_id: "2954"
+# pusher_key: 7381a978f7dd7f9a1117
+# pusher_secret: abdc3b896a0ffb85d373
+# stripe_api_key: sk_test_2J0l093xOyW72XUYJHE4Dv2r
+# stripe_publishable_key: pk_test_ro9jV5SNwGb1yYlQfzG17LHK
+
+production:
+  SECRET_KEY_BASE: 01a4a2a4c267547f59cfbd0f6a308e2b04b7f1b999c2522e0d89cb39ccaf27bd5c52d6a33d65e11bcb4668f30dfb5fec340df4642316d514ab999d5649510ff3
+  # database
+  DATABASE_USERNAME: ''
+  DATABASE_PASSWORD: ''
+  # stripe
+  STRIPE_SECRET_KEY: 'sk_test_TTnAqWmWZJJASiismzDK2zRF'
+  STRIPE_PUBLISHABLE_KEY: 'pk_test_Ln8gG4DZmil512Jt09QJOskk'
+  # facebook
+  FACEBOOK_API_KEY: '401645899998793'
+  FACEBOOK_SECRET_KEY: 'e51b7ed9624dec1cb7231cf8f63c69cb'
