@@ -1,7 +1,10 @@
 - random = Random.new_seed 
 - content_for :header do
-    h1.title GroupEt
-    a href="/mobile_search" data-transition="slidedown" class="ui-btn ui-mini ui-icon-search ui-btn-icon-notext ui-corner-all ui-btn-left" 
+  h1.title GroupEt
+  a href="/mobile_search" data-transition="slidedown" class="ui-btn ui-mini ui-icon-search ui-btn-icon-notext ui-corner-all ui-btn-left" 
+  - if current_user
+    = link_to "", "#userpanel", class: "ui-btn ui-mini ui-icon-user ui-btn-icon-notext ui-corner-all ui-btn-right", data: {transition: "slidefade"}
+  - else
     = link_to "", new_user_session_path, class: "ui-btn ui-mini ui-icon-user ui-btn-icon-notext ui-corner-all ui-btn-right", data: {transition: "slidefade"}
 
 - content_for :footer do

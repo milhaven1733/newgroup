@@ -1,0 +1,32 @@
+= content_for :header do
+  h2.title Order for #{@order.try(:ticket).try(:name)}
+  = link_to "", root_path, class: "ui-btn ui-mini ui-icon-home ui-btn-icon-notext ui-corner-all ui-btn-left", data: {transition: "slidedown"}
+  - if current_user
+    = link_to "", "#userpanel", class: "ui-btn ui-mini ui-icon-user ui-btn-icon-notext ui-corner-all ui-btn-right", data: {transition: "slidefade"}
+  - else
+    = link_to "", new_user_session_path, class: "ui-btn ui-mini ui-icon-user ui-btn-icon-notext ui-corner-all ui-btn-right", data: {transition: "slidefade"}
+
+.ticket
+  = link_to (image_tag @order.ticket.image_url), @order.ticket
+  label= @order.ticket.try(:time_range)
+
+  - ticket = @order.ticket
+  label= link_to ticket.try(:name), ticket
+  label= ticket.try(:category).try(:name)
+  label= ticket.desc
+
+  label
+    = number_to_currency @order.price
+    | Per Ticket
+
+  label Quantity: #{@order.count}
+
+  - if current_user.try(:is_student)
+    label
+      | Student Discount:
+      = @order.try(:ticket).try(:student_discount)
+
+  label Shipping Fee: #{number_to_currency(@order.shipping)}
+  label Booking Fee: #{@order.shipping}
+  label Amount: #{number_to_currency(@order.amount)}
+  label Shipping Address: #{@order.shipping_address.try(:show_address)} 

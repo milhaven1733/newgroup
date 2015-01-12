@@ -1,0 +1,62 @@
+= content_for :header do
+  h2.title Check out
+  = link_to "", root_path, class: "ui-btn ui-mini ui-icon-home ui-btn-icon-notext ui-corner-all ui-btn-left", data: {transition: "slidedown"}
+
+= content_for :notice do
+  - if flash[:notice]
+    .p-notice data={role: "popup"}
+      p= flash[:notice]
+  - elsif flash[:error]
+    .p-error data={role: "popup"}
+      p= flash[:error]
+    javascript:
+      $(function(){
+        $('.p-error').popup({
+          create: function(event, ui){
+            $('.p-error').popup('open');
+            alert("xx");
+          }
+        });
+      })
+
+  
+
+= @ticket.name
+
+= simple_form_for @order, url: ticket_orders_path(@ticket) do |f|
+  label Shipping Address:
+  = f.simple_fields_for :shipping_address, @shipping_address do |addr|
+    = addr.input_field :first, placeholder: "Address line 1"
+    = addr.input_field :second, placeholder: "Address line 2"
+    = addr.input_field :city, placeholder: "City"
+    = addr.input_field :state, placeholder: "State"
+    = addr.input_field :zipcode, placeholder: "Zip"
+
+  label Enter Billing Address
+  input#use-shipping type="radio" Use Shipping Address
+  = f.simple_fields_for :billing_address, @billing_address do |addr|
+    = addr.input_field :first, placeholder: "Address line 1"
+    = addr.input_field :second, placeholder: "Address line 2"
+    = addr.input_field :city, placeholder: "City"
+    = addr.input_field :state, placeholder: "State"
+    = addr.input_field :zipcode, placeholder: "Zip"
+
+  label
+    | Price per ticket: $
+    | #{@ticket.flat_price(@order.count, current_user.is_student)}
+  label
+    | Total Ticket quantity: 
+    | #{@order.count}
+  label
+    | Shipping Fee:
+    | #{@ticket.shipping}
+  label
+    | Will Call:
+    = check_box_tag 'order[will_call]'
+  label Booking Fee:  $5
+  label
+    | Total Price: $
+    | #{@order.amount}
+  = link_to "Invite Group Members To Pay", "#"
+  = f.input_field :count, as: :hidden
+  = f.button :submit, 'PAYMENT'

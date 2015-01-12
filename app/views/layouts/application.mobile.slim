@@ -9,9 +9,11 @@ html
     = csrf_meta_tags
   body
     div(data={role: "page"})
+      = render "layouts/user_panel" if current_user
       header(data={role: "header", position: "fixed"})
         = content_for :header
       div(data={role: "content"})
+        = content_for :notice
         = yield
       footer(data={role: "footer", position: "fixed"})
         = content_for :footer
