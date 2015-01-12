@@ -2,7 +2,8 @@ class ProfileController < ApplicationController
   before_action :set_user
 
   def merchant
-    return unless @user.merchant?
+    redirect_to :back and return unless @user.merchant?
+      
     @tickets_search = TicketsSearch.new
     @top_tickets = @user.top_deals
     @more_tickets = @user.more_tickets
@@ -13,7 +14,7 @@ class ProfileController < ApplicationController
   end
 
   def user
-    return if @user.merchant?
+    redirect_to :back and return if @user.merchant?
     @favorite_shows = @user.favourites
     @favorite_venues = @user.favorite_merchants
   end
