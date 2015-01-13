@@ -30,7 +30,7 @@
         span.purple-circle= "$#{@ticket.oprice}"
         | &nbsp; Per Ticket
       - if @ticket.group_prices.present?
-        p Group Price Tier:
+        p.important Group Price Tier:
         - @ticket.group_prices.each do |gp|
           p
             span Quantity: #{gp.count_range}; &nbsp;
@@ -44,22 +44,25 @@
     .ui-bar.ui-bar-a
       h3 Purchase
     .ui-body.ui-body-a
-      = simple_form_for @order, url: new_ticket_order_path(@ticket), method: :get do |f|
-        = f.input :count, placeholder: "Enter", input_html: {class: "purple-back"}, label: "Quantity:"
-
-        label Total Price:
-        span id="total-price" $0.00
-
-        label Booking Fee:
-        span id="booking-fee" $0.00
-
-        label 
-          | Price after discount(per ticket)
-        span id="flat-price"
+      p
+        span.important Price after discount(per ticket) 
+        span.purple-circle id="flat-price"
           | $
           = @flat_price || @ticket.flat_price(0, current_user.try(:is_student))
 
-        = f.button :submit, "CHECK OUT", class: "button", disabled: true, id: "check-out", data: {role: "none"}
+      = simple_form_for @order, url: new_ticket_order_path(@ticket), method: :get do |f|
+        = f.input :count, placeholder: "Enter Quantity", input_html: {class: "purple-back"}, label: false
+
+        p
+          span Total Price: 
+          span.purple-circle id="total-price" $0.00
+
+        p
+          span Booking Fee: 
+          span.purple-circle id="booking-fee" $0.00
+
+        label
+          = f.button :submit, "CHECK OUT", class: "button", disabled: true, id: "check-out", data: {role: "none"}
 
 - content_for :javascript do
   coffee: 
