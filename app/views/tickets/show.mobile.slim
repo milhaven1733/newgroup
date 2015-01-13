@@ -80,7 +80,7 @@
         $('#booking-fee').text('$' + booking_fee)
         $('#order_booking_fee').val(booking_fee)
         $('#check-out').attr('disabled', false)
-        $('#check-out').parent('.ui-btn').removeClass("ui-state-disabled");
+        $('#check-out').parent('.ui-btn').removeClass("ui-state-disabled")
         $.ajax({ 
           url: "/tickets/#{ticket_id}/calc_price"
           data: {count: $(this).val()}
