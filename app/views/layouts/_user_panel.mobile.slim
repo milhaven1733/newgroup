@@ -1,7 +1,7 @@
 #userpanel data={role: "panel", position: 'right', display: 'overlay', theme: 'b'}
   ul data={role: "listview"}
-    li= link_to 'Tickets', mine_orders_path if can?(:manage, Ticket)
-    li= link_to 'Profile', mine_profile_path
-    li= link_to 'Wallet', mine_wallet_path
+    /li= link_to 'Tickets', mine_orders_path if can?(:manage, Ticket)
+    /li= link_to 'Profile', mine_profile_path
+    /li= link_to 'Wallet', mine_wallet_path
     li= link_to 'Orders', mine_orders_path
     li= button_to 'Log out', destroy_user_session_path, method: :delete

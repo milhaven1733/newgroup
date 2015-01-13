@@ -62,7 +62,7 @@
           span.purple-circle id="booking-fee" $0.00
 
         label
-          = f.button :submit, "CHECK OUT", class: "button", disabled: true, id: "check-out", data: {role: "none"}
+          = f.button :submit, "CHECK OUT", class: "btn btn-positive btn-block", disabled: true, id: "check-out"
 
 - content_for :javascript do
   coffee: 
@@ -80,6 +80,7 @@
         $('#booking-fee').text('$' + booking_fee)
         $('#order_booking_fee').val(booking_fee)
         $('#check-out').attr('disabled', false)
+        $('#check-out').parent('.ui-btn').removeClass("ui-state-disabled");
         $.ajax({ 
           url: "/tickets/#{ticket_id}/calc_price"
           data: {count: $(this).val()}

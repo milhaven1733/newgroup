@@ -1,0 +1,23 @@
+= content_for :header do
+  h2.title Order Listing
+  = link_to "", root_path, class: "ui-btn ui-mini ui-icon-home ui-btn-icon-notext ui-corner-all ui-btn-left", data: {transition: "slidedown"}
+  - if current_user
+    = link_to "", "#userpanel", class: "ui-btn ui-mini ui-icon-user ui-btn-icon-notext ui-corner-all ui-btn-right", data: {transition: "slidefade"}
+
+ul(data-role="listview" data-inset="true")
+  - @orders.each do |order|
+    li
+      = link_to mine_order_path(order) do
+        - ticket = order.try(:ticket)
+        = image_tag ticket.try(:image_thumb)
+        h3= ticket.try(:name)
+        p= ticket.time_range(:word)
+        p
+          span Price Per Ticket: 
+          span= order.price
+        p
+          span Count: 
+          span= order.count
+        p
+          span Amount: 
+          span= order.amount

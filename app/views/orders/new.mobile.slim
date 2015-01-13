@@ -1,54 +1,64 @@
 = content_for :header do
   h2.title Check out
   = link_to "", root_path, class: "ui-btn ui-mini ui-icon-home ui-btn-icon-notext ui-corner-all ui-btn-left", data: {transition: "slidedown"}
+  - if current_user
+    = link_to "", "#userpanel", class: "ui-btn ui-mini ui-icon-user ui-btn-icon-notext ui-corner-all ui-btn-right", data: {transition: "slidefade"}
 
-= content_for :notice do
-  - if flash[:notice]
-    .p-notice data={role: "popup"}
-      p= flash[:notice]
-  - elsif flash[:error]
-    .p-error data={role: "popup"}
-      p= flash[:error] 
-    javascript:
-      / TODO: need to fix navigate that jqm refresh the page after load
-      $.mobile.navigate("#{new_ticket_order_path}")
-
-= @ticket.name
+p
+  span.important= @ticket.name
 
 = simple_form_for @order, url: ticket_orders_path(@ticket) do |f|
-  label Shipping Address:
-  = f.simple_fields_for :shipping_address, @shipping_address do |addr|
-    = addr.input :first, placeholder: "Address line 1", label: false
-    = addr.input :second, placeholder: "Address line 2", label: false
-    = addr.input :city, placeholder: "City", label: false
-    = addr.input :state, placeholder: "State", label: false
-    = addr.input :zipcode, placeholder: "Zip", label: false
+  .ui-corner-all.custom-corners
+    .ui-bar.ui-bar-a
+      h3 Shipping Address
+    .ui-body.ui-body-a
+      = f.simple_fields_for :shipping_address, @shipping_address do |addr|
+        = addr.input :first, placeholder: "Address line 1", label: false
+        = addr.input :second, placeholder: "Address line 2", label: false
+        = addr.input :city, placeholder: "City", label: false
+        = addr.input :state, placeholder: "State", label: false
+        = addr.input :zipcode, placeholder: "Zip", label: false
 
-  label Enter Billing Address
-  input#use-shipping type="radio" Use Shipping Address
-  = f.simple_fields_for :billing_address, @billing_address do |addr|
-    = addr.input :first, placeholder: "Address line 1", label: false
-    = addr.input :second, placeholder: "Address line 2", label: false
-    = addr.input :city, placeholder: "City", label: false
-    = addr.input :state, placeholder: "State", label: false
-    = addr.input :zipcode, placeholder: "Zip", label: false
+  .ui-corner-all.custom-corners
+    .ui-bar.ui-bar-a
+      h3 Billing Address
+    .ui-body.ui-body-a
+      label
+        input#use-shipping type="checkbox"
+        span Use Shipping Address
+      = f.simple_fields_for :billing_address, @billing_address do |addr|
+        = addr.input :first, placeholder: "Address line 1", label: false
+        = addr.input :second, placeholder: "Address line 2", label: false
+        = addr.input :city, placeholder: "City", label: false
+        = addr.input :state, placeholder: "State", label: false
+        = addr.input :zipcode, placeholder: "Zip", label: false
 
-  label
-    | Price per ticket: $
-    | #{@ticket.flat_price(@order.count, current_user.is_student)}
-  label
-    | Total Ticket quantity: 
-    | #{@order.count}
-  label
-    | Shipping Fee:
-    | #{@ticket.shipping}
-  label
-    | Will Call:
-    = check_box_tag 'order[will_call]'
-  label Booking Fee:  $5
-  label
-    | Total Price: $
-    | #{@order.amount}
-  = link_to "Invite Group Members To Pay", "#"
-  = f.input_field :count, as: :hidden
-  = f.button :submit, 'PAYMENT'
+  .ui-corner-all.custom-corners
+    .ui-bar.ui-bar-a
+      h3 Payment
+    .ui-body.ui-body-a
+      p
+        | Price per ticket: $
+        | #{@ticket.flat_price(@order.count, current_user.is_student)}
+      p
+        | Total Ticket quantity: 
+        | #{@order.count}
+      p
+        | Shipping Fee:
+        | #{@ticket.shipping}
+      p Booking Fee:  $5
+      label 
+        | Will Call:
+        = check_box_tag 'order[will_call]'
+
+      p
+        span Total Price:  
+        span.purple-circle= "$#{@order.amount}"
+
+      = link_to "Invite Group Members To Pay", "#"
+      = f.input_field :count, as: :hidden
+      = f.button :submit, 'PAYMENT'
+
+- content_for :javascript
+  javascript:
+    $.mobile.navigate("#{new_ticket_order_path}")
