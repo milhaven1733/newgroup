@@ -8,38 +8,30 @@
       p= flash[:notice]
   - elsif flash[:error]
     .p-error data={role: "popup"}
-      p= flash[:error]
+      p= flash[:error] 
     javascript:
-      $(function(){
-        $('.p-error').popup({
-          create: function(event, ui){
-            $('.p-error').popup('open');
-            alert("xx");
-          }
-        });
-      })
-
-  
+      / TODO: need to fix navigate that jqm refresh the page after load
+      $.mobile.navigate("#{new_ticket_order_path}")
 
 = @ticket.name
 
 = simple_form_for @order, url: ticket_orders_path(@ticket) do |f|
   label Shipping Address:
   = f.simple_fields_for :shipping_address, @shipping_address do |addr|
-    = addr.input_field :first, placeholder: "Address line 1"
-    = addr.input_field :second, placeholder: "Address line 2"
-    = addr.input_field :city, placeholder: "City"
-    = addr.input_field :state, placeholder: "State"
-    = addr.input_field :zipcode, placeholder: "Zip"
+    = addr.input :first, placeholder: "Address line 1", label: false
+    = addr.input :second, placeholder: "Address line 2", label: false
+    = addr.input :city, placeholder: "City", label: false
+    = addr.input :state, placeholder: "State", label: false
+    = addr.input :zipcode, placeholder: "Zip", label: false
 
   label Enter Billing Address
   input#use-shipping type="radio" Use Shipping Address
   = f.simple_fields_for :billing_address, @billing_address do |addr|
-    = addr.input_field :first, placeholder: "Address line 1"
-    = addr.input_field :second, placeholder: "Address line 2"
-    = addr.input_field :city, placeholder: "City"
-    = addr.input_field :state, placeholder: "State"
-    = addr.input_field :zipcode, placeholder: "Zip"
+    = addr.input :first, placeholder: "Address line 1", label: false
+    = addr.input :second, placeholder: "Address line 2", label: false
+    = addr.input :city, placeholder: "City", label: false
+    = addr.input :state, placeholder: "State", label: false
+    = addr.input :zipcode, placeholder: "Zip", label: false
 
   label
     | Price per ticket: $

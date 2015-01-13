@@ -18,4 +18,12 @@ class SessionsController < Devise::SessionsController
 
     redirect_to after_sign_in_path_for(resource)
   end
+
+  def destroy
+    signed_out = (Devise.sign_out_all_scopes ? sign_out : sign_out(resource_name))
+    set_flash_message :notice, :signed_out if signed_out && is_flashing_format?
+    yield if block_given?
+
+    redirect_to root_path
+  end
 end

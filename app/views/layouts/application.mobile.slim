@@ -6,7 +6,7 @@ html
     meta content="initial-scale=1, maximum-scale=1" name="viewport"
     = stylesheet_link_tag "application_mobile"
     = javascript_include_tag "application_mobile"
-    = csrf_meta_tags
+    = csrf_meta_tags 
   body
     div(data={role: "page"})
       = render "layouts/user_panel" if current_user
