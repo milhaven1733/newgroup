@@ -1,6 +1,8 @@
 li.ui-li-has-thumb {
   img {
     height: 100%;
+    top: 50% !important;
+    margin-top: -2.5em;
   }
 }
 
