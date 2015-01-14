@@ -1,0 +1,17 @@
+- content_for :header do
+  h1.title Profile
+  a href="/mobile_search" data-transition="slidedown" class="ui-btn ui-mini ui-icon-search ui-btn-icon-notext ui-corner-all ui-btn-left" 
+  - if current_user
+    = link_to "", "#userpanel", class: "ui-btn ui-mini ui-icon-user ui-btn-icon-notext ui-corner-all ui-btn-right", data: {transition: "slidefade"}
+
+= simple_form_for current_user, url: mine_profile_path, method: :patch, html: {enctype: "multipart/form-data", data: {ajax: "false"}} do |f|
+  - if current_user.merchant?
+    = render partial: 'merchant_profile_form.mobile.slim', locals: {f: f}
+  - else
+    = render partial: 'user_profile_form.mobile.slim', locals: {f: f}
+
+  = f.button :submit, 'Update'
+
+- content_for :javascript
+  javascript:
+    $.mobile.navigate("#{mine_edit_profile_path}")

@@ -1,0 +1,23 @@
+.ui-corner-all.custom-corners
+  .ui-bar.ui-bar-a
+    h3 Base Info
+  .ui-body.ui-body-a
+    = f.input :email, disabled: true, as: :email, label: false
+    = f.input :name, label: false, placeholder: "Name" 
+    = f.input :avatar, as: :file, label: false, placeholder: "Avatar" 
+    = f.simple_fields_for :merchant_info, @merchant_info do |form| 
+      = form.input :orgnization, required: true, label: false, placeholder: "Organization"
+      = form.association :category, label: false, placeholder: "Categor"
+      = form.input :workday_opening_time, label: false, placeholder: "Workday Opening Time"
+      = form.input :sat_opening_time, label: false, placeholder: "Sat Opening Time" 
+      = form.input :sun_opening_time, label: false, placeholder: "Sun Opening Time"
+      = form.input :url, as: :url, label: false, placeholder: "Url"
+      = form.input :sales_phone, as: :tel, label: false, placeholder: "Sales Phone" 
+      = form.input :sales_email, required: true, as: :email, label: false, placeholder: "Sales Email" 
+      label Address
+      = form.simple_fields_for :address, @address do |addr_field| 
+        = addr_field.input :first, label: false, placeholder: 'First Line'
+        = addr_field.input :second, label: false, placeholder: 'Second Line'
+        = addr_field.input :city, label: false, placeholder: "City"
+        = addr_field.input :state, label: false, placeholder: "State" 
+        = addr_field.input :zipcode, label: false, placeholder: "Zipcode" 

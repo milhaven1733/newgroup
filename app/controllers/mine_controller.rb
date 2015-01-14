@@ -8,7 +8,11 @@ class MineController < ApplicationController
   def update_profile
     final_param = current_user.merchant? ? merchant_param : user_param
     if current_user.update(final_param)
-      redirect_to action: :profile
+      respond_to do |format|
+        format.html { redirect_to action: :profile }
+        format.mobile { redirect_to mine_edit_profile_path }
+      end
+      
     else
       render mine_edit_profile_path, error: current_user.errors.full_messages.join(', ')
     end

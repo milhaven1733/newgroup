@@ -1,0 +1,19 @@
+= content_for :header do
+  h2.title Favorite Tickets
+  = link_to "", root_path, class: "ui-btn ui-mini ui-icon-home ui-btn-icon-notext ui-corner-all ui-btn-left", data: {transition: "slidedown"}
+  - if current_user
+    = link_to "", "#userpanel", class: "ui-btn ui-mini ui-icon-user ui-btn-icon-notext ui-corner-all ui-btn-right", data: {transition: "slidefade"}
+
+ul(data-role="listview" data-inset="true")
+  - @favourite_tickets.each do |ticket|
+    li
+      = link_to ticket do
+        = image_tag ticket.try(:image_thumb)
+        h3= ticket.name
+        p= ticket.time_range(:word)
+        p
+          span Amount: 
+          span= ticket.amount
+        p
+          span Price: 
+          span= number_to_currency ticket.oprice

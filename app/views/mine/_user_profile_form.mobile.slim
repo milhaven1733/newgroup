@@ -1,0 +1,20 @@
+.ui-corner-all.custom-corners
+  .ui-bar.ui-bar-a
+    h3 Base Info
+  .ui-body.ui-body-a
+    = image_tag current_user.try(:avatar_url), size: '80x80'
+    = f.input :email, disabled: true, label: false
+    = f.input :name, required: true, label: false
+    = f.input :avatar, as: :file, label: false
+    = f.simple_fields_for :user_info, @user_info do |form|
+      = form.input :phone, as: :tel, label: false, placeholder: "Phone"
+      = form.input :group_name, label: false, placeholder: "Group Name"
+      = form.input :number_of_group_members, label: false, placeholder: "group members number"
+      = form.input :university, label: false, placeholder: "University"
+      label Address
+      = form.simple_fields_for :address, @address do |addr_field|
+        = addr_field.input :first, label: false, placeholder: "First Line"
+        = addr_field.input :second, label: false, placeholder: "Second Line"
+        = addr_field.input :city, label: false, placeholder: "City"
+        = addr_field.input :state, label: false, placeholder: "State"
+        = addr_field.input :zipcode, label: false, placeholder: "Zipcode"

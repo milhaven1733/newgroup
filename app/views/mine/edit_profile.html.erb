@@ -9,7 +9,7 @@
 				<% if current_user.merchant? %>
 				  <%= render partial: 'merchant_profile_form', locals: {f: f} %>
         <% else %>
-          <%= render partial: 'user_profile_form', locals: {f: f} %>
+          <%= render partial: 'user_profile_form.html.erb', locals: {f: f} %>
 		    <% end %>
 	      <%= f.button :submit, 'Update Your Profile' %>
 	    </div>
