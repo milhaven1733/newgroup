@@ -8,6 +8,6 @@
   = f.text_field :name, placeholder: 'Name'
   = f.password_field :password, autocomplete: "off", placeholder: "Password"
   = f.password_field :password_confirmation, autocomplete: "off", placeholder: "Password Confirmation"
-  = f.select :role, User.roles.keys
+  = f.select :role, [[:normal], [:venue, :merchant]]
 
   = f.submit "Sign up", class: 'btn btn-positive btn-block'
