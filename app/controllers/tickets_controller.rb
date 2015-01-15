@@ -28,7 +28,7 @@ class TicketsController < ApplicationController
     count = params[:count].to_i
     @valid = count > 0 && (@ticket.amount - count) >= 0
     @flat_price = @ticket.flat_price(count, current_user.try(:is_student))
-    @total_price = @flat_price * count
+    @total_price = (@flat_price * count).round(2)
     respond_to do |format|
       format.js
       format.mobile { render template: "tickets/calc_price.js.erb"}
