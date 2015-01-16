@@ -1,5 +1,4 @@
 source 'https://rubygems.org'
-#source 'https://ruby.taobao.org'
 
 gem 'rails', '~> 4.2.0'
 gem 'pg'
@@ -50,6 +49,14 @@ group :development do
   gem 'spring'
 end
 
+# deploy
+group :development do
+  gem 'capistrano', '~> 3.3.0'
+  gem 'capistrano-rvm'
+  gem 'capistrano-bundler'
+  gem 'capistrano-rails', '~> 1.1.2'
+end
+
 group :test, :development do
   gem 'quiet_assets'
   gem 'minitest-rails'
@@ -79,3 +86,7 @@ group :test do
   gem 'poltergeist'
 end
 
+ 
+group :production do
+  gem 'puma'
+end
