@@ -41,7 +41,7 @@ set :use_sudo, false
 set :rails_env, 'production'
 set :depoly_via, :remote_cache
 set :puma_config_path, -> { File.join(current_path, "config", "puma.rb") }
-set :puma_pid,  -> { File.join(shared_path, "tmp", "pids", "puma.alink.pid") }
+set :puma_pid,  -> { File.join(shared_path, "tmp", "pids", "puma.group.pid") }
 
 namespace :deploy do
   desc 'Restart application'
