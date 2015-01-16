@@ -230,6 +230,7 @@ GEM
       net-ssh (>= 2.6.5)
     net-ssh (2.9.2)
     netrc (0.10.2)
+    newrelic_rpm (3.9.0.229)
     nokogiri (1.6.5)
       mini_portile (~> 0.6.0)
     orm_adapter (0.5.0)
@@ -441,6 +442,7 @@ DEPENDENCIES
   minitest-rails
   mobile-fu
   nested_form_fields
+  newrelic_rpm
   pg
   poltergeist
   priceable
