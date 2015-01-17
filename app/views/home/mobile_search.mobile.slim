@@ -18,7 +18,7 @@
   h3 Filter by entering at least one field.
   = simple_form_for @tickets_search, url: mobile_search_path, method: :get do |f|
     = f.text_field :name, placeholder: "Name"
-    = f.select :category_id, Category.all.collect { |c| [c.name, c.id] }, placeholder: "Category", include_blank: true
+    = f.select :category_id, Category.all.collect { |c| [c.name, c.id] }, include_blank: true, selected: @category_id
 
     label Date From
     = f.date_field :date_from

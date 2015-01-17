@@ -25,6 +25,7 @@ class HomeController < ApplicationController
   end
 
   def mobile_search
+    @category_id = q_params && q_params[:category_id]
     @tickets_search = TicketsSearch.new(q_params) do |ts|
       ts.user = current_user
     end
