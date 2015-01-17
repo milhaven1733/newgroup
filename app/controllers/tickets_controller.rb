@@ -1,5 +1,6 @@
 class TicketsController < ApplicationController
   before_action :set_ticket
+  authorize_resource
 
   def show
     @order = Order.new
