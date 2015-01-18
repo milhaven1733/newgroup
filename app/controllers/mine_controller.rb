@@ -1,5 +1,6 @@
 class MineController < ApplicationController
   before_action :authenticate_user!
+  authorize_resource class: false
 
   def profile
     @favourite_tickets = current_user.favourites

@@ -13,7 +13,6 @@ class TicketsController < ApplicationController
   end
 
   def like
-    fail 'unauth' if current_user.blank?
     ticket = Ticket.find(params[:id])
     if current_user.tickets_voted?(ticket)
       current_user.favourites.delete(ticket)
@@ -25,6 +24,7 @@ class TicketsController < ApplicationController
     end
   end
 
+  #TODO need to refator
   def calc_price
     count = params[:count].to_i
     @valid = count > 0 && (@ticket.amount - count) >= 0

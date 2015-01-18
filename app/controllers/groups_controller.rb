@@ -1,6 +1,7 @@
 class GroupsController < ApplicationController
   before_action :set_ticket
   before_action :set_group, only: [:join_pay]
+  before_action :authenticate_user!
 
   def new
     @group = @ticket.groups.new

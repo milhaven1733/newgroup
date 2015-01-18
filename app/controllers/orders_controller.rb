@@ -1,6 +1,7 @@
 class OrdersController < ApplicationController
   before_action :set_ticket
   before_action :authenticate_user!
+  authorize_resource
 
   def new
     @shipping_address = Adress.new
@@ -29,9 +30,9 @@ class OrdersController < ApplicationController
       render :new and return
     end
   rescue Exception => e
-      logger.error("pay bill error: #{e}")
-      flash[:error] = 'Order pay failed'
-      render :new
+    logger.error("pay bill error: #{e}")
+    flash[:error] = 'Order pay failed'
+    render :new
   end
 
   private
