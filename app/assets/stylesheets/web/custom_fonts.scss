@@ -1,65 +1,65 @@
 
 @font-face {
   font-family: 'OpenSans';
-  src:url('opensans-condbold.eot');
-  src:url('opensans-condbold.eot?#iefix') format('embedded-opentype'),
-    font_url('opensans-condbold.svg#opensans-condbold') format('svg'),
-    font_url('opensans-condbold.woff') format('woff'),
-    font_url('opensans-condbold.ttf') format('truetype');
+  src:font-url('opensans-condbold.eot');
+  src:font-url('opensans-condbold.eot?#iefix') format('embedded-opentype'),
+    font-url('opensans-condbold.svg#opensans-condbold') format('svg'),
+    font-url('opensans-condbold.woff') format('woff'),
+    font-url('opensans-condbold.ttf') format('truetype');
   font-weight: bold;
   font-style: bold;
 }
 
 @font-face {
   font-family: 'OpenSans';
-  src:url('opensans-regular.eot');
-  src:url('opensans-regular.eot?#iefix') format('embedded-opentype'),
-    font_url('opensans-regular.svg#opensans-regular') format('svg'),
-    font_url('opensans-regular.woff') format('woff'),
-    font_url('opensans-regular.ttf') format('truetype');
+  src:font-url('opensans-regular.eot');
+  src:font-url('opensans-regular.eot?#iefix') format('embedded-opentype'),
+    font-url('opensans-regular.svg#opensans-regular') format('svg'),
+    font-url('opensans-regular.woff') format('woff'),
+    font-url('opensans-regular.ttf') format('truetype');
   font-weight: normal;
   font-style: normal;
 }
 
 @font-face {
   font-family: 'OpenSans';
-  src:url('opensans-semibold.eot');
-  src:url('opensans-semibold.eot?#iefix') format('embedded-opentype'),
-    font_url('opensans-semibold.svg#opensans-semibold') format('svg'),
-    font_url('opensans-semibold.woff') format('woff'),
-    font_url('opensans-semibold.ttf') format('truetype');
+  src:font-url('opensans-semibold.eot');
+  src:font-url('opensans-semibold.eot?#iefix') format('embedded-opentype'),
+    font-url('opensans-semibold.svg#opensans-semibold') format('svg'),
+    font-url('opensans-semibold.woff') format('woff'),
+    font-url('opensans-semibold.ttf') format('truetype');
   font-weight: 500;
   font-style: 500;
 }
 
 @font-face {
   font-family: 'OpenSans';
-  src:url('OpenSans-SemiboldItalic.ttf');
+  src:font-url('OpenSans-SemiboldItalic.ttf');
   font-weight: bold;
   font-style: italic;
 }
 
 @font-face {
   font-family: 'rock';
-  src:url('rock.eot');
-  src:url('rock.eot?#iefix') format('embedded-opentype'),
-    font_url('rock.svg#rock') format('svg'),
-    font_url('rock.woff') format('woff'),
-    font_url('rock.ttf') format('truetype');
+  src:font-url('rock.eot');
+  src:font-url('rock.eot?#iefix') format('embedded-opentype'),
+    font-url('rock.svg#rock') format('svg'),
+    font-url('rock.woff') format('woff'),
+    font-url('rock.ttf') format('truetype');
   font-weight: normal;
   font-style: normal;
 }
 
 @font-face {
   font-family: 'Oswald';
-  src:url('Oswald-Regular.otf');
+  src:font-url('Oswald-Regular.otf');
   font-weight: normal;
   font-style: normal;
 }
 
 @font-face {
   font-family: 'LeagueGothic';
-  src:url('LeagueGothic-Regular.otf');
+  src:font-url('LeagueGothic-Regular.otf');
   font-weight: normal;
   font-style: normal;
 }
