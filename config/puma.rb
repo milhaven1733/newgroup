@@ -1,12 +1,14 @@
-user = "brtr"                                                                                                                                                                    
-application = "group"          
+user = "brtr"
+application = "group"
+path = "/home/#{user}/apps/#{application}/shared"
  
 port 5000
-threads 0, 4                   
+threads 0, 4
 workers 1
-      
-pidfile "/home/#{user}/apps/#{application}/shared/tmp/pids/puma.#{application}.pid"
-      
+
+pidfile "#{path}/tmp/pids/puma.#{application}.pid"
+stdout_redirect "#{path}/log/puma.stdout", "#{path}/log/puma.stderr", true
+
 preload_app!
 on_worker_boot do
   ActiveSupport.on_load(:active_record) do
