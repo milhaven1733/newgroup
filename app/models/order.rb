@@ -14,9 +14,9 @@ class Order < ActiveRecord::Base
 
   accepts_nested_attributes_for :shipping_address, :billing_address
 
-  PayByResult = [:sucess, :not_enough_money, :not_enough_tickets, :not_ready]
+  PAY_BY_RESULT = [:sucess, :not_enough_money, :not_enough_tickets, :not_ready]
 
-  scope :merchant_orders, ->(user_id) { self.joins(:ticket).where(tickets: { user_id: user_id }) }
+  scope :merchant_orders, ->(user_id) { joins(:ticket).where(tickets: { user_id: user_id }) }
 
   before_create :calc_amount
 
@@ -38,5 +38,5 @@ class Order < ActiveRecord::Base
 
   def shipping_fee_included?
     !will_call
-  end
+  end 
 end

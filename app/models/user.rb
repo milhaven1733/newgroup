@@ -85,6 +85,10 @@ class User < ActiveRecord::Base
     email.match(/\.edu\Z/) ? true : false
   end
 
+  def pay_order!(order_amount)
+    wallet.update!(balance: wallet.balance - order_amount)
+  end 
+
   private
 
   def default_role

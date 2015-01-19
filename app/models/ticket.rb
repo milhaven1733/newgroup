@@ -127,6 +127,10 @@ class Ticket < ActiveRecord::Base
     (for_student ? flat_discount_for_student(count) : group_price_by(count).try(:discount)) || 0
   end
 
+  def minus_purchased_quantity! purchase_quantity
+    self.update!(amount: amount - purchase_quantity)
+  end
+
   private
   def group_price_by count
     ranked_group_prices

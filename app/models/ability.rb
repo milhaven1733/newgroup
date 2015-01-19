@@ -7,7 +7,7 @@ class Ability
   end
 
   def user_rules
-    if @user.merchant? or @user.admin?
+    if @user.merchant? || @user.admin?
       send("#{@user.role}_rules")
     else
       normal_rules

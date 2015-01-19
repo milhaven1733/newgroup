@@ -1,0 +1,11 @@
+TooManyStatements:
+  enabled: true
+  exclude:
+  - initialize
+  max_statements: 6
+
+PrimaDonnaMethod:
+  enabled: false
+
+IrresponsibleModule:
+  enabled: false
