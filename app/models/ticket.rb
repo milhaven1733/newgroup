@@ -100,18 +100,23 @@ class Ticket < ActiveRecord::Base
     TimeForTicketSearch.create_time_tag(self.id, self.start_at)
   end
 
+  # TODO: move this to helper
   def time_range(type = :number)
     if (start_at and end_at) and (start_at.to_date <= end_at.to_date) && (end_at > start_at)
       if type == :number
-        "#{start_at.strftime('%m/%d/%Y')}<br>#{start_at.strftime('%H:%M %p')} - #{end_at.strftime('%H:%M %p')}".html_safe
+        "#{start_at.strftime('%m/%d/%Y')}<br>#{to_day_time(start_at)} - #{to_day_time(end_at)}".html_safe
       elsif type == :word
-        "#{start_at.strftime('%B %d, %Y')}<br>#{start_at.strftime('%H:%M %p')} - #{end_at.strftime('%H:%M %p')}".html_safe
+        "#{start_at.strftime('%B %d, %Y')}<br>#{to_day_time(start_at)} - #{to_day_time(end_at)}".html_safe
       elsif type == :start
-        "#{start_at.strftime('%m/%d/%Y')}<br>#{start_at.strftime('%H:%M %p')}".html_safe
+        "#{start_at.strftime('%m/%d/%Y')}<br>#{to_day_time(start_at)}".html_safe
       end
     else
       "Invalid ticket time range, Please contact venue administrator!"
     end
+  end
+
+  def to_day_time(date_time)
+    date_time.strftime('%H:%M %p')
   end
 
   def sold
