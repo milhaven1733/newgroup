@@ -4,7 +4,7 @@
       <ul>
         <% Category.limit(12).each do |category| %>
           <li>
-          <%= link_to category.name, search_path('tickets_search[category_id_eq]' => category.id) %>
+          <%= link_to category.name, search_path('tickets_search[category_id]' => category.id) %>
           </li>
         <% end %>
       </ul>
