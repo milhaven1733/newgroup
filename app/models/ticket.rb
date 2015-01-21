@@ -26,8 +26,7 @@ class Ticket < ActiveRecord::Base
 
   accepts_nested_attributes_for :group_prices, allow_destroy: true
 
-  scope :search_by_count, ->(count) do
-    count ||= 5
+  scope :search_by_count, ->(count = 5) do
     joins(:group_prices)
     .where(':count BETWEEN group_prices.range_from AND group_prices.range_to', count: count)
   end
@@ -39,8 +38,9 @@ class Ticket < ActiveRecord::Base
     sql_price_to = price_to ? (sql_price + ' <= :price_to') : ''
     sql_and = (price_from and price_to) ? ' AND ' : ''
 
-    search_by_count(count)
+    count ? search_by_count(count)
     .where(sql_price_from + sql_and + sql_price_to, price_from: price_from, price_to: price_to)
+    : where(sql_price_from + sql_and + sql_price_to, price_from: price_from, price_to: price_to)
   end
 
   scope :search_by, ->(query) do
