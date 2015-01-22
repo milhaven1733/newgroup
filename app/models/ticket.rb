@@ -1,5 +1,5 @@
 class Ticket < ActiveRecord::Base
-  CITIES = %w( Philadelphia NewYork )
+  CITIES = ['Philadelphia', 'New York']
 
   priceable :oprice, :shipping
 
