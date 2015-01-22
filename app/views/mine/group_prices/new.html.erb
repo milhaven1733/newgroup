@@ -1,8 +1,8 @@
 <div id="group-prices-tier" class="purple-back">
   <h2 class="center yellow">Add group price for <%= @ticket.name %></h2>
   <%= simple_form_for [:mine, @ticket, GroupPrice.new], html: {class: 'col-md-6 col-md-offset-3'} do |f| %>
-    <%= f.input_field :range_from, placeholder: 'Ticket Quantity Range From: 10' %>
-    <%= f.input_field :range_to, placeholder: 'Ticket Quantity Range To: 100' %>
+    <%= f.input_field :range_from, placeholder: 'Minimum' %>
+    <%= f.input_field :range_to, placeholder: 'Maximum' %>
     <%= f.input_field :discount, placeholder: 'Discount: 20%' %>
     <%= f.button :submit %>
   <% end %>
