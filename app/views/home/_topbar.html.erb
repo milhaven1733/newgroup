@@ -2,7 +2,7 @@
   <% if controller_name == 'home' %>
     <div class="container">
       <ul>
-        <% Category.each do |category| %>
+        <% Category.all.each do |category| %>
           <li>
           <%= link_to category.name, search_path('tickets_search[category_id]' => category.id) %>
           </li>

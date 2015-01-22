@@ -41,7 +41,7 @@
 				 </p>
 				<p>
 					<label class="purple">Shipping Fee:</label>
-					&nbsp;&nbsp;$<%= @ticket.shipping %>
+					&nbsp;&nbsp;<%= number_to_currency @ticket.shipping %>
 				</p>
         <p>
 					<label class="purple">Will Call:</label>

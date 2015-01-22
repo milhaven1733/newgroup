@@ -33,7 +33,7 @@
         </p>
         <p class="original_price">
           <span class="purple-back circle-angle">
-            $<%= @ticket.oprice %>
+            <%= number_to_currency(@ticket.oprice) %>
           </span>
           <span>&nbsp;Per Ticket</span>
         </p>

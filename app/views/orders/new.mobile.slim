@@ -45,7 +45,7 @@ p
         | #{@order.count}
       p
         | Shipping Fee:
-        | #{@ticket.shipping}
+        | #{number_to_currency @ticket.shipping}
       p Booking Fee:  $5
       label 
         | Will Call:
