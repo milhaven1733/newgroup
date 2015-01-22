@@ -17,8 +17,7 @@ class GroupsController < ApplicationController
   end
 
   def join_pay
-    @group_user = @group.groups_users.new group_user_params.merge(user: current_user, status: :paid)
-    @group_user.save
+    @group_user = @group.groups_users.create group_user_params_for_pay
   end
 
   private
@@ -37,5 +36,9 @@ class GroupsController < ApplicationController
 
   def group_user_params
     params.require(:groups_user).permit(:amount)
+  end
+
+  def group_user_params_for_pay
+    group_user_params.merge(user: current_user, status: :paid)
   end
 end

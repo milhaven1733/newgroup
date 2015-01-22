@@ -31,6 +31,7 @@ class Ability
 
   def merchant_rules
     can :manage, :mine
+    can [:show, :calc_price], Ticket
     can :manage, Ticket, user_id: @user.id
     # for order
     can [:index, :update, :show], Order do |order|
