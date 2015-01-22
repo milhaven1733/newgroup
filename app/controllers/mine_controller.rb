@@ -15,7 +15,7 @@ class MineController < ApplicationController
         format.mobile { redirect_to mine_edit_profile_path }
       end 
     else
-      render mine_edit_profile_path, error: current_user.errors.full_messages.join(', ')
+      render :edit_profile
     end
   end
   

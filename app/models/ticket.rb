@@ -136,6 +136,14 @@ class Ticket < ActiveRecord::Base
     self.update!(amount: amount - purchase_quantity)
   end
 
+  def merchant_name
+    user.try(:name)
+  end
+
+  def category_name
+    category.try(:name)
+  end
+
   private
   def group_price_by count
     ranked_group_prices
