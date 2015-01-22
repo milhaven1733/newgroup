@@ -11,7 +11,13 @@ class ApplicationController < ActionController::Base
     redirect_to main_app.root_path, :alert => exception.message
   end
 
+  helper_method :get_session_city
+
   protected
+
+  def get_session_city
+    session[:city] || 'Philadelphia'
+  end
 
   def configure_permitted_parameters
     devise_parameter_sanitizer.for(:sign_up) << [:name, :role]

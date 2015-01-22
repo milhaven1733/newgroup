@@ -1,5 +1,4 @@
 class HomeController < ApplicationController
-  helper_method :get_session_city
 
   def index
     @tickets = Ticket.by_city(get_session_city)
@@ -40,10 +39,6 @@ class HomeController < ApplicationController
 
   def set_session_city(city)
     session[:city] = city
-  end
-
-  def get_session_city
-    session[:city] || 'Philadelphia'
   end
 
   def q_params
