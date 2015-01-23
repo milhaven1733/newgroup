@@ -30,6 +30,8 @@ class Ticket < ActiveRecord::Base
     joins(:group_prices)
     .where(':count BETWEEN group_prices.range_from AND group_prices.range_to', count: count)
   end
+  
+  scope :sorted, ->(sort_type) { sort_type == 'title_up' ? order(name: :asc) : order(name: :desc) }
 
   scope :search_by_price_range, ->(price_from, price_to, count, is_student = false) do
     sql_student_discount = is_student ? 'tickets.student_discount' : '0'
