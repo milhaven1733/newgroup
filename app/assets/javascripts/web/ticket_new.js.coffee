@@ -99,3 +99,8 @@ $ ->
 
   $('#ticket_oprice').change ->
     $('#ticket_group_prices_attributes_0_price').attr("value", $(this).val())
+  $('#ticket_minimum_amount').change ->
+    min_amount = $("#ticket_minimum_amount").val()
+    if min_amount < 5
+      alert("You must enter a quantity of 5 or greater")
+
