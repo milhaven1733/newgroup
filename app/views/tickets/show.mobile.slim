@@ -27,7 +27,7 @@
     .ui-body.ui-body-a
       p
         | Original Price &nbsp;
-        span.purple-circle= "#{number_to_currency @ticket.oprice}"
+        span.purple-circle= "#{@ticket.oprice_to_currency}"
         | &nbsp; Per Ticket
       - if @ticket.group_prices.present?
         p.important Group Price Tier:

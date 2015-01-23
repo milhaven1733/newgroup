@@ -53,6 +53,14 @@ class Ticket < ActiveRecord::Base
 
   self.per_page = 6
 
+  def oprice_to_currency
+    ActionController::Base.helpers.number_to_currency( oprice )
+  end
+
+  def shipping_to_currency
+    ActionController::Base.helpers.number_to_currency(shipping)
+  end
+
   def image_url
     image.try(:url) || 'default_pic.jpg'
   end

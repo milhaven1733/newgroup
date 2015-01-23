@@ -8,7 +8,7 @@ module ApplicationHelper
   end
   
   def show_shipping_fee(order)
-    order.shipping_fee_included? ? number_to_currency(order.shipping) : "Will Call"
+    order.shipping_fee_included? ? order.shipping_to_currency : "Will Call"
   end
   
   def category_options

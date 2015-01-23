@@ -11,7 +11,7 @@
             <td><%= link_to ticket.name, ticket %></td>
             <td><%= ticket.category.try(:name) %></td>
             <td><%= ticket.amount %></td>
-            <td><%= number_to_currency ticket.oprice %></td>
+            <td><%= ticket.oprice_to_currency %></td>
             <td><%= ticket.start_at %></td>
             <td><%= link_to ticket.user.try(:name), merchant_path(id: ticket.user_id) %></td>
           </tr>
