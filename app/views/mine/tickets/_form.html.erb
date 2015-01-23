@@ -1,4 +1,4 @@
-<%= simple_form_for([:mine, @ticket], html: {class: 'form-horizontal'}, wrapper: :clean) do |f| %>
+<%= simple_form_for([:mine, @ticket], html: {class: 'form-horizontal col-md-11'}, wrapper: :clean) do |f| %>
   <%= f.input_field :city, collection: Ticket::CITIES, prompt: 'Please Select a City...' %>
   <%= f.association :category, prompt: 'Please Select a Genre...', label: false %>
   <%= f.input_field :name, placeholder: 'Title' %>
@@ -20,7 +20,7 @@
 
   <div id='discount' class='row'>
     <div class='container'>
-      <div class='col-xs-8' id='additional_discount'>
+      <div class='col-xs-4' id='additional_discount'>
         <span><input type='checkbox' id='has-student-discount'/></span>
         <span> Additional Discount for Students?</span>
       </div>

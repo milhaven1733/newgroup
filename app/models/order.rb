@@ -20,6 +20,10 @@ class Order < ActiveRecord::Base
 
   before_create :calc_amount
 
+  def shipping_to_currency
+    ActionController::Base.helpers.number_to_currency(shipping)
+  end
+
   def calc_amount
     set_price
     set_shipping_fee

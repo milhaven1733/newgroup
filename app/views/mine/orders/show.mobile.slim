@@ -39,8 +39,8 @@
           | Student Discount:
           = @order.try(:ticket).try(:student_discount)
 
-      p Shipping Fee: #{number_to_currency(@order.shipping)}
-      p Booking Fee: #{@order.shipping}
+      p Shipping Fee: #{order.shipping_to_currency}
+      p Booking Fee: #{order.shipping_to_currency}
       p
         span Amount: 
         span.purple-circle #{number_to_currency(@order.amount)}

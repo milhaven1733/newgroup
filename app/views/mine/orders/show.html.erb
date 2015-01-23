@@ -29,7 +29,7 @@
         <% end %>
         <p>
         <span class="light-purple"> Shipping Fee: </span>
-        <span id="shipping"><%= number_to_currency(@order.shipping) %></span>
+        <span id="shipping"><%= @order.shipping_to_currency %></span>
         </p>
         <p>
         <span class="light-purple"> Booking Fee: </span>
