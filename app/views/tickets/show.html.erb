@@ -44,7 +44,9 @@
       <br/>
       <p>
         <% @ticket.group_prices.try(:each) do |gp| %>
-          <p><span class="light-purple small"><%= gp.count_range%> tickets: $<%= gp.price %> each</span></p>
+          <!-- <p><span class="light-purple small "> -->
+          <p><span>
+          <%= gp.count_range%> tickets: <span class="purple-back circle-angle"><%= 100-gp.discount %>% off</span></span></p>
         <% end %>
       </p>
       </p>
