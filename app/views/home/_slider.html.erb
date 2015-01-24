@@ -1,10 +1,10 @@
 <div id='slider' class="flexslider">
-  <% if @tickets.size > 0 %>
+  <% if @sliders.size > 0 %>
     <ul class="slides">
-      <% @tickets.limit(5).each do |ticket| %>
+      <% @sliders.each do |slider| %>
         <li>
-          <%= link_to image_tag(ticket.image), ticket %>
-          <p class="flex-caption"><%= ticket.desc %></p>
+          <%= link_to image_tag(slider.slider_image), slider.ticket %>
+          <p class="flex-caption"><%= slider.ticket.desc %></p>
         </li>
       <% end %>
     </ul>
