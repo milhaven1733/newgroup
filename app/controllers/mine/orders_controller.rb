@@ -6,6 +6,8 @@ module Mine
     def index
       if current_user.normal?
         @orders = current_user.orders.order(id: :desc).page(params[:page]).per_page(20)
+      elsif !current_user.verification?
+        render :text => "You need verification"
       elsif current_user.merchant?
         @orders = Order.merchant_orders(current_user.id).page(params[:page]).per_page(20)
       end
