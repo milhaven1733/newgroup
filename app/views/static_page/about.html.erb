@@ -1,5 +1,5 @@
 <!-- This file will remove to public, because this will be a static file. -->
-<div class="container" id="about-us">
+<div id="about-us">
 	<div class="row">
 		<h1 class="about text-center" style="font-size:40px;">ABOUT US</h1>
     <p>
@@ -41,7 +41,7 @@
 			</p>
 		</div>
 	</div>
-	<div class="row">
+	<div class="row" style='margin-top: 30px;'>
 		<div class="col-xs-8 col-xs-offset-2 specific">
 			<p class="center"><%= image_tag "fees.png" %></p>
 			<h3 style="font-size:28px">Fees</h3>
@@ -74,7 +74,8 @@
 			</p>
 		</div>
 	</div>
-	<div class="row biographical"> <div class="col-xs-11 col-sm-8 bottom"  style="padding-top:80px;">
+  <div class="row biographical" style="padding-top:80px;">
+    <div class="col-xs-12 col-sm-9">
       <a name='faq'></a>
 			<label class="name"><i><span style="color: #e6dc1d">Ken</span>&nbsp;Lu</i></label>
 			<p class="position"><b>CTO</b></p>
@@ -83,7 +84,7 @@
 			</p>
 		</div>
 		<div class="col-xs-12 col-sm-3">
-			<%= image_tag "ken.jpeg" %>
+			<%= image_tag "ken.jpeg", class: 'right' %>
 		</div>
 	</div>
 	<h3 class="our-team yellow"><i>FAQ</i></h3>
