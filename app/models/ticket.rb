@@ -113,11 +113,11 @@ class Ticket < ActiveRecord::Base
   def time_range(type = :number)
     if (start_at and end_at) and (start_at.to_date <= end_at.to_date) && (end_at > start_at)
       if type == :number
-        "#{start_at.strftime('%m/%d/%Y')}<br>#{start_at.strftime('%H:%M %p')} - #{end_at.strftime('%H:%M %p')}".html_safe
+        "#{start_at.strftime('%m/%d/%Y')} #{start_at.strftime('%H:%M %p')} - #{end_at.strftime('%H:%M %p')}".html_safe
       elsif type == :word
-        "#{start_at.strftime('%B %d, %Y')}<br>#{start_at.strftime('%H:%M %p')} - #{end_at.strftime('%H:%M %p')}".html_safe
+        "#{start_at.strftime('%B %d, %Y')} #{start_at.strftime('%H:%M %p')} - #{end_at.strftime('%H:%M %p')}".html_safe
       elsif type == :start
-        "#{start_at.strftime('%m/%d/%Y')}<br>#{start_at.strftime('%H:%M %p')}".html_safe
+        "#{start_at.strftime('%m/%d/%Y')} #{start_at.strftime('%H:%M %p')}".html_safe
       end
     else
       "Invalid ticket time range, Please contact venue administrator!"
