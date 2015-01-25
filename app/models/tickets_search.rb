@@ -17,6 +17,7 @@ class TicketsSearch
       Ticket.search_by(query)
     else
       return Ticket.none unless self.valid?
+
       q = Ticket.by_city(city).search(to_q_hash)
       tickets = q.result(distinct: true)
       tickets.search_by_price_range(price_from, price_to, amount, user.try(:is_student))

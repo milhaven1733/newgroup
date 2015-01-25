@@ -2,13 +2,14 @@ class ApplicationController < ActionController::Base
   # Prevent CSRF attacks by raising an exception.
   # For APIs, you may want to use :null_session instead.
   protect_from_forgery with: :exception
-  before_filter :force_tablet_html
+
   has_mobile_fu
+  before_action :force_tablet_html
+  before_action :set_request_format
 
   before_action :configure_permitted_parameters, if: :devise_controller?
-  before_filter :set_request_format
   rescue_from CanCan::AccessDenied do |exception|
-    redirect_to main_app.root_path, :alert => exception.message
+    redirect_to main_app.root_path, alert: exception.message
   end
 
   helper_method :get_session_city

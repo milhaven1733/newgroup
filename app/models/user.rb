@@ -23,6 +23,7 @@ class User < ActiveRecord::Base
   accepts_nested_attributes_for :merchant_info
   accepts_nested_attributes_for :user_info
 
+  validates :name, presence: true
   #validates :email, format: { 
     #with: /\.edu\Z/, 
     #message: 'student account must regirster with .edu email' 
@@ -84,6 +85,10 @@ class User < ActiveRecord::Base
   def student_email_valid?
     email.match(/\.edu\Z/) ? true : false
   end
+
+  def pay_order!(order_amount)
+    wallet.update!(balance: wallet.balance - order_amount)
+  end 
 
   private
 

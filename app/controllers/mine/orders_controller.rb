@@ -2,6 +2,7 @@ module Mine
   class OrdersController < ApplicationController
     before_action :authenticate_user!
     before_action :set_order, only: [:checkout, :show]
+    authorize_resource
 
     def index
       if current_user.normal?

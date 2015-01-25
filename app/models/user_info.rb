@@ -7,6 +7,6 @@ class UserInfo < ActiveRecord::Base
   before_create :set_student
 
   def set_student
-    self.is_student = true if is_student.nil? and user.student_email_valid?
+    self.is_student = true if is_student.blank? and user.student_email_valid?
   end
 end

@@ -1,0 +1,26 @@
+TooManyStatements:
+  enabled: true
+  exclude:
+  - initialize
+  max_statements: 6
+
+PrimaDonnaMethod:
+  enabled: false
+
+IrresponsibleModule:
+  enabled: false
+
+BooleanParameter:
+  enabled: false
+
+ControlParameter:
+  enabled: false
+
+RepeatedConditional:
+  enabled: false
+
+DuplicateMethodCall:
+  max_calls: 2
+
+UncommunicativeVariableName:
+  enabled: false

@@ -2,14 +2,26 @@
 	<h1>Edit Profile</h1>
 	<hr/>
 	<%= simple_form_for current_user, url: mine_profile_path, method: :patch, wrapper: :clean do |f| %>
-	  <%= f.error_notification %>
+    <!---TODO error doesnot display complete--->
+    <% if current_user.errors.any? %>
+      <div id="error_explanation">
+        <div class="alert alert-danger" role='alert'>
+          The form contains <%= pluralize(current_user.errors.count, "error") %>.
+          <ul>
+            <% current_user.errors.full_messages.each do |msg| %>
+              <li><%= msg %></li>
+            <% end %>
+          </ul>
+        </div>
+      </div>
+    <% end %>
 
 	  <div class="form-group">
 	    <div class="col-xs-offset- col-xs-10">
 				<% if current_user.merchant? %>
 				  <%= render partial: 'merchant_profile_form', locals: {f: f} %>
         <% else %>
-          <%= render partial: 'user_profile_form.html.erb', locals: {f: f} %>
+          <%= render partial: 'user_profile_form', locals: {f: f} %>
 		    <% end %>
 	      <%= f.button :submit, 'Update Your Profile' %>
 	    </div>
@@ -17,4 +29,4 @@
 	<% end -%>
 	
 </div>
-<%= javascript_include_tag 'form_validate' %>
+<%= javascript_include_tag 'web/form_validate' %>

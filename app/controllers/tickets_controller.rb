@@ -1,5 +1,6 @@
 class TicketsController < ApplicationController
   before_action :set_ticket
+  authorize_resource
 
   def show
     @order = Order.new
@@ -12,7 +13,6 @@ class TicketsController < ApplicationController
   end
 
   def like
-    fail 'unauth' if current_user.blank?
     ticket = Ticket.find(params[:id])
     if current_user.tickets_voted?(ticket)
       current_user.favourites.delete(ticket)
@@ -24,6 +24,7 @@ class TicketsController < ApplicationController
     end
   end
 
+  #TODO need to refator
   def calc_price
     count = params[:count].to_i
     @valid = count > 0 && (@ticket.amount - count) >= 0
@@ -31,7 +32,7 @@ class TicketsController < ApplicationController
     @total_price = (@flat_price * count).round(2)
     respond_to do |format|
       format.js
-      format.mobile { render template: "tickets/calc_price.js.erb"}
+      format.mobile { render template: 'tickets/calc_price.js.erb' }
     end
   end
 

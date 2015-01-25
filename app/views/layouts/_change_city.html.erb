@@ -7,7 +7,7 @@
       </div>
       <div class="modal-body">
         <%= form_tag set_city_path, method: :get do %>
-          <%= select_tag 'city', options_for_select(Ticket::CITIES, get_session_city), class: 'form-control' %>
+          <%= select_tag 'city', options_for_select(Ticket::CITIES, session_city), class: 'form-control' %>
         </div>
         <div class="modal-footer">
           <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>

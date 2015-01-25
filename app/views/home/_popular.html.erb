@@ -6,9 +6,7 @@
   <div class="row">
     <% @top_tickets.in_groups_of(2) do |tickets| %>
       <div class='row'>
-        <% tickets.try(:each) do |ticket| %>
-          <%= render partial: 'shared/ticket', locals: {ticket: ticket} %>
-        <% end %>
+        <%= render partial: 'shared/ticket', collection: tickets, as: :ticket %>
       </div>
     <% end %>
   </div>

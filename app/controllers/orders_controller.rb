@@ -1,21 +1,29 @@
 class OrdersController < ApplicationController
   before_action :set_ticket
   before_action :authenticate_user!
+  authorize_resource
 
   def new
     @shipping_address = Adress.new
     @billing_address = Adress.new
+
     if params[:order]
-      cookies[:count] = { value: params[:order][:count], expired: Time.now + 1.hour }
+      cookies[:count] = { value: params[:order][:count], 
+                          expired: Time.now + 1.hour }
     end
-    @order = Order.new(count: cookies[:count] || 5, ticket: @ticket, user: current_user)
+
+    @order = Order.new(count: cookies[:count] || 5, 
+                       ticket: @ticket, 
+                       user: current_user)
     @order.calc_amount
   end
 
   def create
-    @order = @ticket.orders.new(order_params
-                                .merge(user: current_user, status: :created))
+    @order = @ticket.orders.new(
+      order_params.merge(user: current_user, status: :created)
+    )
     @order.calc_amount
+    
     unless @order.valid?
       flash[:error] = @order.errors.full_messages.join(', ')
       render :new and return
@@ -29,9 +37,9 @@ class OrdersController < ApplicationController
       render :new and return
     end
   rescue Exception => e
-      logger.error("pay bill error: #{e}")
-      flash[:error] = 'Order pay failed'
-      render :new
+    logger.error("pay bill error: #{e}")
+    flash[:error] = 'Order pay failed'
+    render :new
   end
 
   private
