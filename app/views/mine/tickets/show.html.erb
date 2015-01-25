@@ -1,10 +1,10 @@
-<div class='main clearfix purple-back'>
+<div class='main clearfix purple-back row'>
   <h3 class='center'><%= @ticket.name %></h3>
-  <div class='img-section'>
+  <div class='img-section col-lg-5'>
     <%= image_tag @ticket.image, class: 'ticket-image' %>
     <%= image_tag @ticket.sitting_map, class: 'ticket-image' %>
   </div>
-  <div class='info-section col-lg-6'>
+  <div class='info-section col-lg-7'>
     <div class='info desc'>
       <div class='title'>City:</div>
       <div class='value'><%= @ticket.city %></div>
@@ -27,7 +27,7 @@
     </div>
     <div class='oprice info'>
       <div class='title'>Original Price:</div>
-      <div class='value'><%= ticket.oprice_to_currency %></div>
+      <div class='value'><%= @ticket.oprice_to_currency %></div>
     </div>
     <div class='oprice info'>
       <div class='title'>Student discount:</div>
@@ -35,7 +35,7 @@
     </div>
     <div class='oprice info'>
       <div class='title'>Shipping Fee:</div>
-      <div class='value'><%= ticket.shipping_to_currency %></div>
+      <div class='value'><%= @ticket.shipping_to_currency %></div>
     </div>
     <div class='oprice info'>
       <div class='title'>Will Call:</div>
@@ -47,14 +47,14 @@
         <%= link_to 'Add Group Price', new_mine_ticket_group_price_path(@ticket) %>
         <% @ticket.try(:ranked_group_prices).try(:each) do |gp| %>
           <p id='group-price-<%= gp.id %>'>
-            <%= render_group_price gp %>  <%= link_to 'delete', [:mine, @ticket, gp], remote: true, method: 'DELETE' %>
+          <%= render_group_price gp %>  <%= link_to 'delete', [:mine, @ticket, gp], remote: true, method: 'DELETE' %>
           </p>
         <% end -%>
       </div>
     </div>
     <div class="info">
-      <%= link_to 'Edit', edit_mine_ticket_path(@ticket) %> |
-      <%= link_to 'Back', mine_tickets_path %>
+      <%= link_to 'Edit', edit_mine_ticket_path(@ticket), class: "btn btn-primary" %>
+      <%= link_to 'Back', mine_tickets_path, class: "btn btn-default" %>
     </div>
   </div>
 </div>

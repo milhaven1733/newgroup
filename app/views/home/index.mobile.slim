@@ -30,8 +30,8 @@ div id="set_city#{random}" data={role: "popup", overlay_theme: 'a', theme: 'a', 
 -if @tickets.size > 0
   .flexslider
     ul.slides
-      - @tickets.limit(5).each do |ticket|
-        li= link_to image_tag(ticket.image), ticket
+      - @sliders.each do |slider|
+        li= link_to image_tag(slider.slider_image), slider.ticket
 
 h3 Top Deals In Your City
 ul#search_result(data-role="listview" data-inset="true")

@@ -2,6 +2,7 @@ module Mine
   class GroupPricesController < ApplicationController
     before_action :authenticate_user!
     before_action :set_ticket
+    authorize_resource
 
     def new
       redirect_to root_path unless current_user.merchant?

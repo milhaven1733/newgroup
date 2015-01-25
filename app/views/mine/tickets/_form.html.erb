@@ -1,4 +1,4 @@
-<%= simple_form_for([:mine, @ticket], html: {class: 'form-horizontal col-md-11', onkeypress:'return event.keyCode != 13;'}, wrapper: :clean) do |f| %>
+<%= simple_form_for([:mine, @ticket], html: {class: 'form-horizontal', onkeypress:'return event.keyCode != 13;'}, wrapper: :clean) do |f| %>
   <%= f.input_field :city, collection: Ticket::CITIES, prompt: 'Please Select a City...' %>
   <%= f.association :category, prompt: 'Please Select a Genre...', label: false %>
   <%= f.input_field :name, placeholder: 'Title' %>

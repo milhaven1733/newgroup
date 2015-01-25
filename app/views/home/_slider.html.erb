@@ -1,5 +1,5 @@
 <div id='slider' class="flexslider">
-  <% if @sliders.size > 0 %>
+  <% if @tickets.present? %>
     <ul class="slides">
       <% @sliders.each do |slider| %>
         <li>

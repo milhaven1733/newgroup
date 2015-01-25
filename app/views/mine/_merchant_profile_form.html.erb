@@ -1,23 +1,21 @@
-<div class="form-inputs">
-  <%= f.input :email, disabled: true, as: :email, input_html: { style: "color: #fffc00" } %>
-  <%= f.input :name %>
-  <%= f.input :avatar, as: :file %>
-  <%= f.simple_fields_for :merchant_info, @merchant_info do |form| %>
-    <%= form.input :orgnization, required: true %>
-    <%= form.association :category %>
-    <%= form.input :workday_opening_time %>
-    <%= form.input :sat_opening_time %>
-    <%= form.input :sun_opening_time %>
-    <%= form.input :url, as: :url %>
-    <%= form.input :sales_phone, as: :tel %>
-    <%= form.input :sales_email, required: true, as: :email %>
-    Address:
-    <%= form.simple_fields_for :address, @address do |addr_field| %>
-      <%= addr_field.input :first, label: 'First Line' %>
-      <%= addr_field.input :second, label: 'Second Line' %>
-      <%= addr_field.input :city %>
-      <%= addr_field.input :state %>
-      <%= addr_field.input :zipcode %>
-    <% end %>
-  <% end  -%>
-</div>
+<%= f.input :email, disabled: true, as: :email, input_html: { style: "color: #fffc00" } %>
+<%= f.input :name %>
+<%= f.input :avatar, as: :file %>
+<%= f.simple_fields_for :merchant_info, @merchant_info do |form| %>
+  <%= form.input :orgnization, required: true %>
+  <%= form.association :category %>
+  <%= form.input :workday_opening_time %>
+  <%= form.input :sat_opening_time %>
+  <%= form.input :sun_opening_time %>
+  <%= form.input :url, as: :url %>
+  <%= form.input :sales_phone, as: :tel %>
+  <%= form.input :sales_email, required: true, as: :email %>
+  Address:
+  <%= form.simple_fields_for :address, @address do |addr_field| %>
+    <%= addr_field.input :first, label: 'First Line' %>
+    <%= addr_field.input :second, label: 'Second Line' %>
+    <%= addr_field.input :city %>
+    <%= addr_field.input :state %>
+    <%= addr_field.input :zipcode %>
+  <% end %>
+<% end -%>

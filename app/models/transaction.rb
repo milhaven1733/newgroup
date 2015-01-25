@@ -13,13 +13,15 @@ class Transaction < ActiveRecord::Base
 
   private
 
-  def update_wallet
+  def update_wallet 
     fail 'missing according wallet' unless wallet
+    balance = user.balance
+
     if recharge?
-      wallet.update! balance: user.balance + dollar
+      wallet.update! balance: balance + dollar
     elsif withdraw?
-      fail 'Balance less than withdraw amount' if user.balance < dollar
-      wallet.update! balance: user.balance - dollar
+      fail 'Balance less than withdraw amount' if balance < dollar
+      wallet.update! balance: balance - dollar
     end
-  end
+  end 
 end

@@ -2,15 +2,11 @@ module Mine
   class TicketsController < ApplicationController
     before_action :authenticate_user!
     before_action :set_ticket, only: [:show, :edit, :update, :destroy]
+    authorize_resource
 
     # GET /tickets
     def index
-      @sort_by = params[:sort_by] || :title_up
-      if current_user.merchant?
-        @tickets = current_user.tickets.sorted(@sort_by).page(params[:page]).per_page(20)
-      else
-        redirect_to root_path
-      end
+      @tickets = current_user.tickets.page(params[:page]).per_page(20)
     end
 
     # GET /tickets/1

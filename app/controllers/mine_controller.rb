@@ -1,5 +1,6 @@
 class MineController < ApplicationController
   before_action :authenticate_user!
+  authorize_resource class: false
 
   def profile
     @favourite_tickets = current_user.favourites
@@ -7,14 +8,14 @@ class MineController < ApplicationController
 
   def update_profile
     final_param = current_user.merchant? ? merchant_param : user_param
+
     if current_user.update(final_param)
       respond_to do |format|
         format.html { redirect_to action: :profile }
         format.mobile { redirect_to mine_edit_profile_path }
-      end
-      
+      end 
     else
-      render mine_edit_profile_path, error: current_user.errors.full_messages.join(', ')
+      render :edit_profile
     end
   end
   
@@ -22,8 +23,8 @@ class MineController < ApplicationController
     if current_user.merchant?
       @merchant_info = current_user.merchant_info || MerchantInfo.new(user_id: current_user.id)
       @address = @merchant_info.address || @merchant_info.build_address
-		else
-			@user_info = current_user.user_info || UserInfo.new(user_id: current_user.id)
+    else
+      @user_info = current_user.user_info || UserInfo.new(user_id: current_user.id)
       @address = @user_info.address || @user_info.build_address
     end
   end
@@ -45,19 +46,19 @@ class MineController < ApplicationController
                                   :orgnization,
                                   :sales_email,
                                   :sales_phone,
-                                   address_attributes:[:first,
+                                  address_attributes: [:first,
                                                        :second,
                                                        :city,
                                                        :state,
                                                        :zipcode]
-                                   ]
-                                )
+                                 ]
+                               )
   end
   def user_param
     params.require(:user).permit(:name,
                                  :avatar,
                                  :email,
-                                 user_info_attributes:[
+                                 user_info_attributes: [
                                    :zipcode,
                                    :phone,
                                    :group_name,
@@ -65,11 +66,11 @@ class MineController < ApplicationController
                                    :university,
                                    :wallet_link,
                                    :billing_address,
-                                   address_attributes:[:first,
-                                                       :second,
-                                                       :city,
-                                                       :state,
-                                                       :zipcode]
+                                   address_attributes: [:first,
+                                                        :second,
+                                                        :city,
+                                                        :state,
+                                                        :zipcode]
                                  ]
                                 )
   end

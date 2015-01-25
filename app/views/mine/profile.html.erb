@@ -31,11 +31,11 @@
       <% @favourite_tickets.each do |ticket| %>
         <tr>
           <td><%= link_to ticket.name, ticket %></td>
-          <td><%= ticket.category.try(:name) %></td>
+          <td><%= ticket.category_name %></td>
           <td><%= ticket.amount %></td>
           <td><%= ticket.oprice_to_currency %></td>
-          <td><%= ticket.start_at.strftime("%m/%d/%Y - %H:%M %p") %></td>
-          <td><%= link_to ticket.user.try(:name), merchant_path(id: ticket.user_id) %></td>
+          <td><%= render_date ticket.start_at %></td>
+          <td><%= link_to ticket.merchant_name, merchant_path(id: ticket.user_id) %></td>
         </tr>
       <% end %>
     </tbody>
