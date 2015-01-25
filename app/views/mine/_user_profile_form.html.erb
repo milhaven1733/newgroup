@@ -1,20 +1,18 @@
-<div class="form-inputs">
-  <%= f.input :avatar, as: :file %>
-  <%= f.input :email, disabled: true, input_html: { style: "color: #fffc00" }, as: :email %>
-  <%= f.input :name, required: false %>
+<%= f.input :avatar, as: :file %>
+<%= f.input :email, disabled: true, input_html: { style: "color: #fffc00" }, as: :email %>
+<%= f.input :name, required: false %>
 
-  <%= f.simple_fields_for :user_info, @user_info do |form| %>
-    <%= form.input :phone, as: :tel %>
-    <%= form.input :group_name, wrapper_html: false %>
-    <%= form.input :number_of_group_members %>
-    <%= form.input :university %>
-    Address:
-    <%= form.simple_fields_for :address, @address do |addr_field| %>
-      <%= addr_field.input :first, label: 'First Line' %>
-      <%= addr_field.input :second, label: 'Second Line' %>
-      <%= addr_field.input :city %>
-      <%= addr_field.input :state %>
-      <%= addr_field.input :zipcode %>
-    <% end %>
-  <% end  -%>
-</div>
+<%= f.simple_fields_for :user_info, @user_info do |form| %>
+  <%= form.input :phone, as: :tel %>
+  <%= form.input :group_name, wrapper_html: false %>
+  <%= form.input :number_of_group_members %>
+  <%= form.input :university %>
+  Address:
+  <%= form.simple_fields_for :address, @address do |addr_field| %>
+    <%= addr_field.input :first, label: 'First Line' %>
+    <%= addr_field.input :second, label: 'Second Line' %>
+    <%= addr_field.input :city %>
+    <%= addr_field.input :state %>
+    <%= addr_field.input :zipcode %>
+  <% end %>
+<% end  -%>

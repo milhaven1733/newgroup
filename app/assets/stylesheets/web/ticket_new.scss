@@ -11,6 +11,7 @@
 	background-color: $purple;
 	border-radius: 5px;
 	color: #ffffff;
+  padding: 20px;
 	
 	::-webkit-input-placeholder { color:$white; }
 	::-moz-placeholder { color:$white; } /* firefox 19+ */
@@ -25,14 +26,14 @@
 	}
 	
 	input {
-		margin: 10px;
+    margin-bottom: 10px;
 		background-color: $purple;
 		border-color: $light_purple;
 		color: white;
 	}
 	
 	textarea {
-		margin: 10px;
+		margin-bottom: 10px;
 		background-color: $purple;
 	  border-color: $light_purple;
 		color: white;
@@ -41,7 +42,7 @@
 	}
 	
 	select {
-		margin: 10px;
+		margin-bottom: 10px;
 		background: $purple;
 		border-color: $light_purple;
 		color: white;
