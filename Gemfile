@@ -89,5 +89,7 @@ end
  
 group :production do
   gem 'puma'
+  gem 'slack-notifier'
+  gem 'exception_notification'
   gem 'newrelic_rpm'
 end
