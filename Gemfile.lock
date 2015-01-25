@@ -1,4 +1,12 @@
 GIT
+  remote: https://github.com/smartinez87/exception_notification.git
+  revision: f9dee5b5f6a1e1823bb274f719f1ae9c551e2f84
+  specs:
+    exception_notification (4.1.0.rc1)
+      actionmailer (>= 3.0.4)
+      activesupport (>= 3.0.4)
+
+GIT
   remote: https://github.com/bmabey/database_cleaner.git
   revision: e331222c5577765d001a80bbe4550f00b3644c7f
   specs:
@@ -140,9 +148,6 @@ GEM
       http_parser.rb (~> 0.6.0)
     erubis (2.7.0)
     eventmachine (1.0.4)
-    exception_notification (4.0.1)
-      actionmailer (>= 3.0.4)
-      activesupport (>= 3.0.4)
     execjs (2.2.2)
     factory_girl (4.5.0)
       activesupport (>= 3.0.0)
@@ -431,7 +436,7 @@ DEPENDENCIES
   cucumber-rails
   database_cleaner!
   devise!
-  exception_notification
+  exception_notification!
   factory_girl_rails
   faker
   figaro
