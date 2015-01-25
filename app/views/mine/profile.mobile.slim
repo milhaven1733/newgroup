@@ -8,7 +8,7 @@ ul(data-role="listview" data-inset="true")
   - @favourite_tickets.each do |ticket|
     li
       = link_to ticket do
-        = image_tag ticket.try(:image_thumb)
+        = image_tag ticket.try(:image_url, :thumb)
         h3= ticket.name
         p= ticket.time_range(:word)
         p

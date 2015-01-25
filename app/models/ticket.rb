@@ -63,16 +63,12 @@ class Ticket < ActiveRecord::Base
     ActionController::Base.helpers.number_to_currency(shipping)
   end
 
-  def image_url
-    image.try(:url) || 'default_pic.jpg'
-  end
-
-  def image_middle
-    image.try(:middle).try(:url) || 'default_pic.jpg'
-  end
-
-  def image_thumb
-    image.try(:thumb).try(:url) || 'default_pic.jpg'
+  def image_url version = :original
+    if version == :original
+      image.try(:url) || 'default_pic.jpg'
+    else
+      image.try(version) || 'default_pic.jpg'
+    end
   end
 
   def self.top_deals

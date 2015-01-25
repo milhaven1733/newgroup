@@ -21,7 +21,7 @@
           <%= index + 1%>
         <% end %>
       </td>
-      <td><%= link_to (image_tag order.try(:ticket).try(:image_thumb)), mine_order_path(order), alt: order.ticket.name %></td>
+      <td><%= link_to (image_tag order.try(:ticket).try(:image_url, :thumb)), mine_order_path(order), alt: order.ticket.name %></td>
       <td>
         <h3><%= order.ticket.name %></h3>
         <p><%= order.ticket.time_range(:word) %></p>

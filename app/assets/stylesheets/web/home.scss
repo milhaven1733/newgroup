@@ -92,9 +92,10 @@
 
 #slider {
   width: 100%;
-	.slides {
-      overflow: hidden;
-	}
+  .slides {
+    height: 520px;
+    overflow: hidden;
+  }
 }
 
 #top-deals {
@@ -126,12 +127,13 @@
 }
 .ticket {
   a img {
-    width: 53%;
+    width: 59%;
+    height: 180px;
     margin-right: 2%;
     float: left;
   }
   .caption {
-    width: 45%;
+    width: 39%;
     float: left;
     .desc {
       overflow: hidden;

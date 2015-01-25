@@ -9,7 +9,7 @@ ul(data-role="listview" data-inset="true")
     li
       = link_to mine_order_path(order) do
         - ticket = order.try(:ticket)
-        = image_tag ticket.try(:image_thumb)
+        = image_tag ticket.try(:image_url, :thumb)
         h3= ticket.try(:name)
         p= ticket.time_range(:word)
         p
