@@ -18,6 +18,11 @@ class HomeController < ApplicationController
       ts.user = current_user
     end
     @tickets = @tickets_search.search_result(session_city).try(:page, params[:page])
+
+    respond_to do |format|
+      format.mobile { redirect_to mobile_search_path }
+      format.html { render 'search.html.erb' }
+    end
   end
 
   def set_city
