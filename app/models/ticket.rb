@@ -26,6 +26,13 @@ class Ticket < ActiveRecord::Base
 
   accepts_nested_attributes_for :group_prices, allow_destroy: true
 
+  after_save do
+    if flatten_discount.present? and group_prices.count < 2
+      group_price = GroupPrice.find_or_initialize_by(ticket_id: id)
+      group_price.update(range_from: 0, range_to: 100000, discount: flatten_discount)
+    end
+  end
+
   scope :sorted, ->(sort_type) { sort_type == 'title_up' ? order(name: :asc) : order(name: :desc) }
 
   scope :search_by_count, ->(count) do
