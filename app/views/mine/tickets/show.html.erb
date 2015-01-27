@@ -41,17 +41,19 @@
       <div class='title'>Will Call:</div>
       <div class='value'><%= @ticket.will_call %></div>
     </div>
-    <div class='group-price info'>
-      <div class='title'>Group Price:</div>
-      <div class='value'>
-        <%= link_to 'Add Group Price', new_mine_ticket_group_price_path(@ticket) %>
-        <% @ticket.try(:ranked_group_prices).try(:each) do |gp| %>
-          <p id='group-price-<%= gp.id %>'>
-          <%= render_group_price gp %>  <%= link_to 'delete', [:mine, @ticket, gp], remote: true, method: 'DELETE' %>
-          </p>
-        <% end -%>
+    <% unless @ticket.flatten_discount.present? %>
+      <div class='group-price info'>
+        <div class='title'>Group Price:</div>
+        <div class='value'>
+          <%= link_to 'Add Group Price', new_mine_ticket_group_price_path(@ticket) %>
+          <% @ticket.try(:ranked_group_prices).try(:each) do |gp| %>
+            <p id='group-price-<%= gp.id %>'>
+            <%= render_group_price gp %>  <%= link_to 'delete', [:mine, @ticket, gp], remote: true, method: 'DELETE' %>
+            </p>
+          <% end -%>
+        </div>
       </div>
-    </div>
+    <% end %>
     <div class="info">
       <%= link_to 'Edit', edit_mine_ticket_path(@ticket), class: "btn btn-primary" %>
       <%= link_to 'Back', mine_tickets_path, class: "btn btn-default" %>

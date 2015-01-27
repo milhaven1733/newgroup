@@ -17,6 +17,7 @@
   <%= f.input_field :amount, as: :integer, placeholder: 'Total quantity of tickets', input_html: { placeholder: 'box supports up to 6 digits of entry' } %>
   <%= f.input_field :minimum_amount, as: :string, placeholder: 'Minimum tickets for purchase:' %>
   <%= f.input_field :oprice, placeholder: "Original price per ticket: $100." %>
+  <div class='row' id='price-tiers'>You can set a flat discount here or set specific discounts for different ticket quantity tiers after upload</div>
   <div class='row'>
     <div class='col-xs-5'>
       <%= f.input_field :flatten_discount, as: :string, placeholder: "Flat Discount Ticket: 80%", disabled: true %>
