@@ -1,7 +1,7 @@
 class Ticket < ActiveRecord::Base
   CITIES = ['Philadelphia', 'New York']
 
-  priceable :oprice, :shipping
+  priceable :oprice, :shipping, :flatten_price
 
   belongs_to :user
   belongs_to :category
@@ -26,12 +26,13 @@ class Ticket < ActiveRecord::Base
 
   accepts_nested_attributes_for :group_prices, allow_destroy: true
 
-  scope :search_by_count, ->(count = 5) do
+  scope :sorted, ->(sort_type) { sort_type == 'title_up' ? order(name: :asc) : order(name: :desc) }
+
+  scope :search_by_count, ->(count) do
+    count ||= 5
     joins(:group_prices)
     .where(':count BETWEEN group_prices.range_from AND group_prices.range_to', count: count)
   end
-  
-  scope :sorted, ->(sort_type) { sort_type == 'title_up' ? order(name: :asc) : order(name: :desc) }
 
   scope :search_by_price_range, ->(price_from, price_to, count, is_student = false) do
     sql_student_discount = is_student ? 'tickets.student_discount' : '0'
@@ -40,9 +41,8 @@ class Ticket < ActiveRecord::Base
     sql_price_to = price_to ? (sql_price + ' <= :price_to') : ''
     sql_and = (price_from and price_to) ? ' AND ' : ''
 
-    count ? search_by_count(count)
+    search_by_count(count)
     .where(sql_price_from + sql_and + sql_price_to, price_from: price_from, price_to: price_to)
-    : where(sql_price_from + sql_and + sql_price_to, price_from: price_from, price_to: price_to)
   end
 
   scope :search_by, ->(query) do
