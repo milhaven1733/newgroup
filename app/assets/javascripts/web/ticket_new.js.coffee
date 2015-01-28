@@ -26,27 +26,27 @@ $ ->
   $.cookie('group_prices_fields_num', 0)
 
   if $('#ticket_oprice').val() > 0
-    $('#ticket_flat_discount').removeAttr('disabled')
-    $('#ticket_flat_price').removeAttr('disabled')
+    $('#ticket_flatten_discount').removeAttr('disabled')
+    $('#ticket_flatten_price').removeAttr('disabled')
 
   $('#ticket_oprice').keyup ->
     if $(this).val() > 0
-      $('#ticket_flat_discount').removeAttr('disabled')
-      $('#ticket_flat_price').removeAttr('disabled')
+      $('#ticket_flatten_discount').removeAttr('disabled')
+      $('#ticket_flatten_price').removeAttr('disabled')
     else
-      $('#ticket_flat_discount').attr('disabled', 'disabled')
-      $('#ticket_flat_price').attr('disabled', 'disabled')
+      $('#ticket_flatten_discount').attr('disabled', 'disabled')
+      $('#ticket_flatten_price').attr('disabled', 'disabled')
 
-  $("#ticket_flat_discount").keyup ->
+  $("#ticket_flatten_discount").keyup ->
     oprice = $("#ticket_oprice").val()
     discount = $(this).val()
-    $("#ticket_flat_price").val(get_flat_price(oprice, discount))
+    $("#ticket_flatten_price").val(get_flat_price(oprice, discount))
 
-  $("#ticket_flat_price").keyup ->
+  $("#ticket_flatten_price").keyup ->
     oprice = $("#ticket_oprice").val()
     price = $(this).val()
     
-    $("#ticket_flat_discount").val(get_discount(oprice, price))
+    $("#ticket_flatten_discount").val(get_discount(oprice, price))
 
   $('#has-student-discount').click ->
     if $(this).is(':checked')
