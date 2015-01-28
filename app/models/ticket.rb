@@ -129,7 +129,7 @@ class Ticket < ActiveRecord::Base
   end
 
   def to_day_time(date_time)
-    date_time.strftime('%H:%M %p')
+    date_time.strftime('%l:%M %p')
   end
 
   def sold
