@@ -69,22 +69,4 @@ RSpec.describe Ticket, :type => :model do
     end
   end
 
-  describe "search by price range with none group_prices tickets" do
-    before :each do
-      10.times.each_with_index do |i|
-        ticket = FactoryGirl.create(:ticket)
-        ticket.update(oprice: 10 * i)
-      end
-      10.times.each_with_index do |i|
-        ticket = FactoryGirl.create(:ticket_with_group_prices)
-        ticket.update(oprice: 10 * i)
-      end
-    end
-
-    it "should get result within both none and group prices tickets" do
-      tickets = Ticket.search_by_price_range(30, 50, 10)
-      tickets.each { |ticket| ticket.oprice.should be_between(30, 50) unless ticket.group_prices.present? }
-      tickets.each { |ticket| ticket.flat_price(10).should be_between(30, 50) }
-    end
-  end
 end
