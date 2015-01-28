@@ -118,4 +118,26 @@ feature "TicketSearches", :type => :feature do
       page.should have_selector '.ticket', count: 1
     end
   end
+
+  #test the problem of search none group_prices tickets
+  describe "search none group_prices tickets without selecting price options" do
+    before :each do
+      3.times.each_with_index do |i|
+        ticket = FactoryGirl.create(:ticket)
+        ticket.update(oprice: 10 * i)
+      end
+      3.times.each_with_index do |i|
+        ticket = FactoryGirl.create(:ticket_with_group_prices)
+        ticket.update(oprice: 10 * i)
+      end
+    end
+
+    it "should get all tickets" do
+      visit root_path
+      within('#new_tickets_search') do
+        click_button('Search Group Tickets')
+      end
+      page.should have_selector '.ticket', count: 6
+    end
+  end
 end

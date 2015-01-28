@@ -20,7 +20,10 @@ class TicketsSearch
 
       q = Ticket.by_city(city).search(to_q_hash)
       tickets = q.result(distinct: true)
-      tickets.search_by_price_range(price_from, price_to, amount, user.try(:is_student))
+      if price_from or price_to or amount
+        tickets = tickets.search_by_price_range(price_from, price_to, amount, user.try(:is_student))
+      end
+      tickets
     end
   end
 

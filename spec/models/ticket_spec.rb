@@ -68,4 +68,5 @@ RSpec.describe Ticket, :type => :model do
       tickets.each { |ticket| ticket.flat_price.should <= 50 }
     end
   end
+
 end
