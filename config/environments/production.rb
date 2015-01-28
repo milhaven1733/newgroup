@@ -82,7 +82,7 @@ Rails.application.configure do
 
   config.middleware.use ExceptionNotification::Rack,
   :slack => {
-    :webhook_url => "https://hooks.slack.com/services/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",
+    :webhook_url => "https://hooks.slack.com/services/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"
     :channel => "#groupet"
   }
 end
