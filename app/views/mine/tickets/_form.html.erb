@@ -16,7 +16,7 @@
 
   <%= f.input_field :amount, as: :integer, placeholder: 'Total quantity of tickets', input_html: { placeholder: 'box supports up to 6 digits of entry' } %>
   <%= f.input_field :minimum_amount, as: :string, placeholder: 'Minimum tickets for purchase:' %>
-  <%= f.input_field :oprice, placeholder: "Original price per ticket: $100." %>
+  <%= f.input_field :oprice_in_cents, placeholder: "Original price per ticket: $100." %>
 
   <div id='discount' class='row'>
     <div class='container'>
@@ -50,7 +50,7 @@
     </div>
   </div>
   <div class="row">
-    <div class='col-xs-8' style='padding-top:10px;'>&nbsp;&nbsp;Performace image(max 5 MB.This will appear on search results.)</div>
+    <div class='col-xs-8' style='padding-top:10px;'>&nbsp;&nbsp;Performace image(max 5 MB.This will appear in search results.)</div>
     <div class="col-xs-4">
       <%= f.input_field :image, as: :file %>
     </div>
