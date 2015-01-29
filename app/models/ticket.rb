@@ -103,11 +103,16 @@ class Ticket < ActiveRecord::Base
   def time_range(type = :number)
     if (start_at and end_at) and (start_at.to_date <= end_at.to_date) && (end_at > start_at)
       if type == :number
-        "#{start_at.strftime('%m/%d/%Y')}<br>#{start_at.strftime('%H:%M %p')} - #{end_at.strftime('%H:%M %p')}".html_safe
+        "#{start_at.strftime('%m/%d/%Y')}<br>#{start_at.strftime('%H:%M 
+          ')} - #{end_at.strftime('%H:%M 
+        ')}".html_safe
       elsif type == :word
-        "#{start_at.strftime('%B %d, %Y')}<br>#{start_at.strftime('%H:%M %p')} - #{end_at.strftime('%H:%M %p')}".html_safe
+        "#{start_at.strftime('%B %d, %Y')}<br>#{start_at.strftime('%H:%M 
+          ')} - #{end_at.strftime('%H:%M 
+        ')}".html_safe
       elsif type == :start
-        "#{start_at.strftime('%m/%d/%Y')}<br>#{start_at.strftime('%H:%M %p')}".html_safe
+        "#{start_at.strftime('%m/%d/%Y')}<br>#{start_at.strftime('%H:%M 
+          ')}".html_safe
       end
     else
       "Invalid ticket time range, Please contact venue administrator!"
@@ -120,7 +125,7 @@ class Ticket < ActiveRecord::Base
 
   def flat_price count = 5, for_student = false
     fp = (for_student ? group_price_for_student(count) : group_price_by(count).try(:price)) || oprice
-    fp.round 2
+    
   end
 
   def flat_discount count = 5, for_student = false
