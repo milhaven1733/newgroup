@@ -235,10 +235,10 @@
 		value:'',
 		lang:'en',
 		
-		// format:	'Y/m/d H:i',
-		format:	'm/d/Y g:i A',
-		// formatTime:	'H:i',
-		formatTime:	'g:i A',
+		format:	'm/d/Y H:i',
+		// format:	'm/d/Y g:i A',
+		formatTime:	'H:i',
+		// formatTime:	'g:i A',
 
 		formatDate:	'Y/f/d',
 		
