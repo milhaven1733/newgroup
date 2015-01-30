@@ -71,6 +71,7 @@ module Mine
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def ticket_params
+      change_params_year_format params      
       params.require(:ticket).permit(
         :city,
         :category_id,
@@ -90,6 +91,18 @@ module Mine
         :sitting_map,
         group_prices_attributes: [:range_from, :range_to, :price]
       )
+    end
+
+    def format_time time
+      year = time.slice!(/\/\w{4}/)
+      year.slice!(/\//)
+      year + "/" + time
+    end
+
+    def change_params_year_format params
+      params[:ticket][:start_at] = format_time params[:ticket][:start_at]
+      params[:ticket][:end_at] = format_time params[:ticket][:end_at]
+      params
     end
   end
 
