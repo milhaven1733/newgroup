@@ -17,7 +17,7 @@ zoo         = Category.create!(name: "Zoo/Aquarium",    desc: "zoo")
 park        = Category.create!(name: "Amusement Parks", desc: "parks")
 historic    = Category.create!(name: "Historic Sites",  desc: "historic sites")
 
-User.create!(email: 'admin@test.com', password: 'password', role: 'admin', verification: true)
+User.create!(email: 'admin@test.com', password: 'password', role: 'admin', verification: true, name: "admin")
 merchant = User.create!(email: "merchant@test.com", password: "password", role: "merchant", name: "merchant", verification: true)
 user = User.create!(email: "normal@test.com", password: "password", role: "normal", name: 'user1')
 student = User.create!(email: 'student@test.edu', password: 'password', role:'normal', name: 'student1')
