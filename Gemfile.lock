@@ -1,4 +1,25 @@
 GIT
+  remote: https://github.com/smartinez87/exception_notification.git
+  revision: f9dee5b5f6a1e1823bb274f719f1ae9c551e2f84
+  specs:
+    exception_notification (4.1.0.rc1)
+      actionmailer (>= 3.0.4)
+      activesupport (>= 3.0.4)
+
+GIT
+  remote: https://github.com/bmabey/database_cleaner.git
+  revision: e331222c5577765d001a80bbe4550f00b3644c7f
+  specs:
+    database_cleaner (1.3.0)
+
+GIT
+  remote: git://github.com/zlx/tabletastic.git
+  revision: 71a7b4315c4b2279d50f72f49c44fab378fb7cb8
+  specs:
+    tabletastic (0.2.3)
+      activesupport (> 3.0)
+
+GIT
   remote: git://github.com/plataformatec/devise.git
   revision: 1d8890b77372b9c4fd3ec8e9b4963d76774ed33c
   branch: lm-rails-4-2
@@ -10,27 +31,6 @@ GIT
       responders
       thread_safe (~> 0.1)
       warden (~> 1.2.3)
-
-GIT
-  remote: git://github.com/zlx/tabletastic.git
-  revision: 71a7b4315c4b2279d50f72f49c44fab378fb7cb8
-  specs:
-    tabletastic (0.2.3)
-      activesupport (> 3.0)
-
-GIT
-  remote: https://github.com/bmabey/database_cleaner.git
-  revision: e331222c5577765d001a80bbe4550f00b3644c7f
-  specs:
-    database_cleaner (1.3.0)
-
-GIT
-  remote: https://github.com/smartinez87/exception_notification.git
-  revision: f9dee5b5f6a1e1823bb274f719f1ae9c551e2f84
-  specs:
-    exception_notification (4.1.0.rc1)
-      actionmailer (>= 3.0.4)
-      activesupport (>= 3.0.4)
 
 GEM
   remote: https://rubygems.org/
