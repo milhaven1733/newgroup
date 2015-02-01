@@ -57,7 +57,7 @@ module Mine
     # DELETE /tickets/1
     def destroy
       @ticket.destroy
-      redirect_to mine_tickets_path, notice: 'Ticket was successfully destroyed.'
+      redirect_to mine_tickets_path, notice: 'Listing was successfully deleted.'
     end
 
     private
