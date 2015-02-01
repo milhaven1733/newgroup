@@ -6,7 +6,8 @@ module Mine
 
     # GET /tickets
     def index
-      @tickets = current_user.tickets.page(params[:page]).per_page(20)
+      @sort_by ||=  "title_down"
+      @tickets = current_user.tickets.sorted(@sort_by).page(params[:page]).per_page(20)
     end
 
     # GET /tickets/1

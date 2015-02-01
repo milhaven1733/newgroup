@@ -66,12 +66,21 @@
 		
 	}
   .faq{
+    h3 {
+      padding-top: 20px;
+      text-align: center;
+      font-size:24px;
+      color:#75039e;
+    }
     h4{
-      font-size:14px;
+      padding-left: 10px;
+      padding-top: 15px;
+      font-size:20px;
       color:#75039e;
       background-color:#fff;
     }
     p{
+      padding-left: 10px;
       font-family:OpenSans;
     }
   }
