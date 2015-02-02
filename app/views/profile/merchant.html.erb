@@ -9,6 +9,7 @@
     <div class="row">
       <div class="col-xs-5 big_avatar">
         <%= image_tag @user.avatar_url %>
+        <%= @user.try(:merchant_info).try(:url) %>
       </div>
       <div class="col-xs-7">
         <h5 class='address gray-light'><%= @user.try(:address) %></h5>
