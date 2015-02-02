@@ -14,7 +14,7 @@ class Ticket < ActiveRecord::Base
   mount_uploader :image, ImageUploader
   mount_uploader :sitting_map, SittingMapUploader
 
-  validates :minimum_amount, :amount, :name, :start_at, :end_at, :oprice, :city, :category_id,
+  validates :minimum_amount, :amount, :name, :start_at, :oprice, :city, :category_id,
                :shipping, presence: true
   validates :start_at, time_period: { scope: :end_at }
   validates :oprice, numericality: {  greater_than: 0 }
