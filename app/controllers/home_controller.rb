@@ -40,6 +40,11 @@ class HomeController < ApplicationController
     else
       @tickets = nil
     end
+
+    respond_to do |format|
+      format.mobile { render 'mobile_search.mobile.slim' }
+      format.html { redirect_to search_path }
+    end
   end
 
   private
