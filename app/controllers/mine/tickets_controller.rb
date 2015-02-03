@@ -6,7 +6,7 @@ module Mine
 
     # GET /tickets
     def index
-      @sort_by ||=  "title_down"
+      @sort_by = params[:sort_by].present? ? params[:sort_by] : "title_down"
       @tickets = current_user.tickets.sorted(@sort_by).page(params[:page]).per_page(20)
     end
 
