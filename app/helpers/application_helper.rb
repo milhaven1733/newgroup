@@ -39,4 +39,8 @@ module ApplicationHelper
   def session_city
     session[:city] || 'Philadelphia'
   end
+
+  def format_price price = 0
+    number_to_currency(price, precision: 2, delimiter: "", format: "%n")
+  end
 end

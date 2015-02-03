@@ -17,6 +17,10 @@
 	::-moz-placeholder { color:$white; } /* firefox 19+ */
 	:-ms-input-placeholder { color:$white; } /* ie */
 	input:-moz-placeholder { color:$white; }
+
+  .row, .clean {
+    margin-bottom: 10px;
+  }
 	
 	h1 {
 	  color: #fff200;
@@ -26,11 +30,22 @@
 	}
 	
 	input {
-    margin-bottom: 10px;
 		background-color: $purple;
 		border-color: $light_purple;
 		color: white;
 	}
+
+  .input-group-addon {
+    padding: 6px 12px;
+    font-size: 14px;
+    font-weight: normal;
+    line-height: 1;
+    color: white;
+    text-align: center;
+    border: 1px solid $light_purple;
+		background-color: $purple;
+    border-radius: 4px 0 0 4px;
+  }
 	
 	textarea {
 		margin-bottom: 10px;
