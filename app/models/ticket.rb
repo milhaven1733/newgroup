@@ -16,7 +16,7 @@ class Ticket < ActiveRecord::Base
 
   validates :minimum_amount, :amount, :name, :start_at, :oprice, :city, :category_id,
                :shipping, presence: true
-  validates :start_at, time_period: { scope: :end_at }
+  #validates :start_at, time_period: { scope: :end_at }
   validates :oprice, numericality: {  greater_than: 0 }
   validates :shipping, numericality: { greater_than_or_equal_to: 0 }
   validates :city, inclusion: { in: CITIES }
@@ -155,6 +155,10 @@ class Ticket < ActiveRecord::Base
 
   def category_name
     category.try(:name)
+  end
+
+  def is_flatten_price?
+    flatten_price.present? && flatten_price.to_i != 0
   end
 
   private

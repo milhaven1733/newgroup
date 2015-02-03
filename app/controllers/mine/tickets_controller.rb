@@ -18,7 +18,7 @@ module Mine
     def new
       redirect_to user_session_path unless current_user && current_user.merchant?
       @ticket = Ticket.new
-      1.times { @ticket.group_prices.build }
+      @ticket.group_prices.build
     end
 
     # GET /tickets/1/edit
@@ -40,7 +40,7 @@ module Mine
         end
       end
     rescue Exception => e
-      @ticket = Ticket.new()
+      @ticket = Ticket.new(ticket_params)
       flash[:error] = e.inspect
       render :new
     end
@@ -92,9 +92,9 @@ module Mine
     end
 
     def format_time time
-      year = time.slice!(/\/\w{4}/)
-      year.slice!(/\//)
-      year + "/" + time
+      return "" if time.blank?
+      time_ary = time.split("/")
+      [time_ary[1], time_ary[0], time_ary[2]].join("/").try(:to_datetime).try(:to_s, :db)
     end
 
     def change_params_year_format params

@@ -57,23 +57,23 @@ $ ->
   $('#free-shipping').click ->
     $('#ticket_shipping').val(0) if $(this).prop('checked')
 
-  $('#price-tiers').click (event) ->
-    event.preventDefault()
-    $('#group-price-tiers').modal('show')
+  # $('#price-tiers').click (event) ->
+  #   event.preventDefault()
+  #   $('#group-price-tiers').modal('show')
 
-    fields_num = $.cookie('group_prices_fields_num')
-    fields_id = "#ticket_group_prices_attributes_" + fields_num
-    fields_range_from = fields_id + "_range_from"
-    fields_range_to = fields_id + "_range_to"
+  #   fields_num = $.cookie('group_prices_fields_num')
+  #   fields_id = "#ticket_group_prices_attributes_" + fields_num
+  #   fields_range_from = fields_id + "_range_from"
+  #   fields_range_to = fields_id + "_range_to"
 
-    range_max = $("#ticket_amount").val();
-    range_min = $("#ticket_minimum_amount").val();
-    if parseInt(range_max) then range_max = parseInt(range_max) else range_max = 100
-    if parseInt(range_min) then range_min = parseInt(range_min) else range_min = 5
-    $("#slider").slider("option", {min: range_min, max:range_max})
-    range = range_min + " - " + range_max
-    price = $('#ticket_oprice').val()
-    $('#group-price-tiers-table tbody').append("<tr><td>" + range + "</td><td>$" + price + "</td></tr>")
+  #   range_max = $("#ticket_amount").val();
+  #   range_min = $("#ticket_minimum_amount").val();
+  #   if parseInt(range_max) then range_max = parseInt(range_max) else range_max = 100
+  #   if parseInt(range_min) then range_min = parseInt(range_min) else range_min = 5
+  #   $("#slider").slider("option", {min: range_min, max:range_max})
+  #   range = range_min + " - " + range_max
+  #   price = $('#ticket_oprice').val()
+  #   $('#group-price-tiers-table tbody').append("<tr><td>" + range + "</td><td>$" + price + "</td></tr>")
 
   $('#group-price-tiers-add').click (event) ->
     event.preventDefault()

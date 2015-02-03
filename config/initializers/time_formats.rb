@@ -1,4 +1,4 @@
-Time::DATE_FORMATS[:default] = "%Y-%m-%d %I:%M %p"
+Time::DATE_FORMATS[:default] = "%m/%d/%y %I:%M %p"
 
 Time::DATE_FORMATS.merge!(
   full: '%B %d, %Y at %I:%M %p',
