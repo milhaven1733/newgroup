@@ -61,5 +61,6 @@ class Ability
 
   def guest_rules
     can [:show, :calc_price], Ticket
+    can [:merchant], :profile
   end
 end

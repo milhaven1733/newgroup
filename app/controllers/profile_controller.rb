@@ -1,6 +1,6 @@
 class ProfileController < ApplicationController
   before_action :set_user
-  before_action :authenticate_user!
+  before_action :authenticate_user!, except: [:merchant]
   authorize_resource class: false
 
   def merchant
