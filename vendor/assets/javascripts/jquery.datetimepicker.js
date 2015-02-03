@@ -235,12 +235,12 @@
 		value:'',
 		lang:'en',
 		
-		// format:	'Y/m/d H:i',
-		format:	'Y/m/d g:i A',
-		// formatTime:	'H:i',
-		formatTime:	'g:i A',
+		format:	'm/d/Y H:i',
+		// format:	'm/d/Y g:i A',
+		formatTime:	'H:i',
+		// formatTime:	'g:i A',
 
-		formatDate:	'Y/m/d',
+		formatDate:	'Y/f/d',
 		
 		startDate:	false, // new Date(), '1986/12/08', '-1970/01/05','-1970/01/05', 
 		

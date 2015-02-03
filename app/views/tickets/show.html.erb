@@ -66,7 +66,7 @@
           <div class='row discount_text'>
             Price after discount
             <span class="purple-back circle-angle" id="flat-price">
-              $<%= @flat_price || @ticket.flat_price(0, current_user.try(:is_student)) %>
+              $<%= sprintf('%.2f',@flat_price || @ticket.flat_price(0, current_user.try(:is_student))) %>
             </span>
             <span>&nbsp;Per Ticket</span>
           </div>

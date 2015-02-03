@@ -35,7 +35,7 @@
         <span> Additional Discount for Students?</span>
       </div>
       <div class='col-xs-2' id='student-discount'>
-        <%= f.input_field :student_discount, as: :string, disabled: true, value: '20%' %>
+        <%= f.input_field :student_discount, as: :string, disabled: true, value: '%' %>
       </div>
     </div>
   </div>
@@ -45,7 +45,7 @@
 			<span>&nbsp;&nbsp;Shipping Fee</span>
 		</div>
 		<div class='col-xs-2' id='shipping-fee'>
-			<%= f.input_field :shipping %>
+			<%= f.input_field :shipping ,value: "00.00"%>
 		</div>
   </div>
 
@@ -60,7 +60,7 @@
     </div>
   </div>
   <div class="row">
-    <div class='col-xs-8' style='padding-top:10px;'>&nbsp;&nbsp;Performace image(max 5 MB.This will appear on search results.)</div>
+    <div class='col-xs-8' style='padding-top:10px;'>&nbsp;&nbsp;Performace image(max 5 MB.This will appear in search results.)</div>
     <div class="col-xs-4">
       <%= f.input_field :image, as: :file %>
     </div>
