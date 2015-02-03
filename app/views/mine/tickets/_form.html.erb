@@ -1,7 +1,7 @@
 <%= simple_form_for([:mine, @ticket], html: {class: 'form-horizontal', onkeypress:'return event.keyCode != 13;'}, wrapper: :clean) do |f| %>
   <%= f.input_field :city, collection: Ticket::CITIES, prompt: 'Please Select a City...' %>
   <%= f.association :category, prompt: 'Please Select a Genre...', label: false %>
-  <%= f.input_field :name, placeholder: 'Title' %>
+  <%= f.input :name, placeholder: 'Title', label: false %>
   <%= f.input_field :desc, placeholder: 'Discription:' %>
   <p> &nbsp;&nbsp;<small>(3000 characters max.)</small> </p>
 
@@ -16,16 +16,26 @@
 
   <%= f.input :amount, as: :integer, label: false, placeholder: 'Total quantity of tickets' %>
   <%= f.input :minimum_amount, as: :string, label: false,  placeholder: 'Minimum tickets for purchase:' %>
-  <%= f.input :oprice, label: false,  placeholder: "Original price per ticket: ", input_html: {value: (@ticket.new_record? ? nil : @ticket.oprice) } %>
+
+  <div class="input-group">
+    <span class="input-group-addon">$</span>
+    <%= f.input_field :oprice, placeholder: "Original price per ticket: ", value: (@ticket.new_record? ? nil : @ticket.oprice) %>
+  </div>
+
   <div class='row' id='price-tiers'>You can set a flat discount here or set specific discounts for different ticket quantity tiers after upload</div>
   <div class='row'>
     <div class='col-xs-5'>
-      <%= f.input_field :flatten_discount, as: :string, placeholder: "Flat Discount Ticket: 80%", disabled: true %>
+      <div class="input-group">
+        <%= f.input_field :flatten_discount, as: :string, placeholder: "Flat Discount Ticket: 80%", disabled: true %>
+        <span class="input-group-addon">%</span>
+      </div>
     </div>
-    <div class='col-xs-2 center' style='padding-top:20px;'> or </div>
-    <div class='col-xs-5 input-group'>
-      <span class="input-group-addon">$</span>
-      <%= f.input_field :flatten_price, as: :string, placeholder: "Flat Price per Ticket: 100", disabled: true, value: format_price(@ticket.flatten_price) %>
+    <div class='col-xs-2 center' style='padding-top:5px;'> or </div>
+    <div class='col-xs-5'>
+      <div class="input-group">
+        <span class="input-group-addon">$</span>
+        <%= f.input_field :flatten_price, as: :string, placeholder: "Flat Price per Ticket: 100", disabled: true, value: format_price(@ticket.flatten_price) %>
+      </div>
     </div>
   </div>
 
@@ -34,13 +44,14 @@
       <span><input type='checkbox' id='has-student-discount'/></span>
       <span> Additional Discount for Students?</span>
     </div>
-    <div class='col-xs-2' id='student-discount'>
-      <%= f.input_field :student_discount, as: :string, disabled: true, value: '%' %>
+    <div class='col-xs-2 input-group' id='student-discount'>
+      <%= f.input_field :student_discount, as: :string, disabled: true %>
+      <span class="input-group-addon">%</span>
     </div>
   </div>
 
   <div class='row'>
-		<div class='col-xs-2' style='padding-top:15px;'>
+		<div class='col-xs-2' style='padding-top:5px;'>
 			<span>&nbsp;&nbsp;Shipping Fee</span>
 		</div>
 		<div class='col-xs-2 input-group' id='shipping-fee'>

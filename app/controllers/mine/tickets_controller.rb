@@ -40,7 +40,7 @@ module Mine
         end
       end
     rescue Exception => e
-      @ticket = Ticket.new
+      @ticket = Ticket.new()
       flash[:error] = e.inspect
       render :new
     end
