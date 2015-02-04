@@ -17,7 +17,7 @@ class Ticket < ActiveRecord::Base
 
   validates :minimum_amount, :amount, :name, :start_at, :oprice, :city, :category_id,
                :shipping, presence: true
-  #validates :start_at, time_period: { scope: :end_at }
+  validates :start_at, time_period: { scope: :end_at }, if: :end_at
   validates :oprice, numericality: {  greater_than: 0 }
   validates :shipping, numericality: { greater_than_or_equal_to: 0 }
   validates :city, inclusion: { in: CITIES }
@@ -75,7 +75,7 @@ class Ticket < ActiveRecord::Base
     if version == :original
       image.try(:url) || 'default_pic.jpg'
     else
-      image.try(version) || 'default_pic.jpg'
+      image.try(version).try(:url) || 'default_pic.jpg'
     end
   end
 
@@ -116,16 +116,20 @@ class Ticket < ActiveRecord::Base
 
   # TODO: move this to helper
   def time_range(type = :number)
-    if (start_at and end_at) and (start_at.to_date <= end_at.to_date) && (end_at > start_at)
-      if type == :number
+    if type == :number
+      if end_at
         "#{start_at.strftime('%m/%d/%Y')}<br>#{to_day_time(start_at)} - #{to_day_time(end_at)}".html_safe
-      elsif type == :word
-        "#{start_at.strftime('%B %d, %Y')}<br>#{to_day_time(start_at)} - #{to_day_time(end_at)}".html_safe
-      elsif type == :start
+      else
         "#{start_at.strftime('%m/%d/%Y')}<br>#{to_day_time(start_at)}".html_safe
       end
-    else
-      "Invalid ticket time range, Please contact venue administrator!"
+    elsif type == :word
+      if end_at
+        "#{start_at.strftime('%B %d, %Y')}<br>#{to_day_time(start_at)} - #{to_day_time(end_at)}".html_safe
+      else
+        "#{start_at.strftime('%B %d, %Y')}<br>#{to_day_time(start_at)}".html_safe
+      end
+    elsif type == :start
+      "#{start_at.strftime('%m/%d/%Y')}<br>#{to_day_time(start_at)}".html_safe
     end
   end
 
