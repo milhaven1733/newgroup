@@ -43,4 +43,12 @@ module ApplicationHelper
   def format_price price = 0
     number_to_currency(price, precision: 2, delimiter: "", format: "%n")
   end
+
+  def scope_link(label, method, value)
+    if params[method] == value.to_s or params[method].nil? && value == :all
+      link_to label, params.merge(method => value, :page => 1), :class => :active
+    else
+      link_to label, params.merge(method => value, :page => 1)
+    end
+  end
 end

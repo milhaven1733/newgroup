@@ -3,10 +3,8 @@
 	  <tr class="purple-back">
 		 <th>#</th>
 		 <th class="center">Image</th>
-		 <th class="center">Title
-     <%= title_sort_icon %>
-     /Date</th>
-		 <th class="center">Date Listed</th>
+     <th class="center"><%= sort_link @q, :name, "Title/Date" %></th>
+     <th class="center"><%= sort_link @q, :created_at, "Date Listed" %></th>
 		 <th class="center">Total Quantity</th>
 		 <th class="center">Quantity Sold</th>
 		 <th class="center">Price Per Ticket</th>
