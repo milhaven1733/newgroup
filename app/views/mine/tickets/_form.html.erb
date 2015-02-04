@@ -98,15 +98,22 @@
       <label>Free Will Call Pick-up</label>
     </div>
   </div>
+  
   <div class="row">
-    <div class='col-xs-8' style='padding-top:10px;'>&nbsp;&nbsp;Performace image(max 5 MB.This will appear in search results.)</div>
-    <div class="col-xs-4">
+    <div class='col-xs-8'>
+      &nbsp;&nbsp;Performace image(max 5 MB.This will appear in search results.)
+      <%= image_tag(@ticket.image, height: '80') %>
+    </div>
+    <div class="col-xs-4" style='padding-top: 25px;'>
       <%= f.input_field :image, as: :file %>
     </div>
   </div>
   <div class="row">
-    <div class='col-xs-8' style='padding-top:10px;'>&nbsp;&nbsp;Seating Level</div>
-    <div class="col-xs-4">
+    <div class='col-xs-8'>
+      &nbsp;&nbsp;Seating Level
+      <%= image_tag(@ticket.sitting_map, height: '80') %>
+    </div>
+    <div class="col-xs-4" style='padding-top: 25px;'>
       <%= f.input_field :sitting_map, as: :file %>
     </div>
   </div>
