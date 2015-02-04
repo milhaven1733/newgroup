@@ -41,7 +41,14 @@
       <div class='title'>Will Call:</div>
       <div class='value'><%= @ticket.will_call %></div>
     </div>
-    <% unless @ticket.flatten_discount.present? %>
+    <% if @ticket.flatten_discount.present? %>
+      <div class='group-price info'>
+        <div class='title'>Flat price discount:</div>
+        <div class="value">
+          <%= @ticket.flatten_discount %>%
+        </div>
+      </div>
+    <% else %>
       <div class='group-price info'>
         <div class='title'>Group Price:</div>
         <div class='value'>

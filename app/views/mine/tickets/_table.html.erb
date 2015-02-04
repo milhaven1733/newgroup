@@ -32,7 +32,7 @@
       <td class="center" style="vertical-align: middle"><%= ticket.amount %></td>
       <td class="center" style="vertical-align: middle"><%= ticket.sold %></td>
       <td class="center" style="vertical-align: middle">$<%= format_price ticket.flat_price(5) %></td>
-      <td class="center" style="vertical-align: middle"><%= ticket.flat_discount(5) %>%</td>
+      <td class="center" style="vertical-align: middle"><%= ticket.discount %>%</td>
       <td class="center" style="vertical-align: middle">
         <%= link_to mine_ticket_path(ticket) do %>
           <span class="glyphicon glyphicon-eye-open"></span>

@@ -8,7 +8,7 @@
     <h5 class='gray-light'>
       <%= ticket.try(:start_at).try(:strftime, '%I:%M %p') %> 
     </h5>
-    <h4 class='flat-discount yellow bold'><%= ticket.try(:flat_discount) %>% OFF</h4>
+    <h4 class='flat-discount yellow bold'><%= ticket.try(:discount) %>% OFF</h4>
     <h5 class='purple'>Groups of <%= ticket.try(:minimum_amount) %>+</h5>
   </div>
 </div>
