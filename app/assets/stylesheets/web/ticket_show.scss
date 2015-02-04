@@ -44,7 +44,11 @@
   #ticket-favorite{
     margin-left:30px;
   }
-  #amount{
+  .amount{
     font-size:20px;
+  }
+  #quantity-alert {
+    color: red;
+    display: none;
   }
 }

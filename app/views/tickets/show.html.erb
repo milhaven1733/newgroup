@@ -61,11 +61,11 @@
       </p>
       <p>
       <span class="light-purple"> Total Quantity: </span>
-      <span id="amount"><%= @ticket.amount %></span>
+      <span class="amount"><%= @ticket.amount %></span>
       </p>
       <p>
       <span class="light-purple">Minimum for Purchase: </span>
-      <span id="amount"><%= @ticket.minimum_amount  %></span>
+      <span id="min-amount" class='amount'><%= @ticket.minimum_amount  %></span>
       </p>
       <%= simple_form_for @order, url: new_ticket_order_path(@ticket), method: :get do |f| %>
         <div class='row discount_text'>
@@ -83,6 +83,7 @@
           <%= f.input_field :count, placeholder: "Enter", class: "purple-back" %>
         </div>
       </div>
+      <p id="quantity-alert">You must purchase the minimum amount of tickets to qualify for the discount.</p>
       <div class="row">
         <div class="col-xs-6">
           <span class="light-purple">Total Price:</span>
@@ -96,7 +97,7 @@
           <span class="light-purple">Booking Fee:</span>
         </div>
         <div class="col-xs-6">
-          <label id="booking-fee" class="purple-back circle-angle">$5.00</label>             
+          <label id="booking-fee" class="purple-back circle-angle">$5.00</label>
         </div>
       </div>
       <div class="row">
