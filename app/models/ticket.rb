@@ -10,6 +10,7 @@ class Ticket < ActiveRecord::Base
   has_many :votes, as: :votable
   has_many :orders
   has_one  :time_tag, class_name: 'TimeForTicketSearch', dependent: :destroy
+  has_many :feature_tickets, dependent: :destroy
 
   mount_uploader :image, ImageUploader
   mount_uploader :sitting_map, SittingMapUploader
