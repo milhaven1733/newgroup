@@ -1,10 +1,18 @@
 <div id="group-prices-tier">
-  <h2 class="center yellow">Add group price for <%= @ticket.name %></h2>
+  <h2 class="center yellow">Add Group Price Tier for <%= @ticket.name %></h2>
   <%= simple_form_for [:mine, @ticket, GroupPrice.new], html: {class: 'col-md-6 col-md-offset-3'} do |f| %>
-    <%= f.input_field :range_from, placeholder: 'Minimum' %>
-    <%= f.input_field :range_to, placeholder: 'Maximum' %>
-    <%= f.input_field :discount, placeholder: 'Discount' %>
-    <div class="clear"></div>
+    <div class="row">
+      <%= f.input_field :range_from, placeholder: 'Minimum' %>
+    </div>
+    <div class="row">
+      <%= f.input_field :range_to, placeholder: 'Maximum' %>
+    </div>
+    <div class="row">
+      <div class='input-group'>
+        <%= f.input_field :discount, as: :string, placeholder: 'Discount' %>
+        <span class="input-group-addon">%</span>
+      </div>
+    </div>
     <%= f.button :submit %>
   <% end %>
 </div>
