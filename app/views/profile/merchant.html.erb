@@ -47,7 +47,7 @@
           </div>
         </div>
         <p class='group-sales-phone'>Group Sales Phone</p>
-        <p class='phone-number purple'><b><%= @user.merchant_info.try(:phone) %></b></p>
+        <p class='phone-number purple'><b><%= @user.merchant_info.try(:sales_phone) %></b></p>
         <p class='email'><%= mail_to @user.email %></p>
       </div>
     </div>
