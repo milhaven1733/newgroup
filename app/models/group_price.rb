@@ -1,6 +1,8 @@
 class GroupPrice < ActiveRecord::Base
   priceable :price
 
+  default_scope { order('discount asc') }
+
   belongs_to :ticket
 
   validates :range_from, :range_to, :discount, presence: true, numericality: true

@@ -33,12 +33,18 @@
       <div class="col-xs-12 col-sm-6 col-sm-offset-1">
         <p class="category_name"><%= @ticket.category.try(:name) %></p>
         <p class="ticket_desc"><%= @ticket.desc %></p>
+        <p class="original_price">
+          <span>
+            Original price: <%= @ticket.oprice_to_currency %>
+          </span>
+          <span>&nbsp;Per Ticket</span>
+        </p>
         <% if @ticket.is_flatten_price? %>
-          <p class="original_price">
+          <p>
             <span>
-              Original price: <%= @ticket.oprice_to_currency %>
+              Flat Price Discount: 
+              <span class="purple-back circle-angle"><%= @ticket.flatten_discount %>% off</span>
             </span>
-            <span>&nbsp;Per Ticket</span>
           </p>
         <% else %>
           <p>
