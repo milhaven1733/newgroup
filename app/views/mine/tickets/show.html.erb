@@ -1,7 +1,7 @@
 <div class='main clearfix purple-back row'>
   <h3 class='center'><%= @ticket.name %></h3>
   <div class='img-section col-lg-5'>
-    <%= image_tag @ticket.image, class: 'ticket-image' %>
+    <%= image_tag @ticket.image_url, class: 'ticket-image' %>
     <%= image_tag @ticket.sitting_map, class: 'ticket-image' %>
   </div>
   <div class='info-section col-lg-7'>
@@ -19,7 +19,7 @@
     </div>
     <div class='time info'>
       <div class='title'>Time:</div>
-      <div class='value'><%= raw @ticket.time_range(:start) %></div>
+      <div class='value'><%= raw @ticket.time_range(:number) %></div>
     </div>
     <div class='info'>
       <div class='title'>Quantity:</div>
