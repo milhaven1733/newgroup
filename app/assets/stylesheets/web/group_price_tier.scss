@@ -31,15 +31,10 @@
 	}
 }
 #group-prices-tier {
-  min-height: 300px;
+  min-height: 380px;
   #new_group_price {
     input {
-      background-color: #75039e;
-      margin: 5px;
-      color: white;
-    }
-    input[type='submit'] {
-      color: yellow;
+      margin-bottom: 10px;
     }
   }
 }
