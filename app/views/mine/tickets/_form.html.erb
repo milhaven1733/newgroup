@@ -15,7 +15,7 @@
   </div>
 
   <%= f.input :amount, as: :integer, label: false, placeholder: 'Total quantity of tickets' %>
-  <%= f.input :minimum_amount, as: :string, label: false,  placeholder: 'Minimum tickets for purchase:' %>
+  <%= f.input :minimum_amount, as: :string, label: false,  placeholder: 'Minimum tickets for purchase' %>
 
   <div class="input-group" style='margin-bottom: 10px;'>
     <span class="input-group-addon">$</span>
@@ -45,7 +45,7 @@
       <div class='col-xs-5'>
         <div class="input-group">
           <span class="input-group-addon">$</span>
-          <%= f.input_field :flatten_price, as: :string, placeholder: "Flat Price per Ticket: 100", value: format_price(@ticket.flatten_price) %>
+          <%= f.input_field :flatten_price, as: :string, placeholder: "Flat Price per Ticket", value: format_price(@ticket.flatten_price) %>
         </div>
       </div>
     </div>
@@ -61,7 +61,7 @@
       <div class='col-xs-5'>
         <div class="input-group">
           <span class="input-group-addon">$</span>
-          <%= f.input_field :flatten_price, as: :string, placeholder: "Flat Price per Ticket: 100", value: format_price(@ticket.flatten_price) %>
+          <%= f.input_field :flatten_price, as: :string, placeholder: "Flat Price per Ticket", value: format_price(@ticket.flatten_price) %>
         </div>
       </div>
     </div>
