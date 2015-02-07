@@ -3,7 +3,6 @@ default: &default
   encoding: utf8
   username: soffolk
   password:
-  socket: /tmp/mysql.sock
   pool: 100
 
 development:

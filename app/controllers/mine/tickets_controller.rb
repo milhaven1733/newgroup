@@ -85,6 +85,7 @@ module Mine
         :student_discount,
         :shipping,
         :will_call,
+        :service_fee_waived,
         :image,
         :sitting_map,
         group_prices_attributes: [:range_from, :range_to, :price]

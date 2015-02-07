@@ -93,9 +93,11 @@
       <input type='checkbox' id='free-shipping' />
       <label>Free Shipping</label>
     </div>
-    <div class='col-xs-9'>
-      <input id="ticket_will_call" name="ticket[will_call]" type="checkbox" />
-      <label>Free Will Call Pick-up</label>
+    <div class='col-xs-3'>
+      <%= f.input :will_call, wrapper_html: { class: "choose" }, label: "Free Will Call Pick-up" %>
+    </div>
+    <div class="col-xs-3">
+      <%= f.input :service_fee_waived, wrapper_html: { class: "choose" }, label: "service Fee Waived" %>
     </div>
   </div>
   

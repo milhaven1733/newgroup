@@ -120,4 +120,14 @@
 	.will-call {
 		padding-top:10px;
 	}
+
+  .choose {
+    label {
+      padding: 0;
+      text-align: left;
+    }
+    input[type='checkbox'] {
+      height: 20px;
+    }
+  }
 }
